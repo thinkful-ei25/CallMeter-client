@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {Route, withRouter} from 'react-router-dom';
 
 import Dashboard from './dashboard';
-import RegistrationPage from './registration-page';
 import {refreshAuthToken} from '../actions/auth';
 import LandingPage from '../components/landingPage/LandingPage';
+import RegistrationPage from '../components/registration/Registration'
 
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
@@ -41,8 +41,8 @@ export class App extends React.Component {
         return (
             <div className="app">
                 <Route exact path="/" component={LandingPage} />
-                <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/register" component={RegistrationPage} />
+                <Route exact path="/dashboard" component={Dashboard} />
             </div>
         );
     }

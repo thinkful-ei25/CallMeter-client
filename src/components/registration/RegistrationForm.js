@@ -1,9 +1,9 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
-import {registerUser} from '../actions/users';
-import {login} from '../actions/auth';
+import {registerUser} from '../../actions/users';
+import {login} from '../../actions/auth';
 import Input from './input';
-import {required, nonEmpty, matches, length, isTrimmed} from '../validators';
+import {required, nonEmpty, matches, length, isTrimmed, emailCheck} from '../../validators';
 const passwordLength = length({min: 10, max: 72});
 const matchesPassword = matches('password');
 
@@ -23,16 +23,19 @@ export class RegistrationForm extends React.Component {
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
-                <label htmlFor="firstName">First name</label>
-                <Field component={Input} type="text" name="firstName" />
-                <label htmlFor="lastName">Last name</label>
-                <Field component={Input} type="text" name="lastName" />
-                <label htmlFor="username">Username</label>
+                <label htmlFor="firstName">Company name</label>
                 <Field
                     component={Input}
                     type="text"
-                    name="username"
+                    name="companyName"
                     validate={[required, nonEmpty, isTrimmed]}
+                />
+                <label htmlFor="email">Email Address</label>
+                <Field
+                    component={Input}
+                    type="text"
+                    name="email"
+                    validate={[required, nonEmpty, isTrimmed, emailCheck]}
                 />
                 <label htmlFor="password">Password</label>
                 <Field

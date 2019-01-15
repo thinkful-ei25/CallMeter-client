@@ -16,7 +16,7 @@ export class LandingPage extends React.Component {
                     </div>
                     <div className="navBarRight">
                         <Link style={{marginRight:"10%", textDecoration:"none"}} className="nav-link" to="/login">Log In</Link>
-                        <Link className="nav-link" to="/registration-page"><button className="smallSignUp">Sign-Up</button></Link>
+                        <Link className="nav-link" to="/register"><button className="smallSignUp">Sign-Up</button></Link>
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@ export class LandingPage extends React.Component {
                 laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
                 <div className="center">
-                    <Link to="/registration-page"><button className="mediumSignUp">Sign-Up</button></Link>
+                    <Link to="/register"><button className="mediumSignUp">Sign-Up</button></Link>
                 </div>
                 <div className="centerMainImageContainer">
                     <img src={require("../../resources/mainImage.png")}></img>
@@ -45,7 +45,7 @@ export class LandingPage extends React.Component {
                        elit. Nunc posuere vel metus a feugiat. Etiam dignissim erat
                         ut neque accumsan, mattis vestibulum ex auctor. Nam accumsan
                         sollicitudin odio id mollis. Nunc mi diam, convallis a nisi et,
-                  molestie ultricies urna. Etiam sodales ut est ut tincidunt.</p>
+                  molestie ultricies urna. Etiam sodales ut est ut</p>
                 </div>
                 <div className="featureContainer">
                     <div className="featureBox">
@@ -74,7 +74,7 @@ export class LandingPage extends React.Component {
                     </div>
                 </div>
                 <div className="center">
-                    <Link to="/registration-page"><button className="largeSignUp">Sign-Up</button></Link>
+                    <Link to="/register"><button className="largeSignUp">Sign-Up</button></Link>
                 </div>
                 <div className="footer">
 
