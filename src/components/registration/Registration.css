@@ -30,8 +30,8 @@
       width: 60%;
       margin-left: 20%; 
       background-color: white;
-      height: 70vh;
-      margin-top: 5vh;
+      height: 75vh;
+      margin-top: 2.5vh;
 }
 
 .center{
@@ -103,9 +103,5 @@ input {
 }
 
 .bottom-buttons {
-    
-    margin-top: 3%;   
+    margin-top: .4%;   
 }
-
-
-
