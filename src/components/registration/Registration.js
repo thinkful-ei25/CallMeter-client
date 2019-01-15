@@ -32,11 +32,7 @@ export function Registration(props) {
                     <div className="topFormContainer bottomFormContainer">
                         <RegistrationForm />
                     </div>
-                    <div className="login-link">
-                        <Link to="/">Login</Link>
-                    </div>
                 </div>
-
             </div>
             <div className="vhFooter">
             </div>

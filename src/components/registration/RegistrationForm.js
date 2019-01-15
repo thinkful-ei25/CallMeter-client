@@ -1,5 +1,6 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
+import {Link} from 'react-router-dom'
 import {registerUser} from '../../actions/users';
 import {login} from '../../actions/auth';
 import Input from './input';
@@ -47,6 +48,7 @@ export class RegistrationForm extends React.Component {
                     component={Input}
                     type="password"
                     name="password"
+                    placeholder="Make it Secure!"
                     validate={[required, passwordLength, isTrimmed]}
                 />
                 <label htmlFor="passwordConfirm">Confirm password</label>
@@ -54,6 +56,7 @@ export class RegistrationForm extends React.Component {
                     component={Input}
                     type="password"
                     name="passwordConfirm"
+                    placeholder="Make it Secure!"
                     validate={[required, nonEmpty, matchesPassword]}
                 />
                 <button
@@ -62,6 +65,7 @@ export class RegistrationForm extends React.Component {
                     disabled={this.props.pristine || this.props.submitting}>
                     Sign Up
                 </button>
+                <Link class="login-link" to="/">Login</Link>
             </form>
         );
     }

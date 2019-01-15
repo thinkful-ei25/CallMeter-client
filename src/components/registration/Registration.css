@@ -55,6 +55,9 @@ input {
     background-color: lightgray;
     width: 100%;
     margin-top: 10px;
+    height: 30px;
+    font-size: 20px;
+    margin-bottom: 10px;
     
 }
 
@@ -64,10 +67,13 @@ input {
     border: 1px solid gray;
     border-radius: 15%;
     cursor: pointer;
+    padding: 15px;
+    font-size: 16px;
 }
 
 .login-link {
-    margin-left: 10%;
+    margin-left: 20px;
+    font-size: 16px;
 }
 
 .vhFooter {
@@ -83,6 +89,12 @@ input {
     border-bottom: none
 }
 
+.form-error {
+    color: red;
+}
+.form-warning {
+    color:orangered;
+}
 
 
 
