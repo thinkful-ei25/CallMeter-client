@@ -16,12 +16,20 @@ export class LogIn extends React.Component {
     render() {
         return (
 
-
             <div className="background">
-                <div className="nav-links">
-                    <Link className="nav-link" to="/login">Log In</Link>
-                    <Link className="nav-link" to="/registration-page">Sign Up</Link>
+                <div className="navBar">
+                    <div className="navBarLeft">
+                        <img className="logo" src={require("../../resources/logo.jpg")}></img>
+                    </div>
+                    <div className="navBarMiddle">
+                    </div>
+                    <div className="navBarRight">
+                        <Link style={{marginRight:"10%", textDecoration:"none"}} className="nav-link" to="/login">Log In</Link>
+                        <Link className="nav-link" to="/registration-page"><button className="smallSignUp">Sign-Up</button></Link>
+                    </div>
                 </div>
+
+
                 <div className="centerTitle" >
                     <h1 className="title" >Billable</h1>
                 </div>
@@ -30,9 +38,13 @@ export class LogIn extends React.Component {
                     labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                 laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
-                <div className="centerTitle">
-                <Link to="/registration-page">Sign Up</Link>
+                <div className="center">
+                    <Link to="/registration-page"><button className="mediumSignUp">Sign-Up</button></Link>
                 </div>
+                <div className="centerMainImageContainer">
+                    <img src={require("../../resources/mainImage.png")}></img>
+                </div>
+
                 <div className="centerTitle">
                     <h3 className="title">Billable</h3>
                 </div>
@@ -69,6 +81,12 @@ export class LogIn extends React.Component {
                  Nullam tortor nulla, rhoncus at laoreet quis,</p>
                         </div>
                     </div>
+                </div>
+                <div className="center">
+                    <Link to="/registration-page"><button className="largeSignUp">Sign-Up</button></Link>
+                </div>
+                <div className="footer">
+
                 </div>
             </div>
         );
