@@ -1,13 +1,22 @@
 .phoneMargin{
-  padding: 0;
-  margin-bottom: 0;
-  padding-top: 5%;
+  margin: 0;
 }
-
 .phoneFormContainer{
-  margin-top: 15%;
+  margin-top: 3%;
 }
 
-.formInputHeight{
-  height: 200px;
+.topFormContainer{
+  padding-top: 1%;
+}
+
+.background{
+  background-color: #f2f2f5;
+}
+
+.setupFormContainer{
+  margin-top: 2.5%;
+  width: 60%;
+  margin-left: 20%;
+  background-color: white;
+  margin-bottom: 2.5%;
 }
