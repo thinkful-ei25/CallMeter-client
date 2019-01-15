@@ -17,7 +17,6 @@ export function Registration(props) {
 
             </div>
             <div className="fullPage">
-
                 <div className="registrationPageContainer shadow">
                     <div className="topFormContainer">
                         <div className="centerTitle" >
@@ -29,7 +28,7 @@ export function Registration(props) {
                 laboris nisi ut aliquip ex ea commodo consequat.</p>
                         </div>
                     </div>
-                    <div className="topFormContainer bottomFormContainer">
+                    <div className="topFormContainer noLine">
                         <RegistrationForm />
                     </div>
                 </div>

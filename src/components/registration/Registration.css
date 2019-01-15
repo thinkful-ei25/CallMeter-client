@@ -1,48 +1,47 @@
 .registrationDescription{
     margin-top: 0;
     text-align:center;
-  }
+    position: relative;
+}
 
 .centerTitle{
     margin-top: 5%;
     text-align: center;
     line-height: 0;
-  }
+}
 
 .title{
     color: #777777;
     font-weight: bold;
     font-size: 2em;
-  }
+}
 
 .loginForm {
       text-align: left;
-      
-
-  }
+}
 
 .registrationPageContainer {
       border: 1px;
       width: 60%;
-      margin-left: 20%;
-      
-      
-  }
+      margin-left: 20%; 
+      background-color: white;
+      height: 70vh;
+      margin-top: 5vh;
+}
 
 .center{
     text-align: center;
-  }
+}
 
 .shadow{ 
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15); 
-  }
+}
 
 .fullPage {
-   
     background-color: #f2f2f5;
     height: 80vh;
     overflow: hidden;
-  }
+}
 
 .topFormContainer {
     width: 80%;
@@ -52,7 +51,7 @@
 }
 
 input {
-    background-color: lightgray;
+    background-color: #f4f4f4;
     width: 100%;
     margin-top: 10px;
     height: 30px;
@@ -85,7 +84,7 @@ input {
     background-color: pink;
 }
 
-.bottomFormContainer {
+.noLine {
     border-bottom: none
 }
 
