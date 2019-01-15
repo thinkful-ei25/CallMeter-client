@@ -59,6 +59,7 @@ export class RegistrationForm extends React.Component {
                     placeholder="Make it Secure!"
                     validate={[required, nonEmpty, matchesPassword]}
                 />
+                <div className="bottom-buttons">
                 <button
                     className="signUpButton"
                     type="submit"
@@ -66,6 +67,7 @@ export class RegistrationForm extends React.Component {
                     Sign Up
                 </button>
                 <Link class="login-link" to="/">Login</Link>
+                </div>
             </form>
         );
     }
