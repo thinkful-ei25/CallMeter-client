@@ -12,26 +12,36 @@ export function Registration(props) {
         return <Redirect to="/dashboard" />;
     }
     return (
-        <div className="fullPage">
-            <div className="registrationPageContainer shadow">
-                <div className="topFormContainer">
-                    <div className="centerTitle" >
-                        <h1 className="title" >Billable</h1>
-                    </div>
-                    <div className="registrationDescription">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        <div>
+            <div className="vhHeader">
+
+            </div>
+            <div className="fullPage">
+
+                <div className="registrationPageContainer shadow">
+                    <div className="topFormContainer">
+                        <div className="centerTitle" >
+                            <h1 className="title" >Billable</h1>
+                        </div>
+                        <div className="registrationDescription">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                 laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
+                    </div>
+                    <div className="topFormContainer bottomFormContainer">
+                        <RegistrationForm />
+                    </div>
+                    <div className="login-link">
+                        <Link to="/">Login</Link>
                     </div>
                 </div>
-                <div>
-                    <RegistrationForm />
-                </div>
-                <div className="center">
-                    <Link to="/">Login</Link>
-                </div>
+
+            </div>
+            <div className="vhFooter">
             </div>
         </div>
+
     );
 }
 

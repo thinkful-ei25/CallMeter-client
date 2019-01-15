@@ -20,12 +20,13 @@ export class RegistrationForm extends React.Component {
 
     render() {
         return (
+            
             <form
                 className="loginForm"
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
-                <div className="company-name">
+                
                 <label htmlFor="firstName">Company name</label>
                 <Field
                     component={Input}
@@ -33,7 +34,7 @@ export class RegistrationForm extends React.Component {
                     name="companyName"
                     validate={[required, nonEmpty, isTrimmed]}
                 />
-                </div>
+                
                 <label htmlFor="email">Email Address</label>
                 <Field
                     component={Input}
@@ -56,6 +57,7 @@ export class RegistrationForm extends React.Component {
                     validate={[required, nonEmpty, matchesPassword]}
                 />
                 <button
+                    className="signUpButton"
                     type="submit"
                     disabled={this.props.pristine || this.props.submitting}>
                     Sign Up
