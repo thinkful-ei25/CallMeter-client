@@ -1,3 +1,53 @@
-header {
-    text-align:center;
+.centerTitle{
+  text-align: center;
+  line-height: 0;
+}
+
+.descriptionBox{
+  margin-top: 0;
+  width: 40%;
+  margin-left: 30%;
+  text-align:center;
+}
+
+.title{
+  color: #777777;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.featureImages{
+  border-radius: 50%;
+  height: 100px;
+}
+
+.background{
+  background-color: pink;
+  overflow: hidden;
+}
+
+.featureContainer{
+  width: 85%;
+  margin-left: 7.5%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.featureBox{
+  width: 33.33%;
+  text-align: center;
+}
+
+.featureText{
+  width: 80%;
+  margin-left: 10%;
+}
+
+.nav-links{
+  text-align: right;
+  margin-right: 10%;
+}
+
+.nav-link {
+  margin: 10px;
 }
