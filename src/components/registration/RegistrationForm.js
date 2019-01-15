@@ -28,7 +28,7 @@ export class RegistrationForm extends React.Component {
                     this.onSubmit(values)
                 )}>
                 
-                <label htmlFor="firstName">Company name</label>
+                <label htmlFor="companyName">Company name</label>
                 <Field
                     component={Input}
                     type="text"
@@ -66,7 +66,7 @@ export class RegistrationForm extends React.Component {
                     disabled={this.props.pristine || this.props.submitting}>
                     Sign Up
                 </button>
-                <Link class="login-link" to="/">Login</Link>
+                <Link class="login-link" to="/login">Login</Link>
                 </div>
             </form>
         );

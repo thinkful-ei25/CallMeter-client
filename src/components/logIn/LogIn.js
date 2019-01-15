@@ -1,93 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Route, withRouter } from 'react-router-dom';
-import './LogIn.css';
+import { Link, Redirect } from 'react-router-dom';
+// import './Registration.css';
+import LoginForm from './LoginForm'
 
-export class LogIn extends React.Component {
-    render() {
-        return (
+export function Login(props) {
+    // If we are logged in (which happens automatically when registration
+    // is successful) redirect to the user's dashboard
+    if (props.loggedIn) {
+        return <Redirect to="/dashboard" />;
+    }
+    return (
+        <div>
+            <div className="vhHeader">
 
-            <div className="background">
-                <div className="navBar">
-                    <div className="navBarLeft">
-                        <img className="logo" src={require("../../resources/logo.jpg")}></img>
-                    </div>
-                    <div className="navBarMiddle">
-                    </div>
-                    <div className="navBarRight">
-                        <Link style={{marginRight:"10%", textDecoration:"none"}} className="nav-link" to="/login">Log In</Link>
-                        <Link className="nav-link" to="/register"><button className="smallSignUp">Sign-Up</button></Link>
-                    </div>
-                </div>
+            </div>
+            <div className="fullPage">
+                <div className="registrationPageContainer shadow">
+                    <div className="topFormContainer">
 
 
-                <div className="centerTitle" >
-                    <h1 className="title" >Billable</h1>
-                </div>
-                <div className="descriptionBox">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+
+                        <div className="registrationDescription">
+                            <h1 className="title" >Billable</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                 laboris nisi ut aliquip ex ea commodo consequat.</p>
-                </div>
-                <div className="center">
-                    <Link to="/registration-page"><button className="mediumSignUp">Sign-Up</button></Link>
-                </div>
-                <div className="centerMainImageContainer">
-                    <img src={require("../../resources/mainImage.png")}></img>
-                </div>
-
-                <div className="centerTitle">
-                    <h3 className="title">Billable</h3>
-                </div>
-                <div className="descriptionBox">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                       Nullam tortor nulla, rhoncus at laoreet quis, pretium at
-                       elit. Nunc posuere vel metus a feugiat. Etiam dignissim erat
-                        ut neque accumsan, mattis vestibulum ex auctor. Nam accumsan
-                        sollicitudin odio id mollis. Nunc mi diam, convallis a nisi et,
-                  molestie ultricies urna. Etiam sodales ut est ut tincidunt.</p>
-                </div>
-                <div className="featureContainer">
-                    <div className="featureBox">
-                        <img className="featureImages" src={require("../../resources/Pikachu.jpg")}></img>
-                        <h3>Feature</h3>
-                        <div className="featureText">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                 Nullam tortor nulla, rhoncus at laoreet quis,</p>
                         </div>
                     </div>
-                    <div className="featureBox">
-                        <img className="featureImages" src={require("../../resources/Pikachu.jpg")}></img>
-                        <h3>Feature</h3>
-                        <div className="featureText">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                 Nullam tortor nulla, rhoncus at laoreet quis,</p>
-                        </div>
+                    <div className="topFormContainer noLine">
+                        <LoginForm />
                     </div>
-                    <div className="featureBox">
-                        <img className="featureImages" src={require("../../resources/Pikachu.jpg")}></img>
-                        <h3>Feature</h3>
-                        <div className="featureText">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                 Nullam tortor nulla, rhoncus at laoreet quis,</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="center">
-                    <Link to="/registration-page"><button className="largeSignUp">Sign-Up</button></Link>
-                </div>
-                <div className="footer">
-
                 </div>
             </div>
-        );
-    }
+            <div className="vhFooter">
+            </div>
+        </div>
+
+    );
 }
 
 const mapStateToProps = state => ({
-    hasAuthToken: state.auth.authToken !== null,
     loggedIn: state.auth.currentUser !== null
 });
 
-// Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
-export default withRouter(connect(mapStateToProps)(LogIn));
+export default connect(mapStateToProps)(Login);
