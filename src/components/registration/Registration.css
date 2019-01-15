@@ -1,0 +1,50 @@
+.registrationDescription{
+    margin-top: 0;
+    text-align:center;
+  }
+
+.centerTitle{
+    margin-top: 5%;
+    text-align: center;
+    line-height: 0;
+  }
+
+.title{
+    color: #777777;
+    font-weight: bold;
+    font-size: 2em;
+  }
+
+.loginForm {
+      text-align: center;
+  }
+
+.registrationPageContainer {
+      border: 1px;
+      width: 60%;
+      margin-left: 20%;
+      
+      
+  }
+
+.center{
+    text-align: center;
+  }
+
+.shadow{ 
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15); 
+  }
+
+.fullPage {
+    background-color: #f2f2f5;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+.topFormContainer {
+    width: 80%;
+    margin-left: 10%;
+    border-bottom: 1px solid black;
+}
+
+
