@@ -1,0 +1,13 @@
+.phoneMargin{
+  padding: 0;
+  margin-bottom: 0;
+  padding-top: 5%;
+}
+
+.phoneFormContainer{
+  margin-top: 15%;
+}
+
+.formInputHeight{
+  height: 200px;
+}
