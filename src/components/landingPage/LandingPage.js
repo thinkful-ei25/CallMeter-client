@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Route, withRouter } from 'react-router-dom';
-import './LogIn.css';
+import './LandingPage.css';
 
-export class LogIn extends React.Component {
+export class LandingPage extends React.Component {
     render() {
         return (
 
@@ -90,4 +90,4 @@ const mapStateToProps = state => ({
 });
 
 // Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
-export default withRouter(connect(mapStateToProps)(LogIn));
+export default withRouter(connect(mapStateToProps)(LandingPage));

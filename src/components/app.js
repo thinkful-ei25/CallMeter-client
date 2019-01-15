@@ -5,7 +5,7 @@ import {Route, withRouter} from 'react-router-dom';
 import Dashboard from './dashboard';
 import RegistrationPage from './registration-page';
 import {refreshAuthToken} from '../actions/auth';
-import LogIn from '../components/logIn/LogIn';
+import LandingPage from '../components/landingPage/LandingPage';
 
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
@@ -40,7 +40,7 @@ export class App extends React.Component {
     render() {
         return (
             <div className="app">
-                <Route exact path="/" component={LogIn} />
+                <Route exact path="/" component={LandingPage} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/register" component={RegistrationPage} />
             </div>
