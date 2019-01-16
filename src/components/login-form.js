@@ -6,7 +6,7 @@ import {required, nonEmpty} from '../validators';
 
 export class LoginForm extends React.Component {
     onSubmit(values) {
-        return this.props.dispatch(login(values.username, values.password));
+        return this.props.dispatch(login(values.email, values.password));
     }
 
     render() {
@@ -29,7 +29,7 @@ export class LoginForm extends React.Component {
                 <Field
                     component={Input}
                     type="text"
-                    name="username"
+                    name="email"
                     id="username"
                     validate={[required, nonEmpty]}
                 />

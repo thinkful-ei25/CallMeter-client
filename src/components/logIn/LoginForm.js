@@ -46,7 +46,7 @@ export class LoginForm extends React.Component {
                 <button className="signUpButton" disabled={this.props.pristine || this.props.submitting}>
                     Log in
                 </button>
-                <Link class="login-link" to="/register">Sign Up</Link>
+                <Link className="login-link" to="/register">Sign Up</Link>
             </form>
         );
     }
@@ -54,5 +54,5 @@ export class LoginForm extends React.Component {
 
 export default reduxForm({
     form: 'login',
-    onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'username'))
+    onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'email'))
 })(LoginForm);

@@ -2,12 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Route, withRouter} from 'react-router-dom';
 
-import Dashboard from './dashboard';
+import Dashboard from './dashboard/dashboard';
 import {refreshAuthToken} from '../actions/auth';
 import LandingPage from '../components/landingPage/LandingPage';
 import RegistrationPage from '../components/registration/Registration'
 import SetupPhone from '../components/setupPhone/SetupPhone';
 import Login from '../components/logIn/LogIn'
+import Stats from './dashboard/Stats'
 
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
@@ -44,9 +45,10 @@ export class App extends React.Component {
             <div className="app">
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/register" component={RegistrationPage} />
-                <Route exact path="/dashboard" component={Dashboard} />
+                <Route path="/dashboard" component={Dashboard} />
                 <Route exact path="/setupPhone" component={SetupPhone} />
                 <Route exact path="/login" component={Login} />
+                <Route exact path ="/dashboard/stats" component={Stats} />
             </div>
         );
     }
