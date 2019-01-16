@@ -7,3 +7,18 @@
     display: inline-block;
     margin: 10px;
 }
+
+.callinput {
+    margin-top: 5%;
+   
+}
+
+.callbutton {
+    margin-left: 5px;
+}
+.rt-tr {
+    text-align: center;
+}
+.invoicesTable {
+    margin-top: 15px;
+}

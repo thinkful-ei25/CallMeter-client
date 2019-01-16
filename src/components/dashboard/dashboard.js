@@ -22,7 +22,7 @@ export class Dashboard extends React.Component {
                     </div>
                     <div className="dashboard-name topnav"><Link to="/dashboard/invoices">Invoices</Link></div>
                     <div className="dashboard-protected-data topnav">
-                        <Link to="/dashboard/makeCalls">Make Calls</Link>
+                        <Link to="/dashboard/call">Make Calls</Link>
                     </div>
                 </div>
                 {/* <div>
