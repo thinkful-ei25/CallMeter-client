@@ -31,7 +31,16 @@ export class Stats extends React.Component {
                         data: [5, 4, 23, 5, 13, 15, 4, 3, 6, 1, 17, 12, 45]
                     }
                     ]
-                }} />
+                }} options={{
+                    scales: {
+                      yAxes: [{
+                        scaleLabel: {
+                          display: true,
+                          labelString: 'probability'
+                        }
+                      }]
+                    }     
+                  }}/>
             </div>
 
 
