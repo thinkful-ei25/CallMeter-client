@@ -23,5 +23,5 @@ export const emailCheck = (email) => {
 
 export const phoneCheck = (phone) => {
     const re = /^(\()?\d{3}(\))?(-|\s)?[2-9]{1}\d{2}(-|\s)\d{4}$/;
-    return re.test(String(phone).toLowerCase()) ? undefined : 'Invalid Email';
+    return re.test(String(phone).toLowerCase()) ? undefined : 'Invalid Phone Number';
 }        
