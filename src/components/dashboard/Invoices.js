@@ -13,60 +13,78 @@ export class Invoices extends React.Component {
         this.props.dispatch(fetchProtectedData());
     }
 
+
+     //         contactName: namor.generate({ words: 1, numbers: 0 }),
+    // firstName: namor.generate({words: 1, numbers: 0 }),
+    // lastName: namor.generate({ words: 1, numbers: 0 }),
+    // numCalls: Math.floor(Math.random() * 30),
+    // numMinutes: Math.floor(Math.random() * 50),
+    // lastCall: Math.floor(Math.random() * 100),
+    // totalBilled: Math.floor(Math.random() * 100),
+    // totalUnpaid: Math.floor(Math.random() * 20)
+
     render() {
         const data = makeData();
         return (
-          <div>
-            <ReactTable
-              data={data}
-              columns={[
-                {
-                  Header: "Company Name",
-                  columns: [
-                    {
-                      Header: "Contact Name",
-                      accessor: "firstName"
-                    },
-                    {
-                      Header: "Last Name",
-                      id: "lastName",
-                      accessor: d => d.lastName
-                    }
-                  ]
-                },
-                {
-                  Header: "Info",
-                  columns: [
-                    {
-                      Header: "Calls",
-                      accessor: "age"
-                    },
-                    {
-                      Header: "Minutes",
-                      accessor: "status"
-                    }
-                  ]
-                },
-                {
-                  Header: 'Stats',
-                  columns: [
-                    {
-                      Header: "Visits",
-                      accessor: "visits"
-                    }
-                  ]
-                }
-              ]}
+            <div className="invoicesTable">
+                <h1>Invoices</h1>
+                <ReactTable
+                    data={data}
+                    columns={[
+                        {
+                            Header: "Contact Name",
+                            accessor: "contactName"
+                        },
+                        {
+                            Header: "First Name",
+                            accessor: "firstName"
+                        },
+                        {
+                            Header: "Last Name",
+                            id: "lastName",
+                            accessor: "lastName"
+                        },
+                        {
+                            Header: "Calls",
+                            accessor: "numCalls"
+                        },
+                        {
+                            Header: "Minutes",
+                            accessor: "numMinutes"
+                        },
+                        {
+                            Header: "Last Call",
+                            accessor: "lastCall",
+                            sortMethod: (a, b) => {
+                                return new Date(b) - new Date(a)
+                            }
+                        },
+                        {
+                            Header: "Total Billed",
+                            accessor: "totalBilled",
+                            sortMethod: (a, b) => {
+                                if (a.length === b.length) {
+                                  return a > b ? 1 : -1;
+                                }
+                                return a.length > b.length ? 1 : -1;
+                              }
+                        },
+                        {
+                            Header: "Total Unpaid",
+                            accessor: "totalUnpaid"
+                        }
+                  
+        ]}
               defaultPageSize={10}
-              className="-striped -highlight"
-            />
+                className="-striped -highlight"
+              />
             <br />
-            <Tips />
-            <Logo />
-          </div>
+                <Tips />
+                {/* <Logo /> */}
+            </div>
         );
-      }
     }
+}
 
 
 const mapStateToProps = state => {

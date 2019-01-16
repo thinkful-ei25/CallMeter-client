@@ -10,22 +10,42 @@ const range = len => {
   return arr;
 };
 
+function timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = year + ' ' + month + ' ' + date + ' ' + hour + ':' + min + ':' + sec ;
+   
+    return time;
+  }
+
+  var formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    minimumIntegerDigits: 2
+  })
+ 
 const newPerson = () => {
-  const statusChance = Math.random();
+
   return {
-    firstName: namor.generate({ words: 1, numbers: 0 }),
+    contactName: namor.generate({ words: 1, numbers: 0 }),
+    firstName: namor.generate({words: 1, numbers: 0 }),
     lastName: namor.generate({ words: 1, numbers: 0 }),
-    age: Math.floor(Math.random() * 30),
-    visits: Math.floor(Math.random() * 100),
-    progress: Math.floor(Math.random() * 100),
-    status:
-      statusChance > 0.66
-        ? "relationship"
-        : statusChance > 0.33 ? "complicated" : "single"
+    numCalls: Math.floor(Math.random() * 30),
+    numMinutes: Math.floor(Math.random() * 50),
+    lastCall: timeConverter(Math.floor(Math.random() * 1597779950)),
+    totalBilled:  formatter.format(Math.floor(Math.random() * 200)),
+    totalUnpaid:  formatter.format(Math.floor(Math.random() * 20))
   };
 };
 
-export function makeData(len = 5553) {
+export function makeData(len = 50) {
   return range(len).map(d => {
     return {
       ...newPerson(),
