@@ -5,6 +5,8 @@ import { fetchProtectedData } from '../../actions/protected-data';
 import { Line } from 'react-chartjs-2';
 import {Link} from 'react-router-dom';
 import './dashboard.css'
+import {clearAuthToken} from '../../local-storage'
+import {clearAuth} from '../../actions/auth'
 
 
 
@@ -13,6 +15,12 @@ export class Dashboard extends React.Component {
         this.props.dispatch(fetchProtectedData());
     }
 
+    logOut() {
+        console.log(this.props)
+        this.props.dispatch(clearAuth())
+        clearAuthToken()
+    }
+    
     render() {
         return (
             <div>
@@ -23,6 +31,9 @@ export class Dashboard extends React.Component {
                     <div className="dashboard-name topnav"><Link to="/dashboard/invoices">Invoices</Link></div>
                     <div className="dashboard-protected-data topnav">
                         <Link to="/dashboard/call">Make Calls</Link>
+                    </div>
+                    <div className="topnav">
+                        <button onClick={() => this.logOut()}>LogOut</button>
                     </div>
                 </div>
                 {/* <div>
@@ -50,12 +61,12 @@ export class Dashboard extends React.Component {
 const mapStateToProps = state => {
     const { currentUser } = state.auth;
     return {
-        // username: state.auth.currentUser.username,
-        // name: `${currentUser.firstName} ${currentUser.lastName}`,
-        // protectedData: state.protectedData.data
+        username: state.auth.currentUser.username,
+        name: `${currentUser.firstName} ${currentUser.lastName}`,
+        protectedData: state.protectedData.data
     };
 };
 
-// export default requiresLogin()(connect(mapStateToProps)(Dashboard));
+export default requiresLogin()(connect(mapStateToProps)(Dashboard));
 
-export default connect(mapStateToProps)(Dashboard);
+// export default connect(mapStateToProps)(Dashboard);

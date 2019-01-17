@@ -42,16 +42,16 @@ const storeAuthInfo = (authToken, dispatch) => {
     saveAuthToken(authToken);
 };
 
-export const login = (email, password) => dispatch => {
+export const login = (organizationName, password) => dispatch => {
     dispatch(authRequest());
     return (
-        fetch(`${API_BASE_URL}/auth/login`, {
+        fetch(`${API_BASE_URL}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                email,
+                organizationName,
                 password
             })
         })
@@ -61,10 +61,12 @@ export const login = (email, password) => dispatch => {
             .then(res => res.json())
             .then(({authToken}) => storeAuthInfo(authToken, dispatch))
             .catch(err => {
-                const {code} = err;
+                console.log('err',err)
+                const {status} = err;
+                console.log('code', status)
                 const message =
-                    code === 401
-                        ? 'Incorrect email or password'
+                    status === 401
+                        ? 'Incorrect organization name or password'
                         : 'Unable to login, please try again';
                 dispatch(authError(err));
                 // Could not authenticate, so return a SubmissionError for Redux

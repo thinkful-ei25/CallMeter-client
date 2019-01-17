@@ -12,14 +12,24 @@ const matchesPassword = matches('password');
 
 export class RegistrationForm extends React.Component {
     onSubmit(values) {
-        const {organizationName, hourlyRate, password, email} = values;
-        const user = {organizationName, hourlyRate, password, email};
+        const {organizationName, password, email} = values;
+        const user = {organizationName, password, email};
         return this.props
             .dispatch(registerUser(user))
-            .then(() => this.props.dispatch(login(email, password)));
+            .then(() => this.props.dispatch(login(organizationName, password)));
+            
     }
 
     render() {
+        let error;
+        if (this.props.error) {
+            error = (
+                <div className="form-error" aria-live="polite">
+                    {this.props.error}
+                </div>
+            );
+        }
+        
         return (
             
             <form
@@ -27,7 +37,7 @@ export class RegistrationForm extends React.Component {
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
-                
+                <div>{error}</div>
                 <label htmlFor="companyName">Organization Name</label>
                 <Field
                     component={Input}
@@ -35,15 +45,7 @@ export class RegistrationForm extends React.Component {
                     name="organizationName"
                     validate={[required, nonEmpty, isTrimmed]}
                 />
-                <label htmlFor="hourlyRate">Hourly Rate</label>
-                <Field
-                    component={Input}
-                    type="number"
-                    name="hourlyRate"
-                    validate={[required, nonEmpty]}
-                />
-                
-                <label htmlFor="email">Email Address</label>
+               <label htmlFor="email">Email Address</label>
                 <Field
                     component={Input}
                     type="text"
