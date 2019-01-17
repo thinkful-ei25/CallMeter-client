@@ -8,7 +8,7 @@ import './Login.css'
 
 export class LoginForm extends React.Component {
     onSubmit(values) {
-        return this.props.dispatch(login(values.email, values.password));
+        return this.props.dispatch(login(values.organizationName, values.password));
     }
 
     render() {
@@ -27,11 +27,11 @@ export class LoginForm extends React.Component {
                     this.onSubmit(values)
                 )}>
                 {error}
-                <label htmlFor="email">Email Address</label>
+                <label htmlFor="organizationName">Organization Name</label>
                 <Field
                     component={Input}
                     type="text"
-                    name="email"
+                    name="organizationName"
                     validate={[required, nonEmpty]}
                 />
             
@@ -54,5 +54,5 @@ export class LoginForm extends React.Component {
 
 export default reduxForm({
     form: 'login',
-    onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'email'))
+    onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'organizationName'))
 })(LoginForm);

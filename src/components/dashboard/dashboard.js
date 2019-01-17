@@ -7,8 +7,10 @@ import { Link } from 'react-router-dom';
 import './dashboard.css'
 import { makeData, Logo, Tips } from "./Utils";
 import ReactTable from "react-table";
-const pokemon = require('./pokedex.json');
+import {clearAuthToken} from '../../local-storage'
+import {clearAuth} from '../../actions/auth'
 
+const pokemon = require('./pokedex.json');
 
 
 export class Dashboard extends React.Component {
@@ -25,6 +27,12 @@ export class Dashboard extends React.Component {
             document.getElementsByClassName("welcomeNewUser")[0].style.visibility = "visible";
         }
         this.props.dispatch(fetchProtectedData());
+    }
+
+    logOut() {
+        console.log(this.props)
+        this.props.dispatch(clearAuth())
+        clearAuthToken()
     }
 
 
@@ -46,6 +54,7 @@ export class Dashboard extends React.Component {
         document.getElementsByClassName("overlay")[0].style.visibility = "hidden";
         document.getElementsByClassName("welcomeNewUser")[0].style.visibility = "hidden";
     }
+    
     render() {
         return (
             <div>
@@ -116,6 +125,9 @@ export class Dashboard extends React.Component {
                         defaultPageSize={-1}
                     />
                     {/* <Logo /> */}
+                    <div className="topnav">
+                        <button onClick={() => this.logOut()}>LogOut</button>
+                    </div>
                 </div>
             </div>
         );
@@ -125,12 +137,12 @@ export class Dashboard extends React.Component {
 const mapStateToProps = state => {
     const { currentUser } = state.auth;
     return {
-        // username: state.auth.currentUser.username,
-        // name: `${currentUser.firstName} ${currentUser.lastName}`,
-        // protectedData: state.protectedData.data
+        //username: state.auth.currentUser.username,
+        //name: `${currentUser.firstName} ${currentUser.lastName}`,
+        protectedData: state.protectedData.data
     };
 };
 
-// export default requiresLogin()(connect(mapStateToProps)(Dashboard));
+//export default requiresLogin()(connect(mapStateToProps)(Dashboard));
 
 export default connect(mapStateToProps)(Dashboard);
