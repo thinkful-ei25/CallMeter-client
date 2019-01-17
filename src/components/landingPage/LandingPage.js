@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Route, withRouter } from 'react-router-dom';
+import { Link, Route, withRouter, Redirect } from 'react-router-dom';
 import './LandingPage.css';
 
 export class LandingPage extends React.Component {
