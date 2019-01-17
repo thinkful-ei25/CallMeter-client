@@ -11,6 +11,7 @@ import Login from '../components/logIn/LogIn'
 import Stats from './dashboard/Stats'
 import MakeCall from './dashboard/MakeCall'
 import Invoices from './dashboard/Invoices'
+import Clients from './dashboard/Clients'
 
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
@@ -53,6 +54,7 @@ export class App extends React.Component {
                 <Route exact path ="/dashboard/stats" component={Stats} />
                 <Route exact path="/dashboard/call" component={MakeCall} />
                 <Route exact path="/dashboard/invoices" component={Invoices} />
+                <Route exact path="/dashboard/clients" component={Clients} />
             </div>
         );
     }

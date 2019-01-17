@@ -89,10 +89,14 @@ export class LandingPage extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => {
+    console.log('landing page state', state);
+    return ({
+    
     hasAuthToken: state.auth.authToken !== null,
     loggedIn: state.auth.currentUser !== null
 });
+}
 
 // Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
 export default withRouter(connect(mapStateToProps)(LandingPage));

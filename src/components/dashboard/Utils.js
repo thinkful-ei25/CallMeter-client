@@ -31,7 +31,7 @@ function timeConverter(UNIX_timestamp){
     minimumIntegerDigits: 2
   })
  
-const newPerson = () => {
+export const newPerson = () => {
 
   return {
     contactName: namor.generate({ words: 1, numbers: 0 }),
@@ -45,11 +45,20 @@ const newPerson = () => {
   };
 };
 
-export function makeData(len = 50) {
+export const newClient = () => {
+  return {
+    name: namor.generate({words:1, numbers: 0}),
+    email: namor.generate({words: 1, numbers: 0}),
+    phone: Math.floor(Math.random()* 1000) + '-' + Math.floor(Math.random()* 1000) + '-' + Math.floor(Math.random()* 10000),
+    createdDate: timeConverter(Math.floor(Math.random() * 1597779950))
+  }
+}
+
+export function makeData(generator, len = 5) {
   return range(len).map(d => {
     return {
-      ...newPerson(),
-      children: range(10).map(newPerson)
+      ...generator(),
+      children: range(10).map(generator)
     };
   });
 }

@@ -32,6 +32,9 @@ export class Dashboard extends React.Component {
                     <div className="dashboard-protected-data topnav">
                         <Link to="/dashboard/call">Make Calls</Link>
                     </div>
+                    <div className="dashboard-protected-data topnav">
+                        <Link to="/dashboard/clients">Clients</Link>
+                    </div>
                     <div className="topnav">
                         <button onClick={() => this.logOut()}>LogOut</button>
                     </div>
@@ -59,6 +62,7 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => {
+    console.log('dashboard state', state)
     const { currentUser } = state.auth;
     return {
         username: state.auth.currentUser.username,
