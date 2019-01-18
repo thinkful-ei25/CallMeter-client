@@ -11,11 +11,8 @@ import Login from '../components/logIn/LogIn'
 import Stats from './dashboard/Stats'
 import MakeCall from './dashboard/MakeCall'
 import Invoices from './dashboard/Invoices'
-<<<<<<< HEAD
 import navBar from '../components/dashboard/navbar/Navbar'
-=======
 import Clients from './dashboard/Clients'
->>>>>>> 99274d80261027ce8ab778abb51543d6ecf3d6aa
 
 export class App extends React.Component {
     componentDidUpdate(prevProps) {

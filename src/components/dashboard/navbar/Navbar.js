@@ -20,6 +20,9 @@ export class Navbar extends React.Component {
           <div className="dashboard-protected-data topnav">
               <Link to="/dashboard/call">Make Calls</Link>
           </div>
+          <div className="dashboard-protected-data topnav">
+              <Link to="/dashboard/clients">Clients</Link>
+          </div>
       </div>
     </div>
     )
