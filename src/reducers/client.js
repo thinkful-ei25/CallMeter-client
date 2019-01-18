@@ -1,6 +1,7 @@
 import {
     FETCH_CLIENTS_SUCCESS,
-    FETCH_CLIENTS_ERROR
+    FETCH_CLIENTS_ERROR,
+    ADD_CLIENT_SUCCESS
 } from '../actions/client';
 
 const initialState = {
@@ -18,6 +19,10 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             error: action.error
         });
+    } else if (action.type === ADD_CLIENT_SUCCESS) {
+        return Object.assign({}, state, {
+            newCompany: action.newCompany
+        })
     }
     return state;
 }

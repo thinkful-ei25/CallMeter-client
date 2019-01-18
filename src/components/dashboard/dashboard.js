@@ -12,7 +12,7 @@ import {clearAuth} from '../../actions/auth'
 
 export class Dashboard extends React.Component {
     componentDidMount() {
-        this.props.dispatch(fetchProtectedData());
+        // this.props.dispatch(fetchProtectedData());
     }
 
     logOut() {
