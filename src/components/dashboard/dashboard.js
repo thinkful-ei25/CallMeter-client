@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import './dashboard.css'
 import { makeData, Logo, Tips } from "./Utils";
 import ReactTable from "react-table";
-import {clearAuthToken} from '../../local-storage'
-import {clearAuth} from '../../actions/auth'
+import { clearAuthToken } from '../../local-storage'
+import { clearAuth } from '../../actions/auth'
 
 const pokemon = require('./pokedex.json');
 
@@ -21,7 +21,7 @@ export class Dashboard extends React.Component {
         }
     }
     componentDidMount() {
-        if(1){
+        if (1) {
             this.populatePokemon();
             document.getElementsByClassName("overlay")[0].style.visibility = "visible";
             document.getElementsByClassName("welcomeNewUser")[0].style.visibility = "visible";
@@ -47,7 +47,7 @@ export class Dashboard extends React.Component {
         console.log(array);
     }
 
-    skipTutorial(){
+    skipTutorial() {
         this.setState({
             pokemonArray: []
         })
@@ -70,7 +70,7 @@ export class Dashboard extends React.Component {
                     </div>
                     <div className="newUserRight">
                         <div className="newUserRightHeader">
-                            <h3 style={{fontSize:"2em"}}>Welcome to the world of Billable!</h3>
+                            <h3 style={{ fontSize: "2em" }}>Welcome to the world of Billable!</h3>
                         </div>
                         <div className="newUserRightDescription">
                             <p>This world is inhabited far and wide by creatures called Twilio Numbers!</p>
@@ -88,6 +88,7 @@ export class Dashboard extends React.Component {
                     <div className="dashButtonContainer">
                         <button className="dashTableButton">Add new Item</button>
                     </div>
+
                     <ReactTable
                         data={this.state.pokemonArray}
                         columns={[
@@ -118,9 +119,7 @@ export class Dashboard extends React.Component {
                         defaultPageSize={-1}
                     />
                     {/* <Logo /> */}
-                    <div className="topnav">
-                        <button onClick={() => this.logOut()}>LogOut</button>
-                    </div>
+
                 </div>
             </div>
         );
@@ -128,6 +127,7 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => {
+    console.log('dashboard state', state)
     const { currentUser } = state.auth;
     return {
         //username: state.auth.currentUser.username,

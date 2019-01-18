@@ -27,11 +27,11 @@ export const registerUser = user => dispatch => {
                 );
             }
             
-            // return Promise.reject(
-            //     new SubmissionError({
-            //         _error: 'Error submitting message'
-            //     })
-            // );
+            return Promise.reject(
+                new SubmissionError({
+                    _error: 'Error submitting message'
+                })
+            );
         });
 };
 
