@@ -95,5 +95,28 @@ export const deleteClient = (id) => (dispatch, getState) => {
         });
 };
 
+export const editClient = (values) => (dispatch, getState) => {
+    console.log('values in edit action', values)
+    const authToken = getState().auth.authToken;
+    return fetch(`${API_BASE_URL}/client/${values.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(values),
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`,
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then((data) => {
+            console.log('put result data', data)
+            // dispatch(addClientSuccess(data))
+            })
+        .catch(err => {
+            dispatch(fetchClientsError(err));
+        });
+};
+
 
     

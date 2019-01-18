@@ -36,6 +36,7 @@ export class Clients extends React.Component {
 
     toggleEditClientForm() {
         this.setState({ editing: !this.state.editing })
+        this.props.dispatch(fetchClients())
         console.log(this.state)
     }
 

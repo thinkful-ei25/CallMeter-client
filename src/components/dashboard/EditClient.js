@@ -2,6 +2,7 @@ import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 import Input from '../registration/input';
 import {required, nonEmpty, phoneCheck, normalizePhone} from '../../validators';
+import {editClient} from '../../actions/client'
 
 
 
@@ -14,8 +15,8 @@ export class EditClient extends React.Component {
     
     onSubmit(values) {
         console.log('values', values)
-        // return this.props.dispatch(editClient(values))
-        // .then(this.props.toggle())
+        return this.props.dispatch(editClient(values))
+        .then(this.props.toggle())
     }
 
     
