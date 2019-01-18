@@ -24,7 +24,15 @@ export class Invoices extends React.Component {
     // totalUnpaid: Math.floor(Math.random() * 20)
 
     render() {
-        const data = makeData();
+        const data =          
+        [{ contactName: "Cardly",
+            firstName: "John",
+        lastName: "Card",
+        numCalls: 5,
+        numMinutes: 10,
+        lastCall: String(new Date()),
+        totalBilled: 500,
+        totalUnpaid: 500}]
         return (
             <div className="invoicesTable">
                 <h1>Invoices</h1>
