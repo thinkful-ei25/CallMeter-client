@@ -25,3 +25,29 @@ export const phoneCheck = (phone) => {
     const re = /^(\()?\d{3}(\))?(-|\s)?[2-9]{1}\d{2}(-|\s)\d{4}$/;
     return re.test(String(phone).toLowerCase()) ? undefined : 'Invalid Phone Number';
 }        
+
+
+//normalizers
+export const normalizePhone = (value, previousValue) => {
+    if (!value) {
+      return value
+    }
+    const onlyNums = value.replace(/[^\d]/g, '')
+    if (!previousValue || value.length > previousValue.length) {
+      // typing forward
+      if (onlyNums.length === 3) {
+        return onlyNums + '-'
+      }
+      if (onlyNums.length === 6) {
+        return onlyNums.slice(0, 3) + '-' + onlyNums.slice(3) + '-'
+      }
+    }
+    if (onlyNums.length <= 3) {
+      return onlyNums
+    }
+    if (onlyNums.length <= 6) {
+      return onlyNums.slice(0, 3) + '-' + onlyNums.slice(3)
+    }
+    return onlyNums.slice(0, 3) + '-' + onlyNums.slice(3, 6) + '-' + onlyNums.slice(6, 10)
+  }
+  

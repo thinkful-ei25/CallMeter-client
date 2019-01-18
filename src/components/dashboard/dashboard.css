@@ -1,6 +1,6 @@
 .topnavContainer {
-    background-color: pink;
     overflow: hidden;
+    background-color: pink;
 }
 
 .topnav {
@@ -10,7 +10,41 @@
 
 .callinput {
     margin-top: 5%;
-   
+}
+
+.dashboardFullPage{
+    height: 100vh;
+    width: 100%;
+}
+
+.overlay {
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+.dashButtonContainer{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.z-index{
+    z-index: 2;
+}
+
+.Select.is-open { position: relative; z-index: 1000; }
+
+.tableContainer{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 9%;
 }
 
 .callbutton {
@@ -21,4 +55,58 @@
 }
 .invoicesTable {
     margin-top: 15px;
+}
+
+.welcomeNewUser{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 60%;
+    margin-left: -25%;
+    margin-top: -15%;
+    background-color: white;
+    z-index: 2;
+    visibility: hidden;
+}
+
+.newUserLeft{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newUserRight{
+    width: 70%;
+}
+
+.newUserRightHeader{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newUserRightDescription{
+    display: relative;
+    width: 60%;
+    margin-left: 20%;
+    height: 70%;
+    text-align: center;
+}
+
+.oakLogo{
+    height: 100%;
+    width: auto;
+}
+
+.newUserButtonContainer{
+    margin-top: 25%;
+    display: flex;
+    justify-content: space-evenly;
 }

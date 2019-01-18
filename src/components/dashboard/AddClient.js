@@ -1,7 +1,7 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 import Input from '../registration/input';
-import {required, nonEmpty} from '../../validators';
+import {required, nonEmpty, phoneCheck, normalizePhone} from '../../validators';
 import {addClient} from '../../actions/client';
 
 
@@ -12,6 +12,8 @@ export class AddClient extends React.Component {
         .then(this.props.toggle())
     }
 
+    
+
     render() {
         let error;
         if (this.props.error) {
@@ -20,6 +22,7 @@ export class AddClient extends React.Component {
                     {this.props.error}
                 </div>
             );
+
         }
         return (
             <div>
@@ -69,7 +72,8 @@ export class AddClient extends React.Component {
                     type="text"
                     name="phoneNumber"
                     id="phoneNumber"
-                    validate={[required, nonEmpty]}
+                    validate={[required, nonEmpty, phoneCheck]}
+                    normalize={normalizePhone}
                 />
                 <button className="signUpButton" disabled={this.props.pristine || this.props.submitting}>
                     Submit
