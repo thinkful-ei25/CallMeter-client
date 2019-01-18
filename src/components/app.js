@@ -11,7 +11,11 @@ import Login from '../components/logIn/LogIn'
 import Stats from './dashboard/Stats'
 import MakeCall from './dashboard/MakeCall'
 import Invoices from './dashboard/Invoices'
+<<<<<<< HEAD
+import navBar from '../components/dashboard/navbar/Navbar'
+=======
 import Clients from './dashboard/Clients'
+>>>>>>> 99274d80261027ce8ab778abb51543d6ecf3d6aa
 
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
@@ -48,7 +52,8 @@ export class App extends React.Component {
             <div className="app">
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/register" component={RegistrationPage} />
-                <Route path="/dashboard" component={Dashboard} />
+                <Route path="/dashboard" component={navBar} />
+                <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/setupPhone" component={SetupPhone} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path ="/dashboard/stats" component={Stats} />
