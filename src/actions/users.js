@@ -22,9 +22,7 @@ export const registerUser = user => dispatch => {
                 // Convert ValidationErrors into SubmissionErrors for Redux Form
                 return Promise.reject(
                     new SubmissionError({
-                        
                         _error: message
-                    
                     })
                 );
             }
@@ -34,5 +32,33 @@ export const registerUser = user => dispatch => {
             //         _error: 'Error submitting message'
             //     })
             // );
+        });
+};
+
+export const getPhoneNumbers = areaCode => dispatch => {
+    console.log('area code: ', areaCode);
+    return fetch(`https://83eb5ba7.ngrok.io/api/register/phones?areaCode=${areaCode}`, {
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json'
+        },
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res =>{ 
+            console.log(res);
+            return res.json()
+        })
+        .catch(err => {
+            console.log(err)
+            const {reason, message, location} = err;
+            if (reason === 'ValidationError') {
+                console.log(location)
+                console.log('reason was validation error')
+                return Promise.reject(
+                    new SubmissionError({
+                        _error: message
+                    })
+                );
+            }
         });
 };

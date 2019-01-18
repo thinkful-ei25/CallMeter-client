@@ -54,6 +54,10 @@ export class Dashboard extends React.Component {
         document.getElementsByClassName("overlay")[0].style.visibility = "hidden";
         document.getElementsByClassName("welcomeNewUser")[0].style.visibility = "hidden";
     }
+
+    continueTutorial(){
+        document.getElementsByClassName("welcomeNewUser")[0].style.visibility = "hidden";
+    }
     
     render() {
         return (
@@ -74,20 +78,9 @@ export class Dashboard extends React.Component {
                             <p>(UsernameGoesHere)! Your very own Twilio legend is about to unfold. A world of dreams and adventure with Twilio Numbers awaits!</p>
                             <p>Let's Go!</p>
                             <div className="newUserButtonContainer">
-                                <button onClick={e => this.skipTutorial(e)}>Skip Tutorial</button>
-                                <button>Continue</button>
+                                <button className="tip" onClick={e => this.skipTutorial(e)}>Skip Tutorial<div></div></button>
+                                <button onClick={e => this.continueTutorial(e)}>Continue</button>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="dashboard topnavContainer">
-                        <div className="dashboard-username topnav">
-                            <Link to="/dashboard/stats">Stats</Link>
-                        </div>
-                        <div className="dashboard-name topnav"><Link to="/dashboard/invoices">Invoices</Link></div>
-                        <div className="dashboard-protected-data topnav">
-                            <Link to="/dashboard/call">Make Calls</Link>
                         </div>
                     </div>
                 </div>

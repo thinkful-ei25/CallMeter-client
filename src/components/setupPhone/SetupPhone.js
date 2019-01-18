@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import { registerUser } from '../../actions/users';
+import { registerUser, getPhoneNumbers } from '../../actions/users';
 import { login } from '../../actions/auth';
 import Input from './input';
 import { required, nonEmpty, matches, length, isTrimmed, emailCheck, phoneCheck } from '../../validators';
@@ -12,12 +12,15 @@ export class SetupPhone extends React.Component {
         super(props);
         this.state = {
             numbers : [],
-            numberSearch: ''
+            numberSearch: '',
+            disabled: true,
+            phoneNumber: '',
+            lastButton: null
         }
     }
 
     componentDidMount(){
-        this.setupNumberArray();
+        //this.setupNumberArray();
     }
     
     setupNumberArray(){
@@ -46,9 +49,28 @@ export class SetupPhone extends React.Component {
     }
 
     handleNumberSearchChange(e){
+        if(e.target.value.length === 3){
+        console.log('in handle number change');
+           this.props.dispatch(getPhoneNumbers(e.target.value))
+           .then(res => {
+               if(res)
+                this.setState({numbers : res})
+           })
+           .catch(err => {
+               console.log(err);
+           })
+        }
+    }
+
+    handleNumberClick(e){
         this.setState({
-            numberSearch : e.target.value
+            disabled: false,
+            phoneNumber: e.target.value,
+            lastButton: e.target,
         })
+        if(this.state.lastButton)
+            this.state.lastButton.style = e.target.style;
+        e.target.style.border = "1px solid blue"
     }
 
     render() {
@@ -87,7 +109,7 @@ export class SetupPhone extends React.Component {
                                 validate={[required, nonEmpty, isTrimmed, phoneCheck]}
                             />
                             <div className="lineBreak"></div>
-                            <label style={{paddingTop:"100px"}} htmlFor="firstName">Name of Billable Number</label>
+                            <label htmlFor="firstName">Name of Billable Number</label>
                             <Field
                                 component={Input}
                                 type="text"
@@ -102,16 +124,16 @@ export class SetupPhone extends React.Component {
                         <p>Select an available phone number: </p>
                         <div className="buttonContainer">
                             {
-                                this.state.numbers.filter(number => number.startsWith(this.state.numberSearch)).map((number, index) => {
+                                this.state.numbers.map((number, index) => {
                                     return (
-                                        <button className="numberButton" id={index}>{number}</button>
+                                        <button className="numberButton" id={index} value={number.response} onClick={e => this.handleNumberClick(e)}>{number.display}</button>
                                     )
                                 })
                             }
                         </div>
                         <div className="submitButton">
-                            <button className="phoneSubmitButton">Submit</button>
-                        </div>
+                            <button className="phoneSubmitButton" disabled={this.props.invalid || this.state.disabled}>Submit</button>
+                        </div> 
                     </div>
                 </div>
                 <div className="footer">
