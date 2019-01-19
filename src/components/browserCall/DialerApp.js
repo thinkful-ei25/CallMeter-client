@@ -3,7 +3,7 @@ import './dialer.css';
 import './flags/flags.css';
 import CallButton from './CallButton';
 import CountrySelectBox from './CountrySelectBox';
-import DTMFTone from './DTMFTone';
+// import DTMFTone from './DTMFTone';
 import LogBox from './LogBox';
 import MuteButton from './MuteButton';
 import $ from 'jquery';
@@ -37,7 +37,7 @@ export default class DialerApp extends React.Component {
     var self = this;
 
     // Fetch Twilio capability token from our Node.js server
-    $.getJSON('https://83eb5ba7.ngrok.io/api/call/token')
+    $.getJSON('https://5421475d.ngrok.io/api/call/token')
       .done(function(data) {
         console.log(data);
         Twilio.Device.setup(data.token);
@@ -130,7 +130,7 @@ export default class DialerApp extends React.Component {
           ) : null}
         </div>
 
-        {this.state.onPhone ? <DTMFTone /> : null}
+        {/* {this.state.onPhone ? <DTMFTone /> : null} */}
 
         <LogBox text={this.state.log} />
       </div>

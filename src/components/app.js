@@ -56,7 +56,7 @@ export class App extends React.Component {
                 <Route exact path="/dashboard/call" component={MakeCall} />
                 <Route exact path="/dashboard/invoices" component={Invoices} />
                 <Route exact path="/dashboard/clients" component={Clients} />
-                <Route exact path="/dashboard/dialer" component={DialerApp} />
+                {/* <Route exact path="/dashboard/dialer" component={DialerApp} /> */}
             </div>
         );
     }
@@ -67,5 +67,4 @@ const mapStateToProps = state => ({
     loggedIn: state.auth.currentUser !== null
 });
 
-// Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
 export default withRouter(connect(mapStateToProps)(App));
