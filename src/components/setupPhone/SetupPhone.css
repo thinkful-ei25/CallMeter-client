@@ -33,6 +33,10 @@
   margin-right: 2.5%;
 }
 
+.numberButton:active{
+  border: 1px solid blue;
+}
+
 .buttonContainer{
   overflow-y: auto;
   display: flex;

@@ -11,6 +11,7 @@ import Login from '../components/logIn/LogIn'
 import Stats from './dashboard/Stats'
 import MakeCall from './dashboard/MakeCall'
 import Invoices from './dashboard/Invoices'
+import navBar from '../components/dashboard/navbar/Navbar'
 import Clients from './dashboard/Clients'
 import DialerApp from './browserCall/DialerApp';
 
@@ -49,7 +50,8 @@ export class App extends React.Component {
             <div className="app">
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/register" component={RegistrationPage} />
-                <Route path="/dashboard" component={Dashboard} />
+                <Route path="/dashboard" component={navBar} />
+                <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/setupPhone" component={SetupPhone} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path ="/dashboard/stats" component={Stats} />

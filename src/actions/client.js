@@ -19,6 +19,12 @@ export const addClientSuccess = (data) => ({
     newCompany: data.company
 });
 
+export const DELETE_CLIENT_SUCCESS = 'DELETE_CLIENT_SUCCESS';
+export const deleteClientSuccess = () => ({
+    type: DELETE_CLIENT_SUCCESS,
+    deleted: true
+});
+
 export const fetchClients = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     console.log('authtoken', authToken)
@@ -62,4 +68,32 @@ export const addClient = (values) => (dispatch, getState) => {
             dispatch(fetchClientsError(err));
         });
 };
+
+export const deleteClient = (id) => (dispatch, getState) => {
+    console.log('id in delete action', id);
+    const authToken = getState().auth.authToken;
+    console.log('authtoken', authToken)
+    return fetch(`${API_BASE_URL}/client/${id}`, {
+        method: 'DELETE',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => {
+            console.log('response after normalize', res)
+            
+        })
+        .then((id) => {
+            console.log('delete result data', id)
+            dispatch(deleteClientSuccess())
+        })
+        .catch(err => {
+            console.log('error in delete catch block', err)
+            dispatch(fetchClientsError(err));
+        });
+};
+
+
     

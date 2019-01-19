@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
-import { fetchClients } from '../../actions/client';
+import { fetchClients, deleteClient } from '../../actions/client';
 import './dashboard.css'
 import ReactTable from "react-table";
 import 'react-table/react-table.css'
-import AddClient from './AddClient'
+import AddClient from './AddClient';
+import EditClient from './EditClient';
+
 
 
 
@@ -14,7 +16,9 @@ export class Clients extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            adding: false
+            adding: false,
+            editing: false,
+            editingClient: null
         }
     }
 
@@ -30,13 +34,18 @@ export class Clients extends React.Component {
         this.props.dispatch(fetchClients())
     }
 
+    toggleEditClientForm() {
+        this.setState({ editing: !this.state.editing })
+        console.log(this.state)
+    }
+
 
 
     render() {
 
 
 
-        if (this.props.client && !this.state.adding) {
+        if (this.props.client && !this.state.adding && !this.state.editing) {
             return (
                 <div className="invoicesTable">
                     <h1>Clients</h1>
@@ -65,6 +74,30 @@ export class Clients extends React.Component {
                             {
                                 Header: "Hourly Rate",
                                 accessor: "hourlyRate"
+                            },
+                            {
+                                Header: "Edit",
+                                accessor: "id",
+                                Cell: row => (
+                                    <button onClick={() => {
+                                        this.setState({
+                                            editingClient: this.props.client.filter(client => row.value === client.id)[0]
+                                        })
+                                        
+                                        this.toggleEditClientForm();
+                                        
+                                    }}>x</button>
+                                  )
+                            },
+                            {
+                                Header: "Delete",
+                                accessor: "id",
+                                Cell: row => (
+                                    <button onClick={() => {
+                                        this.props.dispatch(deleteClient(row.value))
+                                        .then(this.props.dispatch(fetchClients()))
+                                    }}>x</button>
+                                  )
                             }
 
 
@@ -84,6 +117,12 @@ export class Clients extends React.Component {
             )
         }
 
+        else if (this.state.editing) {
+            return (
+                
+                <EditClient initialValues={this.state.editingClient} toggle={() => this.toggleEditClientForm()}/>
+            )
+        }
         else {
             return null
         }

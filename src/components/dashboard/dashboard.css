@@ -110,3 +110,43 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.tip {
+    position: relative;
+}
+
+.tip > div {
+    display: none;
+    position: absolute;
+    top: -5px;
+    left: 60px;
+    width: 125px;
+    padding: 5px;
+    z-index: 100;
+    background: #000;
+    color: #fff;
+    -moz-border-radius: 5px; /* this works only in camino/firefox */
+    -webkit-border-radius: 5px; /* this is just for Safari */
+}
+.tip > div:before{
+    content:'';
+    display:block;
+    width:0;
+    height:0;
+    position:absolute;
+    
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent; 
+    border-right:8px solid black;
+    left:-8px;
+    
+    top:7px;
+}
+
+.tip:hover {
+    font-size: 99%; /* this is just for IE */
+}
+
+.tip:hover span {
+    display: block;
+}
