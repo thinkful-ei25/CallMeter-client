@@ -104,6 +104,6 @@ const mapStateToProps = state => {
     };
 };
 
-// export default requiresLogin()(connect(mapStateToProps)(Dashboard));
+export default requiresLogin()(connect(mapStateToProps)(Invoices));
 
-export default connect(mapStateToProps)(Invoices);
+// export default connect(mapStateToProps)(Invoices);

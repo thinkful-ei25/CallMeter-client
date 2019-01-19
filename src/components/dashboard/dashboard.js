@@ -7,8 +7,7 @@ import { Link } from 'react-router-dom';
 import './dashboard.css'
 import { makeData, Logo, Tips } from "./Utils";
 import ReactTable from "react-table";
-import { clearAuthToken } from '../../local-storage'
-import { clearAuth } from '../../actions/auth'
+
 
 const pokemon = require('./pokedex.json');
 
@@ -28,13 +27,6 @@ export class Dashboard extends React.Component {
         }
         this.props.dispatch(fetchProtectedData());
     }
-
-    logOut() {
-        console.log(this.props)
-        this.props.dispatch(clearAuth())
-        clearAuthToken()
-    }
-
 
     populatePokemon() {
         let array = new Array(100);

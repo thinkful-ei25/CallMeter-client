@@ -7,6 +7,7 @@ import ReactTable from "react-table";
 import 'react-table/react-table.css'
 import AddClient from './AddClient';
 import EditClient from './EditClient';
+import './clients.css'
 
 
 
@@ -49,8 +50,10 @@ export class Clients extends React.Component {
         if (this.props.client && !this.state.adding && !this.state.editing) {
             return (
                 <div className="invoicesTable">
+
                     <h1>Clients</h1>
-                    <button onClick={() => this.toggleAddClientForm()}>Add Client</button>
+                    <h2><button className="addClientButton" onClick={() => this.toggleAddClientForm()}>Add Client ➕</button></h2>
+                    
                     <ReactTable
                         data={this.props.client}
                         columns={[
@@ -80,25 +83,25 @@ export class Clients extends React.Component {
                                 Header: "Edit",
                                 accessor: "id",
                                 Cell: row => (
-                                    <button onClick={() => {
+                                    <button className="navButton" onClick={() => {
                                         this.setState({
                                             editingClient: this.props.client.filter(client => row.value === client.id)[0]
                                         })
-                                        
+
                                         this.toggleEditClientForm();
-                                        
-                                    }}>x</button>
-                                  )
+
+                                    }}>✎</button>
+                                )
                             },
                             {
                                 Header: "Delete",
                                 accessor: "id",
                                 Cell: row => (
-                                    <button onClick={() => {
+                                    <button className="navButton" onClick={() => {
                                         this.props.dispatch(deleteClient(row.value))
-                                        .then(this.props.dispatch(fetchClients()))
-                                    }}>x</button>
-                                  )
+                                            .then(this.props.dispatch(fetchClients()))
+                                    }}>❌</button>
+                                )
                             }
 
 
@@ -114,14 +117,14 @@ export class Clients extends React.Component {
         }
         else if (this.state.adding) {
             return (
-                <AddClient toggle={() => this.toggleAddClientForm()}/>
+                <AddClient toggle={() => this.toggleAddClientForm()} />
             )
         }
 
         else if (this.state.editing) {
             return (
-                
-                <EditClient initialValues={this.state.editingClient} toggle={() => this.toggleEditClientForm()}/>
+
+                <EditClient initialValues={this.state.editingClient} toggle={() => this.toggleEditClientForm()} />
             )
         }
         else {
@@ -146,4 +149,4 @@ const mapStateToProps = state => {
 
 // export default requiresLogin()(connect(mapStateToProps)(Dashboard));
 
-export default connect(mapStateToProps)(Clients);
+export default requiresLogin()(connect(mapStateToProps)(Clients));

@@ -1,18 +1,18 @@
 import React from 'react';
-import {Field, reduxForm, focus} from 'redux-form';
+import { Field, reduxForm, focus } from 'redux-form';
 import Input from '../registration/input';
-import {required, nonEmpty, phoneCheck, normalizePhone} from '../../validators';
-import {addClient} from '../../actions/client';
+import { required, nonEmpty, phoneCheck, normalizePhone } from '../../validators';
+import { addClient } from '../../actions/client';
 
 
 export class AddClient extends React.Component {
     onSubmit(values) {
         console.log('values', values)
         return this.props.dispatch(addClient(values))
-        .then(this.props.toggle())
+            .then(this.props.toggle())
     }
 
-    
+
 
     render() {
         let error;
@@ -26,60 +26,61 @@ export class AddClient extends React.Component {
         }
         return (
             <div>
-            <h1>Add a Client</h1>
-            <button onClick={() => this.props.toggle()}>Go Back</button>
-            <form
-                className="loginForm"
-                onSubmit={this.props.handleSubmit(values =>
-                    this.onSubmit(values)
-                )}>
-                {error}
-                <label htmlFor="company">Company</label>
-                <Field
-                    component={Input}
-                    type="text"
-                    name="company"
-                    validate={[required, nonEmpty]}
-                />
-            
-                <label htmlFor="password">First Name</label>
-                <Field
-                    component={Input}
-                    type="text"
-                    name="firstName"
-                    id="firstName"
-                    validate={[required, nonEmpty]}
-                />
-                <label htmlFor="lastName">Last Name</label>
-                <Field
-                    component={Input}
-                    type="text"
-                    name="lastName"
-                    id="lastName"
-                    validate={[required, nonEmpty]}
-                />
-                <label htmlFor="password">Hourly Rate</label>
-                <Field
-                    component={Input}
-                    type="number"
-                    name="hourlyRate"
-                    id="hourlyRate"
-                    validate={[required, nonEmpty]}
-                />
-                <label htmlFor="password">Phone Number</label>
-                <Field
-                    component={Input}
-                    type="text"
-                    name="phoneNumber"
-                    id="phoneNumber"
-                    validate={[required, nonEmpty, phoneCheck]}
-                    normalize={normalizePhone}
-                />
-                <button className="signUpButton" disabled={this.props.pristine || this.props.submitting}>
-                    Submit
+                <h1>Add a Client</h1>
+                <h2><button className="backButton" onClick={() => this.props.toggle()}>Back ⬅</button></h2>
+                
+                <form
+                    className="loginForm"
+                    onSubmit={this.props.handleSubmit(values =>
+                        this.onSubmit(values)
+                    )}>
+                    {error}
+                    <label htmlFor="company">Company</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="company"
+                        validate={[required, nonEmpty]}
+                    />
+
+                    <label htmlFor="password">First Name</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="firstName"
+                        id="firstName"
+                        validate={[required, nonEmpty]}
+                    />
+                    <label htmlFor="lastName">Last Name</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="lastName"
+                        id="lastName"
+                        validate={[required, nonEmpty]}
+                    />
+                    <label htmlFor="password">Hourly Rate</label>
+                    <Field
+                        component={Input}
+                        type="number"
+                        name="hourlyRate"
+                        id="hourlyRate"
+                        validate={[required, nonEmpty]}
+                    />
+                    <label htmlFor="password">Phone Number</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="phoneNumber"
+                        id="phoneNumber"
+                        validate={[required, nonEmpty, phoneCheck]}
+                        normalize={normalizePhone}
+                    />
+                    <button className="signUpButton" disabled={this.props.pristine || this.props.submitting}>
+                        Submit
                 </button>
-               
-            </form>
+
+                </form>
             </div>
         );
     }
