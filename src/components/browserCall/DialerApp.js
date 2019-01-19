@@ -35,10 +35,11 @@ export default class DialerApp extends React.Component {
 
   componentDidMount() {
     var self = this;
-
+    console.log('hello1');
     // Fetch Twilio capability token from our Node.js server
     $.getJSON('https://5421475d.ngrok.io/api/call/token')
       .done(function(data) {
+        console.log('hello2');
         console.log(data);
         Twilio.Device.setup(data.token);
       })
