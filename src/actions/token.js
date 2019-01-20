@@ -23,7 +23,7 @@ export const fetchCapabilityToken = (accountSid, authToken) => {
 }
 
 function handleErrors(res) {
-  if(Response.ok) return res;
+  if(res.ok) return res;
   else throw new Error(res.statusText);
 }
 
