@@ -9,12 +9,18 @@ export default class Answerer extends React.Component{
     }
   }
 
+  answerCall() { 
+    //TODO CONNECT TO CONNECT.ACCEPT CALLBACK
+    // connection.accept(); 
+
+  }
+
   render() { 
     return ( 
       // <p>{this.state.callStatus}</p>
       <section>
         <br></br>
-        <button onClick={() => console.log('answer button clicked')}>
+        <button onClick={this.answerCall()}>
           Answer 
         </button> 
         <button onClick={() => console.log('hangup button')}>
