@@ -1,4 +1,5 @@
 import React from 'react'; 
+import { Device } from "twilio-client";
 
 export default class Answerer extends React.Component{ 
 
@@ -11,8 +12,17 @@ export default class Answerer extends React.Component{
 
   answerCall() { 
     //TODO CONNECT TO CONNECT.ACCEPT CALLBACK
+    Device.incoming(this.answered); 
     // connection.accept(); 
 
+  }
+
+  answered(connection){ 
+    connection.accept();
+  }
+
+  hangup() { 
+    Device.disconnect(); 
   }
 
   render() { 
@@ -23,7 +33,7 @@ export default class Answerer extends React.Component{
         <button onClick={this.answerCall()}>
           Answer 
         </button> 
-        <button onClick={() => console.log('hangup button')}>
+        <button onClick={this.hangup}>
           Hangup
         </button>
       </section>
