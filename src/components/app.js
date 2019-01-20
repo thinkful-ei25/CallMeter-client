@@ -13,6 +13,7 @@ import MakeCall from './dashboard/MakeCall'
 import Invoices from './dashboard/Invoices'
 import navBar from '../components/dashboard/navbar/Navbar'
 import Clients from './dashboard/Clients'
+import DialerApp from './browserCall/DialerApp';
 
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
@@ -57,6 +58,7 @@ export class App extends React.Component {
                 <Route exact path="/dashboard/call" component={MakeCall} />
                 <Route exact path="/dashboard/invoices" component={Invoices} />
                 <Route exact path="/dashboard/clients" component={Clients} />
+                {/* <Route exact path="/dashboard/dialer" component={DialerApp} /> */}
             </div>
         );
     }
@@ -67,5 +69,4 @@ const mapStateToProps = state => ({
     loggedIn: state.auth.currentUser !== null
 });
 
-// Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
 export default withRouter(connect(mapStateToProps)(App));

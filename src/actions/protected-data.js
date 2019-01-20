@@ -7,6 +7,7 @@ export const fetchProtectedDataSuccess = data => ({
     data
 });
 
+
 export const FETCH_PROTECTED_DATA_ERROR = 'FETCH_PROTECTED_DATA_ERROR';
 export const fetchProtectedDataError = error => ({
     type: FETCH_PROTECTED_DATA_ERROR,
