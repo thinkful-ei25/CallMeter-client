@@ -6,12 +6,13 @@ import App from './components/app';
 import store from './store';
 import 'normalize.css'
 import './index.css';
+import DialerApp from './components/browserCall/DialerApp';
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Router>
-            <App />
-        </Router>
-    </Provider>,
+    // <Provider store={store}>
+    //     <Router>
+            <DialerApp />,
+    //     </Router>
+    // </Provider>,
     document.getElementById('root')
 );

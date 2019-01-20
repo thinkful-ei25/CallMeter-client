@@ -1,139 +1,91 @@
 import React from 'react';
-import './dialer.css';
-import './flags/flags.css';
-import CallButton from './CallButton';
-import CountrySelectBox from './CountrySelectBox';
-// import DTMFTone from './DTMFTone';
-import LogBox from './LogBox';
-import MuteButton from './MuteButton';
-import $ from 'jquery';
+import Dialer from './Dialer';
+import TempLogin from './TempLogin';
+import { Device } from 'twilio-client';
 
 export default class DialerApp extends React.Component {
-  getInitialState() {
-    return {
-      muted: false,
-      log: 'Connecting...',
-      onPhone: false,
-      countryCode: '1',
-      currentNumber: '',
-      isValidNumber: false,
-      countries: [
-        { name: 'United States', cc: '1', code: 'us' },
-        { name: 'Great Britain', cc: '44', code: 'gb' },
-        { name: 'Colombia', cc: '57', code: 'co' },
-        { name: 'Ecuador', cc: '593', code: 'ec' },
-        { name: 'Estonia', cc: '372', code: 'ee' },
-        { name: 'Germany', cc: '49', code: 'de' },
-        { name: 'Hong Kong', cc: '852', code: 'hk' },
-        { name: 'Ireland', cc: '353', code: 'ie' },
-        { name: 'Singapore', cc: '65', code: 'sg' },
-        { name: 'Spain', cc: '34', code: 'es' },
-        { name: 'Brazil', cc: '55', code: 'br' }
-      ]
+  constructor(props) {
+    super(props);
+    this.state = {
+      token: '',
+      deviceState: '',
+      deviceErrorCode: '',
+      deviceErrorMessage: ''
     };
   }
 
+  handleAppStateChange = state => {
+    Device.on(state, obj => {
+      state === 'error'
+        ? this.setState({
+            deviceState: 'error',
+            deviceErrorCode: obj.code,
+            deviceErrorMessage: obj.message
+          })
+        : this.setState({ deviceState: state });
+    });
+  };
+
   componentDidMount() {
-    var self = this;
-    console.log('hello1');
-    // Fetch Twilio capability token from our Node.js server
-    $.getJSON('https://5421475d.ngrok.io/api/call/token')
-      .done(function(data) {
-        console.log('hello2');
-        console.log(data);
-        Twilio.Device.setup(data.token);
-      })
-      .fail(function(err) {
-        console.log(err);
-        self.setState({ log: 'Could not fetch token, see console.log' });
-      });
-
-    Twilio.Device.disconnect(function() {
-      self.setState({
-        onPhone: false,
-        log: 'Call ended.'
-      });
-    });
-
-    Twilio.Device.ready(function() {
-      self.log = 'Connected';
-    });
+    this.handleAppStateChange('cancel');
+    this.handleAppStateChange('connect');
+    this.handleAppStateChange('disconnect');
+    this.handleAppStateChange('error');
+    this.handleAppStateChange('incoming');
+    this.handleAppStateChange('offline');
+    this.handleAppStateChange('ready');
   }
 
-  handleChangeCountryCode(countryCode) {
-    this.setState({ countryCode: countryCode });
-  }
-
-  handleToggleMute() {
-    var muted = !this.state.muted;
-
-    this.setState({ muted: muted });
-    Twilio.Device.activeConnection().mute(muted);
-  }
-
-  handleToggleCall() {
-    if (!this.state.onPhone) {
-      this.setState({
-        muted: false,
-        onPhone: true
-      });
-      // make outbound call with current number
-      var n =
-        '+' +
-        this.state.countryCode +
-        this.state.currentNumber.replace(/\D/g, '');
-      Twilio.Device.connect({ number: n });
-      this.setState({ log: 'Calling ' + n });
-    } else {
-      // hang up call in progress
-      Twilio.Device.disconnectAll();
-    }
-  }
-
-  handleChangeNumber(e) {
+  handleNotifcationDismiss = () => {
     this.setState({
-      currentNumber: e.target.value,
-      isValidNumber: /^([0-9]|#|\*)+$/.test(
-        e.target.value.replace(/[-()\s]/g, '')
-      )
+      deviceErrorCode: '',
+      deviceErrorMessage: ''
     });
-  }
+  };
+
+  handleLogin = (capabilityToken) => {
+    this.setState({ token: capabilityToken });
+    Device.setup(capabilityToken);
+  };
+
+  /**
+ * Show login modal if user has not logged in properly.
+ * Incorrect login credentials result in a valid login token being returned
+ * but the device will fail to initialize and show offline status.
+ *
+ * @returns {boolean}
+ */
+
+  isLoginModalVisible = () => {
+    return !this.state.token || this.state.deviceState === 'offline';
+  };
 
   render() {
-    var self = this;
     return (
-      <div id="dialer">
-        <div id="dial-form" className="input-group input-group-sm">
-          <CountrySelectBox
-            countries={this.state.countries}
-            countryCode={this.state.countryCode}
-            handleOnChange={this.handleChangeCountryCode}
-          />
-
-          <NumberInputText
-            currentNumber={this.state.currentNumber}
-            handleOnChange={this.handleChangeNumber}
-          />
-        </div>
-
-        <div className="controls">
-          <CallButton
-            handleOnClick={this.handleToggleCall}
-            disabled={!this.state.isValidNumber}
-            onPhone={this.state.onPhone}
-          />
-
-          {this.state.onPhone ? (
-            <MuteButton
-              handleOnClick={this.handleToggleMute}
-              muted={this.state.muted}
-            />
-          ) : null}
-        </div>
-
-        {/* {this.state.onPhone ? <DTMFTone /> : null} */}
-
-        <LogBox text={this.state.log} />
+      <div>
+        <section>
+          <div>
+            <h1>Dial Away</h1>
+            <p>Make calls now</p>
+          </div>
+        </section>
+        <section>
+          {(this.state.deviceErrorCode || this.state.deviceErrorMessage) && (
+            <div>
+              <button onClick={this.handleNotifcationDismiss} />
+              Device Error {this.state.deviceErrorCode}:{' '}
+              {this.state.deviceErrorMessage}
+            </div>
+          )}
+          <div>
+            <div>
+              <div>
+                <Dialer deviceState={this.state.deviceState} />
+              </div>
+            </div>
+          </div>
+        </section>
+        <TempLogin visible={this.isLoginModalVisible()} deviceState={this.state.deviceState} onLogin={this.handleLogin} />
       </div>
     );
   }
