@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PhoneButtons from './PhoneButtons';
+import Answerer from './Answerer'; 
 import { Device } from "twilio-client";
 const countryCode = '+1';
 
@@ -71,8 +72,9 @@ export default class Dialer extends React.Component {
           <div id="callButtonField">
             <button onClick={this.handleCallButtonClick}>
             <span>Call Now</span>
-          </button>
+            </button>
           </div>
+          <Answerer></Answerer>
           <p>{this.callStatus()}</p>
         </div>
       </div>
