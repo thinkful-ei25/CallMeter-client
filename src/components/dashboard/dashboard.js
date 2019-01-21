@@ -25,7 +25,7 @@ export class Dashboard extends React.Component {
             document.getElementsByClassName("overlay")[0].style.visibility = "visible";
             document.getElementsByClassName("welcomeNewUser")[0].style.visibility = "visible";
         }
-        this.props.dispatch(fetchProtectedData());
+        // this.props.dispatch(fetchProtectedData());
     }
 
     populatePokemon() {
