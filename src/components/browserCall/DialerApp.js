@@ -2,6 +2,7 @@ import React from 'react';
 import Dialer from './Dialer';
 import TempLogin from './TempLogin';
 import { Device } from 'twilio-client';
+import Answerer from './Answerer'; 
 
 export default class DialerApp extends React.Component {
   constructor(props) {
@@ -15,16 +16,31 @@ export default class DialerApp extends React.Component {
   }
 
   handleAppStateChange = state => {
+    console.log('STATE', state); 
+    console.log(state); 
+    this.setState({deviceState: state});
+
     Device.on(state, obj => {
-      state === 'error'
-        ? this.setState({
-            deviceState: 'error',
-            deviceErrorCode: obj.code,
-            deviceErrorMessage: obj.message
-          })
-        : this.setState({ deviceState: state });
+      if (state === 'error'){ 
+        this.setState({
+          // deviceState: 'error',
+          deviceErrorCode: obj.code,
+          deviceErrorMessage: obj.message
+        }); 
+      }
+      else if (state === 'incoming'){ 
+        this.incoming(); 
+        // this.setState({ deviceState : state}, this.incoming); 
+        console.log('blurges'); 
+      }
     });
-  };
+  
+  }; 
+
+  incoming(){ 
+
+    console.log('incoming here'); 
+  }
 
   componentDidMount() {
     this.handleAppStateChange('cancel');
@@ -45,8 +61,26 @@ export default class DialerApp extends React.Component {
 
   handleLogin = (capabilityToken) => {
     this.setState({ token: capabilityToken });
-    Device.setup(capabilityToken);
+    let device = Device.setup(capabilityToken, {debug: true, allowIncomingWhileBusy: true});
+    console.log('deviceroni', device); 
   };
+
+
+  // answerCall() { 
+  //   //TODO CONNECT TO CONNECT.ACCEPT CALLBACK
+  //   Device.incoming(this.answered); 
+  //   // connection.accept(); 
+
+  // }
+
+  // answered(connection){ 
+  //   connection.accept();
+  // }
+
+  // hangup() { 
+  //   Device.disconnect(); 
+  // }
+
 
   /**
  * Show login modal if user has not logged in properly.
@@ -81,6 +115,7 @@ export default class DialerApp extends React.Component {
             <div>
               <div>
                 <Dialer deviceState={this.state.deviceState} />
+                <Answerer></Answerer>
               </div>
             </div>
           </div>

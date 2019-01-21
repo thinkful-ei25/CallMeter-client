@@ -10,30 +10,15 @@ export default class Answerer extends React.Component{
     }
   }
 
-  answerCall() { 
-    //TODO CONNECT TO CONNECT.ACCEPT CALLBACK
-    Device.incoming(this.answered); 
-    // connection.accept(); 
-
-  }
-
-  answered(connection){ 
-    connection.accept();
-  }
-
-  hangup() { 
-    Device.disconnect(); 
-  }
-
   render() { 
     return ( 
       // <p>{this.state.callStatus}</p>
       <section>
         <br></br>
-        <button onClick={this.answerCall()}>
+        <button onClick={console.log('')}>
           Answer 
         </button> 
-        <button onClick={this.hangup}>
+        <button onClick={console.log('')}>
           Hangup
         </button>
       </section>

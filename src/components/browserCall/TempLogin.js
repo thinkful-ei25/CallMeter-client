@@ -41,6 +41,8 @@ export default class TempLogin extends React.Component {
       fetchCapabilityToken(this.state.accountSid, this.state.authToken)
         .then(capabilityToken => {
           console.log('#### Returned Capability Token #### ' + capabilityToken);
+          
+          //STORE THIS ON THE STORE
           this.props.onLogin(capabilityToken);
         })
         .catch(error => {

@@ -52,7 +52,7 @@ export default class Dialer extends React.Component {
     }
   }
 
-  // callIsActive = () => this.props.deviceState = 'connect';
+  callIsActive = () => this.props.deviceState = 'connect';
 
   render () {
     return (
@@ -74,7 +74,6 @@ export default class Dialer extends React.Component {
             <span>Call Now</span>
             </button>
           </div>
-          <Answerer></Answerer>
           <p>{this.callStatus()}</p>
         </div>
       </div>
