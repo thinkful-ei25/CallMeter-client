@@ -12,7 +12,7 @@ export default class DialerApp extends React.Component {
       deviceState: '',
       deviceErrorCode: '',
       deviceErrorMessage: '', 
-      connection: null
+      connection: {}
     };
   }
 
@@ -32,7 +32,7 @@ export default class DialerApp extends React.Component {
       else if (state === 'incoming'){ 
         this.incoming(obj); 
         // this.setState({ deviceState : state}, this.incoming); 
-        console.log('blurges'); 
+        console.log('blurges for durges'); 
       }
     });
   
@@ -43,19 +43,26 @@ export default class DialerApp extends React.Component {
  * @returns {connection}
  */
   incoming(conn){ 
+    // console.log('function', conn.onAnswer()); 
+    // console.log('connection objects', conn); 
+    // // conn(this.answerCall(conn))
     this.setState({connection:conn})
   }
 
-  answerCall(){ 
-    console.log('answer the call'); 
+  answerCall = () => { 
+    console.log('answer the calls'); 
+
+    console.log(this.state.connection); 
+
     this.state.connection.accept(); 
   }
-
-  hangupCall(){ 
-    console.log('hanging up the call'); 
-    this.state.connection.reject(); 
   
+
+  hangupCall = () => { 
+    console.log('hanging up the call');   
+    this.state.connection.reject(); 
   }
+   
 
   componentDidMount() {
     this.handleAppStateChange('cancel');
@@ -77,11 +84,11 @@ export default class DialerApp extends React.Component {
   handleLogin = (capabilityToken) => {
     this.setState({ token: capabilityToken });
     let device = Device.setup(capabilityToken, {debug: true, allowIncomingWhileBusy: true});
-    console.log('deviceroni', device); 
+    console.log('deviceronies', device); 
   };
 
   /**
- * Show login modal if user has not logged in properly.
+ * Shows login modal if user has not logged in properly.
  * Incorrect login credentials result in a valid login token being returned
  * but the device will fail to initialize and show offline status.
  *
