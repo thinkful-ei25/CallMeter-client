@@ -41,12 +41,7 @@ export class LandingPage extends React.Component {
                     <h3 className="title">Billable</h3>
                 </div>
                 <div className="descriptionBox">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                       Nullam tortor nulla, rhoncus at laoreet quis, pretium at
-                       elit. Nunc posuere vel metus a feugiat. Etiam dignissim erat
-                        ut neque accumsan, mattis vestibulum ex auctor. Nam accumsan
-                        sollicitudin odio id mollis. Nunc mi diam, convallis a nisi et,
-                  molestie ultricies urna. Etiam sodales ut est ut</p>
+                    <p>Billable has three main features! And there are so many more to come!! Get pumped!!!</p>
                 </div>
                 <div className="featureContainer">
                     <div className="featureBox">
