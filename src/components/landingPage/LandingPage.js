@@ -18,7 +18,7 @@ export class LandingPage extends React.Component {
                     <div className="navBarMiddle">
                     </div>
                     <div className="navBarRight">
-                        <Link style={{marginRight:"10%", textDecoration:"none"}} className="nav-link" to="/login">Log In</Link>
+                        <Link className="nav-link" to="/login"><button className="smallSignUp">Log In</button></Link>
                         <Link className="nav-link" to="/register"><button className="smallSignUp">Sign-Up</button></Link>
                     </div>
                 </div>
