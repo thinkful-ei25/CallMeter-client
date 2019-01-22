@@ -55,24 +55,21 @@ export class LandingPage extends React.Component {
                         <img className="featureImages" src='https://openclipart.org/image/2400px/svg_to_png/399/molumen-phone-icon.png'></img>
                         <h3>Track Calls</h3>
                         <div className="featureText">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                 Nullam tortor nulla, rhoncus at laoreet quis,</p>
+                            <p>Track outbound and inbound business calls by the minute via browser or phone.</p>
                         </div>
                     </div>
                     <div className="featureBox">
                         <img className="featureImages" src='https://cdn2.iconfinder.com/data/icons/transports-2/200/Untitled-4-512.png'></img>
                         <h3>Automating Invoicing</h3>
                         <div className="featureText">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                 Nullam tortor nulla, rhoncus at laoreet quis,</p>
+                            <p>Creates programmatic invoices to the client with the option of billing the client automatically for each call.  </p>
                         </div>
                     </div>
                     <div className="featureBox">
                         <img className="featureImages" src='https://cdn0.iconfinder.com/data/icons/business-and-finance-vol-2-1/48/101-512.png'></img>
                         <h3>Contact Management</h3>
                         <div className="featureText">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                 Nullam tortor nulla, rhoncus at laoreet quis,</p>
+                            <p>Call, create, edit, and track clients from our in-app client management dashboard.</p>
                         </div>
                     </div>
                 </div>
