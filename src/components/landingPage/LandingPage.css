@@ -33,10 +33,14 @@
   width: 30%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: centxer;
   text-align: center;
 }
 
+.main-image{ 
+  width: 800px; 
+  height: 500px; 
+}
 
 .mediumSignUp{
   background-color: transparent;
