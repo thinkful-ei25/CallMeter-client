@@ -15,10 +15,10 @@ export default class Answerer extends React.Component{
       // <p>{this.state.callStatus}</p>
       <section>
         <br></br>
-        <button onClick={console.log('')}>
+        <button onClick={this.props.answer}>
           Answer 
         </button> 
-        <button onClick={console.log('')}>
+        <button onClick={this.props.hangup}>
           Hangup
         </button>
       </section>

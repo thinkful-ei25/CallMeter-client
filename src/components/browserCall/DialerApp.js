@@ -11,7 +11,8 @@ export default class DialerApp extends React.Component {
       token: '',
       deviceState: '',
       deviceErrorCode: '',
-      deviceErrorMessage: ''
+      deviceErrorMessage: '', 
+      connection: null
     };
   }
 
@@ -29,7 +30,7 @@ export default class DialerApp extends React.Component {
         }); 
       }
       else if (state === 'incoming'){ 
-        this.incoming(); 
+        this.incoming(obj); 
         // this.setState({ deviceState : state}, this.incoming); 
         console.log('blurges'); 
       }
@@ -37,9 +38,23 @@ export default class DialerApp extends React.Component {
   
   }; 
 
-  incoming(){ 
+  /**
+ * Sets the incoming connection
+ * @returns {connection}
+ */
+  incoming(conn){ 
+    this.setState({connection:conn})
+  }
 
-    console.log('incoming here'); 
+  answerCall(){ 
+    console.log('answer the call'); 
+    this.state.connection.accept(); 
+  }
+
+  hangupCall(){ 
+    console.log('hanging up the call'); 
+    this.state.connection.reject(); 
+  
   }
 
   componentDidMount() {
@@ -64,23 +79,6 @@ export default class DialerApp extends React.Component {
     let device = Device.setup(capabilityToken, {debug: true, allowIncomingWhileBusy: true});
     console.log('deviceroni', device); 
   };
-
-
-  // answerCall() { 
-  //   //TODO CONNECT TO CONNECT.ACCEPT CALLBACK
-  //   Device.incoming(this.answered); 
-  //   // connection.accept(); 
-
-  // }
-
-  // answered(connection){ 
-  //   connection.accept();
-  // }
-
-  // hangup() { 
-  //   Device.disconnect(); 
-  // }
-
 
   /**
  * Show login modal if user has not logged in properly.
@@ -115,7 +113,7 @@ export default class DialerApp extends React.Component {
             <div>
               <div>
                 <Dialer deviceState={this.state.deviceState} />
-                <Answerer></Answerer>
+                <Answerer answer={this.answerCall} hangup={this.hangupCall}></Answerer>
               </div>
             </div>
           </div>
