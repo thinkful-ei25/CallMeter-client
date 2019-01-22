@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
-import { fetchProtectedData } from '../../actions/protected-data';
+// import { fetchProtectedData } from '../../actions/protected-data';
 import './dashboard.css'
 import ReactTable from "react-table";
 import 'react-table/react-table.css'
@@ -10,7 +10,7 @@ import { makeData, Logo, Tips } from "./Utils";
 
 export class Invoices extends React.Component {
     componentDidMount() {
-        
+        // this.props.dispatch(fetchProtectedData());
     }
 
 
