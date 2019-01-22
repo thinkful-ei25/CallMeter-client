@@ -20,7 +20,7 @@ export class Stats extends React.Component {
     }
     componentDidMount() {
         this.randomizeData();
-        this.props.dispatch(fetchProtectedData());
+        
     }
 
     randomizeData(){

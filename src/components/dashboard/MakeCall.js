@@ -7,7 +7,7 @@ import './dashboard.css'
 
 export class MakeCall extends React.Component {
     componentDidMount() {
-        this.props.dispatch(fetchProtectedData());
+        
     }
 
     render() {

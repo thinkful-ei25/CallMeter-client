@@ -10,7 +10,7 @@ import { makeData, Logo, Tips } from "./Utils";
 
 export class Invoices extends React.Component {
     componentDidMount() {
-        this.props.dispatch(fetchProtectedData());
+        
     }
 
 
