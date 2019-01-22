@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
-import { fetchProtectedData } from '../../actions/protected-data';
 import { Line } from 'react-chartjs-2';
 import { Link } from 'react-router-dom';
 import './dashboard.css'
@@ -124,7 +123,7 @@ const mapStateToProps = state => {
     return {
         //username: state.auth.currentUser.username,
         //name: `${currentUser.firstName} ${currentUser.lastName}`,
-        protectedData: state.protectedData.data
+        // protectedData: state.protectedData.data
     };
 };
 

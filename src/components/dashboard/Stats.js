@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
-import { fetchProtectedData } from '../../actions/protected-data';
+// import { fetchProtectedData } from '../../actions/protected-data';
 import { Line } from 'react-chartjs-2';
 
 
@@ -20,7 +20,7 @@ export class Stats extends React.Component {
     }
     componentDidMount() {
         this.randomizeData();
-        this.props.dispatch(fetchProtectedData());
+        // this.props.dispatch(fetchProtectedData());
     }
 
     randomizeData(){

@@ -37,7 +37,7 @@ export const registerUser = user => dispatch => {
 
 export const getPhoneNumbers = areaCode => dispatch => {
     console.log('area code: ', areaCode);
-    return fetch(`https://83eb5ba7.ngrok.io/api/register/phones?areaCode=${areaCode}`, {
+    return fetch(`${API_BASE_URL}/register/phones?areaCode=${areaCode}`, {
         method: 'GET',
         headers: {
             'content-type': 'application/json'
