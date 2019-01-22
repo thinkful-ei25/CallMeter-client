@@ -50,6 +50,11 @@ export class Clients extends React.Component {
 
 		if (this.props.client && !this.state.adding && !this.state.editing) {
 			let clients = this.props.client
+			console.log('clients:', clients)
+			clients.forEach(row => {
+				let fullName = row.firstName + ' ' + row.lastName
+				row.fullName = fullName
+			})
 			if (this.state.searchTerm) {
 				clients = clients.filter(row => {
 					return row.firstName.toLowerCase().includes(this.state.searchTerm.toLowerCase()) || row.lastName.toLowerCase().includes(this.state.searchTerm.toLowerCase()) || row.company.toLowerCase().includes(this.state.searchTerm.toLowerCase())
@@ -60,38 +65,31 @@ export class Clients extends React.Component {
 			return (
 				<div className="invoicesTable">
 					<div className="headerContainer">
-						<h1>Clients</h1>
+						<h1>Contacts</h1>
 						<div className="searchBoxContainer">
-							<label htmlFor="searchBox">Search:</label>
+							<label className="searchLabel" htmlFor="searchBox">⌕</label>
 							<input className="searchBox" name="searchBox"value={this.state.searchTerm}
 								onChange={e => this.setState({ searchTerm: e.target.value })}></input>
 						</div>
-						<p><button className="addClientButton" onClick={() => this.toggleAddClientForm()}>Add Client ➕</button></p>
+						<p><button className="addClientButton" onClick={() => this.toggleAddClientForm()}>Add Contact ➕</button></p>
 					</div>
 					<ReactTable
 						data={clients}
 						columns={[
+							
 							{
-								Header: "First Name",
-								accessor: "firstName"
+								Header: "Contact",
+								accessor: "fullName"
 							},
+						
 							{
-								Header: "Last Name",
-								accessor: "lastName"
-							},
-							{
-								Header: "Company Name",
+								Header: "Company",
 								accessor: "company"
 							},
 							{
 								Header: "Phone Number",
 								id: "phoneNumber",
 								accessor: "phoneNumber"
-							},
-
-							{
-								Header: "Hourly Rate",
-								accessor: "hourlyRate"
 							},
 							{
 								Header: "Edit",

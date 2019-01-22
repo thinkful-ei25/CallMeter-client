@@ -34,6 +34,9 @@
 
 .addClientButton {
     padding: 5px 5px;
+    background-color: dodgerblue;
+    border-radius: 15px;
+    color: white;
 }
 
 .editButton {
@@ -52,5 +55,9 @@
     width: 75%;
     margin-left: 2%;
     
+}
+
+.searchLabel {
+    font-size: 40px;
 }
 

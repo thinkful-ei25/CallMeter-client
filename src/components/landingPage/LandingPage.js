@@ -18,7 +18,7 @@ export class LandingPage extends React.Component {
                     <div className="navBarMiddle">
                     </div>
                     <div className="navBarRight">
-                        <Link style={{marginRight:"10%", textDecoration:"none"}} className="nav-link" to="/login">Log In</Link>
+                        <Link className="nav-link" to="/login"><button className="smallSignUp">Log In</button></Link>
                         <Link className="nav-link" to="/register"><button className="smallSignUp">Sign-Up</button></Link>
                     </div>
                 </div>
@@ -28,9 +28,7 @@ export class LandingPage extends React.Component {
                     <h1 className="title" >Billable</h1>
                 </div>
                 <div className="descriptionBox">
-                    <p>Billable simplifies your billing process by allowing you to make and receive calls from your browser,
-                        track calls and clients, and generate invoices. Register and create a phone number, and add a client to get started.
-                    </p>
+                    <p>Billable simplifies your billing process by allowing you to make and receive calls from your browser, track calls and clients, and generate invoices. To get started all you need to do is add your contact info, create a phone number, and add a client! </p>
                 </div>
                 <div className="center">
                     <Link to="/register"><button className="mediumSignUp">Sign-Up</button></Link>
@@ -43,36 +41,28 @@ export class LandingPage extends React.Component {
                     <h3 className="title">Billable</h3>
                 </div>
                 <div className="descriptionBox">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                       Nullam tortor nulla, rhoncus at laoreet quis, pretium at
-                       elit. Nunc posuere vel metus a feugiat. Etiam dignissim erat
-                        ut neque accumsan, mattis vestibulum ex auctor. Nam accumsan
-                        sollicitudin odio id mollis. Nunc mi diam, convallis a nisi et,
-                  molestie ultricies urna. Etiam sodales ut est ut</p>
+                    <p>Billable has three main features! And there are so many more to come!! Get pumped!!!</p>
                 </div>
                 <div className="featureContainer">
                     <div className="featureBox">
-                        <img className="featureImages" src={require("../../resources/Pikachu.jpg")}></img>
-                        <h3>Feature</h3>
+                        <img className="featureImages" src='https://openclipart.org/image/2400px/svg_to_png/399/molumen-phone-icon.png'></img>
+                        <h3>Track Calls</h3>
                         <div className="featureText">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                 Nullam tortor nulla, rhoncus at laoreet quis,</p>
+                            <p>Track outbound and inbound business calls by the minute via browser or phone.</p>
                         </div>
                     </div>
                     <div className="featureBox">
-                        <img className="featureImages" src={require("../../resources/Pikachu.jpg")}></img>
-                        <h3>Feature</h3>
+                        <img className="featureImages" src='https://cdn2.iconfinder.com/data/icons/transports-2/200/Untitled-4-512.png'></img>
+                        <h3>Automating Invoicing</h3>
                         <div className="featureText">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                 Nullam tortor nulla, rhoncus at laoreet quis,</p>
+                            <p>Creates programmatic invoices to the client with the option of billing the client automatically for each call.  </p>
                         </div>
                     </div>
                     <div className="featureBox">
-                        <img className="featureImages" src={require("../../resources/Pikachu.jpg")}></img>
-                        <h3>Feature</h3>
+                        <img className="featureImages" src='https://cdn0.iconfinder.com/data/icons/business-and-finance-vol-2-1/48/101-512.png'></img>
+                        <h3>Contact Management</h3>
                         <div className="featureText">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                 Nullam tortor nulla, rhoncus at laoreet quis,</p>
+                            <p>Call, create, edit, and track clients from our in-app client management dashboard.</p>
                         </div>
                     </div>
                 </div>
