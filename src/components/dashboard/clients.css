@@ -7,4 +7,50 @@
     border: 1px black solid;
     background-color: white;
 }
+.formHeader {
+    background-color: #B0E57C;
+    margin-top: 0;
+    padding: .67em;
+}
+
+.headerContainer {
+    display: flex;
+}
+
+.headerContainer h1 {
+    width: 33%;
+    padding-left: 5%;
+}
+.headerContainer p {
+    width: 33%;
+    text-align: right;
+    padding-right: 5%;
+    padding-left: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    
+   
+}
+
+.addClientButton {
+    padding: 5px 5px;
+}
+
+.editButton {
+    width: 50%;
+    
+}
+
+.searchBoxContainer {
+    width: 33%;
+    text-align: center;
+    padding: 2%
+    
+}
+
+.searchBox {
+    width: 75%;
+    margin-left: 2%;
+    
+}
 

@@ -33,9 +33,9 @@ export class EditClient extends React.Component {
         }
         return (
             <div>
-                <h1>Edit a Client</h1>
+                <h1 className="formHeader">Edit a Client</h1>
 
-                <h2><button className="backButton" onClick={() => this.props.toggle()}>Back ⬅</button></h2>
+                <h2><button className="backButton" onClick={() => this.props.toggle()}>Cancel ⬅</button></h2>
                 <form
 
                     className="loginForm"

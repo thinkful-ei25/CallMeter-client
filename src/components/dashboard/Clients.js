@@ -19,7 +19,8 @@ export class Clients extends React.Component {
 		this.state = {
 			adding: false,
 			editing: false,
-			editingClient: null
+			editingClient: null,
+			searchTerm: ''
 		}
 	}
 
@@ -45,17 +46,30 @@ export class Clients extends React.Component {
 
 	render() {
 
-
+		
 
 		if (this.props.client && !this.state.adding && !this.state.editing) {
+			let clients = this.props.client
+			if (this.state.searchTerm) {
+				clients = clients.filter(row => {
+					return row.firstName.toLowerCase().includes(this.state.searchTerm.toLowerCase()) || row.lastName.toLowerCase().includes(this.state.searchTerm.toLowerCase()) || row.company.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+						|| row.phoneNumber.includes(this.state.searchTerm)
+				})
+			}
+
 			return (
 				<div className="invoicesTable">
-
-					<h1>Clients</h1>
-					<h2><button className="addClientButton" onClick={() => this.toggleAddClientForm()}>Add Client ➕</button></h2>
-
+					<div className="headerContainer">
+						<h1>Clients</h1>
+						<div className="searchBoxContainer">
+							<label htmlFor="searchBox">Search:</label>
+							<input className="searchBox" name="searchBox"value={this.state.searchTerm}
+								onChange={e => this.setState({ searchTerm: e.target.value })}></input>
+						</div>
+						<p><button className="addClientButton" onClick={() => this.toggleAddClientForm()}>Add Client ➕</button></p>
+					</div>
 					<ReactTable
-						data={this.props.client}
+						data={clients}
 						columns={[
 							{
 								Header: "First Name",
@@ -82,8 +96,9 @@ export class Clients extends React.Component {
 							{
 								Header: "Edit",
 								accessor: "id",
+								sortable: false,
 								Cell: row => (
-									<button className="navButton" onClick={() => {
+									<button className="navButton editButton" onClick={() => {
 										this.setState({
 											editingClient: this.props.client.filter(client => row.value === client.id)[0]
 										})
@@ -96,6 +111,7 @@ export class Clients extends React.Component {
 							{
 								Header: "Delete",
 								accessor: "id",
+								sortable: false,
 								Cell: row => (
 									<button className="navButton" onClick={() => {
 										this.props.dispatch(deleteClient(row.value))
@@ -117,14 +133,17 @@ export class Clients extends React.Component {
 		}
 		else if (this.state.adding) {
 			return (
-				<AddClient toggle={() => this.toggleAddClientForm()} />
+				<div className="topFormContainer noLine">
+					<AddClient toggle={() => this.toggleAddClientForm()} />
+				</div>
 			)
 		}
 
 		else if (this.state.editing) {
 			return (
-
-				<EditClient initialValues={this.state.editingClient} toggle={() => this.toggleEditClientForm()} />
+				<div className="topFormContainer noLine">
+					<EditClient initialValues={this.state.editingClient} toggle={() => this.toggleEditClientForm()} />
+				</div>
 			)
 		}
 		else {

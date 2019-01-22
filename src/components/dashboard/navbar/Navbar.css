@@ -2,3 +2,7 @@
     border: none;
     background-color: pink;
 }
+
+.logOutButton:hover {
+    background-color:white;
+}

@@ -26,8 +26,8 @@ export class AddClient extends React.Component {
         }
         return (
             <div>
-                <h1>Add a Client</h1>
-                <h2><button className="backButton" onClick={() => this.props.toggle()}>Back ⬅</button></h2>
+                <h1 className="formHeader">Add a Client</h1>
+                <h2><button className="backButton" onClick={() => this.props.toggle()}>Cancel ⬅</button></h2>
                 
                 <form
                     className="loginForm"
