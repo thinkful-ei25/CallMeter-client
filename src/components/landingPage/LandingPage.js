@@ -53,7 +53,7 @@ export class LandingPage extends React.Component {
                 <div className="featureContainer">
                     <div className="featureBox">
                         <img className="featureImages" src='https://openclipart.org/image/2400px/svg_to_png/399/molumen-phone-icon.png'></img>
-                        <h3>Feature</h3>
+                        <h3>Track Calls</h3>
                         <div className="featureText">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                  Nullam tortor nulla, rhoncus at laoreet quis,</p>
@@ -61,7 +61,7 @@ export class LandingPage extends React.Component {
                     </div>
                     <div className="featureBox">
                         <img className="featureImages" src='https://cdn2.iconfinder.com/data/icons/transports-2/200/Untitled-4-512.png'></img>
-                        <h3>Feature</h3>
+                        <h3>Automating Invoicing</h3>
                         <div className="featureText">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                  Nullam tortor nulla, rhoncus at laoreet quis,</p>
@@ -69,7 +69,7 @@ export class LandingPage extends React.Component {
                     </div>
                     <div className="featureBox">
                         <img className="featureImages" src='https://cdn0.iconfinder.com/data/icons/business-and-finance-vol-2-1/48/101-512.png'></img>
-                        <h3>Feature</h3>
+                        <h3>Contact Management</h3>
                         <div className="featureText">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                  Nullam tortor nulla, rhoncus at laoreet quis,</p>
