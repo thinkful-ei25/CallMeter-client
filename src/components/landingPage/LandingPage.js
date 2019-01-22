@@ -28,9 +28,7 @@ export class LandingPage extends React.Component {
                     <h1 className="title" >Billable</h1>
                 </div>
                 <div className="descriptionBox">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>Billable simplifies your billing process by allowing you to make and receive calls from your browser, track calls and clients, and generate invoices. To get started all you need to do is add your contact info, create a phone number, and add a client! </p>
                 </div>
                 <div className="center">
                     <Link to="/register"><button className="mediumSignUp">Sign-Up</button></Link>
