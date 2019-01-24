@@ -40,12 +40,14 @@ async startAnimation(e){
 render() {
 	return (
 		<div class="buttonContainer">
-			<img className="aniButton" src={require("../../../resources/envelope.png")}></img>
-			<img className="aniButton" src={require("../../../resources/icon.png")}></img>
-			<img className="aniButton" src="https://gallery.kissclipart.com/20180929/jqq/kissclipart-chart-black-and-white-clipart-bar-chart-clip-art-18a3aa13f1fdd7ed.png"></img>
-			<img className="aniButton" src={require("../../../resources/hashTag.png")}></img>
-			<img className="aniButton" src={require("../../../resources/volumePhone.png")}></img>
-			<img className="dots" src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png" onClick={e => this.startAnimation(e)}></img>
+			<div class="fixed">
+				<Link to=""><img className="aniButton" src={require("../../../resources/envelope.png")}></img></Link>
+				<Link to=""><img className="aniButton" src={require("../../../resources/icon.png")}></img></Link>
+				<Link to=""><img className="aniButton" src="https://gallery.kissclipart.com/20180929/jqq/kissclipart-chart-black-and-white-clipart-bar-chart-clip-art-18a3aa13f1fdd7ed.png"></img></Link>
+				<Link to=""><img className="aniButton" src={require("../../../resources/hashTag.png")}></img></Link>
+				<Link to=""><img className="aniButton" src={require("../../../resources/volumePhone.png")}></img></Link>
+				<img className="dots" src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png" onClick={e => this.startAnimation(e)}></img>
+			</div>
 		</div>
 	);
 }

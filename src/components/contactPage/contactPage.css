@@ -1,5 +1,7 @@
 .contactPage{
   display: block;
+  background-color: #f4f4ff;
+  overflow: hidden;
 }
 
 .contactPageHeader{
@@ -36,8 +38,12 @@
 
 
 .contactActionButton{
-  width: 10%;
-  height: 30%;
+  width: 20%;
+  height: 30px;
+  margin-left: 4%;
+  border-radius: 15%;
+  background-color: blue;
+  color: white;
 }
 
 .bestFriend{
@@ -91,8 +97,9 @@
 /* Contact Info Box*/
 .contactBodyInfo{
   width: 50%;
+  background-color: white;
   height: 600px;
-  border: 1px solid black;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15);
   border-radius: 5%;
   margin-right: 9%;
 }
@@ -111,20 +118,33 @@
 }
 
 .contactBodyInfoContainer{
-  margin-top: 2.5%;
   height: 10%;
   margin-left: 10%;
   width: 80%;
-  height: 75%;
+  border-bottom: 1px solid black;
+  display: flex;
+}
+
+.contactBodyTagSection{
+  height: 65px;
+  width: 25%;
+  display: flex;
+  align-items: center;
+}
+
+.contactBodyInfoSection{
+  height: 65px;
+}
+
+.contactBodyTags{
+  margin-top: 5%;
+  width: 80%;
+  margin-left: 10%;
 }
 
 .contactBodyInfoSection{
   display: flex;
-  align-content: center;
-}
-
-.contactBodyInfoSection{
-  border-bottom: 1px solid black;
+  align-items: center;
 }
 
 /* Contact Info Box End */
@@ -136,11 +156,11 @@
 .contactBodyInvoices{
   display: flex;
   flex-direction: column;
-
+  background-color: white;
   border-radius: 5%;
   width: 40%;
   height: 600px;
-  border: 1px solid black;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15);
   border-bottom: none;
 }
 
@@ -177,10 +197,10 @@
 }
 
 .invoicesBottomButton{
-  width: calc(100% + 4px);
-  margin-left: -2px;
+  width: calc(100% + 8px);
+  margin-left: -4px;
   height: 12.5%;
-  border-radius: 10%;
+  border-radius: 8%;
   background-color: blue;
   color: white;
   font-size: 1.5em;
@@ -188,5 +208,50 @@
 
 /* Invoices details box end*/
 
+
+/* Recent Calls box */
+.recentCallsContainer{
+  width: 100%;
+  margin-top: 5%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 5%;
+  height: 400px;
+  background-color: white;
+  margin-bottom: 5%;
+}
+.recentCallsHeader{
+  width: 100%;
+  height: 30%;
+  border: 1px solid black;
+  display: flex;
+}
+.recentCallsHeaderLeft{
+  display: flex;
+  align-items:center;
+  width: 50%;
+}
+.recentCallsHeaderRight{
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.recentCallsHeaderTitle{
+  margin-left: 10%;
+}
+
+.recentCallsHeaderButton{
+  margin-right: 10%;
+  height: 30%;
+  width: 30%;
+  background-color: blue;
+  color: white;
+  border-radius: 20%;
+}
+
+
+
+/* Recent Calls end */
 
 
