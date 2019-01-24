@@ -8,11 +8,13 @@ import 'normalize.css'
 import './index.css';
 import DialerApp from './components/browserCall/DialerApp';
 
+
+{/* <DialerApp />,  */}
 ReactDOM.render(
     <Provider store={store}>
-        <Router>
-            <App />
-        </Router>
+      <Router>
+        <App /> 
+      </Router>
     </Provider>,
     document.getElementById('root')
 );
