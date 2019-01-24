@@ -17,57 +17,54 @@ export default class DialerApp extends React.Component {
   }
 
   handleAppStateChange = state => {
-    console.log('STATE', state); 
-    console.log(state); 
     this.setState({deviceState: state});
-
     Device.on(state, obj => {
       if (state === 'error'){ 
         this.setState({
-          // deviceState: 'error',
           deviceErrorCode: obj.code,
           deviceErrorMessage: obj.message
         }); 
       }
       else if (state === 'incoming'){ 
         this.incoming(obj); 
-        // this.setState({ deviceState : state}, this.incoming); 
-        console.log('blurges for durges'); 
+      }
+      else if (state=== 'ringing'){ 
+        this.ringing(obj); 
       }
     });
-  
   }; 
 
+  ringing(connection){ 
+    console.log('ringinging', connection)
+  }
   /**
- * Sets the incoming connection
- * @returns {connection}
- */
-  incoming(conn){ 
-    // console.log('function', conn.onAnswer()); 
-    // console.log('connection objects', conn); 
-    // // conn(this.answerCall(conn))
-    this.setState({connection:conn})
+  * Sets the incoming connection
+  * @returns {connection}
+  */
+  incoming(connection){ 
+    console.log('connectionz', connection); 
+    this.setState({connection}); 
   }
 
+  /**
+   * Callback from Answerer components answer button
+   */
   answerCall = () => { 
-    console.log('answer the calls'); 
-
-    console.log(this.state.connection); 
-
     this.state.connection.accept(); 
   }
-  
 
+  /**
+   * Callback from Answerer components hangup button
+   */
   hangupCall = () => { 
-    console.log('hanging up the call');   
     this.state.connection.reject(); 
   }
-   
-
-  componentDidMount() {
+  
+  componentDidMount(){
     this.handleAppStateChange('cancel');
     this.handleAppStateChange('connect');
     this.handleAppStateChange('disconnect');
+    this.handleAppStateChange('ringing'); 
     this.handleAppStateChange('error');
     this.handleAppStateChange('incoming');
     this.handleAppStateChange('offline');
@@ -83,8 +80,10 @@ export default class DialerApp extends React.Component {
 
   handleLogin = (capabilityToken) => {
     this.setState({ token: capabilityToken });
-    let device = Device.setup(capabilityToken, {debug: true, allowIncomingWhileBusy: true});
-    console.log('deviceronies', device); 
+    let device = Device.setup(capabilityToken, {
+      debug: true, 
+      enableRingingState: true, 
+      allowIncomingWhileBusy: true});
   };
 
   /**
