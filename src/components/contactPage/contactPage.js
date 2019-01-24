@@ -1,12 +1,52 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Route, withRouter, Redirect } from 'react-router-dom';
+import anime from 'animejs';
 import './contactPage.css';
 const {twilio} = window;
 export class ContactPage extends React.Component {
+    onClickExample(e){
+        const element = document.getElementsByClassName('fixedPokePhone')[0];
+        element.style.visibility = "visible";
+        anime({
+            targets: '.fixedPokePhone',
+            opacity: 1,
+            duration: 4500,
+          });
+    }
+
+    onExitExample(e){
+        const element = document.getElementsByClassName('fixedPokePhone')[0];
+        anime({
+            targets: '.fixedPokePhone',
+            opacity: 0,
+            duration: 1000,
+            complete: function(){
+                element.style.visibility = 'hidden'
+            }
+          });
+    }
+
     render() {
         return (
             <div className="contactPage">
+                <div className="pokePhone">
+                    <div className="fixedPokePhone">
+                        <div className="pokePhoneLeft">
+                            <img className="pokePhoneImage" src={require("../../resources/mainImage.png")}></img>
+                        </div>
+                        <div className="pokePhoneMiddle">
+                            <p>
+                                Call from<br/>
+                                Steven Carey
+                            </p>
+                        </div>
+                        <div className="pokePhoneRight">
+                            <div onClick={e => this.onExitExample(e)} className="callAccept">Accept</div>
+                            <div onClick={e => this.onExitExample(e)} className="callDecline">Decline</div>
+                        </div>
+                    </div>
+                </div>
                 <div className="contactPageContainer">
                     <div className="contactTopHeader">
                         <div className="contactPageHeader">
@@ -15,7 +55,7 @@ export class ContactPage extends React.Component {
                             </div>
                             <div className="contactHeaderRight">
                                 <h3 className="contactTitle">Client</h3>
-                                <button className="contactActionButton">Actions</button>
+                                <button onClick={e => this.onClickExample(e)} className="contactActionButton">Actions</button>
                             </div>
                         </div>
                     </div>
@@ -49,7 +89,7 @@ export class ContactPage extends React.Component {
                                         <p className="contactBodyInfoDetails">Company:</p>
                                     </div>  
                                     <div className="contactBodyInfoSection">
-                                        Pokemon League Master
+                                        Pokemon League Champion
                                     </div>
                                 </div>
                                 <div className="contactBodyInfoContainer">
