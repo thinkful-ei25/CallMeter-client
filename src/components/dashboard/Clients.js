@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import requiresLogin from '../requires-login';
 import { fetchClients, deleteClient } from '../../actions/client';
 import './dashboard.css'
@@ -20,7 +21,8 @@ export class Clients extends React.Component {
 			adding: false,
 			editing: false,
 			editingClient: null,
-			searchTerm: ''
+			searchTerm: '',
+			view: 'clients'
 		}
 	}
 
@@ -33,7 +35,7 @@ export class Clients extends React.Component {
 
 	toggleAddClientForm() {
 		this.setState({ adding: !this.state.adding })
-		this.props.dispatch(fetchClients())
+
 	}
 
 	toggleEditClientForm() {
@@ -42,18 +44,23 @@ export class Clients extends React.Component {
 		console.log(this.state)
 	}
 
+	toggleView(e) {
+		this.setState({ view: e.target.value })
+		console.log(this.state)
+	}
+
 
 
 	render() {
 
-		
 
-		if (this.props.client && !this.state.adding && !this.state.editing) {
+
+		if (this.props.client && !this.state.adding && !this.state.editing && this.state.view === 'clients') {
 			let clients = this.props.client
 			console.log('clients:', clients)
 			clients.forEach(row => {
 				let fullName = row.firstName + ' ' + row.lastName
-				row.fullName = fullName
+				row.fullName = <Link to="/clientPage">{fullName}</Link>
 			})
 			if (this.state.searchTerm) {
 				clients = clients.filter(row => {
@@ -68,20 +75,39 @@ export class Clients extends React.Component {
 						<h1>Contacts</h1>
 						<div className="searchBoxContainer">
 							<label className="searchLabel" htmlFor="searchBox">⌕</label>
-							<input className="searchBox" name="searchBox"value={this.state.searchTerm}
+							<input className="searchBox" name="searchBox" value={this.state.searchTerm}
 								onChange={e => this.setState({ searchTerm: e.target.value })}></input>
 						</div>
-						<p><button className="addClientButton" onClick={() => this.toggleAddClientForm()}>Add Contact ➕</button></p>
+						<p> <select value={this.state.view} onChange={e => this.toggleView(e)} className="addClientButton">
+							<option value="clients">Contacts</option>
+							<option value="stats">Stats</option>
+						</select>
+							<button className="addClientButton" onClick={() => this.toggleAddClientForm()}>+ Add Contact </button></p>
 					</div>
 					<ReactTable
 						data={clients}
+						getTdProps={() => ({
+							style: {
+								display: 'flex',
+								flexDirection: 'column',
+								justifyContent: 'center'
+
+							}
+						})}
 						columns={[
-							
 							{
 								Header: "Contact",
-								accessor: "fullName"
+								accessor: "photo",
+								sortable: false,
+								Cell: row => (<img className="contactImage" src={row.value}/>)
+								
 							},
-						
+							{
+								Header: "Name",
+								accessor: "fullName",
+
+							},
+
 							{
 								Header: "Company",
 								accessor: "company"
@@ -92,31 +118,36 @@ export class Clients extends React.Component {
 								accessor: "phoneNumber"
 							},
 							{
-								Header: "Edit",
-								accessor: "id",
-								sortable: false,
-								Cell: row => (
-									<button className="navButton editButton" onClick={() => {
-										this.setState({
-											editingClient: this.props.client.filter(client => row.value === client.id)[0]
-										})
-
-										this.toggleEditClientForm();
-
-									}}>✎</button>
-								)
+								Header: "Category",
+								accessor: "category"
 							},
 							{
-								Header: "Delete",
+								Header: "Actions",
 								accessor: "id",
 								sortable: false,
 								Cell: row => (
-									<button className="navButton" onClick={() => {
-										this.props.dispatch(deleteClient(row.value))
-											.then(this.props.dispatch(fetchClients()))
-									}}>❌</button>
+									<div>
+										<button className="navButton editButton" onClick={() => {
+											this.setState({
+												editingClient: this.props.client.filter(client => row.value === client.id)[0]
+											})
+
+											this.toggleEditClientForm();
+
+										}}>✎</button>
+
+										<button className="navButton" onClick={() => {
+											this.props.dispatch(deleteClient(row.value))
+												.then(this.props.dispatch(fetchClients()))
+										}}>❌</button>
+
+										<button className="navButton" onClick={() => {
+
+										}}>☎</button>
+									</div>
 								)
-							}
+							},
+
 
 
 						]}
@@ -143,6 +174,14 @@ export class Clients extends React.Component {
 					<EditClient initialValues={this.state.editingClient} toggle={() => this.toggleEditClientForm()} />
 				</div>
 			)
+		}
+		else if (this.state.view === 'stats') {
+			return (<div>
+				<select className="select" value={this.state.view} onChange={e => this.toggleView(e)} className="addClientButton">
+					<option value="clients">Contacts</option>
+					<option value="stats">Stats</option>
+				</select>
+			</div>)
 		}
 		else {
 			return null

@@ -16,13 +16,13 @@ export const fetchClientsError = error => ({
 export const ADD_CLIENT_SUCCESS = 'ADD_CLIENT_SUCCESS';
 export const addClientSuccess = (data) => ({
     type: ADD_CLIENT_SUCCESS,
-    newCompany: data.company
+    
 });
 
 export const DELETE_CLIENT_SUCCESS = 'DELETE_CLIENT_SUCCESS';
 export const deleteClientSuccess = () => ({
     type: DELETE_CLIENT_SUCCESS,
-    deleted: true
+    
 });
 
 export const fetchClients = () => (dispatch, getState) => {
@@ -60,9 +60,9 @@ export const addClient = (values) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then((data) => {
-            console.log('post result data', data)
-            dispatch(addClientSuccess(data))
+        .then(() => {
+            console.log('addClient finished')
+            dispatch(fetchClients())
             })
         .catch(err => {
             dispatch(fetchClientsError(err));

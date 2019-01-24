@@ -1,15 +1,17 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from '../registration/input';
-import { required, nonEmpty, phoneCheck, normalizePhone } from '../../validators';
+import fileInput from '../registration/fileInput'
+import { required, nonEmpty, phoneCheck, normalizePhone, emailCheck } from '../../validators';
 import { addClient } from '../../actions/client';
 
 
 export class AddClient extends React.Component {
     onSubmit(values) {
         console.log('values', values)
-        return this.props.dispatch(addClient(values))
-            .then(this.props.toggle())
+        
+        this.props.dispatch(addClient(values))
+        this.props.toggle()
     }
 
 
@@ -26,9 +28,9 @@ export class AddClient extends React.Component {
         }
         return (
             <div>
-                <h1 className="formHeader">Add a Client</h1>
+                <h1 className="formHeader">Add a Contact</h1>
                 <h2><button className="backButton" onClick={() => this.props.toggle()}>Cancel ⬅</button></h2>
-                
+
                 <form
                     className="loginForm"
                     onSubmit={this.props.handleSubmit(values =>
@@ -76,6 +78,85 @@ export class AddClient extends React.Component {
                         validate={[required, nonEmpty, phoneCheck]}
                         normalize={normalizePhone}
                     />
+                    <label htmlFor="email">Email</label>
+                    <Field
+                        component={Input}
+                        type="email"
+                        name="email"
+                        id="email"
+                        validate={[emailCheck]}
+                    />
+                    <label htmlFor="street1">Street 1</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="streetOne"
+                        id="streetOne"
+
+                    />
+                    <label htmlFor="street2">Street 2</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="streetTwo"
+                        id="streetTwo"
+
+                    />
+                    <label htmlFor="city">City</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="city"
+                        id="city"
+
+                    />
+                    <label htmlFor="state">State</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="state"
+                        id="state"
+
+                    />
+                    <label htmlFor="zip">Zip</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="zip"
+                        id="zip"
+
+                    />
+
+                    <label htmlFor="category">Category</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="category"
+                        id="category"
+
+                    />
+
+                    <label htmlFor="photo">Photo</label>
+                    <Field
+                        component={fileInput}
+                        type="file"
+                        name="photo"
+                        id="photo"
+
+                    />
+
+                    
+                    <Field
+                        component={Input}
+                        type="hidden"
+                        
+                        name="photo64"
+                        id="photo64"
+                    />
+
+
+
+
                     <button className="signUpButton" disabled={this.props.pristine || this.props.submitting}>
                         Submit
                 </button>

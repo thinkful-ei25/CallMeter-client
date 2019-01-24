@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from '../registration/input';
-import { required, nonEmpty, phoneCheck, normalizePhone } from '../../validators';
+import { required, nonEmpty, phoneCheck, normalizePhone, emailCheck } from '../../validators';
 import { editClient } from '../../actions/client'
 
 
@@ -88,6 +88,63 @@ export class EditClient extends React.Component {
 
                         validate={[required, phoneCheck]}
                         normalize={normalizePhone}
+                    />
+                    <label htmlFor="email">Email</label>
+                    <Field
+                        component={Input}
+                        type="email"
+                        name="email"
+                        id="email"
+                        validate={[emailCheck]}
+                    />
+                    <label htmlFor="street1">Street 1</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="address.streetOne"
+                        id="street1"
+                    
+                    />
+                    <label htmlFor="street2">Street 2</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="address.streetTwo"
+                        id="street2"
+                    
+                    />
+                    <label htmlFor="city">City</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="address.city"
+                        id="city"
+                    
+                    />
+                     <label htmlFor="state">State</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="address.state"
+                        id="state"
+                    
+                    />
+                     <label htmlFor="zip">Zip</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="address.zip"
+                        id="zip"
+                    
+                    />
+                     
+                     <label htmlFor="category">Category</label>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="category"
+                        id="category"
+                        
                     />
                     <button className="signUpButton" disabled={this.props.pristine || this.props.submitting}>
                         Submit
