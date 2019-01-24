@@ -48,6 +48,7 @@ export class App extends React.Component {
     render() {
         return (
             <div className="app">
+                <div>{this.props.loggedin ? <Route path="/dashboard" component={DialerApp} /> : ''}</div>
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/register" component={RegistrationPage} />
                 <Route path="/dashboard" component={navBar} />
@@ -59,6 +60,7 @@ export class App extends React.Component {
                 <Route exact path="/dashboard/invoices" component={Invoices} />
                 <Route exact path="/dashboard/clients" component={Clients} />
                 {/* <Route exact path="/dashboard/dialer" component={DialerApp} /> */}
+                
             </div>
         );
     }
