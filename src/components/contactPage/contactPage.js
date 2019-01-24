@@ -1,13 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Route, withRouter, Redirect } from 'react-router-dom';
-import anime from 'animejs'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faIgloo } from '@fortawesome/free-solid-svg-icons'
 import './contactPage.css';
-library.add(faIgloo)
-
 const {twilio} = window;
 export class ContactPage extends React.Component {
     render() {
@@ -41,30 +35,45 @@ export class ContactPage extends React.Component {
                                 <img className="contactBodyInfoImage" src={require("../../resources/mainImage.png")}></img>
                             </div>
                             <div className="contactBodyInfoBottomSectionCotainer">
-                                    <p>Tags:</p>
+                            <p className="contactBodyTags">Tags:</p>
                                 <div className="contactBodyInfoContainer">
+                                    <div className="contactBodyTagSection">
+                                        <p className="contactBodyInfoDetails">Full Name:</p>
+                                    </div>
                                     <div className="contactBodyInfoSection">
-                                        <p>Full Name:</p>
+                                        <p>Ash Ketchum</p>
                                     </div>
                                 </div>
                                 <div className="contactBodyInfoContainer">
-                                    <div className="contactBodyInfoSection">
-                                        <p>Company:</p>
+                                    <div className="contactBodyTagSection">
+                                        <p className="contactBodyInfoDetails">Company:</p>
                                     </div>  
-                                </div>
-                                <div className="contactBodyInfoContainer">
                                     <div className="contactBodyInfoSection">
-                                        <p>Email:</p>
+                                        Pokemon League Master
                                     </div>
                                 </div>
                                 <div className="contactBodyInfoContainer">
+                                    <div className="contactBodyTagSection">
+                                        <p className="contactBodyInfoDetails">Email:</p>
+                                    </div>
                                     <div className="contactBodyInfoSection">
-                                        <p>Phone:</p>
+                                        PikachuDaBest@PikaPika.com
                                     </div>
                                 </div>
                                 <div className="contactBodyInfoContainer">
+                                    <div className="contactBodyTagSection">
+                                        <p className="contactBodyInfoDetails">Phone:</p>
+                                    </div>
                                     <div className="contactBodyInfoSection">
-                                        <p>Address:</p>
+                                        MissingNo(mber)
+                                    </div>
+                                </div>
+                                <div style={{border:"none"}} className="contactBodyInfoContainer">
+                                    <div className="contactBodyTagSection">
+                                        <p className="contactBodyInfoDetails">Address:</p>
+                                    </div>
+                                    <div className="contactBodyInfoSection">
+                                        1580 Indigo Platue 130 Kanto 38331
                                     </div>
                                 </div>
                             </div>
@@ -94,6 +103,16 @@ export class ContactPage extends React.Component {
                             <button className="invoicesBottomButton">
                                 All Invoices
                             </button>
+                        </div>
+                        <div className="recentCallsContainer">
+                            <div className="recentCallsHeader">
+                                <div className="recentCallsHeaderLeft">
+                                    <h1 className="recentCallsHeaderTitle">Recent Calls</h1>
+                                </div>
+                                <div className="recentCallsHeaderRight">
+                                    <button className="recentCallsHeaderButton">All Calls</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </body>
