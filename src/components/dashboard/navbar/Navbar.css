@@ -1,8 +1,30 @@
-.logOutButton{
-    border: none;
-    background-color: pink;
+
+.buttonContainer{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  height: 40%;
+  width: 2.5%;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
-.logOutButton:hover {
-    background-color:white;
+.dots{
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.aniButton{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  cursor: pointer;
+  visibility: hidden;
+  background: none;
 }

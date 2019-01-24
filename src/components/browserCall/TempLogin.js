@@ -5,9 +5,9 @@ export default class TempLogin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      accountSid: 'ACbbf902dfacb0654fedfb48ebf3ad4ea9',
+      accountSid: '',
       accountSidValidationError: '',
-      authToken: 'b9c94d86a2215101d5eaac484589df32',
+      authToken: '',
       authTokenValidationError: '',
       tokenRequestError: '',
     }
