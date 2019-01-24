@@ -5,9 +5,9 @@ export default class TempLogin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      accountSid: '',
+      accountSid: 'ACbbf902dfacb0654fedfb48ebf3ad4ea9',
       accountSidValidationError: '',
-      authToken: '',
+      authToken: 'b9c94d86a2215101d5eaac484589df32',
       authTokenValidationError: '',
       tokenRequestError: '',
     }
@@ -24,7 +24,7 @@ export default class TempLogin extends React.Component {
     }
 
     if (!this.state.authToken) {
-      this.setState({ authTokenValidationError: 'Auth Token is required' })
+      this.setState({ authTokenValidationError: 'Auth Token is required'})
     }
     return !(this.state.accountSidValidationError || this.state.authTokenValidationError);
   };
@@ -40,18 +40,20 @@ export default class TempLogin extends React.Component {
     if (this.validateForm()) {
       fetchCapabilityToken(this.state.accountSid, this.state.authToken)
         .then(capabilityToken => {
-          console.log('#### Returned Capability Token #### ' + capabilityToken);
+          console.log('#### Returns Cadpabilitsillwilly Token #### ' + capabilityToken);
+          
+          //STORE THIS ON THE STORE
           this.props.onLogin(capabilityToken);
         })
         .catch(error => {
-          console.log('Request failed', error);
+          console.log('Request failezzzz', error);
           this.setState({ tokenRequestError: error.toString() });
         });
     }
   };
 
   loginFailureMessage = () => {
-    // Login failure will be caused either by failure of token API...
+    // Login failure will be caused either  by failure of token API...
     if (this.state.tokenRequestError) return this.state.tokenRequestError;
 
     // ...or by resulting token failing to initialise the Device.
