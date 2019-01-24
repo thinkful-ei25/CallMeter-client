@@ -100,7 +100,21 @@ export const editClient = (values) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/client/${values.id}`, {
         method: 'PUT',
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+            'company': values.company,
+            'firstName': values.firstname,
+            'lastName': values.lastName,
+            'hourlyRate': values.hourlyRate,
+            'phoneNumber': values.phoneNumber,
+            'email': values.email,
+            'streetOne': values.address.streetOne,
+            'streetTwo': values.address.streetTwo,
+            'city': values.address.city,
+            'state': values.address.state,
+            'zip': values.address.zip,
+            'category': values.category
+
+        }),
         headers: {
             // Provide our auth token as credentials
             Authorization: `Bearer ${authToken}`,
