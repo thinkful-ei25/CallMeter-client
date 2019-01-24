@@ -9,7 +9,7 @@ import { addClient } from '../../actions/client';
 export class AddClient extends React.Component {
     onSubmit(values) {
         console.log('values', values)
-        
+
         this.props.dispatch(addClient(values))
         this.props.toggle()
     }
@@ -61,14 +61,7 @@ export class AddClient extends React.Component {
                         id="lastName"
                         validate={[required, nonEmpty]}
                     />
-                    <label htmlFor="password">Hourly Rate</label>
-                    <Field
-                        component={Input}
-                        type="number"
-                        name="hourlyRate"
-                        id="hourlyRate"
-                        validate={[required, nonEmpty]}
-                    />
+
                     <label htmlFor="password">Phone Number</label>
                     <Field
                         component={Input}
@@ -127,6 +120,15 @@ export class AddClient extends React.Component {
 
                     />
 
+                    <label htmlFor="password">Hourly Rate</label>
+                    <Field
+                        component={Input}
+                        type="number"
+                        name="hourlyRate"
+                        id="hourlyRate"
+                        validate={[required, nonEmpty]}
+                    />
+
                     <label htmlFor="category">Category</label>
                     <Field
                         component={Input}
@@ -144,12 +146,10 @@ export class AddClient extends React.Component {
                         id="photo"
 
                     />
-
-                    
                     <Field
                         component={Input}
                         type="hidden"
-                        
+
                         name="photo64"
                         id="photo64"
                     />
