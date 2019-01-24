@@ -1,0 +1,192 @@
+.contactPage{
+  display: block;
+}
+
+.contactPageHeader{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 0;
+}
+
+.contactHeaderLeft{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.contactHeaderRight{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.contactPageContainer{
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 4%;
+}
+
+.contactTopHeader{
+  width: 100%;
+}
+
+
+.contactActionButton{
+  width: 10%;
+  height: 30%;
+}
+
+.bestFriend{
+  margin-top: -5px;
+}
+
+
+
+/* Contact Link Styling */
+.contactSections{
+  margin-top: 3%;
+  width: 100%;
+  border-bottom: 1px solid black;
+  line-height: 0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.contactLinks{
+  position: relative;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
+.contactLinks:hover:after{
+  content: "";
+  border-bottom: 4px solid blue;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -16px;
+}
+/* Contact Link Styling End */
+
+
+
+.contactBody{
+  width: 77%;
+  margin-left: 11.5%;
+  margin-top: 2.5%;
+}
+
+.contactBodyTopBoxes{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+
+/* Contact Info Box*/
+.contactBodyInfo{
+  width: 50%;
+  height: 600px;
+  border: 1px solid black;
+  border-radius: 5%;
+  margin-right: 9%;
+}
+
+.contactBodyInfoImageContainer{
+  margin-top: 2.5%;
+  height: 20%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.contactBodyInfoImage{
+  border-radius: 50%;
+  height: 100%;
+}
+
+.contactBodyInfoContainer{
+  margin-top: 2.5%;
+  height: 10%;
+  margin-left: 10%;
+  width: 80%;
+  height: 75%;
+}
+
+.contactBodyInfoSection{
+  display: flex;
+  align-content: center;
+}
+
+.contactBodyInfoSection{
+  border-bottom: 1px solid black;
+}
+
+/* Contact Info Box End */
+
+
+
+/* Invoices details box */
+
+.contactBodyInvoices{
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 5%;
+  width: 40%;
+  height: 600px;
+  border: 1px solid black;
+  border-bottom: none;
+}
+
+.contactBodyInvoicesTop{
+  height: 15%;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+.verticalCenter{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.invoicesTitle{
+  width: 80%;
+  height: 100%;
+  margin-left: 10%;
+}
+
+.contactBodyInvoicesBottom{
+  height: 72.5%;
+  width: 100%;
+}
+
+.individualInvoice{
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+.stackedElements{
+  line-height: 0;
+}
+
+.invoicesBottomButton{
+  width: calc(100% + 4px);
+  margin-left: -2px;
+  height: 12.5%;
+  border-radius: 10%;
+  background-color: blue;
+  color: white;
+  font-size: 1.5em;
+}
+
+/* Invoices details box end*/
+
+
+

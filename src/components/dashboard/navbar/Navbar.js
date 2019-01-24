@@ -1,55 +1,63 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { clearAuthToken } from '../../../local-storage'
-import { clearAuth } from '../../../actions/auth'
-import './Navbar.css'
+import { Link, Route, withRouter, Redirect } from 'react-router-dom';
+import anime from 'animejs'
+import './Navbar.css';
 
-export class Navbar extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			pokemonArray: []
-		}
+const {twilio} = window;
+export class navBar extends React.Component {
+
+
+async startAnimation(e){
+	const buttons = document.getElementsByClassName('aniButton');
+	const currentButton = e.currentTarget;
+			if (buttons[0].style.visibility === 'visible'){
+					currentButton.src = "https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png";
+					for(let i = 0; i < buttons.length; i++){
+							await anime({
+									targets: buttons[i],
+									translateY: 50 * (i + 1),
+									duration: 300,
+									complete: function(){
+											buttons[i].style.visibility = 'hidden';
+									}
+							})
+					}
+			}
+			else{
+					currentButton.src = require("../../../resources/X.png");
+					for(let i = 0; i < buttons.length; i++){
+							buttons[i].style.visibility = "visible";
+							anime({
+									targets: buttons[i],
+									translateY: -50 * (i + 1),
+									duration: 2000
+							})
+					}
+			}
 	}
 
-	logOut() {
-		console.log(this.props)
-		this.props.dispatch(clearAuth())
-		clearAuthToken()
-	}
-
-	render() {
-		return (
-			<div>
-				<div className="dashboard topnavContainer">
-					<div className="dashboard-username topnav">
-						<Link to="/dashboard/stats">Stats</Link>
-					</div>
-					<div className="dashboard-name topnav"><Link to="/dashboard/invoices">Invoices</Link></div>
-					<div className="dashboard-protected-data topnav">
-						<Link to="/dashboard/call">Make Calls</Link>
-					</div>
-					<div className="dashboard-protected-data topnav">
-						<Link to="/dashboard/clients">Clients</Link>
-					</div>
-					<div className="topnav">
-						<button className="logOutButton" onClick={() => this.logOut()}>Log Out</button>
-					</div>
-
-				</div>
-			</div>
-		)
-
-	}
+render() {
+	return (
+		<div class="buttonContainer">
+			<img className="aniButton" src={require("../../../resources/envelope.png")}></img>
+			<img className="aniButton" src={require("../../../resources/icon.png")}></img>
+			<img className="aniButton" src="https://gallery.kissclipart.com/20180929/jqq/kissclipart-chart-black-and-white-clipart-bar-chart-clip-art-18a3aa13f1fdd7ed.png"></img>
+			<img className="aniButton" src={require("../../../resources/hashTag.png")}></img>
+			<img className="aniButton" src={require("../../../resources/volumePhone.png")}></img>
+			<img className="dots" src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png" onClick={e => this.startAnimation(e)}></img>
+		</div>
+	);
 }
-const mapStateToProps = state => {
-	const { currentUser } = state.auth;
-	return {
-		//username: state.auth.currentUser.username,
-		//name: `${currentUser.firstName} ${currentUser.lastName}`,
-		// protectedData: state.protectedData.data
-	};
-};
+}
 
-export default connect(mapStateToProps)(Navbar);
+const mapStateToProps = state => {
+console.log('landing page state', state);
+return ({
+hasAuthToken: state.auth.authToken !== null,
+loggedIn: state.auth.currentUser !== null
+});
+}
+
+// Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
+export default withRouter(connect(mapStateToProps)(navBar));
