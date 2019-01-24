@@ -142,8 +142,25 @@
 }
 
 .landingBody{
-  width: 15%;
-  height: 1000px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sideBar{
+  width: 0%;
   background-color: black;
   cursor: pointer;
+}
+.leftover{
+  position: relative;
+  width: 100%;
+}
+
+.menuButton{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: 2.5%;
+  top: 1%;
 }
