@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import requiresLogin from '../requires-login';
-import { fetchClients, deleteClient } from '../../actions/client';
-import './dashboard.css'
+import requiresLogin from '../../requires-login';
+import { fetchClients, deleteClient } from '../../../actions/client';
+import '../dashboard.css'
 import ReactTable from "react-table";
 import 'react-table/react-table.css'
 import AddClient from './AddClient';
@@ -40,7 +40,6 @@ export class Clients extends React.Component {
 
 	toggleEditClientForm() {
 		this.setState({ editing: !this.state.editing })
-		this.props.dispatch(fetchClients())
 		console.log(this.state)
 	}
 
@@ -60,7 +59,7 @@ export class Clients extends React.Component {
 			console.log('clients:', clients)
 			clients.forEach(row => {
 				let fullName = row.firstName + ' ' + row.lastName
-				row.fullName = <Link to="/clientPage">{fullName}</Link>
+				row.fullName = <Link to="/dashboard/contacts">{fullName}</Link>
 			})
 			if (this.state.searchTerm) {
 				clients = clients.filter(row => {
@@ -198,7 +197,7 @@ const mapStateToProps = state => {
 		// name: `${currentUser.firstName} ${currentUser.lastName}`,
 		client: state.client.data,
 		// protectedData: state.protectedData.data
-		newClient: state.client.data.newCompany
+		
 
 	};
 };

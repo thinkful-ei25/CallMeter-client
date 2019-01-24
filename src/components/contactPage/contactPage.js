@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Route, withRouter, Redirect } from 'react-router-dom';
 import anime from 'animejs'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faIgloo } from '@fortawesome/free-solid-svg-icons'
+
+
+
 import './contactPage.css';
-library.add(faIgloo)
+
 
 const {twilio} = window;
 export class ContactPage extends React.Component {

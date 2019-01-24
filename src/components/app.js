@@ -12,9 +12,9 @@ import Stats from './dashboard/Stats'
 import MakeCall from './dashboard/MakeCall'
 import Invoices from './dashboard/Invoices'
 import navBar from '../components/dashboard/navbar/Navbar'
-import Clients from './dashboard/Clients'
+import Clients from './dashboard/Clients/Clients'
+import ContactPage from './contactPage/contactPage'
 import DialerApp from './browserCall/DialerApp';
-import Contacts from './contactPage/contactPage'
 
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
@@ -49,7 +49,7 @@ export class App extends React.Component {
     render() {
         return (
             <div className="app">
-                <div>{this.props.loggedin ? <Route path="/dashboard" component={DialerApp} /> : ''}</div>
+                
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/register" component={RegistrationPage} />
                 <Route path="/dashboard" component={navBar} />
@@ -60,7 +60,7 @@ export class App extends React.Component {
                 <Route exact path="/dashboard/call" component={MakeCall} />
                 <Route exact path="/dashboard/invoices" component={Invoices} />
                 <Route exact path="/dashboard/clients" component={Clients} />
-                <Route exact path="/dashboard/contacts" component={Contacts}/>
+                <Route exact path="/dashboard/contacts" component={ContactPage} />
                 {/* <Route exact path="/dashboard/dialer" component={DialerApp} /> */}
                 
             </div>

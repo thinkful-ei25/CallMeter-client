@@ -28,7 +28,7 @@ export const deleteClientSuccess = () => ({
 export const fetchClients = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     console.log('authtoken', authToken)
-    return fetch(`${API_BASE_URL}/client`, {
+    return fetch(`${API_BASE_URL}/client/contacts`, {
         method: 'GET',
         headers: {
             // Provide our auth token as credentials
@@ -125,7 +125,7 @@ export const editClient = (values) => (dispatch, getState) => {
         .then(res => res.json())
         .then((data) => {
             console.log('put result data', data)
-            // dispatch(addClientSuccess(data))
+            dispatch(fetchClients())
             })
         .catch(err => {
             dispatch(fetchClientsError(err));

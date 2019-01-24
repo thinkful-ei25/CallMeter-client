@@ -1,17 +1,22 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import Input from '../registration/input';
-import fileInput from '../registration/fileInput'
-import { required, nonEmpty, phoneCheck, normalizePhone, emailCheck } from '../../validators';
-import { addClient } from '../../actions/client';
+import Input from '../../registration/input';
+import { required, nonEmpty, phoneCheck, normalizePhone, emailCheck } from '../../../validators';
+import { editClient } from '../../../actions/client'
 
 
-export class AddClient extends React.Component {
+
+export class EditClient extends React.Component {
+
+
+    componentDidMount() {
+
+    }
+
     onSubmit(values) {
         console.log('values', values)
-
-        this.props.dispatch(addClient(values))
-        this.props.toggle()
+        return this.props.dispatch(editClient(values))
+            .then(this.props.toggle())
     }
 
 
@@ -28,10 +33,11 @@ export class AddClient extends React.Component {
         }
         return (
             <div>
-                <h1 className="formHeader">Add a Contact</h1>
-                <h2><button className="backButton" onClick={() => this.props.toggle()}>Cancel ⬅</button></h2>
+                <h1 className="formHeader">Edit a Client</h1>
 
+                <h2><button className="backButton" onClick={() => this.props.toggle()}>Cancel ⬅</button></h2>
                 <form
+
                     className="loginForm"
                     onSubmit={this.props.handleSubmit(values =>
                         this.onSubmit(values)
@@ -42,7 +48,8 @@ export class AddClient extends React.Component {
                         component={Input}
                         type="text"
                         name="company"
-                        validate={[required, nonEmpty]}
+
+                        validate={[required]}
                     />
 
                     <label htmlFor="password">First Name</label>
@@ -51,7 +58,8 @@ export class AddClient extends React.Component {
                         type="text"
                         name="firstName"
                         id="firstName"
-                        validate={[required, nonEmpty]}
+
+                        validate={[required]}
                     />
                     <label htmlFor="lastName">Last Name</label>
                     <Field
@@ -59,16 +67,26 @@ export class AddClient extends React.Component {
                         type="text"
                         name="lastName"
                         id="lastName"
-                        validate={[required, nonEmpty]}
-                    />
 
+                        validate={[required]}
+                    />
+                    <label htmlFor="password">Hourly Rate</label>
+                    <Field
+                        component={Input}
+                        type="number"
+                        name="hourlyRate"
+                        id="hourlyRate"
+
+                        validate={[required]}
+                    />
                     <label htmlFor="password">Phone Number</label>
                     <Field
                         component={Input}
                         type="text"
                         name="phoneNumber"
                         id="phoneNumber"
-                        validate={[required, nonEmpty, phoneCheck]}
+
+                        validate={[required, phoneCheck]}
                         normalize={normalizePhone}
                     />
                     <label htmlFor="email">Email</label>
@@ -83,80 +101,51 @@ export class AddClient extends React.Component {
                     <Field
                         component={Input}
                         type="text"
-                        name="streetOne"
-                        id="streetOne"
-
+                        name="address.streetOne"
+                        id="street1"
+                    
                     />
                     <label htmlFor="street2">Street 2</label>
                     <Field
                         component={Input}
                         type="text"
-                        name="streetTwo"
-                        id="streetTwo"
-
+                        name="address.streetTwo"
+                        id="street2"
+                    
                     />
                     <label htmlFor="city">City</label>
                     <Field
                         component={Input}
                         type="text"
-                        name="city"
+                        name="address.city"
                         id="city"
-
+                    
                     />
-                    <label htmlFor="state">State</label>
+                     <label htmlFor="state">State</label>
                     <Field
                         component={Input}
                         type="text"
-                        name="state"
+                        name="address.state"
                         id="state"
-
+                    
                     />
-                    <label htmlFor="zip">Zip</label>
+                     <label htmlFor="zip">Zip</label>
                     <Field
                         component={Input}
                         type="text"
-                        name="zip"
+                        name="address.zip"
                         id="zip"
-
+                    
                     />
-
-                    <label htmlFor="password">Hourly Rate</label>
-                    <Field
-                        component={Input}
-                        type="number"
-                        name="hourlyRate"
-                        id="hourlyRate"
-                        validate={[required, nonEmpty]}
-                    />
-
-                    <label htmlFor="category">Category</label>
+                     
+                     <label htmlFor="category">Category</label>
                     <Field
                         component={Input}
                         type="text"
                         name="category"
                         id="category"
-
+                        
                     />
-
-                    <label htmlFor="photo">Photo</label>
-                    <Field
-                        component={fileInput}
-                        type="file"
-                        name="photo"
-                        id="photo"
-
-                    />
-                    <Field
-                        component={Input}
-                        type="hidden"
-
-                        name="photo64"
-                        id="photo64"
-                    />
-
-
-
-
                     <button className="signUpButton" disabled={this.props.pristine || this.props.submitting}>
                         Submit
                 </button>
@@ -168,7 +157,7 @@ export class AddClient extends React.Component {
 }
 
 export default reduxForm({
-    form: 'addclient',
+    form: 'editClient',
     onSubmitFail: (errors, dispatch) =>
         dispatch(focus('registration', Object.keys(errors)[0]))
-})(AddClient);
+})(EditClient);
