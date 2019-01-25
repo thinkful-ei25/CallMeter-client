@@ -196,6 +196,7 @@ const mapStateToProps = state => {
 		// name: `${currentUser.firstName} ${currentUser.lastName}`,
 		client: state.client.data,
 		// protectedData: state.protectedData.data
+		loading: state.client.loading
 		
 
 	};

@@ -40,7 +40,6 @@ export default function reducer(state = initialState, action) {
 	} else if (action.type === SET_CLIENT) {
 		return Object.assign({}, state, {
 			error: null,
-			loading: true,
 			clientId: action.id
 		})
 	}
