@@ -45,7 +45,7 @@ export class RegistrationForm extends React.Component {
         </span>
         <Field
           component={Input}
-          label="Organization Name"
+					label="Organization Name"
           type="text"
           name="organizationName"
           validate={[required, nonEmpty, isTrimmed]}
@@ -53,21 +53,24 @@ export class RegistrationForm extends React.Component {
         />
         <Field
           component={Input}
-          label="Email Address"
+					label="Email Address"
           type="text"
           name="email"
           validate={[required, nonEmpty, isTrimmed, emailCheck]}
           placeholder="Where can we reach you?"
         />
         <Field
-          component={Input}
+					component={Input}
+					label="Password"
           type="password"
-          name="password"
+					name="password"
+					id="password"
           validate={[required, passwordLength, isTrimmed]}
           placeholder="************"
         />
         <Field
-          component={Input}
+					component={Input}
+					label="Password"
           type="password"
           name="passwordConfirm"
           placeholder="************"

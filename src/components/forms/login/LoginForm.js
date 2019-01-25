@@ -25,7 +25,7 @@ export class LoginForm extends React.Component {
         className="login-signup-form validate"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
-        <span className="login-form-title pad-bottom-50">Welcome Back!</span>
+        <span className="login-signup-form-title pad-bottom-50">Welcome Back!</span>
         <Field
           component={Input}
           label="Organization Name"
@@ -35,9 +35,8 @@ export class LoginForm extends React.Component {
           placeholder="Name..."
         />
         <Field
-          label="Password"
           component={Input}
-          className="input-fields"
+          label="Password"
           type="password"
           name="password"
           id="password"
