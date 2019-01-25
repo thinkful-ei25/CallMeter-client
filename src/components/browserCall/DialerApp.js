@@ -127,8 +127,6 @@ export default class DialerApp extends React.Component {
               </div>
             </div>
           </section>
-        
-          {/* <TempLogin visible={this.isLoginModalVisible()} deviceState={this.state.deviceState} onLogin={this.handleLogin} /> */}
         </div>
         <div>
          <Answerer /> 
