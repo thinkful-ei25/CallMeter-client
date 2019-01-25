@@ -29,14 +29,16 @@ export default class DialerApp extends React.Component {
         }); 
       }
       else if (state === 'incoming'){ 
-        this.setState({isRinging: true})
-        // this.incoming(obj); 
+        this.setState({isRinging: true, connection: obj})
       }
       else if (state === 'cancel') { 
         this.setState({isRinging: false}); 
       }
       else if (state=== 'ringing'){ 
         this.ringing(obj); 
+      }
+      else if (state === 'connect' || state === 'disconnect'){ 
+        this.setState({isRinging: false});  
       }
 
     });
@@ -65,6 +67,7 @@ export default class DialerApp extends React.Component {
    * Callback from Answerer components hangup button
    */
   hangupCall = () => { 
+    this.setState({isRinging: false}); 
     this.state.connection.reject(); 
   }
   
@@ -106,13 +109,14 @@ export default class DialerApp extends React.Component {
   isLoginModalVisible = () => {
     return !this.state.token || this.state.deviceState === 'offline';
   };
+  
 
   render() {
     //      <div className="browser-dialer-container">
     if (this.state.isRinging === true) { 
       return (
         <div>
-          <Answerer /> 
+          <Answerer onAnswer={() => this.answerCall()} onHangup={() => this.hangupCall()}/> 
         </div>
       );
     } 
