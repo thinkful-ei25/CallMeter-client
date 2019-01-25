@@ -68,9 +68,13 @@ export class SetupPhone extends React.Component {
 			phoneNumber: e.target.value,
 			lastButton: e.target,
 		})
-    if (this.state.lastButton)
-
-			this.state.lastButton.style = e.target.style;
+		if (this.state.lastButton){
+			let tempObj = this.state.lastButton;
+			tempObj.style = e.target.style;
+			this.setState({
+				lastButton : tempObj
+			})
+		}
 		e.target.style.border = "1px solid blue"
 	}
 

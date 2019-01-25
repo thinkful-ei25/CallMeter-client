@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import anime from 'animejs';
 import './contactPage.css';
 import { fetchOneClient } from '../../actions/client'
+import Phone from './phone';
 
 
 // const { twilio } = window;
@@ -43,23 +44,6 @@ export class ContactPage extends React.Component {
 		}
 		return (
 			<div className="contactPage">
-				<div className="pokePhone">
-					<div className="fixedPokePhone">
-						<div className="pokePhoneLeft">
-							<img alt='main' className="pokePhoneImage" src={require("../../resources/mainImage.png")}></img>
-						</div>
-						<div className="pokePhoneMiddle">
-							<p>
-								Call from<br />
-								Steven Carey
-                            </p>
-						</div>
-						<div className="pokePhoneRight">
-							<div onClick={e => this.onExitExample(e)} className="callAccept">Accept</div>
-							<div onClick={e => this.onExitExample(e)} className="callDecline">Decline</div>
-						</div>
-					</div>
-				</div>
 				<div className="contactPageContainer">
 					<div className="contactTopHeader">
 						<div className="contactPageHeader">

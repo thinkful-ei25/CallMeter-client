@@ -13,12 +13,14 @@ import navBar from '../components/dashboard/navbar/Navbar';
 import Clients from './dashboard/Clients/Clients'; 
 import Dashboard from './dashboard/dashboard';
 import Contacts from './contactPage/contactPage'; 
+import Phone from './contactPage/phone'
 
 const AppRouter = () => (
   <div> 
     <Route exact path="/" component={LandingPage} />
     <Route exact path="/register" component={RegistrationPage} />
     <Route path="/dashboard" component={navBar} />
+    <Route path="/dashboard" component={Phone}/>
     <Route exact path="/dashboard" component={Dashboard} />
     <Route exact path="/setupPhone" component={SetupPhone} />
     <Route exact path="/login" component={Login} />

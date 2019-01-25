@@ -39,8 +39,8 @@ export class navBar extends React.Component {
 
 	render() {
 		return (
-			<div class="buttonContainer">
-				<div class="fixed">
+			<div className="buttonContainer">
+				<div className="fixed">
 					<Link to=""><img  alt='navButton' className="aniButton" src={require("../../../resources/envelope.png")}></img></Link>
 					<Link to="/dashboard/clients"><img alt='navButton' className="aniButton" src={require("../../../resources/icon.png")}></img></Link>
 					<Link to="/dashboard/stats"><img  alt='navButton'className="aniButton" src="https://gallery.kissclipart.com/20180929/jqq/kissclipart-chart-black-and-white-clipart-bar-chart-clip-art-18a3aa13f1fdd7ed.png"></img></Link>

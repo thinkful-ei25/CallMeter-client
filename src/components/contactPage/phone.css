@@ -1,0 +1,72 @@
+.fixedPhone{
+  position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+  width: 30%;
+  height: 10%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15);
+  background-color: white;
+}
+
+.Phone{
+  position: absolute;
+  top: 1%;
+  right: 5%;
+  width: 30%;
+  height: 10%;
+}
+
+.PhoneLeft{
+  width: 25%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.PhoneImage{
+  width: 80%;
+  border-radius: 50%;
+}
+
+
+.PhoneMiddle{
+  width: 45%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.PhoneRight{
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.callAccept{
+  width: 100%;
+  height: 49%;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: green;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.callDecline{
+  width: 100%;
+  height: 49%;
+  border-left: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
