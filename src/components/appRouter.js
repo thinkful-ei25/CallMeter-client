@@ -3,9 +3,9 @@ import React from 'react';
 import { Route } from 'react-router-dom'; 
 
 import LandingPage from '../components/landingPage/LandingPage';
-import RegistrationPage from '../components/registration/Registration'; 
+import Register from '../components/forms/register/Register'; 
 import SetupPhone from '../components/setupPhone/SetupPhone';
-import Login from '../components/logIn/LogIn'; 
+import Login from '../components/forms/login/Login'; 
 import Stats from './dashboard/Stats'; 
 import MakeCall from './dashboard/MakeCall'; 
 import Invoices from './dashboard/Invoices'; 
@@ -17,13 +17,13 @@ import Phone from './contactPage/phone'
 
 const AppRouter = () => (
   <div> 
+    <Route path='/login' component={Login} />
+    <Route exact path="/register" component={Register} />
     <Route exact path="/" component={LandingPage} />
-    <Route exact path="/register" component={RegistrationPage} />
     <Route path="/dashboard" component={navBar} />
     <Route path="/dashboard" component={Phone}/>
     <Route exact path="/dashboard" component={Dashboard} />
     <Route exact path="/setupPhone" component={SetupPhone} />
-    <Route exact path="/login" component={Login} />
     <Route exact path ="/dashboard/stats" component={Stats} />
     <Route exact path="/dashboard/call" component={MakeCall} />
     <Route exact path="/dashboard/invoices" component={Invoices} />

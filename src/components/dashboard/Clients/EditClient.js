@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import Input from '../../registration/input';
-import { required, phoneCheck, normalizePhone, emailCheck } from '../../../validators';
+import Input from '../../forms/Input';
+import { required, nonEmpty, phoneCheck, normalizePhone, emailCheck } from '../../../validators';
 import { editClient } from '../../../actions/client'
 
 

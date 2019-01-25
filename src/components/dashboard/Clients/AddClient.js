@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import Input from '../../registration/input';
-import fileInput from '../../registration/fileInput'
+import  FileInput from '../../forms/FileInput';
+import Input from '../../forms/Input';
 import { required, nonEmpty, phoneCheck, normalizePhone, emailCheck } from '../../../validators';
 import { addClient } from '../../../actions/client';
 
@@ -143,7 +143,7 @@ export class AddClient extends React.Component {
 
 					<label className="clientFormPhotoLabel" htmlFor="photo">Photo</label>
 					<Field
-						component={fileInput}
+						component={FileInput}
 						type="file"
 						name="photo"
 						id="photo"

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Registration.css';
+import './forms.css';
 
 export default class Input extends React.Component {
 	componentDidUpdate(prevProps) {
@@ -22,13 +22,15 @@ export default class Input extends React.Component {
 		}
 
 		return (
-			<div className="form-input">
-				<label htmlFor={this.props.input.name}>
+			<div className="input-wrapper validate-input validate-alert">
+				<label className="label-input" htmlFor={this.props.input.name}>
 					{this.props.label}
 					{error}
 					{warning}
 				</label>
 				<input
+				className="input-fields"
+				placeholder={this.props.placeholder}
 					{...this.props.input}
 					id={this.props.input.name}
 					type={this.props.type}
