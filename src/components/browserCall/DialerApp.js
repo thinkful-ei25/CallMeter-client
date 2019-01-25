@@ -8,6 +8,7 @@ export default class DialerApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isRinging: 'false', 
       token: '',
       deviceState: '',
       deviceErrorCode: '',
@@ -28,11 +29,16 @@ export default class DialerApp extends React.Component {
         }); 
       }
       else if (state === 'incoming'){ 
-        this.incoming(obj); 
+        this.setState({isRinging: true})
+        // this.incoming(obj); 
+      }
+      else if (state === 'cancel') { 
+        this.setState({isRinging: false}); 
       }
       else if (state=== 'ringing'){ 
         this.ringing(obj); 
       }
+
     });
   }; 
 
@@ -103,11 +109,15 @@ export default class DialerApp extends React.Component {
 
   render() {
     //      <div className="browser-dialer-container">
+    if (this.state.isRinging === true) { 
+      return (
+        <div>
+          <Answerer /> 
+        </div>
+      );
+    } 
     return (
-      <div>
-         <Answerer /> 
-      </div>
-     
-    );
+     <div></div>
+    ); 
   }
 }
