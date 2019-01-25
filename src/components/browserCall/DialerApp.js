@@ -1,8 +1,9 @@
 import React from 'react';
 import Dialer from './Dialer';
-import TempLogin from './TempLogin';
+// import TempLogin from './TempLogin';
 import { Device } from 'twilio-client';
 import Answerer from './Answerer'; 
+import './BrowserCall.css'; 
 
 export default class DialerApp extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ export default class DialerApp extends React.Component {
 
   handleAppStateChange = state => {
     this.setState({deviceState: state});
+
     Device.on(state, obj => {
       if (state === 'error'){ 
         this.setState({
@@ -35,7 +37,7 @@ export default class DialerApp extends React.Component {
   }; 
 
   ringing(connection){ 
-    console.log('ringinging', connection)
+    console.log('ringinging', connection); 
   }
   /**
   * Sets the incoming connection
@@ -61,14 +63,24 @@ export default class DialerApp extends React.Component {
   }
   
   componentDidMount(){
-    this.handleAppStateChange('cancel');
-    this.handleAppStateChange('connect');
-    this.handleAppStateChange('disconnect');
-    this.handleAppStateChange('ringing'); 
-    this.handleAppStateChange('error');
-    this.handleAppStateChange('incoming');
-    this.handleAppStateChange('offline');
-    this.handleAppStateChange('ready');
+    console.log('hello')
+    console.log('capabilityToken', this.props.capabilityToken); 
+    // this.setUpDevice(this.props.capabilityToken); 
+    const twilioDeviceStates = ['cancel', 'connect', 'disconnect', 'ringing', 'error', 'incoming', 'offline', 'ready']; 
+    twilioDeviceStates.forEach(twilioDeviceState => { 
+      this.handleAppStateChange(twilioDeviceState);  
+    }); 
+  }
+
+  setUpDevice = (capabilityToken) => { 
+
+    console.log('capabilityToken', capabilityToken); 
+    this.setState({ token: capabilityToken });
+    let device = Device.setup(capabilityToken, {
+      debug: true, 
+      enableRingingState: true, 
+      allowIncomingWhileBusy: true
+    });  
   }
 
   handleNotifcationDismiss = () => {
@@ -78,13 +90,6 @@ export default class DialerApp extends React.Component {
     });
   };
 
-  handleLogin = (capabilityToken) => {
-    this.setState({ token: capabilityToken });
-    let device = Device.setup(capabilityToken, {
-      debug: true, 
-      enableRingingState: true, 
-      allowIncomingWhileBusy: true});
-  };
 
   /**
  * Shows login modal if user has not logged in properly.
@@ -100,7 +105,7 @@ export default class DialerApp extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="browser-dialer-container">
         <section>
           <div>
             <h1>Dial Away</h1>
@@ -124,7 +129,8 @@ export default class DialerApp extends React.Component {
             </div>
           </div>
         </section>
-        <TempLogin visible={this.isLoginModalVisible()} deviceState={this.state.deviceState} onLogin={this.handleLogin} />
+
+        {/* <TempLogin visible={this.isLoginModalVisible()} deviceState={this.state.deviceState} onLogin={this.handleLogin} /> */}
       </div>
     );
   }
