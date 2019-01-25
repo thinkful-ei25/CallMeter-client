@@ -63,7 +63,9 @@ export default class DialerApp extends React.Component {
   }
   
   componentDidMount(){
-    this.setUpDevice(this.props.capabilityToken); 
+    console.log('hello')
+    console.log('capabilityToken', this.props.capabilityToken); 
+    // this.setUpDevice(this.props.capabilityToken); 
     const twilioDeviceStates = ['cancel', 'connect', 'disconnect', 'ringing', 'error', 'incoming', 'offline', 'ready']; 
     twilioDeviceStates.forEach(twilioDeviceState => { 
       this.handleAppStateChange(twilioDeviceState);  
@@ -71,6 +73,8 @@ export default class DialerApp extends React.Component {
   }
 
   setUpDevice = (capabilityToken) => { 
+
+    console.log('capabilityToken', capabilityToken); 
     this.setState({ token: capabilityToken });
     let device = Device.setup(capabilityToken, {
       debug: true, 

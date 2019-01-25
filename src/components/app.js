@@ -43,14 +43,13 @@ export class App extends React.Component {
     }
 
     render() {
-        if (this.props.loggedIn) { 
-          console.log('capabilityToken', this.props.capabilityToken); 
+        if (this.props.loggedIn && this.props.capabilityToken !== null) { 
           return (
             <div>
               <button onClick={() => this.logOut()}>LOG OUT</button>
               <AppRouter />
               {/* //Pass capality token as a prop to the DialerApp */}
-              <DialerApp /> 
+              <DialerApp capabilityToken={this.props.capabilityToken} /> 
             </div>
           ); 
         }
