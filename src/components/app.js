@@ -2,22 +2,18 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Route, withRouter} from 'react-router-dom';
 
-import Dashboard from './dashboard/dashboard';
-import {refreshAuthToken} from '../actions/auth';
-import LandingPage from '../components/landingPage/LandingPage';
-import RegistrationPage from '../components/registration/Registration'
-import SetupPhone from '../components/setupPhone/SetupPhone';
-import Login from '../components/logIn/LogIn'
-import Stats from './dashboard/Stats'
-import MakeCall from './dashboard/MakeCall'
-import Invoices from './dashboard/Invoices'
-import navBar from '../components/dashboard/navbar/Navbar'
-import Clients from './dashboard/Clients'
+import AppRouter from './appRouter'; 
 import DialerApp from './browserCall/DialerApp';
-import Contacts from './contactPage/contactPage'
+import {refreshAuthToken, clearAuth} from '../actions/auth';
+import { clearAuthToken } from '../local-storage';
 
 export class App extends React.Component {
-    componentDidUpdate(prevProps) {
+  logOut() {
+    this.props.dispatch(clearAuth());
+    clearAuthToken();
+  }
+  
+  componentDidUpdate(prevProps) {
         if (!prevProps.loggedIn && this.props.loggedIn) {
             // When we are logged in, refresh the auth token periodically
             this.startPeriodicRefresh();
@@ -47,28 +43,31 @@ export class App extends React.Component {
     }
 
     render() {
-        return (
-            <div className="app">
-                <Route exact path="/" component={LandingPage} />
-                <Route exact path="/register" component={RegistrationPage} />
-                <Route path="/dashboard" component={navBar} />
-                <Route exact path="/dashboard" component={Dashboard} />
-                <Route exact path="/setupPhone" component={SetupPhone} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path ="/dashboard/stats" component={Stats} />
-                <Route exact path="/dashboard/call" component={MakeCall} />
-                <Route exact path="/dashboard/invoices" component={Invoices} />
-                <Route exact path="/dashboard/clients" component={Clients} />
-                <Route exact path="/dashboard/contacts" component={Contacts}/>
-                {/* <Route exact path="/dashboard/dialer" component={DialerApp} /> */}
+        if (this.props.loggedIn) { 
+          console.log('capabilityToken', this.props.capabilityToken); 
+          return (
+            <div>
+              <button onClick={() => this.logOut()}>LOG OUT</button>
+              <AppRouter />
+              {/* //Pass capality token as a prop to the DialerApp */}
+              <DialerApp /> 
             </div>
-        );
+          ); 
+        }
+        else { 
+          return ( 
+            <div> 
+              <AppRouter /> 
+            </div> 
+          ); 
+        }
     }
 }
 
 const mapStateToProps = state => ({
-    hasAuthToken: state.auth.authToken !== null,
-    loggedIn: state.auth.currentUser !== null
+  capabilityToken: state.auth.capabilityToken, 
+  hasAuthToken: state.auth.authToken !== null,
+  loggedIn: state.auth.currentUser !== null
 });
 
 export default withRouter(connect(mapStateToProps)(App));

@@ -18,10 +18,6 @@ export class SetupPhone extends React.Component {
             lastButton: null
         }
     }
-
-    componentDidMount(){
-        //this.setupNumberArray();
-    }
     
     setupNumberArray(){
         let array = [];
@@ -123,10 +119,10 @@ export class SetupPhone extends React.Component {
                         <input onChange={e => this.handleNumberSearchChange(e)} className="digitInput" placeholder="Search by Digits (Optional)"></input>
                         <p>Select an available phone number: </p>
                         <div className="buttonContainer">
-                            {
-                                this.state.numbers.map((number, index) => {
-                                    return (
-                                        <button className="numberButton" id={index} value={number.response} onClick={e => this.handleNumberClick(e)}>{number.display}</button>
+                        {
+                          this.state.numbers.map((number, index) => {
+                            return (
+                              <button className="numberButton" id={index} value={number.response} onClick={e => this.handleNumberClick(e)}>{number.display}</button>
                                     )
                                 })
                             }

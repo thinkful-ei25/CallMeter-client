@@ -10,10 +10,6 @@ import AddClient from './AddClient';
 import EditClient from './EditClient';
 import './clients.css'
 
-
-
-
-
 export class Clients extends React.Component {
 	constructor(props) {
 		super(props);
@@ -27,15 +23,11 @@ export class Clients extends React.Component {
 	}
 
 	componentDidMount() {
-
 		this.props.dispatch(fetchClients());
-
 	}
-
 
 	toggleAddClientForm() {
 		this.setState({ adding: !this.state.adding })
-
 	}
 
 	toggleEditClientForm() {
@@ -49,11 +41,7 @@ export class Clients extends React.Component {
 		console.log(this.state)
 	}
 
-
-
 	render() {
-
-
 
 		if (this.props.client && !this.state.adding && !this.state.editing && this.state.view === 'clients') {
 			let clients = this.props.client

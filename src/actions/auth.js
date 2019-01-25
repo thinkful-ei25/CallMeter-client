@@ -11,6 +11,12 @@ export const setAuthToken = authToken => ({
     authToken
 });
 
+export const SET_CAPABILITY_TOKEN = 'SET_CAPABILITY_TOKEN'; 
+export const setCapabilityToken = capabilityToken => ({ 
+  type: SET_CAPABILITY_TOKEN, 
+  capabilityToken
+}); 
+
 export const CLEAR_AUTH = 'CLEAR_AUTH';
 export const clearAuth = () => ({
     type: CLEAR_AUTH
@@ -33,50 +39,58 @@ export const authError = error => ({
     error
 });
 
-// Stores the auth token in state and localStorage, and decodes and stores
-// the user data stored in the token
-const storeAuthInfo = (authToken, dispatch) => {
-    const decodedToken = jwtDecode(authToken);
-    dispatch(setAuthToken(authToken));
-    dispatch(authSuccess(decodedToken.user));
-    saveAuthToken(authToken);
-};
+// Stores the authToken and the capabilityToken in the state. 
+// Stores and decodes the authToken in localStorage. 
+// The user information is stored in the authToken
+const storeTokens = (authToken, capabilityToken, dispatch) => { 
+  const decodedToken = jwtDecode(authToken); 
+  dispatch(setAuthToken(authToken));
+  dispatch(authSuccess(decodedToken.user));
+  dispatch(setCapabilityToken(capabilityToken)); 
+  saveAuthToken(authToken);
+}
 
 export const login = (organizationName, password) => dispatch => {
     dispatch(authRequest());
+    console.log('organizationName', organizationName, 'password', password); 
     return (
-        fetch(`${API_BASE_URL}/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                organizationName,
-                password
-            })
+      fetch(`${API_BASE_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          organizationName,
+          password
         })
-            // Reject any requests which don't return a 200 status, creating
-            // errors which follow a consistent format
-            .then(res => normalizeResponseErrors(res))
-            .then(res => res.json())
-            .then(({authToken}) => storeAuthInfo(authToken, dispatch))
-            .catch(err => {
-                console.log('err',err)
-                const {status} = err;
-                console.log('code', status)
-                const message =
-                    status === 401
-                        ? 'Incorrect organization name or password'
-                        : 'Unable to login, please try again';
-                dispatch(authError(err));
-                // Could not authenticate, so return a SubmissionError for Redux
-                // Form
-                return Promise.reject(
-                    new SubmissionError({
-                        _error: message
-                    })
-                );
-            })
+      })
+      // Reject any requests which don't return a 200 status, creating
+      // errors which follow a consistent format
+      .then(res => normalizeResponseErrors(res))
+      .then(res => res.json())
+      .then((tokens) => { 
+        const {authToken, capabilityToken} = tokens; 
+       
+        //STORE CAPABILITY & AUTHTOKEN IN THE STATE
+        storeTokens(authToken, capabilityToken, dispatch); 
+      })
+      .catch(err => {
+          console.log('err',err)
+          const {status} = err;
+          console.log('code', status)
+          const message =
+              status === 401
+                  ? 'Incorrect organization name or password'
+                  : 'Unable to login, please try again';
+          dispatch(authError(err));
+          // Could not authenticate, so return a SubmissionError for Redux
+          // Form
+          return Promise.reject(
+              new SubmissionError({
+                  _error: message
+              })
+          );
+      })
     );
 };
 
@@ -92,7 +106,12 @@ export const refreshAuthToken = () => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then(({authToken}) => storeAuthInfo(authToken, dispatch))
+        .then(tokens => { 
+          const {authToken, capabilityToken} = tokens; 
+       
+          //STORE CAPABILITY & AUTHTOKEN IN THE STATE
+          storeTokens(authToken, capabilityToken, dispatch); 
+        })
         .catch(err => {
             // We couldn't get a refresh token because our current credentials
             // are invalid or expired, or something else went wrong, so clear

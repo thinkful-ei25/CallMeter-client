@@ -18,9 +18,6 @@ export function Login(props) {
             <div className="fullPage">
                 <div className="registrationPageContainer shadow">
                     <div className="topFormContainer">
-
-
-
                         <div className="registrationDescription">
                             <h1 className="title" >Billable</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut

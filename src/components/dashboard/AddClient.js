@@ -13,9 +13,7 @@ export class AddClient extends React.Component {
         this.props.dispatch(addClient(values))
         this.props.toggle()
     }
-
-
-
+    
     render() {
         let error;
         if (this.props.error) {

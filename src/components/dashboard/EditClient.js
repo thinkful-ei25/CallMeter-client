@@ -4,22 +4,13 @@ import Input from '../registration/input';
 import { required, nonEmpty, phoneCheck, normalizePhone, emailCheck } from '../../validators';
 import { editClient } from '../../actions/client'
 
-
-
 export class EditClient extends React.Component {
-
-
-    componentDidMount() {
-
-    }
 
     onSubmit(values) {
         console.log('values', values)
         return this.props.dispatch(editClient(values))
             .then(this.props.toggle())
     }
-
-
 
     render() {
         let error;

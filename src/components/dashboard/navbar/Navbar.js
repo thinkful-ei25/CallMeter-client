@@ -39,8 +39,8 @@ async startAnimation(e){
 
 render() {
 	return (
-		<div class="buttonContainer">
-			<div class="fixed">
+		<div className="buttonContainer">
+			<div className="fixed">
 				<Link to=""><img className="aniButton" src={require("../../../resources/envelope.png")}></img></Link>
 				<Link to=""><img className="aniButton" src={require("../../../resources/icon.png")}></img></Link>
 				<Link to=""><img className="aniButton" src="https://gallery.kissclipart.com/20180929/jqq/kissclipart-chart-black-and-white-clipart-bar-chart-clip-art-18a3aa13f1fdd7ed.png"></img></Link>
@@ -54,11 +54,10 @@ render() {
 }
 
 const mapStateToProps = state => {
-console.log('landing page state', state);
-return ({
-hasAuthToken: state.auth.authToken !== null,
-loggedIn: state.auth.currentUser !== null
-});
+  return ({
+    hasAuthToken: state.auth.authToken !== null,
+    loggedIn: state.auth.currentUser !== null
+  });
 }
 
 // Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
