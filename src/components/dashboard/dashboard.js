@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
-import { Line } from 'react-chartjs-2';
-import { Link } from 'react-router-dom';
+// import { Line } from 'react-chartjs-2';
+// import { Link } from 'react-router-dom';
 import './dashboard.css'
-import { makeData, Logo, Tips } from "./Utils";
+// import { makeData, Logo, Tips } from "./Utils";
 import ReactTable from "react-table";
 
 
@@ -41,7 +41,7 @@ export class Dashboard extends React.Component {
 	skipTutorial() {
 		this.setState({
 			pokemonArray: []
-		})
+		}); 
 		document.getElementsByClassName("overlay")[0].style.visibility = "hidden";
 		document.getElementsByClassName("welcomeNewUser")[0].style.visibility = "hidden";
 	}
@@ -57,7 +57,7 @@ export class Dashboard extends React.Component {
 				</div>
 				<div className="welcomeNewUser">
 					<div className="newUserLeft">
-						<img className="oakLogo" src={require("../../resources/professorOak.png")}></img>
+						<img alt='tutorial-helper' className="oakLogo" src={require("../../resources/professorOak.png")}></img>
 					</div>
 					<div className="newUserRight">
 						<div className="newUserRightHeader">
@@ -119,7 +119,7 @@ export class Dashboard extends React.Component {
 
 const mapStateToProps = state => {
 	console.log('dashboard state', state)
-	const { currentUser } = state.auth;
+	// const { currentUser } = state.auth;
 	return {
 		//username: state.auth.currentUser.username,
 		//name: `${currentUser.firstName} ${currentUser.lastName}`,

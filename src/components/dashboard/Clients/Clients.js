@@ -97,7 +97,7 @@ export class Clients extends React.Component {
 								Header: "Contact",
 								accessor: "photo",
 								sortable: false,
-								Cell: row => (<img className="contactImage" src={row.value}/>)
+								Cell: row => (<img className="contactImage" alt='contactImage' src={row.value}/>)
 								
 							},
 							{
@@ -133,15 +133,15 @@ export class Clients extends React.Component {
 											this.toggleEditClientForm();
 
 										}}>✎</button>
-
+                    
 										<button className="navButton" onClick={() => {
 											this.props.dispatch(deleteClient(row.value))
 												.then(this.props.dispatch(fetchClients()))
-										}}>❌</button>
+										}}><span aria-label='x' role='img'>❌</span></button>
 
 										<button className="navButton" onClick={() => {
 
-										}}>☎</button>
+										}}><span>☎</span></button>
 									</div>
 								)
 							},
@@ -175,7 +175,7 @@ export class Clients extends React.Component {
 		}
 		else if (this.state.view === 'stats') {
 			return (<div>
-				<select className="select" value={this.state.view} onChange={e => this.toggleView(e)} className="addClientButton">
+				<select className="select addClientButton" value={this.state.view} onChange={e => this.toggleView(e)} >
 					<option value="clients">Contacts</option>
 					<option value="stats">Stats</option>
 				</select>
@@ -190,7 +190,7 @@ export class Clients extends React.Component {
 
 const mapStateToProps = state => {
 	console.log('client', state)
-	const { currentUser } = state.auth;
+	// const { currentUser } = state.auth;
 	return {
 		// username: state.auth.currentUser.username,
 		// name: `${currentUser.firstName} ${currentUser.lastName}`,

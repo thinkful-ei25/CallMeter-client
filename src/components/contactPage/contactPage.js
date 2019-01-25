@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Route, withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import anime from 'animejs';
 import './contactPage.css';
 import { fetchOneClient } from '../../actions/client'
 
 
-const { twilio } = window;
+// const { twilio } = window;
 export class ContactPage extends React.Component {
 	componentDidMount() {
 		console.log('clientid in componentdidmount', this.props.clientId)
@@ -46,7 +46,7 @@ export class ContactPage extends React.Component {
 				<div className="pokePhone">
 					<div className="fixedPokePhone">
 						<div className="pokePhoneLeft">
-							<img className="pokePhoneImage" src={require("../../resources/mainImage.png")}></img>
+							<img alt='main' className="pokePhoneImage" src={require("../../resources/mainImage.png")}></img>
 						</div>
 						<div className="pokePhoneMiddle">
 							<p>
@@ -85,7 +85,7 @@ export class ContactPage extends React.Component {
 
 						<div className="contactBodyInfo">
 							<div className="contactBodyInfoImageContainer">
-								<img className="contactBodyInfoImage" src={client.photo}></img>
+								<img alt='main' className="contactBodyInfoImage" src={client.photo}></img>
 							</div>
 							<div className="contactBodyInfoBottomSectionCotainer">
 								<p className="contactBodyTags">Tags:</p>

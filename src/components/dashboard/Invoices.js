@@ -5,7 +5,7 @@ import requiresLogin from '../requires-login';
 import './dashboard.css'
 import ReactTable from "react-table";
 import 'react-table/react-table.css'
-import { makeData, Logo, Tips } from "./Utils";
+import { Tips } from "./Utils";
 
 
 export class Invoices extends React.Component {
@@ -98,7 +98,7 @@ export class Invoices extends React.Component {
 
 
 const mapStateToProps = state => {
-	const { currentUser } = state.auth;
+	// const { currentUser } = state.auth;
 	return {
 		// username: state.auth.currentUser.username,
 		// name: `${currentUser.firstName} ${currentUser.lastName}`,

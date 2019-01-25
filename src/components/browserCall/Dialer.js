@@ -1,8 +1,8 @@
-'use strict';
+// 'use strict';
 
 import React from 'react';
 import PhoneButtons from './PhoneButtons';
-import Answerer from './Answerer'; 
+// import Answerer from './Answerer'; 
 import { Device } from "twilio-client";
 const countryCode = '+1';
 
