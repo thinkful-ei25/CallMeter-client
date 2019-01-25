@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import requiresLogin from '../../requires-login';
-import { fetchClients, deleteClient } from '../../../actions/client';
+import { fetchClients, deleteClient, setClient } from '../../../actions/client';
 import '../dashboard.css'
 import ReactTable from "react-table";
 import 'react-table/react-table.css'
@@ -48,18 +48,25 @@ export class Clients extends React.Component {
 		console.log(this.state)
 	}
 
+	setClient(id) {
+		console.log('id in setClient', id)
+		this.props.dispatch(setClient(id))
+	}
+
 
 
 	render() {
 
+		if (this.props.loading) {
+            return <div>loading...</div>
+        }
 
-
-		if (this.props.client && !this.state.adding && !this.state.editing && this.state.view === 'clients') {
+		if (Array.isArray(this.props.client) && !this.state.adding && !this.state.editing && this.state.view === 'clients') {
 			let clients = this.props.client
 			console.log('clients:', clients)
 			clients.forEach(row => {
 				let fullName = row.firstName + ' ' + row.lastName
-				row.fullName = <Link to="/dashboard/contacts">{fullName}</Link>
+				row.fullName = <Link to="/dashboard/contacts" onClick={(e) => this.setClient(row.id) }>{fullName}</Link>
 			})
 			if (this.state.searchTerm) {
 				clients = clients.filter(row => {

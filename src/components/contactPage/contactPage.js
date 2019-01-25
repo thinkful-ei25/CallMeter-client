@@ -3,8 +3,16 @@ import { connect } from 'react-redux';
 import { Link, Route, withRouter, Redirect } from 'react-router-dom';
 import anime from 'animejs';
 import './contactPage.css';
+import {fetchOneClient} from '../../actions/client'
+
+
 const {twilio} = window;
 export class ContactPage extends React.Component {
+    componentDidMount() {
+        console.log('clientid in componentdidmount', this.props.clientId)
+        this.props.dispatch(fetchOneClient(this.props.clientId))
+    }
+    
     onClickExample(e){
         const element = document.getElementsByClassName('fixedPokePhone')[0];
         element.style.visibility = "visible";
@@ -28,6 +36,11 @@ export class ContactPage extends React.Component {
     }
 
     render() {
+        const client = this.props.client
+        
+        if (this.props.loading) {
+            return <div>loading...</div>
+        }
         return (
             <div className="contactPage">
                 <div className="pokePhone">
@@ -51,7 +64,7 @@ export class ContactPage extends React.Component {
                     <div className="contactTopHeader">
                         <div className="contactPageHeader">
                             <div className="contactHeaderLeft">
-                                <h3>Steven Carey</h3>
+                                <h3>{client.firstName + ' ' + client.lastName}</h3>
                             </div>
                             <div className="contactHeaderRight">
                                 <h3 className="contactTitle">Client</h3>
@@ -59,7 +72,7 @@ export class ContactPage extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <p className="bestFriend">Best Friend</p>
+                    <p className="bestFriend">{client.company}</p>
                     <div className="contactSections">
                         <p className="contactLinks">Details</p>
                         <p className="contactLinks">Calls</p>
@@ -72,7 +85,7 @@ export class ContactPage extends React.Component {
 
                         <div className="contactBodyInfo">
                             <div className="contactBodyInfoImageContainer">
-                                <img className="contactBodyInfoImage" src={require("../../resources/mainImage.png")}></img>
+                                <img className="contactBodyInfoImage" src={client.photo}></img>
                             </div>
                             <div className="contactBodyInfoBottomSectionCotainer">
                             <p className="contactBodyTags">Tags:</p>
@@ -81,7 +94,7 @@ export class ContactPage extends React.Component {
                                         <p className="contactBodyInfoDetails">Full Name:</p>
                                     </div>
                                     <div className="contactBodyInfoSection">
-                                        <p>Ash Ketchum</p>
+                                        <p>{client.firstName + ' ' + client.lastName}</p>
                                     </div>
                                 </div>
                                 <div className="contactBodyInfoContainer">
@@ -89,7 +102,7 @@ export class ContactPage extends React.Component {
                                         <p className="contactBodyInfoDetails">Company:</p>
                                     </div>  
                                     <div className="contactBodyInfoSection">
-                                        Pokemon League Champion
+                                        {client.company}
                                     </div>
                                 </div>
                                 <div className="contactBodyInfoContainer">
@@ -97,7 +110,7 @@ export class ContactPage extends React.Component {
                                         <p className="contactBodyInfoDetails">Email:</p>
                                     </div>
                                     <div className="contactBodyInfoSection">
-                                        PikachuDaBest@PikaPika.com
+                                        {client.email}
                                     </div>
                                 </div>
                                 <div className="contactBodyInfoContainer">
@@ -105,7 +118,7 @@ export class ContactPage extends React.Component {
                                         <p className="contactBodyInfoDetails">Phone:</p>
                                     </div>
                                     <div className="contactBodyInfoSection">
-                                        MissingNo(mber)
+                                        {client.phoneNumber}
                                     </div>
                                 </div>
                                 <div style={{border:"none"}} className="contactBodyInfoContainer">
@@ -113,7 +126,9 @@ export class ContactPage extends React.Component {
                                         <p className="contactBodyInfoDetails">Address:</p>
                                     </div>
                                     <div className="contactBodyInfoSection">
-                                        1580 Indigo Platue 130 Kanto 38331
+                                        {client.address ? client.address.streetOne + ' ' + client.address.streetTwo + ' '
+                                        + client.address.city + ' ' + client.address.state + ' ' + client.address.zip  : ""}
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -165,7 +180,10 @@ const mapStateToProps = state => {
     console.log('landing page state', state);
     return ({
     hasAuthToken: state.auth.authToken !== null,
-    loggedIn: state.auth.currentUser !== null
+    loggedIn: state.auth.currentUser !== null,
+    client: state.client.data,
+    clientId: state.client.clientId,
+    loading: state.client.loading
 });
 }
 

@@ -1,5 +1,10 @@
-import {API_BASE_URL} from '../config';
-import {normalizeResponseErrors} from './utils';
+import { API_BASE_URL } from '../config';
+import { normalizeResponseErrors } from './utils';
+
+export const FETCH_CLIENT_REQUEST = 'FETCH_CLIENT_REQUEST';
+export const fetchClientRequest = () => ({
+  type: FETCH_CLIENT_REQUEST
+});
 
 export const FETCH_CLIENTS_SUCCESS = 'FETCH_CLIENTS_SUCCESS';
 export const fetchClientsSuccess = data => ({
@@ -16,16 +21,23 @@ export const fetchClientsError = error => ({
 export const ADD_CLIENT_SUCCESS = 'ADD_CLIENT_SUCCESS';
 export const addClientSuccess = (data) => ({
     type: ADD_CLIENT_SUCCESS,
-    
+
 });
 
 export const DELETE_CLIENT_SUCCESS = 'DELETE_CLIENT_SUCCESS';
 export const deleteClientSuccess = () => ({
     type: DELETE_CLIENT_SUCCESS,
-    
+
 });
 
+export const SET_CLIENT = 'SET_CLIENT';
+export const setClient = (id) => ({
+    type: SET_CLIENT,
+    id
+})
+
 export const fetchClients = () => (dispatch, getState) => {
+    dispatch(fetchClientRequest())
     const authToken = getState().auth.authToken;
     console.log('authtoken', authToken)
     return fetch(`${API_BASE_URL}/client/contacts`, {
@@ -46,6 +58,25 @@ export const fetchClients = () => (dispatch, getState) => {
         });
 };
 
+export const fetchOneClient = (id) => (dispatch, getState) => {
+    dispatch(fetchClientRequest())
+    const authToken = getState().auth.authToken;
+    return fetch(`${API_BASE_URL}/client/contacts/${id}`, {
+        method: 'GET',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then((data) => {
+            dispatch(fetchClientsSuccess(data))
+        })
+        .catch(err => dispatch(fetchClientsError(err)))
+
+}
+
 export const addClient = (values) => (dispatch, getState) => {
     console.log('values in action', values)
     const authToken = getState().auth.authToken;
@@ -63,7 +94,7 @@ export const addClient = (values) => (dispatch, getState) => {
         .then(() => {
             console.log('addClient finished')
             dispatch(fetchClients())
-            })
+        })
         .catch(err => {
             dispatch(fetchClientsError(err));
         });
@@ -83,7 +114,7 @@ export const deleteClient = (id) => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => {
             console.log('response after normalize', res)
-            
+
         })
         .then((id) => {
             console.log('delete result data', id)
@@ -126,11 +157,11 @@ export const editClient = (values) => (dispatch, getState) => {
         .then((data) => {
             console.log('put result data', data)
             dispatch(fetchClients())
-            })
+        })
         .catch(err => {
             dispatch(fetchClientsError(err));
         });
 };
 
 
-    
+
