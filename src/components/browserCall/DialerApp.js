@@ -1,5 +1,5 @@
 import React from 'react';
-import Dialer from './Dialer';
+// import Dialer from './Dialer';
 import { Device } from 'twilio-client';
 import './BrowserCall.css'; 
 import Answerer from './Answerer'; 
@@ -102,35 +102,10 @@ export default class DialerApp extends React.Component {
   };
 
   render() {
+    //      <div className="browser-dialer-container">
     return (
       <div>
-        <div className="browser-dialer-container">
-          <section>
-            <div>
-              <h1>Dial Away</h1>
-              <p>Make calls now</p>
-            </div>
-          </section>
-          <section>
-            {(this.state.deviceErrorCode || this.state.deviceErrorMessage) && (
-              <div>
-                <button onClick={this.handleNotifcationDismiss} />
-                Device Error {this.state.deviceErrorCode}:{' '}
-                {this.state.deviceErrorMessage}
-              </div>
-            )}
-            <div>
-              <div>
-                <div>
-                  <Dialer deviceState={this.state.deviceState} />
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-        <div>
          <Answerer /> 
-        </div>
       </div>
      
     );
