@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-// import './Registration.css';
+import loginImg from './loginImg.jpg';
 import LoginForm from './LoginForm'
 
 export function Login(props) {
@@ -10,33 +10,18 @@ export function Login(props) {
 	if (props.loggedIn) {
 		return <Redirect to="/dashboard" />;
 	}
+	const imgStyle = {
+		backgroundImage: 'url(' + loginImg + ')'
+	}
 	return (
-		<div>
-			<div className="vhHeader">
-
-			</div>
-			<div className="fullPage">
-				<div className="registrationPageContainer shadow">
-					<div className="topFormContainer">
-
-
-
-						<div className="registrationDescription">
-							<h1 className="title" >Billable</h1>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-							labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat.</p>
-						</div>
-					</div>
-					<div className="topFormContainer noLine">
-						<LoginForm />
-					</div>
-				</div>
-			</div>
-			<div className="vhFooter">
+	<div>
+		<div className="login-container">
+			<div className="login-img" style={imgStyle}></div>
+			<div className="login-form-wrapper pad-50">
+				<LoginForm />
 			</div>
 		</div>
-
+	</div>
 	);
 }
 
