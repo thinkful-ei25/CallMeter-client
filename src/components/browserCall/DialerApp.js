@@ -1,9 +1,8 @@
 import React from 'react';
 import Dialer from './Dialer';
-// import TempLogin from './TempLogin';
 import { Device } from 'twilio-client';
-import Answerer from './Answerer'; 
 import './BrowserCall.css'; 
+import Answerer from './Answerer'; 
 
 export default class DialerApp extends React.Component {
   constructor(props) {
@@ -104,33 +103,38 @@ export default class DialerApp extends React.Component {
 
   render() {
     return (
-      <div className="browser-dialer-container">
-        <section>
-          <div>
-            <h1>Dial Away</h1>
-            <p>Make calls now</p>
-          </div>
-        </section>
-        <section>
-          {(this.state.deviceErrorCode || this.state.deviceErrorMessage) && (
+      <div>
+        <div className="browser-dialer-container">
+          <section>
             <div>
-              <button onClick={this.handleNotifcationDismiss} />
-              Device Error {this.state.deviceErrorCode}:{' '}
-              {this.state.deviceErrorMessage}
+              <h1>Dial Away</h1>
+              <p>Make calls now</p>
             </div>
-          )}
-          <div>
+          </section>
+          <section>
+            {(this.state.deviceErrorCode || this.state.deviceErrorMessage) && (
+              <div>
+                <button onClick={this.handleNotifcationDismiss} />
+                Device Error {this.state.deviceErrorCode}:{' '}
+                {this.state.deviceErrorMessage}
+              </div>
+            )}
             <div>
               <div>
-                <Dialer deviceState={this.state.deviceState} />
-                <Answerer answer={this.answerCall} hangup={this.hangupCall}></Answerer>
+                <div>
+                  <Dialer deviceState={this.state.deviceState} />
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* <TempLogin visible={this.isLoginModalVisible()} deviceState={this.state.deviceState} onLogin={this.handleLogin} /> */}
+          </section>
+        
+          {/* <TempLogin visible={this.isLoginModalVisible()} deviceState={this.state.deviceState} onLogin={this.handleLogin} /> */}
+        </div>
+        <div>
+         <Answerer /> 
+        </div>
       </div>
+     
     );
   }
 }

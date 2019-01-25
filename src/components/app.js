@@ -6,7 +6,6 @@ import AppRouter from './appRouter';
 import DialerApp from './browserCall/DialerApp';
 import {refreshAuthToken, clearAuth} from '../actions/auth';
 import { clearAuthToken } from '../local-storage';
-import Phone from './contactPage/phone';
 
 export class App extends React.Component {
   logOut() {
@@ -49,7 +48,7 @@ export class App extends React.Component {
             <div>
               <button onClick={() => this.logOut()}>LOG OUT</button>
               <AppRouter />
-              <Phone/>
+              {/* <Phone/> */}
               {/* //Pass capality token as a prop to the DialerApp */}
               <DialerApp capabilityToken={this.props.capabilityToken} /> 
             </div>

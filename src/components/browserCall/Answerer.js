@@ -1,27 +1,28 @@
-import React from 'react'; 
-// import { Device } from "twilio-client";
+import React from 'react';
+import './Answerer.css'
 
-export default class Answerer extends React.Component{ 
-
-  constructor(props){ 
-    super(props); 
-    this.state = { 
-      callStatus : ''
-    }
-  }
-
-  render() { 
-    return ( 
-      // <p>{this.state.callStatus}</p>
-      <section>
-        <br></br>
-        <button onClick={this.props.answer}>
-          Answer 
-        </button> 
-        <button onClick={this.props.hangup}>
-          Hangup
-        </button>
-      </section>
-    ); 
+export default class Phone extends React.Component {
+  render() {
+    console.log("loading phone")
+    return (
+      <div className="Phone">
+        <div className="fixedPhone">
+          <div className="PhoneLeft">
+            <img className="PhoneImage" src={require("../../resources/mainImage.png")}></img>
+          </div>
+          <div className="PhoneMiddle">
+            <p>
+              Call from<br />
+              Steven Carey
+                  </p>
+          </div>
+          <div className="PhoneRight">
+             <div onClick={e => this.onExitExample(e)} className="callAccept">Accept</div>
+             <div onClick={e => this.onExitExample(e)} className="callDecline">Decline</div> 
+          </div>
+        </div>
+      </div>
+    )
   }
 }
+
