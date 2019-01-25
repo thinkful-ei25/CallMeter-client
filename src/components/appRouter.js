@@ -13,7 +13,6 @@ import navBar from '../components/dashboard/navbar/Navbar';
 import Clients from './dashboard/Clients/Clients'; 
 import Dashboard from './dashboard/dashboard';
 import Contacts from './contactPage/contactPage'; 
-import Phone from './contactPage/phone'
 
 const AppRouter = () => (
   <div> 
@@ -21,9 +20,10 @@ const AppRouter = () => (
     <Route exact path="/register" component={Register} />
     <Route exact path="/" component={LandingPage} />
     <Route path="/dashboard" component={navBar} />
-    <Route path="/dashboard" component={Phone}/>
     <Route exact path="/dashboard" component={Dashboard} />
-    <Route exact path="/setupPhone" component={SetupPhone} />
+    {/* This line was throwing an error */}
+    {/* <Route exact path="/setupPhone" component={SetupPhone} /> */}
+    <Route exact path="/login" component={Login} />
     <Route exact path ="/dashboard/stats" component={Stats} />
     <Route exact path="/dashboard/call" component={MakeCall} />
     <Route exact path="/dashboard/invoices" component={Invoices} />
