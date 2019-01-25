@@ -1,10 +1,10 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import Input from '../registration/input';
-import { login } from '../../actions/auth';
-import { required, nonEmpty } from '../../validators';
+import Input from '../Input';
+import { login } from '../../../actions/auth';
+import { required, nonEmpty } from '../../../validators';
 import { Link } from 'react-router-dom';
-import './Login.css';
+import '../forms.css';
 
 export class LoginForm extends React.Component {
   onSubmit(values) {
@@ -22,7 +22,7 @@ export class LoginForm extends React.Component {
     }
     return (
       <form
-        className="login-form validate"
+        className="login-signup-form validate"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
         <span className="login-form-title pad-bottom-50">Welcome Back!</span>
@@ -44,17 +44,17 @@ export class LoginForm extends React.Component {
           placeholder="************"
           validate={[required, nonEmpty]}
         />
-        <div className="login-form-button-container">
-					<div className="login-form-button-wrapper">
+        <div className="login-signup-form-button-container">
+					<div className="login-signup-form-button-wrapper">
           <button
-            className="login-form-button"
+            className="login-signup-form-button"
             disabled={this.props.pristine || this.props.submitting}
           >
             Login
           </button>
 					</div>
 					<Link className="link-text pad-right-30 pad-left-30 pad-top-10 pad-bottom-10" to="/register">
-						or Sign In
+						or Sign-up
 					</Link>
         </div>
       </form>

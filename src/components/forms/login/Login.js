@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
-import loginImg from './loginImg.jpg';
+import { Redirect } from 'react-router-dom';
+import loginImg from '../loginImg.jpg';
 import LoginForm from './LoginForm'
+import '../forms.css'
 
 export function Login(props) {
 	// If we are logged in (which happens automatically when registration
@@ -15,9 +16,9 @@ export function Login(props) {
 	}
 	return (
 	<div>
-		<div className="login-container">
-			<div className="login-img" style={imgStyle}></div>
-			<div className="login-form-wrapper pad-50">
+		<div className="form-container">
+			<div className="login-signup-img" style={imgStyle}></div>
+			<div className="login-signup-form-wrapper pad-50">
 				<LoginForm />
 			</div>
 		</div>

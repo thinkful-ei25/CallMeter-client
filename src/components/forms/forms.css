@@ -1,4 +1,4 @@
-.login-container {
+.form-container {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -10,7 +10,7 @@
   flex-wrap: wrap;
 }
 
-.login-img {
+.login-signup-img {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -18,7 +18,7 @@
   position: relative;
 }
 
-.login-img::before {
+.login-signup-img::before {
   content: '';
   display: block;
   position: absolute;
@@ -30,7 +30,7 @@
   opacity: 0.8;
 }
 
-.login-form-wrapper {
+.login-signup-form-wrapper {
   width: 520px;
   min-height: 100vh;
   background: #ffffff;
@@ -38,7 +38,7 @@
   position: relative;
 }
 
-.login-form {
+.login-signup-form {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -49,7 +49,7 @@
   justify-content: space-between;
 }
 
-.login-form-title {
+.login-signup-form-title {
   display: block;
   width: 100%;
   font-size: 39px;
@@ -87,7 +87,7 @@
   padding: 0 2px;
 }
 
-.login-form-button-container {
+.login-signup-form-button-container {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -99,7 +99,7 @@
   align-items: center;
 }
 
-.login-form-button-wrapper {
+.login-signup-form-button-wrapper {
   display: block;
   position: relative;
   z-index: 1;
@@ -108,7 +108,7 @@
   overflow: hidden;
 }
 
-.login-form-button {
+.login-signup-form-button {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -125,10 +125,113 @@
   background: #61d395;
 }
 
-.login-form-button:hover {
+.login-signup-form-button:hover {
   background: #ffffff;
   color: #61d395;
 }
+
+
+/* FROM REGISTRATION */
+
+.registrationDescription{
+    margin-top: 0;
+    text-align:center;
+    position: relative;
+    margin-bottom: 5%;
+}
+
+.centerTitle{
+    margin-top: 5%;
+    text-align: center;
+    line-height: 0;
+}
+
+.title{
+    color: #777777;
+    font-weight: bold;
+    font-size: 2em;
+    padding: 0;
+    margin-bottom: 0;
+    
+    
+}
+
+.registrationPageContainer {
+      border: 1px;
+      width: 60%;
+      margin-left: 20%; 
+      background-color: white;
+      height: 75vh;
+      margin-top: 2.5vh;
+}
+
+.center{
+    text-align: center;
+}
+
+.shadow{ 
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15); 
+}
+
+.fullPage {
+    background-color: #f2f2f5;
+    height: 80vh;
+    overflow: hidden;
+}
+
+.topFormContainer {
+    width: 80%;
+    margin-left: 10%;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    padding-top: 3%;
+    position: relative;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+.signUpButton {
+    margin: 10px 0;
+    background-color: transparent;
+    border: 1px solid gray;
+    border-radius: 15%;
+    cursor: pointer;
+    padding: 15px;
+    font-size: 16px;
+}
+
+.login-link {
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+/* .vhFooter {
+    height: 10vh;
+    background-color: pink;
+}
+.vhHeader {
+    height: 10vh;
+    background-color: pink;
+} */
+
+.noLine {
+    border-bottom: none
+}
+
+.form-error {
+    color: red;
+}
+.form-warning {
+    color:orangered;
+}
+
+.bottom-buttons {
+    margin-top: .4%;   
+}
+
 
 /* GLOBAL STYLES */
 
@@ -178,8 +281,14 @@ input {
   outline: none;
   border: none;
 }
+
 a {
     text-decoration: none;
+}
+
+input {
+    outline: none;
+    border: none;
 }
 
 .link-text {
