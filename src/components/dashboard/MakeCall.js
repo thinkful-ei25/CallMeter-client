@@ -6,10 +6,6 @@ import './dashboard.css'
 
 
 export class MakeCall extends React.Component {
-<<<<<<< HEAD
-	// componentDidMount() {
-	//     this.props.dispatch(fetchProtectedData());
-	// }
 
 	render() {
 		return (
@@ -33,31 +29,6 @@ export class MakeCall extends React.Component {
 
 		);
 	}
-=======
-
-    render() {
-        return (
-          <div>
-            <h1>Make Call</h1>
-
-            <div className="callinput">
-                
-                <label htmlFor="callPhone">Choose Client:</label>
-                <select>
-                    <option value="client1">Client 1</option>
-                    <option value="client2">Client 2</option>
-                    <option value="client3">Client 3</option>
-                    <option value="client4">Client 4</option>
-                </select>
-              
-                
-                <button className="callbutton" type="submit">Call</button>
-            </div>
-            </div>
-
-        );
-    }
->>>>>>> broswerCall
 }
 
 const mapStateToProps = state => {

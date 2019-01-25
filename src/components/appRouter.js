@@ -10,7 +10,7 @@ import Stats from './dashboard/Stats';
 import MakeCall from './dashboard/MakeCall'; 
 import Invoices from './dashboard/Invoices'; 
 import navBar from '../components/dashboard/navbar/Navbar'; 
-import Clients from './dashboard/Clients'; 
+import Clients from './dashboard/Clients/Clients'; 
 import Dashboard from './dashboard/dashboard';
 import Contacts from './contactPage/contactPage'; 
 

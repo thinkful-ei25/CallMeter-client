@@ -95,7 +95,6 @@ export class SetupPhone extends React.Component {
 									ut neque accumsan, mattis vestibulum ex auctor. Nam accumsan
 									sollicitudin odio id mollis. Nunc mi diam, convallis a nisi et,
                             molestie ultricies urna. Etiam sodales ut est ut</p>
-<<<<<<< HEAD
 						</div>
 						<form
 							className="loginForm"
@@ -142,54 +141,6 @@ export class SetupPhone extends React.Component {
 			</div >
 		);
 	}
-=======
-                    </div>
-                        <form
-                            className="loginForm"
-                            onSubmit={this.props.handleSubmit(values =>
-                                this.onSubmit(values)
-                            )}>
-                            <label htmlFor="phone">What's your phone number?</label>
-                            <Field
-                                component={Input}
-                                type="text"
-                                name="phone"
-                                validate={[required, nonEmpty, isTrimmed, phoneCheck]}
-                            />
-                            <div className="lineBreak"></div>
-                            <label htmlFor="firstName">Name of Billable Number</label>
-                            <Field
-                                component={Input}
-                                type="text"
-                                name="companyName"
-                                validate={[required, nonEmpty, isTrimmed]}
-                            />
-                        </form>
-                        <div className="lineBreak"></div>
-                        <h3>Select your Billable Phone Number</h3>
-                        <p>Area Code</p>
-                        <input onChange={e => this.handleNumberSearchChange(e)} className="digitInput" placeholder="Search by Digits (Optional)"></input>
-                        <p>Select an available phone number: </p>
-                        <div className="buttonContainer">
-                        {
-                          this.state.numbers.map((number, index) => {
-                            return (
-                              <button className="numberButton" id={index} value={number.response} onClick={e => this.handleNumberClick(e)}>{number.display}</button>
-                                    )
-                                })
-                            }
-                        </div>
-                        <div className="submitButton">
-                            <button className="phoneSubmitButton" disabled={this.props.invalid || this.state.disabled}>Submit</button>
-                        </div> 
-                    </div>
-                </div>
-                <div className="footer">
-                </div>
-            </div >
-        );
-    }
->>>>>>> broswerCall
 }
 
 export default reduxForm({
