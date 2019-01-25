@@ -18,9 +18,10 @@ export default class DialerApp extends React.Component {
   }
 
   handleAppStateChange = state => {
-    this.setState({deviceState: state});
 
     Device.on(state, obj => {
+      this.setState({deviceState: state});
+      console.log('state', state);
       if (state === 'error'){ 
         this.setState({
           deviceErrorCode: obj.code,
@@ -63,18 +64,15 @@ export default class DialerApp extends React.Component {
   }
   
   componentDidMount(){
-    console.log('hello')
-    console.log('capabilityToken', this.props.capabilityToken); 
-    // this.setUpDevice(this.props.capabilityToken); 
     const twilioDeviceStates = ['cancel', 'connect', 'disconnect', 'ringing', 'error', 'incoming', 'offline', 'ready']; 
     twilioDeviceStates.forEach(twilioDeviceState => { 
       this.handleAppStateChange(twilioDeviceState);  
     }); 
+
+    this.setUpDevice(this.props.capabilityToken); 
   }
 
   setUpDevice = (capabilityToken) => { 
-
-    console.log('capabilityToken', capabilityToken); 
     this.setState({ token: capabilityToken });
     
     Device.setup(capabilityToken, {

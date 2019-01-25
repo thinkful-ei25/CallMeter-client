@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 
 import LandingPage from '../components/landingPage/LandingPage';
 import RegistrationPage from '../components/registration/Registration'; 
-import SetupPhone from '../components/setupPhone/SetupPhone';
+// import SetupPhone from '../components/setupPhone/SetupPhone';
 import Login from '../components/logIn/LogIn'; 
 import Stats from './dashboard/Stats'; 
 import MakeCall from './dashboard/MakeCall'; 
@@ -13,16 +13,15 @@ import navBar from '../components/dashboard/navbar/Navbar';
 import Clients from './dashboard/Clients/Clients'; 
 import Dashboard from './dashboard/dashboard';
 import Contacts from './contactPage/contactPage'; 
-import Phone from './contactPage/phone'
 
 const AppRouter = () => (
   <div> 
     <Route exact path="/" component={LandingPage} />
     <Route exact path="/register" component={RegistrationPage} />
     <Route path="/dashboard" component={navBar} />
-    <Route path="/dashboard" component={Phone}/>
     <Route exact path="/dashboard" component={Dashboard} />
-    <Route exact path="/setupPhone" component={SetupPhone} />
+    {/* This line was throwing an error */}
+    {/* <Route exact path="/setupPhone" component={SetupPhone} /> */}
     <Route exact path="/login" component={Login} />
     <Route exact path ="/dashboard/stats" component={Stats} />
     <Route exact path="/dashboard/call" component={MakeCall} />
