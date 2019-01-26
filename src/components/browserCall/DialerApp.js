@@ -3,11 +3,13 @@ import { Device } from 'twilio-client';
 import './BrowserCall.css'; 
 import { connect } from 'react-redux';
 import Answerer from './Answerer'; 
+import Dialer from './Dialer'; 
 import { fetchCallerFromContact } from '../../actions/dialer.action';  
-
+const countryCode = '+1';
 
 export class DialerApp extends React.Component {
   constructor(props) {
+
     super(props);
     this.state = {
       isRinging: 'false', 
@@ -23,8 +25,7 @@ export class DialerApp extends React.Component {
 
     Device.on(state, obj => {
       this.setState({deviceState: state});
-      // console.log('state', state);
-
+      
       if (state === 'error'){ 
         this.setState({
           deviceErrorCode: obj.code,
@@ -36,14 +37,13 @@ export class DialerApp extends React.Component {
         const callerNumber = obj.parameters.From; 
         this.props.dispatch(fetchCallerFromContact(callerNumber)); 
       }
-      else if (state === 'cancel') { 
-        this.setState({isRinging: false}); 
-      }
-      else if (state === 'connect' || state === 'disconnect'){ 
+      else if (state === 'connect' || state === 'disconnect' || state === 'cancel' ){ 
         this.setState({isRinging: false});  
       }
     });
   }; 
+
+
 
   /**
    * Callback from Answerer components answer button
@@ -71,7 +71,7 @@ export class DialerApp extends React.Component {
 
   setUpDevice = (capabilityToken) => { 
     this.setState({ token: capabilityToken });
-    
+
     Device.setup(capabilityToken, {
       debug: true, 
       enableRingingState: true, 
@@ -87,20 +87,55 @@ export class DialerApp extends React.Component {
     });
   };
 
+  handleCallButtonClick = () => {
+    this.makeCall();
+   }
+ 
+   makeCall = () => {
+     const phoneNumber = countryCode + this.state.number.replace(/^0/,'')
+     console.log('#### Making Call to' + phoneNumber + '  ####')
+     Device.connect({number: phoneNumber});
+   }
+ 
+   endCall = () => {
+     console.log('#### ENDING CALL ####')
+     Device.disconnectAll();
+   };
+
   render() {
     if (this.state.isRinging === true && this.props.caller !== null) { 
       return (
         <div>
+          {(this.state.deviceErrorCode || this.state.deviceErrorMessage) && (
+            <div>
+              <button onClick={this.handleNotifcationDismiss} />
+              Device Error {this.state.deviceErrorCode}:{' '}
+              {this.state.deviceErrorMessage}
+            </div>
+          )}
           <Answerer
             callerImage={this.props.caller.photo} 
             fullname={this.props.caller.firstName + ' ' + this.props.caller.lastName} 
             onAnswer={() => this.answerCall()} 
             onHangup={() => this.hangupCall()}/> 
+          <Dialer
+          
+          />
         </div>
       );
     } 
     return (
-      <div></div>
+      <div>
+         <section>
+          {(this.state.deviceErrorCode || this.state.deviceErrorMessage) && (
+            <div>
+              <button onClick={this.handleNotifcationDismiss} />
+              Device Error {this.state.deviceErrorCode}:{' '}
+              {this.state.deviceErrorMessage}
+            </div>
+          )}
+          </section> 
+      </div>
     ); 
   }
 }

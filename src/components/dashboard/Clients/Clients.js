@@ -27,22 +27,22 @@ export class Clients extends React.Component {
 	}
 
 	toggleAddClientForm() {
-		this.setState({ adding: !this.state.adding })
+		this.setState({ adding: !this.state.adding }); 
 	}
 
 	toggleEditClientForm() {
-		this.setState({ editing: !this.state.editing })
-		console.log(this.state)
+		this.setState({ editing: !this.state.editing }); 
+		console.log(this.state); 
 	}
 
 	toggleView(e) {
-		this.setState({ view: e.target.value })
-		console.log(this.state)
+		this.setState({ view: e.target.value }); 
+		console.log(this.state); 
 	}
 
 	setClient(id) {
-		console.log('id in setClient', id)
-		this.props.dispatch(setClient(id))
+		console.log('id in setClient', id); 
+		this.props.dispatch(setClient(id)); 
 	}
 
 
@@ -140,7 +140,7 @@ export class Clients extends React.Component {
 										}}><span aria-label='x' role='img'>❌</span></button>
 
 										<button className="navButton" onClick={() => {
-
+                      console.log('send an action'); 
 										}}><span>☎</span></button>
 									</div>
 								)
@@ -189,7 +189,7 @@ export class Clients extends React.Component {
 
 
 const mapStateToProps = state => {
-	console.log('client', state)
+	// console.log('client', state)
 	// const { currentUser } = state.auth;
 	return {
 		// username: state.auth.currentUser.username,
