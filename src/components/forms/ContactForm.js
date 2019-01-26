@@ -69,55 +69,55 @@ export class AddClient extends React.Component {
             validate={[required, nonEmpty]}
             placeholder="Rodgers"
           />
-
-          <label htmlFor="password">Phone Number</label>
           <Field
             component={Input}
+              label="Phone Number"
             type="text"
             name="phoneNumber"
             id="phoneNumber"
             validate={[required, nonEmpty, phoneCheck]}
             normalize={normalizePhone}
+              placeholder="555-678-1267"
           />
-          <label htmlFor="email">Email</label>
           <Field
             component={Input}
+              label="Email Address"
             type="email"
             name="email"
             id="email"
             validate={[emailCheck]}
+              placeholder="Jessica@billable.com"
           />
-          <label htmlFor="street1">Street 1</label>
           <Field
             component={Input}
+              label="Street Address"
             type="text"
             name="streetOne"
             id="streetOne"
-
+              placeholder="1600 Pennslyvania Avenue. NW"
           />
-          <label htmlFor="street2">Street 2</label>
           <Field
             component={Input}
+              label="Suite/Apt."
             type="text"
             name="streetTwo"
             id="streetTwo"
-
+              placeholder="Suite 320"
           />
-          <label htmlFor="city">City</label>
           <Field
             component={Input}
+              label="City"
             type="text"
             name="city"
             id="city"
-
+              placeholder="Washington"
           />
-          <label htmlFor="state">State</label>
           <Field
             component={Input}
+            label="State"
             type="text"
             name="state"
             id="state"
-
           />
           <label htmlFor="zip">Zip</label>
           <Field
@@ -127,14 +127,14 @@ export class AddClient extends React.Component {
             id="zip"
 
           />
-
-          <label htmlFor="password">Hourly Rate</label>
           <Field
             component={Input}
+            label="Hourly Rate"
             type="number"
             name="hourlyRate"
             id="hourlyRate"
             validate={[required, nonEmpty]}
+            placeholder="Leave blank if default rate/"
           />
 
           <label className="clientFormPhotoLabel" htmlFor="category">Category</label>
