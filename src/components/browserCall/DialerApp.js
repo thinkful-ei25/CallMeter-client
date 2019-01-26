@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Answerer from './Answerer'; 
 import { fetchCallerFromContact } from '../../actions/dialer.action';  
 
+
 export class DialerApp extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,7 @@ export class DialerApp extends React.Component {
 
     Device.on(state, obj => {
       this.setState({deviceState: state});
-      console.log('state', state);
+      // console.log('state', state);
 
       if (state === 'error'){ 
         this.setState({
@@ -105,7 +106,6 @@ export class DialerApp extends React.Component {
 }
 
 const mapStateToProps = state => {
-	console.log('dialerState', state)
 	return {
     caller: state.dialer.caller, 
     loading: state.dialer.loading, 
