@@ -20,23 +20,23 @@ export class Dashboard extends React.Component {
 	}
 	componentDidMount() {
 		if (1) {
-			this.populatePokemon();
+			// this.populatePokemon();
 			document.getElementsByClassName("overlay")[0].style.visibility = "visible";
 			document.getElementsByClassName("welcomeNewUser")[0].style.visibility = "visible";
 		}
 		// this.props.dispatch(fetchProtectedData());
 	}
 
-	populatePokemon() {
-		let array = new Array(100);
-		for (let i = 0; i < 100; i++) {
-			array[i] = pokemon[Math.floor(Math.random() * pokemon.length)];
-		}
-		this.setState({
-			pokemonArray: array
-		})
-		console.log(array);
-	}
+	// populatePokemon() {
+	// 	let array = new Array(100);
+	// 	for (let i = 0; i < 100; i++) {
+	// 		array[i] = pokemon[Math.floor(Math.random() * pokemon.length)];
+	// 	}
+	// 	this.setState({
+	// 		pokemonArray: array
+	// 	})
+	// 	// console.log(array);
+	// }
 
 	skipTutorial() {
 		this.setState({

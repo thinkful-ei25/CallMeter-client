@@ -1,10 +1,11 @@
 import React from 'react';
-// import Dialer from './Dialer';
 import { Device } from 'twilio-client';
 import './BrowserCall.css'; 
+import { connect } from 'react-redux';
 import Answerer from './Answerer'; 
+import { API_BASE_URL } from '../../config'; 
 
-export default class DialerApp extends React.Component {
+export class DialerApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,6 +23,7 @@ export default class DialerApp extends React.Component {
     Device.on(state, obj => {
       this.setState({deviceState: state});
       console.log('state', state);
+
       if (state === 'error'){ 
         this.setState({
           deviceErrorCode: obj.code,
@@ -29,32 +31,38 @@ export default class DialerApp extends React.Component {
         }); 
       }
       else if (state === 'incoming'){ 
-        this.setState({isRinging: true, connection: obj})
+        this.setState({isRinging: true, connection: obj}); 
+        const callerNumber = obj.parameters.From; 
+
+        // console.log('CALLER ID', obj.paramaters.From); 
+        // console.log('obj', obj)
+
+        //CALL ACTION HERE
+        // const authToken = getState().auth.authToken;
+        // // console.log(`${API_BASE_URL}/client/contacts/phone/${callerNumber.slice(2)}`);
+        // fetch(`${API_BASE_URL}/client/contacts/phone/${callerNumber.slice(2)}`, 
+        // { 
+        //   method: 'GET',
+        //   headers: {
+        //     // Provide our auth token as credentials
+        //     Authorization: `Bearer ${authToken}`
+        //   }
+        // })
+        //   .then(res => { 
+        //     console.log('res', res); 
+        //   })
+        //   .catch(err => { 
+        //     console.log('err', err); 
+        //   }); 
       }
       else if (state === 'cancel') { 
         this.setState({isRinging: false}); 
       }
-      else if (state=== 'ringing'){ 
-        this.ringing(obj); 
-      }
       else if (state === 'connect' || state === 'disconnect'){ 
         this.setState({isRinging: false});  
       }
-
     });
   }; 
-
-  ringing(connection){ 
-    console.log('ringinging', connection); 
-  }
-  /**
-  * Sets the incoming connection
-  * @returns {connection}
-  */
-  incoming(connection){ 
-    console.log('connectionz', connection); 
-    this.setState({connection}); 
-  }
 
   /**
    * Callback from Answerer components answer button
@@ -90,6 +98,7 @@ export default class DialerApp extends React.Component {
     });  
   }
 
+  //TODO: hook this up to notify user's of errors
   handleNotifcationDismiss = () => {
     this.setState({
       deviceErrorCode: '',
@@ -97,22 +106,7 @@ export default class DialerApp extends React.Component {
     });
   };
 
-
-  /**
- * Shows login modal if user has not logged in properly.
- * Incorrect login credentials result in a valid login token being returned
- * but the device will fail to initialize and show offline status.
- *
- * @returns {boolean}
- */
-
-  isLoginModalVisible = () => {
-    return !this.state.token || this.state.deviceState === 'offline';
-  };
-  
-
   render() {
-    //      <div className="browser-dialer-container">
     if (this.state.isRinging === true) { 
       return (
         <div>
@@ -125,3 +119,15 @@ export default class DialerApp extends React.Component {
     ); 
   }
 }
+
+const mapStateToProps = state => {
+	console.log('dashboard state', state)
+	// const { currentUser } = state.auth;
+	return {
+		//username: state.auth.currentUser.username,
+		//name: `${currentUser.firstName} ${currentUser.lastName}`,
+		// protectedData: state.protectedData.data
+	};
+};
+
+export default connect(mapStateToProps)(DialerApp);
