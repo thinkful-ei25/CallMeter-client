@@ -4,7 +4,6 @@ import './BrowserCall.css';
 import { connect } from 'react-redux';
 import Answerer from './Answerer'; 
 import { fetchCallerFromContact } from '../../actions/dialer.action';  
-import { STATUS_CODES } from 'http';
 
 export class DialerApp extends React.Component {
   constructor(props) {
@@ -34,7 +33,6 @@ export class DialerApp extends React.Component {
       else if (state === 'incoming'){ 
         this.setState({isRinging: true, connection: obj}); 
         const callerNumber = obj.parameters.From; 
-        
         this.props.dispatch(fetchCallerFromContact(callerNumber)); 
       }
       else if (state === 'cancel') { 
@@ -89,7 +87,6 @@ export class DialerApp extends React.Component {
   };
 
   render() {
-    console.log('caller', this.props.caller); 
     if (this.state.isRinging === true && this.props.caller !== null) { 
       return (
         <div>
@@ -102,7 +99,7 @@ export class DialerApp extends React.Component {
       );
     } 
     return (
-     <div></div>
+      <div></div>
     ); 
   }
 }
