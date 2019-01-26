@@ -12,13 +12,13 @@ export const callerLoaded = (caller) => ({
 }); 
 
 export const LOADING_CALLER_ERROR = 'LOADING_CALLER_ERROR'; 
-export const loadingCAllerError = (error) => ({ 
+export const loadingCallerError = (error) => ({ 
   type: LOADING_CALLER_ERROR, 
   error
 }); 
 
 export const fetchCallerFromContact = (callerNumber) => (dispatch, getState) => {
-  dispatch(loadingCaller); 
+  dispatch(loadingCaller()); 
   const authToken = getState().auth.authToken;
 
   fetch(`${API_BASE_URL}/client/contacts/phone/${callerNumber.slice(2)}`, 
@@ -29,10 +29,12 @@ export const fetchCallerFromContact = (callerNumber) => (dispatch, getState) => 
         Authorization: `Bearer ${authToken}`
       }
   })
-  .then(res => { 
-    console.log('res', res); 
+  .then(caller => { 
+    dispatch(callerLoaded(caller)); 
+    console.log('res', caller); 
   })
   .catch(err => { 
+    dispatch(loadingCallerError(err)); 
     console.log('err', err); 
   }); 
-}
+}; 
