@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './forms.css';
-import {login, register, phone, account} from './images';
+import {login, register, phone, account, contacts} from './images';
 import {LoginForm, RegisterForm, PhoneSetup, AccountInfoForm } from './'
 import { Route } from 'react-router-dom';
 
@@ -14,6 +14,7 @@ export function FormContainer(props) {
   const images = {
     '/setup/account': account,
     '/setup/phone': phone,
+    '/setup/contacts': contacts,
     '/login': login,
     '/register': register
   }

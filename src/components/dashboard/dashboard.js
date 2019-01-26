@@ -19,7 +19,7 @@ export class Dashboard extends React.Component {
 		}
 	}
 	componentDidMount() {
-		if (!1) {
+		if (1) {
 			return <Redirect to="/setup" />
 		}
 		// this.props.dispatch(fetchProtectedData());
@@ -117,14 +117,14 @@ export class Dashboard extends React.Component {
 
 const mapStateToProps = state => {
 	console.log('dashboard state', state)
-	// const { currentUser } = state.auth;
+	const { currentUser } = state.auth;
 	return {
-		//username: state.auth.currentUser.username,
-		//name: `${currentUser.firstName} ${currentUser.lastName}`,
+		username: state.auth.currentUser.username,
+		name: `${currentUser.firstName} ${currentUser.lastName}`,
 		// protectedData: state.protectedData.data
 	};
 };
 
-export default requiresLogin()(withRouter((connect(mapStateToProps)(Dashboard))));
+export default requiresLogin()(connect(mapStateToProps)(Dashboard));
 
 // export default connect(mapStateToProps)(Dashboard);

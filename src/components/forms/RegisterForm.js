@@ -39,6 +39,7 @@ export class RegistrationForm extends React.Component {
         className="form validate"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
+        {error}
         <span className="form-title pad-bottom-50">
           Signup For Billable!
         </span>
