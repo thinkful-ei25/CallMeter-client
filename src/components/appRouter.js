@@ -14,9 +14,11 @@ import Clients from './dashboard/Clients/Clients';
 import Dashboard from './dashboard/dashboard';
 import Contacts from './contactPage/contactPage'; 
 import Phone from './contactPage/phone'
+import SetupModal from './accountModal/SetupModal';
 
 const AppRouter = () => (
   <div> 
+    <Route path='/setup' component={SetupModal} />
     <Route path='/login' component={Login} />
     <Route exact path="/register" component={Register} />
     <Route exact path="/" component={LandingPage} />

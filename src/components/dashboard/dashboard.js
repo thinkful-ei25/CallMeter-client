@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
 // import { Line } from 'react-chartjs-2';
-// import { Link } from 'react-router-dom';
+import { withRouter, Redirect} from 'react-router-dom';
 import './dashboard.css'
 // import { makeData, Logo, Tips } from "./Utils";
 import ReactTable from "react-table";
@@ -19,10 +19,8 @@ export class Dashboard extends React.Component {
 		}
 	}
 	componentDidMount() {
-		if (1) {
-			this.populatePokemon();
-			document.getElementsByClassName("overlay")[0].style.visibility = "visible";
-			document.getElementsByClassName("welcomeNewUser")[0].style.visibility = "visible";
+		if (!1) {
+			return <Redirect to="/setup" />
 		}
 		// this.props.dispatch(fetchProtectedData());
 	}
@@ -127,6 +125,6 @@ const mapStateToProps = state => {
 	};
 };
 
-export default requiresLogin()(connect(mapStateToProps)(Dashboard));
+export default requiresLogin()(withRouter((connect(mapStateToProps)(Dashboard))));
 
 // export default connect(mapStateToProps)(Dashboard);

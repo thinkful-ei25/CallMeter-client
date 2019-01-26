@@ -147,13 +147,10 @@ export class AddClient extends React.Component {
 						type="file"
 						name="photo"
 						id="photo"
-
-
 					/>
 					<Field
 						component={Input}
 						type="hidden"
-
 						name="photo64"
 						id="photo64"
 					/>

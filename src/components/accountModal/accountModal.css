@@ -1,0 +1,100 @@
+.number-search-title {
+  display: block;
+  width: 100%;
+  font-size: 24px;
+  color: #333;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.marg-bottom-10 {
+  margin-bottom: 10px;
+}
+.number-search-results {
+  overflow-y: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  height: 160px;
+  width: 100%;
+  padding: 10px;
+}
+
+[name='number'] {
+  position: fixed;
+  opacity: 0;
+}
+
+.num-across {
+  width: 44%;
+  display: block;
+  float: left;
+  margin: 2% 0 1% 4%;
+}
+
+.num-across:nth-chidl(odd) {
+margin-left:0;
+}
+
+@media (max-width: 600px) {
+  .num-across {
+  width: 45%;
+  }
+}
+
+.result-number {
+  letter-spacing: .3px;
+  position: relative;
+  color: rgb(34, 34, 34);
+  background-color: #fff;
+  font-size: 12px;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  display: block;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid #066b98;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+input:checked + label {
+  border: 1px solid #066b98;
+  background-color: #066b98;
+    color: #fff;
+}
+
+input:checked + label:after {
+  content: '\2713';
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  border-radius: 100%;
+  border: 1px solid #2fcc71;
+  background-color: #2fcc71;
+  z-index: 999;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
+.submit {
+  padding: 15px 60px;
+  display: inline-block;
+  border: none;
+  margin: 20px 0;
+  background-color: #2fcc71;
+  color: #fff;
+  border: 2px solid #333;
+  font-size: 18px;
+  -webkit-transition: transform 0.3s ease-in-out;
+  -o-transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+.submit:hover {
+  cursor: pointer;
+  transform: rotateX(360deg);
+}
