@@ -1,10 +1,10 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import Input from '../Input';
-import { login } from '../../../actions/auth';
-import { required, nonEmpty } from '../../../validators';
+import Input from './Input';
+import { login } from '../../actions/auth';
+import { required, nonEmpty } from '../../validators';
 import { Link } from 'react-router-dom';
-import '../forms.css';
+import './forms.css';
 
 export class LoginForm extends React.Component {
   onSubmit(values) {
@@ -57,17 +57,6 @@ export class LoginForm extends React.Component {
 					</Link>
         </div>
       </form>
-
-      //   <button
-      // 		className="form-button"
-      //     disabled={this.props.pristine || this.props.submitting}
-      //   >
-      //     Log in
-      //   </button>
-      //   <Link className="login-link" to="/register">
-      //     Sign Up
-      //   </Link>
-      // </form>
     );
   }
 }
