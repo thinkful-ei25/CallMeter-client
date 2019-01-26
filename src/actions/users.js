@@ -37,6 +37,7 @@ export const registerUser = user => dispatch => {
 
 export const getPhoneNumbers = areaCode => dispatch => {
 	console.log('area code: ', areaCode);
+	console.log(API_BASE_URL)
 	return fetch(`${API_BASE_URL}/register/phones?areaCode=${areaCode}`, {
 		method: 'GET',
 		headers: {
@@ -45,6 +46,7 @@ export const getPhoneNumbers = areaCode => dispatch => {
 	})
 		.then(res => normalizeResponseErrors(res))
 		.then(res => {
+			console.log('in res');
 			console.log(res);
 			return res.json()
 		})
@@ -61,4 +63,9 @@ export const getPhoneNumbers = areaCode => dispatch => {
 				);
 			}
 		});
+};
+
+
+export const buyPhoneNumber = phoneNumber => dispatch => {
+	return phoneNumber;
 };
