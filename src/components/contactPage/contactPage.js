@@ -3,16 +3,24 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import anime from 'animejs';
 import './contactPage.css';
-import { fetchOneClient } from '../../actions/client'
+import { fetchOneClient, setClient } from '../../actions/client'
 import Phone from './phone';
+import { saveClientId, loadClientId, clearClientId } from '../../local-storage'
 
 
 // const { twilio } = window;
 export class ContactPage extends React.Component {
 	componentDidMount() {
 		console.log('clientid in componentdidmount', this.props.clientId)
-		this.props.dispatch(fetchOneClient(this.props.clientId))
+		if (!this.props.clientId) {
+			this.props.dispatch(fetchOneClient(loadClientId()))
+		}
+		else {
+			this.props.dispatch(fetchOneClient(this.props.clientId))
+			saveClientId(this.props.clientId)
+		}
 	}
+
 
 	onClickExample(e) {
 		const element = document.getElementsByClassName('fixedPokePhone')[0];
@@ -36,8 +44,26 @@ export class ContactPage extends React.Component {
 		});
 	}
 
+
+
 	render() {
+
+
+
+		let invoicesHTML
 		const client = this.props.client
+		if (client.invoice) {
+			if (client.invoice.length) {
+				invoicesHTML = client.invoice.map(invoice => {
+					return (<div className="individualInvoice">
+						<h4 className="invoiceStatus stackedElements">Status (coming)</h4>
+						<h2 className="stackedElements">{invoice.month + ' ' + invoice.year} Invoice ${invoice.amount}</h2>
+						<p clasName="stackedElements">Sent {invoice.sentDate + ' - ' + (invoice.paid ? 'Paid ' + invoice.paidDate : 'Unpaid')}</p>
+					</div>)
+				})
+			}
+		}
+
 
 		if (this.props.loading) {
 			return <div>loading...</div>
@@ -128,16 +154,7 @@ export class ContactPage extends React.Component {
 								</div>
 							</div>
 							<div className="contactBodyInvoicesBottom">
-								<div className="individualInvoice">
-									<h4 className="invoiceStatus stackedElements">One Week Late</h4>
-									<h2 className="stackedElements">March 2018 Invoice</h2>
-									<p clasName="stackedElements">Sent March 1, 2018 - Unpaid</p>
-								</div>
-								<div className="individualInvoice">
-									<h4 className="invoiceStatus stackedElements">One Week Late</h4>
-									<h2 className="stackedElements">March 2018 Invoice</h2>
-									<p clasName="stackedElements">Sent March 1, 2018 - Unpaid</p>
-								</div>
+								{invoicesHTML ? invoicesHTML : ''}
 							</div>
 							<button className="invoicesBottomButton">
 								All Invoices

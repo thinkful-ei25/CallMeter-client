@@ -22,6 +22,97 @@ export class Clients extends React.Component {
 		}
 	}
 
+	clientColumns = {clients: [
+		{
+			Header: "Contact",
+			accessor: "photo",
+			sortable: false,
+			Cell: row => (<img className="contactImage" alt='contactImage' src={row.value}/>)
+			
+		},
+		{
+			Header: "Name",
+			accessor: "fullName",
+	
+		},
+	
+		{
+			Header: "Company",
+			accessor: "company"
+		},
+		{
+			Header: "Phone Number",
+			id: "phoneNumber",
+			accessor: "phoneNumber"
+		},
+		{
+			Header: "Category",
+			accessor: "category"
+		},
+		{
+			Header: "Actions",
+			accessor: "id",
+			sortable: false,
+			Cell: row => (
+				<div>
+					<button className="navButton editButton" onClick={() => {
+						this.setState({
+							editingClient: this.props.client.filter(client => row.value === client.id)[0]
+						})
+	
+						this.toggleEditClientForm();
+	
+					}}>✎</button>
+					
+					<button className="navButton" onClick={() => {
+						this.props.dispatch(deleteClient(row.value))
+							.then(this.props.dispatch(fetchClients()))
+					}}><span aria-label='x' role='img'>❌</span></button>
+	
+					<button className="navButton" onClick={() => {
+	
+					}}><span>☎</span></button>
+				</div>
+			)
+		},
+	],
+	stats: [
+		{
+			Header: "Contact",
+			accessor: "photo",
+			sortable: false,
+			Cell: row => (<img className="contactImage" alt='contactImage' src={row.value}/>)
+			
+		},
+	
+		{
+			Header: "Name",
+			accessor: "fullName",
+	
+		},
+	
+		{
+			Header: "Company",
+			accessor: "company"
+		},
+		{
+			Header: "Phone Number",
+			id: "phoneNumber",
+			accessor: "phoneNumber"
+		},
+	
+		{
+			Header: "Billed",
+			accessor: "billed"
+		},
+		{
+			Header: "Unpaid",
+			accessor: "unpaid"
+		}
+	
+	]
+	}
+	
 	componentDidMount() {
 		this.props.dispatch(fetchClients());
 	}
@@ -53,12 +144,12 @@ export class Clients extends React.Component {
             return <div>loading...</div>
         }
 
-		if (Array.isArray(this.props.client) && !this.state.adding && !this.state.editing && this.state.view === 'clients') {
+		if (Array.isArray(this.props.client) && !this.state.adding && !this.state.editing) {
 			let clients = this.props.client
 			console.log('clients:', clients)
 			clients.forEach(row => {
 				let fullName = row.firstName + ' ' + row.lastName
-				row.fullName = <Link to="/dashboard/contacts" onClick={(e) => this.setClient(row.id) }>{fullName}</Link>
+				row.fullName = <Link to={"/dashboard/contacts"} onClick={(e) => this.setClient(row.id) }>{fullName}</Link>
 			})
 			if (this.state.searchTerm) {
 				clients = clients.filter(row => {
@@ -92,69 +183,11 @@ export class Clients extends React.Component {
 
 							}
 						})}
-						columns={[
-							{
-								Header: "Contact",
-								accessor: "photo",
-								sortable: false,
-								Cell: row => (<img className="contactImage" alt='contactImage' src={row.value}/>)
-								
-							},
-							{
-								Header: "Name",
-								accessor: "fullName",
-
-							},
-
-							{
-								Header: "Company",
-								accessor: "company"
-							},
-							{
-								Header: "Phone Number",
-								id: "phoneNumber",
-								accessor: "phoneNumber"
-							},
-							{
-								Header: "Category",
-								accessor: "category"
-							},
-							{
-								Header: "Actions",
-								accessor: "id",
-								sortable: false,
-								Cell: row => (
-									<div>
-										<button className="navButton editButton" onClick={() => {
-											this.setState({
-												editingClient: this.props.client.filter(client => row.value === client.id)[0]
-											})
-
-											this.toggleEditClientForm();
-
-										}}>✎</button>
-                    
-										<button className="navButton" onClick={() => {
-											this.props.dispatch(deleteClient(row.value))
-												.then(this.props.dispatch(fetchClients()))
-										}}><span aria-label='x' role='img'>❌</span></button>
-
-										<button className="navButton" onClick={() => {
-
-										}}><span>☎</span></button>
-									</div>
-								)
-							},
-
-
-
-						]}
+						columns={this.clientColumns[this.state.view]}
 						defaultPageSize={10}
 						className="-striped -highlight"
 					/>
 					<br />
-
-					{/* <Logo /> */}
 				</div>
 			);
 		}
@@ -173,14 +206,7 @@ export class Clients extends React.Component {
 				</div>
 			)
 		}
-		else if (this.state.view === 'stats') {
-			return (<div>
-				<select className="select addClientButton" value={this.state.view} onChange={e => this.toggleView(e)} >
-					<option value="clients">Contacts</option>
-					<option value="stats">Stats</option>
-				</select>
-			</div>)
-		}
+		
 		else {
 			return null
 		}
