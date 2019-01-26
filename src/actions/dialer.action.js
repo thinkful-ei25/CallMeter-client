@@ -1,3 +1,5 @@
+import { API_BASE_URL } from '../config'; 
+
 export const LOADING_CALLER = 'LOADING_CALLER';
 export const loadingCaller = () => ({
 	type: LOADING_CALLER
@@ -15,7 +17,7 @@ export const loadingCAllerError = (error) => ({
   error
 }); 
 
-export const fetchCallerFromContact = () => (dispatch, getState) => {
+export const fetchCallerFromContact = (callerNumber) => (dispatch, getState) => {
   dispatch(loadingCaller); 
   const authToken = getState().auth.authToken;
 

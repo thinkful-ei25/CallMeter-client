@@ -3,7 +3,7 @@ import { Device } from 'twilio-client';
 import './BrowserCall.css'; 
 import { connect } from 'react-redux';
 import Answerer from './Answerer'; 
-import { API_BASE_URL } from '../../config'; 
+import { fetchCallerFromContact } from '../../actions/dialer.action';  
 
 export class DialerApp extends React.Component {
   constructor(props) {
