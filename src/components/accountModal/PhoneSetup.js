@@ -27,7 +27,8 @@ export class PhoneSetup extends React.Component {
   };
 
   handleFormSubmit = formSubmitEvent => {
-    formSubmitEvent.preventDefault();
+    // this.props.dispatch(addPhone(formSubmitEvent))
+    // return <Redirect to="/setup/phone" />
   };
 
   //TODO: UPDATE THE CATCH
