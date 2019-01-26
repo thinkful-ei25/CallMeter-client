@@ -36,24 +36,7 @@ export class DialerApp extends React.Component {
 
         // console.log('CALLER ID', obj.paramaters.From); 
         // console.log('obj', obj)
-
         //CALL ACTION HERE
-        // const authToken = getState().auth.authToken;
-        // // console.log(`${API_BASE_URL}/client/contacts/phone/${callerNumber.slice(2)}`);
-        // fetch(`${API_BASE_URL}/client/contacts/phone/${callerNumber.slice(2)}`, 
-        // { 
-        //   method: 'GET',
-        //   headers: {
-        //     // Provide our auth token as credentials
-        //     Authorization: `Bearer ${authToken}`
-        //   }
-        // })
-        //   .then(res => { 
-        //     console.log('res', res); 
-        //   })
-        //   .catch(err => { 
-        //     console.log('err', err); 
-        //   }); 
       }
       else if (state === 'cancel') { 
         this.setState({isRinging: false}); 
