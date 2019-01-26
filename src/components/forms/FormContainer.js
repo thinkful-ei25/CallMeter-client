@@ -2,26 +2,36 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './forms.css';
-import loginImg from './loginImg.jpg';
-import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm';
+import {login, register, phone, account} from './images';
+import {LoginForm, RegisterForm, PhoneSetup, AccountInfoForm } from './'
 import { Route } from 'react-router-dom';
 
-export function Registration(props) {
+export function FormContainer(props) {
   if (props.loggedIn) {
     return <Redirect to="/dashboard" />;
   }
-  const imgStyle = {
-    backgroundImage: 'url(' + loginImg + ')'
-  };
+
+  const images = {
+    '/setup/account': account,
+    '/setup/phone': phone,
+    '/login': login,
+    '/register': register
+  }
+
+  let imgStyle = {
+    backgroundImage: 'url(' + images[props.location.pathname] + ')'
+  }
 
   return (
     <div>
       <div className="form-container">
-        <div className="login-signup-img" style={imgStyle} />
-        <div className="login-signup-form-wrapper pad-50">
+        <div className="img" style={imgStyle} />
+        <div className="form-wrapper pad-50">
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
+          
+          <Route path="/setup/account" component={AccountInfoForm} />
+          <Route path="/setup/phone" component={PhoneSetup} />
         </div>
       </div>
     </div>
@@ -32,4 +42,4 @@ const mapStateToProps = state => ({
   loggedIn: state.auth.currentUser !== null
 });
 
-export default connect(mapStateToProps)(Registration);
+export default connect(mapStateToProps)(FormContainer);

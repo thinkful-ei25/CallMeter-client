@@ -1,11 +1,9 @@
 import React, { Fragment } from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import { registerUser, getPhoneNumbers } from '../../actions/users';
-import { login } from '../../actions/auth';
+import { getPhoneNumbers } from '../../actions/users';
 import Input from '../forms/Input';
 import { required, nonEmpty, isTrimmed, phoneCheck } from '../../validators';
-import '../setupPhone/SetupPhone.css';
-import './accountModal.css';
+
 
 export class PhoneSetup extends React.Component {
   constructor(props) {
@@ -15,7 +13,6 @@ export class PhoneSetup extends React.Component {
       numberSearch: '',
       disabled: true,
       phoneNumber: '',
-      lastButton: null
     };
   }
 
@@ -60,15 +57,10 @@ export class PhoneSetup extends React.Component {
 
     return (
       <div>
-        <form
-          className="login-signup-form"
-          onSubmit={this.handleFormSubmit}
-        >
-          <section className="personal-phone">
-            <span className="login-signup-form-title pad-bottom-50">
+        <form className="form" onSubmit={this.handleFormSubmit}>
+            <span className="form-title pad-bottom-50">
               Personal Information Setup
             </span>
-
             <Field
               component={Input}
               label="What's Your Phone Number"
@@ -77,7 +69,6 @@ export class PhoneSetup extends React.Component {
               validate={[required, nonEmpty, isTrimmed, phoneCheck]}
               placeholder="What number do you receive work calls?"
             />
-
             <Field
               component={Input}
               label="Give This Number a Friendly Name"
@@ -86,12 +77,7 @@ export class PhoneSetup extends React.Component {
               validate={[required, nonEmpty, isTrimmed]}
               placeholder="e.g. Jack's Phone or My Work Phone"
             />
-          </section>
-          <section className="twilio-number clearfix">
-            <span className="number-search-title pad-bottom-30">
-              Your Billable Number
-            </span>
-
+            <span className="number-search-title pad-bottom-30">Your Billable Number</span>
             <div className="input-wrapper">
               <label className="label-input">Area Code</label>
               <input
@@ -100,9 +86,7 @@ export class PhoneSetup extends React.Component {
                 placeholder="Search by Area Code"
               />
             </div>
-            <p className="label-input marg-bottom-10">
-              Select an available phone number:{' '}
-            </p>
+            <p className="label-input marg-bottom-10">Select an available phone number:</p>
             <div className="number-search-results pad-top-10">
               {this.state.numbers.map((number, index) => {
                 return (
@@ -115,22 +99,24 @@ export class PhoneSetup extends React.Component {
                       value={number.response}
                       onChange={this.handleOptionChange}
                     />
-                    <label className="result-number num-across" htmlFor={number.response}>
+                    <label
+                      className="result-number num-across"
+                      htmlFor={number.response}
+                    >
                       {number.display}
                     </label>
                   </Fragment>
                 );
               })}
             </div>
-          </section>
-          <div className="login-signup-form-button-container pad-top-30">
-            <div className="login-signup-form-button-wrapper">
+          <div className="form-button-container pad-top-30">
+            <div className="form-button-wrapper">
               <button
-                className="login-signup-form-button"
-                disabled={this.props.invalid || this.state.disabled}
+                className="form-button"
+                disabled={this.state.disabled}
               >
                 Next Step
-            </button>
+              </button>
             </div>
           </div>
         </form>

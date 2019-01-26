@@ -3,7 +3,6 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import LandingPage from '../components/landingPage/LandingPage';
-// import SetupPhone from '../components/setupPhone/SetupPhone';
 import Stats from './dashboard/Stats';
 import MakeCall from './dashboard/MakeCall';
 import Invoices from './dashboard/Invoices';
@@ -21,8 +20,6 @@ const AppRouter = () => (
     </Switch>
     <Route path="/dashboard" component={navBar} />
     <Route exact path="/dashboard" component={Dashboard} />
-    {/* This line was throwing an error */}
-    {/* <Route exact path="/setupPhone" component={SetupPhone} /> */}
     <Route exact path="/dashboard/stats" component={Stats} />
     <Route exact path="/dashboard/call" component={MakeCall} />
     <Route exact path="/dashboard/invoices" component={Invoices} />

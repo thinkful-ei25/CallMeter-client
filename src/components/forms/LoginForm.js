@@ -22,10 +22,10 @@ export class LoginForm extends React.Component {
     }
     return (
       <form
-        className="login-signup-form validate"
+        className="form validate"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
-        <span className="login-signup-form-title pad-bottom-50">Welcome Back!</span>
+        <span className="form-title pad-bottom-50">Welcome Back!</span>
         <Field
           component={Input}
           label="Organization Name"
@@ -43,10 +43,10 @@ export class LoginForm extends React.Component {
           placeholder="************"
           validate={[required, nonEmpty]}
         />
-        <div className="login-signup-form-button-container">
-					<div className="login-signup-form-button-wrapper">
+        <div className="form-button-container">
+					<div className="form-button-wrapper">
           <button
-            className="login-signup-form-button"
+            className="form-button"
             disabled={this.props.pristine || this.props.submitting}
           >
             Login
