@@ -59,7 +59,7 @@ export class App extends React.Component {
         else { 
           return ( 
             <div> 
-              <LandingPage /> 
+              <AppRouter /> 
             </div> 
           ); 
         }
