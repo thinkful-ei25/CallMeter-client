@@ -34,10 +34,8 @@ export class DialerApp extends React.Component {
       else if (state === 'incoming'){ 
         this.setState({isRinging: true, connection: obj}); 
         const callerNumber = obj.parameters.From; 
-
-        // console.log('CALLER ID', obj.paramaters.From); 
-        // console.log('obj', obj)
-        //CALL ACTION HERE
+        
+        this.props.dispatch(fetchCallerFromContact(callerNumber)); 
       }
       else if (state === 'cancel') { 
         this.setState({isRinging: false}); 
@@ -91,10 +89,15 @@ export class DialerApp extends React.Component {
   };
 
   render() {
-    if (this.state.isRinging === true) { 
+    console.log('caller', this.props.caller); 
+    if (this.state.isRinging === true && this.props.caller !== null) { 
       return (
         <div>
-          <Answerer onAnswer={() => this.answerCall()} onHangup={() => this.hangupCall()}/> 
+          <Answerer
+            callerImage={this.props.caller.photo} 
+            fullname={this.props.caller.firstName + ' ' + this.props.caller.lastName} 
+            onAnswer={() => this.answerCall()} 
+            onHangup={() => this.hangupCall()}/> 
         </div>
       );
     } 

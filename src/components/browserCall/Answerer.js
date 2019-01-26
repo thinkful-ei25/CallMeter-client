@@ -11,12 +11,12 @@ export default class Phone extends React.Component {
       <div className="Phone">
         <div className="fixedPhone">
           <div className="PhoneLeft">
-            <img className="PhoneImage" src={require("../../resources/mainImage.png")}></img>
+            <img className="PhoneImage" src={this.props.callerImage}></img>
           </div>
           <div className="PhoneMiddle">
             <p>
               Call from<br />
-              Steven Carey
+              {this.props.fullname}
                   </p>
           </div>
           <div className="PhoneRight">

@@ -29,9 +29,11 @@ export const fetchCallerFromContact = (callerNumber) => (dispatch, getState) => 
         Authorization: `Bearer ${authToken}`
       }
   })
+  .then(res => { 
+    return res.json(); 
+  })
   .then(caller => { 
-    dispatch(callerLoaded(caller)); 
-    console.log('res', caller); 
+     dispatch(callerLoaded(caller)); 
   })
   .catch(err => { 
     dispatch(loadingCallerError(err)); 
