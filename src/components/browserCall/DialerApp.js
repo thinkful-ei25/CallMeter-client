@@ -4,6 +4,7 @@ import './BrowserCall.css';
 import { connect } from 'react-redux';
 import Answerer from './Answerer'; 
 import { fetchCallerFromContact } from '../../actions/dialer.action';  
+import { STATUS_CODES } from 'http';
 
 export class DialerApp extends React.Component {
   constructor(props) {
@@ -104,12 +105,11 @@ export class DialerApp extends React.Component {
 }
 
 const mapStateToProps = state => {
-	console.log('dashboard state', state)
-	// const { currentUser } = state.auth;
+	console.log('dialerState', state)
 	return {
-		//username: state.auth.currentUser.username,
-		//name: `${currentUser.firstName} ${currentUser.lastName}`,
-		// protectedData: state.protectedData.data
+    caller: state.dialer.caller, 
+    loading: state.dialer.loading, 
+    error: state.dialer.error
 	};
 };
 

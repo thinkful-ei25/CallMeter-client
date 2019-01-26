@@ -1,8 +1,8 @@
-import ({ 
+import { 
   LOADING_CALLER, 
   CALLER_LOADED, 
   LOADING_CALLER_ERROR
-}) from '../actions/dialer.action'; 
+} from '../actions/dialer.action'; 
 
 const initialState = ({ 
   error: null, 
@@ -32,4 +32,5 @@ export default function reducer(state = initialState, action) {
       caller: null
     }); 
   }
+  return state; 
 }
