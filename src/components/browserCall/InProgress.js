@@ -15,9 +15,9 @@ export default class InProgress extends React.Component {
           </div>
           <div className="PhoneMiddle">
             <p>
-              Call from<br />
+              <br />
               {this.props.fullname}
-                  </p>
+            </p>
           </div>
           <div className="PhoneRight">
              <div onClick={e => this.props.hangup()} className="callAccept">Hangup</div>

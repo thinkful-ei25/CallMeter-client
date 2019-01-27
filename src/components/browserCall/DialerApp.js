@@ -2,25 +2,24 @@ import React from 'react';
 import { Device } from 'twilio-client';
 import Dialer from './Dialer'; 
 import Answerer from './Answerer'; 
-import InProgress from './InProgress'; 
 import './BrowserCall.css'; 
 import { connect } from 'react-redux';
+import InProgress from './InProgress'; 
 import { fetchCallerFromContact, hangupClient } from '../../actions/dialer.action';  
-
 
 export class DialerApp extends React.Component {
   constructor(props) {
 
     super(props);
     this.state = {
-      isRinging: 'false', 
+      isCallOnGoing: false, 
       token: '',
       deviceState: '',
       deviceErrorCode: '',
       deviceErrorMessage: '', 
       connection: {}, 
       device: '', 
-      inProgress: false
+      isConnected: false
     };
   }
 
@@ -28,7 +27,6 @@ export class DialerApp extends React.Component {
 
     Device.on(state, obj => {
       this.setState({deviceState: state, connection: obj});
-      console.log('connection', this.state.connection)
       if (state === 'error'){ 
         this.setState({
           deviceErrorCode: obj.code,
@@ -36,13 +34,13 @@ export class DialerApp extends React.Component {
         }); 
       }
       else if (state === 'incoming'){ 
-        this.setState({isRinging: true, inProgress: true}); 
+        this.setState({isCallOnGoing: true, isConnected: true}); 
         const callerNumber = obj.parameters.From; 
         this.props.dispatch(fetchCallerFromContact(callerNumber)); 
       }
       else if ( state === 'disconnect' || state === 'cancel' ){ 
-
-        this.setState({isRinging: false, inProgress: false});  
+        console.log('disconnect or cancel'); 
+        this.setState({isCallOnGoing: false, isConnected: false});  
       }
       else if (state === 'disconnect') { 
         console.log('closing and reoping')
@@ -51,25 +49,31 @@ export class DialerApp extends React.Component {
     });
   }; 
 
-
   /**
    * Callback from Answerer components answer button
    */
   answerCall = () => { 
     console.log('hello')
-    this.setState({inProgress: false}); 
+    this.setState({isConnected: false}); 
     this.state.connection.accept(); 
   }
 
   /**
    * Callback from Answerer components hangup button
    */
-  hangupCall = () => { 
+  rejectCall = () => { 
     this.state.connection.reject(); 
-    this.setState({inProgress: false, isRinging: false}); 
+    console.log('reject')
+    this.setState({isConnected: false, isCallOnGoing: false}); 
+  }
+
+  hangupCall = () => { 
+    console.log('hangupCall'); 
+    Device.disconnectAll(); 
+    this.setState({isConnected: false, isCallOnGoing: false}); 
   }
   
-  componentDidMount(){
+  componentDidMount() {
     const twilioDeviceStates = ['cancel', 'connect', 'disconnect', 'ringing', 'error', 'incoming', 'offline', 'ready']; 
     twilioDeviceStates.forEach(twilioDeviceState => { 
       this.handleAppStateChange(twilioDeviceState);  
@@ -95,17 +99,17 @@ export class DialerApp extends React.Component {
 
   render() {
   
-    if (this.state.isRinging === true && this.props.caller !== null) { 
-      console.log('howdy'); 
-      const topRightCallInfo = (this.state.inProgress) ?  
-      <Answerer
-        callerImage={this.props.caller.photo} 
-        fullname={this.props.caller.firstName + ' ' + this.props.caller.lastName} 
-        onAnswer={() => this.answerCall()} 
-        onHangup={() => this.hangupCall()}/>
-      : 
-      <InProgress hangup={() => this.hangupCall()}/> 
-      console.log('jsx', topRightCallInfo)
+    if (this.state.isCallOnGoing === true && this.props.caller !== null) { 
+      console.log('isConnected', this.state.isConnected); 
+      const topRightCallInfo = (this.state.isConnected) ?  
+        <Answerer
+          callerImage={this.props.caller.photo} 
+          fullname={this.props.caller.firstName + ' ' + this.props.caller.lastName} 
+          onAnswer={() => this.answerCall()} 
+          onHangup={() => this.rejectCall()}/>
+        : 
+        <InProgress hangup={() => this.hangupCall() } /> 
+        console.log('jsx', topRightCallInfo)
       return (
         <div>
           {(this.state.deviceErrorCode || this.state.deviceErrorMessage) && (
@@ -119,6 +123,7 @@ export class DialerApp extends React.Component {
         </div>
       );
     } 
+
     return (
       <div>
       
@@ -130,7 +135,7 @@ export class DialerApp extends React.Component {
               {this.state.deviceErrorMessage}
             </div>
           )}
-          <Dialer /> 
+          {/* <Dialer />  */}
           </section> 
       </div>
     ); 

@@ -3,6 +3,7 @@
 import React from 'react';
 import { Device } from "twilio-client";
 import { connect } from 'react-redux';
+import InProgress from './InProgress'; 
 import './dialer.css'; 
 
 const countryCode = '+1';
@@ -10,7 +11,8 @@ export  class Dialer extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      number: ''
+      number: '', 
+      inProgress: true
     };
   }
 
@@ -20,7 +22,7 @@ export  class Dialer extends React.Component {
   };
 
   handleButtonPress = (buttonPressed) => {
-    this.setState((state) => ({
+    this.setState(state => ({
       number: state.number + buttonPressed
     }));
     console.log('#### Keypad press ' + this.state.number + '  ####')
@@ -32,19 +34,26 @@ export  class Dialer extends React.Component {
 
   makeCall = () => {
     const phoneNumber = this.props.outboundClient.phoneNumber; 
-    Device.connect({number: phoneNumber});
+    Device.connect({number: phoneNumber}); 
   }
 
   endCall = () => {
     console.log('#### ENDING CALL ####'); 
-    Device.disconnectAll();
-    // Device.disconnect(); 
+    Device.disconnectAll(); 
   };
 
   handleCallButtonClick = () => {
     if (this.props.outboundClient != null) { 
       this.makeCall(this.props.outboundClient, this.state.token);
     }
+  }
+
+  startProgress = () => { 
+    this.setState({progress: true})
+  }
+  endProgress = () => { 
+    this.setState({progress: false})
+    console.log('hi');
   }
 
   callStatus = () => {
@@ -60,16 +69,19 @@ export  class Dialer extends React.Component {
   callIsActive = () => this.props.deviceState = 'connect';
 
   render () {
-    // console.log('outbound client', this.state.outboundClient); 
     if (this.props.outboundClient !== null) { 
       console.log('hello')
       this.handleCallButtonClick(); 
-      return (
-        <div className='callBox'>
-        
-        </div>
-      );
-    }
+        return (
+          <div> 
+            <InProgress hangup={() => { 
+              console.log('hangingup inpogress'); 
+              this.endCall();          
+            }
+          } /> 
+          </div>  
+        );
+      }
     return (
       <div></div>
     )
