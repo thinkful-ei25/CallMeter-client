@@ -1,9 +1,9 @@
-// 'use strict';
+'use strict';
 
 import React from 'react';
-import PhoneButtons from './PhoneButtons';
 import { Device } from "twilio-client";
 import { connect } from 'react-redux';
+import './dialer.css'; 
 
 const countryCode = '+1';
 export  class Dialer extends React.Component {
@@ -31,15 +31,14 @@ export  class Dialer extends React.Component {
   }
 
   makeCall = () => {
-    console.log('client', this.props.outboundClient.phoneNumber); 
     const phoneNumber = this.props.outboundClient.phoneNumber; 
-    console.log('#### Making Call to' + phoneNumber + '  ####')
     Device.connect({number: phoneNumber});
   }
 
   endCall = () => {
-    console.log('#### ENDING CALL ####')
+    console.log('#### ENDING CALL ####'); 
     Device.disconnectAll();
+    // Device.disconnect(); 
   };
 
   handleCallButtonClick = () => {
@@ -62,15 +61,18 @@ export  class Dialer extends React.Component {
 
   render () {
     // console.log('outbound client', this.state.outboundClient); 
-    if (this.state.outboundClient !== null) { 
+    if (this.props.outboundClient !== null) { 
       console.log('hello')
       this.handleCallButtonClick(); 
+      return (
+        <div className='callBox'>
+        
+        </div>
+      );
     }
     return (
-      <div>
-      
-      </div>
-    );
+      <div></div>
+    )
   }
 }
 

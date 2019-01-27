@@ -49,7 +49,6 @@ export class DialerApp extends React.Component {
   }; 
 
 
-
   /**
    * Callback from Answerer components answer button
    */
