@@ -68,25 +68,7 @@ export  class Dialer extends React.Component {
     }
     return (
       <div>
-        {/* <div id="phoneNumberField">
-          <div>
-            <span id="countryCode">{countryCode}</span>
-          </div>
-          <div>
-            <input type="text" value={this.state.number} onChange={this.handleButtonPress} />
-          </div>
-
-          <div>
-            <PhoneButtons onChange={this.handleButtonPress} />
-          </div>
-
-          <div id="callButtonField">
-            <button onClick={this.handleCallButtonClick}>
-            <span>Call Now</span>
-            </button>
-          </div>
-          <p>{this.callStatus()}</p>
-        </div> */}
+      
       </div>
     );
   }

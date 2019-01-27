@@ -41,6 +41,10 @@ export class DialerApp extends React.Component {
       else if (state === 'connect' || state === 'disconnect' || state === 'cancel' ){ 
         this.setState({isRinging: false});  
       }
+      else if (state === 'disconnect') { 
+        console.log('closing and reoping')
+        this.setUpDevice(this.props.capabilityToken); 
+      }
     });
   }; 
 
