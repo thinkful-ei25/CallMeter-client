@@ -2,11 +2,11 @@
 
 import React from 'react';
 import PhoneButtons from './PhoneButtons';
-// import Answerer from './Answerer'; 
 import { Device } from "twilio-client";
-const countryCode = '+1';
+import { connect } from 'react-redux';
 
-export default class Dialer extends React.Component {
+const countryCode = '+1';
+export  class Dialer extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -26,13 +26,13 @@ export default class Dialer extends React.Component {
     console.log('#### Keypad press ' + this.state.number + '  ####')
   };
 
-
   handleCallButtonClick = () => {
    this.makeCall();
   }
 
   makeCall = () => {
-    const phoneNumber = countryCode + this.state.number.replace(/^0/,'')
+    console.log('client', this.props.outboundClient.phoneNumber); 
+    const phoneNumber = this.props.outboundClient.phoneNumber; 
     console.log('#### Making Call to' + phoneNumber + '  ####')
     Device.connect({number: phoneNumber});
   }
@@ -41,6 +41,12 @@ export default class Dialer extends React.Component {
     console.log('#### ENDING CALL ####')
     Device.disconnectAll();
   };
+
+  handleCallButtonClick = () => {
+    if (this.props.outboundClient != null) { 
+      this.makeCall(this.props.outboundClient, this.state.token);
+    }
+  }
 
   callStatus = () => {
     switch(this.props.deviceState) {
@@ -55,9 +61,14 @@ export default class Dialer extends React.Component {
   callIsActive = () => this.props.deviceState = 'connect';
 
   render () {
+    // console.log('outbound client', this.state.outboundClient); 
+    if (this.state.outboundClient !== null) { 
+      console.log('hello')
+      this.handleCallButtonClick(); 
+    }
     return (
       <div>
-        <div id="phoneNumberField">
+        {/* <div id="phoneNumberField">
           <div>
             <span id="countryCode">{countryCode}</span>
           </div>
@@ -75,10 +86,16 @@ export default class Dialer extends React.Component {
             </button>
           </div>
           <p>{this.callStatus()}</p>
-        </div>
+        </div> */}
       </div>
     );
   }
-
-
 }
+
+const mapStateToProps = state => {
+	return {
+    outboundClient : state.dialer.outboundClient
+	};
+};
+
+export default connect(mapStateToProps)(Dialer);

@@ -9,7 +9,7 @@ import 'react-table/react-table.css'
 import AddClient from './AddClient';
 import EditClient from './EditClient';
 import './clients.css'
-
+import { dialClient }  from '../../../actions/dialer.action'; 
 export class Clients extends React.Component {
 	constructor(props) {
 		super(props);
@@ -140,7 +140,9 @@ export class Clients extends React.Component {
 										}}><span aria-label='x' role='img'>❌</span></button>
 
 										<button className="navButton" onClick={() => {
-                      console.log('send an action'); 
+                      // console.log('send an action'); 
+                      // console.log('cleint', this.props.client); 
+                      this.props.dispatch(dialClient(this.props.client[row.index]))
 										}}><span>☎</span></button>
 									</div>
 								)

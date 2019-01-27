@@ -1,13 +1,16 @@
 import { 
   LOADING_CALLER, 
   CALLER_LOADED, 
-  LOADING_CALLER_ERROR
+  LOADING_CALLER_ERROR, 
+  DIAL_CLIENT, 
+  HANGUP_CLIENT
 } from '../actions/dialer.action'; 
 
 const initialState = ({ 
   error: null, 
   caller: null, 
-  loadingClient: true
+  loadingClient: true, 
+  outboundClient: null, 
 }); 
 
 export default function reducer(state = initialState, action) {
@@ -31,6 +34,16 @@ export default function reducer(state = initialState, action) {
       error: action.error, 
       caller: null
     }); 
+  }
+  else if (action.type === DIAL_CLIENT) { 
+    return Object.assign({ 
+      outboundClient: action.client
+    })
+  }
+  else if (action.type === HANGUP_CLIENT) { 
+    return Object.assign({ 
+      outboundClient: null
+    })
   }
   return state; 
 }

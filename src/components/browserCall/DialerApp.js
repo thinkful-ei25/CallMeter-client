@@ -1,11 +1,11 @@
 import React from 'react';
 import { Device } from 'twilio-client';
+import Dialer from './Dialer'; 
+import Answerer from './Answerer'; 
 import './BrowserCall.css'; 
 import { connect } from 'react-redux';
-import Answerer from './Answerer'; 
-import Dialer from './Dialer'; 
-import { fetchCallerFromContact } from '../../actions/dialer.action';  
-const countryCode = '+1';
+import { fetchCallerFromContact, hangupClient } from '../../actions/dialer.action';  
+
 
 export class DialerApp extends React.Component {
   constructor(props) {
@@ -17,15 +17,16 @@ export class DialerApp extends React.Component {
       deviceState: '',
       deviceErrorCode: '',
       deviceErrorMessage: '', 
-      connection: {}
+      connection: {}, 
+      device: ''
     };
   }
 
   handleAppStateChange = state => {
 
     Device.on(state, obj => {
-      this.setState({deviceState: state});
-      
+      this.setState({deviceState: state, connection: obj});
+      console.log('connection', this.state.connection)
       if (state === 'error'){ 
         this.setState({
           deviceErrorCode: obj.code,
@@ -33,7 +34,7 @@ export class DialerApp extends React.Component {
         }); 
       }
       else if (state === 'incoming'){ 
-        this.setState({isRinging: true, connection: obj}); 
+        this.setState({isRinging: true}); 
         const callerNumber = obj.parameters.From; 
         this.props.dispatch(fetchCallerFromContact(callerNumber)); 
       }
@@ -72,37 +73,20 @@ export class DialerApp extends React.Component {
   setUpDevice = (capabilityToken) => { 
     this.setState({ token: capabilityToken });
 
-    Device.setup(capabilityToken, {
-      debug: true, 
-      enableRingingState: true, 
-      allowIncomingWhileBusy: true
+    this.setState({ 
+      device: 
+        Device.setup(
+          capabilityToken, {
+            debug: true, 
+            enableRingingState: true, 
+            allowIncomingWhileBusy: true
+           }
+        )
     });  
   }
 
-  //TODO: hook this up to notify user's of errors
-  handleNotifcationDismiss = () => {
-    this.setState({
-      deviceErrorCode: '',
-      deviceErrorMessage: ''
-    });
-  };
-
-  handleCallButtonClick = () => {
-    this.makeCall();
-   }
- 
-   makeCall = () => {
-     const phoneNumber = countryCode + this.state.number.replace(/^0/,'')
-     console.log('#### Making Call to' + phoneNumber + '  ####')
-     Device.connect({number: phoneNumber});
-   }
- 
-   endCall = () => {
-     console.log('#### ENDING CALL ####')
-     Device.disconnectAll();
-   };
-
   render() {
+    
     if (this.state.isRinging === true && this.props.caller !== null) { 
       return (
         <div>
@@ -118,14 +102,13 @@ export class DialerApp extends React.Component {
             fullname={this.props.caller.firstName + ' ' + this.props.caller.lastName} 
             onAnswer={() => this.answerCall()} 
             onHangup={() => this.hangupCall()}/> 
-          <Dialer
-          
-          />
+    
         </div>
       );
     } 
     return (
       <div>
+      
          <section>
           {(this.state.deviceErrorCode || this.state.deviceErrorMessage) && (
             <div>
@@ -134,6 +117,7 @@ export class DialerApp extends React.Component {
               {this.state.deviceErrorMessage}
             </div>
           )}
+          <Dialer /> 
           </section> 
       </div>
     ); 
@@ -144,7 +128,7 @@ const mapStateToProps = state => {
 	return {
     caller: state.dialer.caller, 
     loading: state.dialer.loading, 
-    error: state.dialer.error
+    error: state.dialer.error, 
 	};
 };
 

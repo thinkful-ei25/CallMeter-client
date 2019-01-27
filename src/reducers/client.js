@@ -9,7 +9,8 @@ import {
 
 const initialState = {
 	data: '',
-	error: null
+  error: null, 
+  outgouingClientNumber: ''
 };
 
 export default function reducer(state = initialState, action) {
@@ -43,6 +44,7 @@ export default function reducer(state = initialState, action) {
 			loading: true,
 			clientId: action.id
 		})
-	}
+	
+  }
 	return state;
 }

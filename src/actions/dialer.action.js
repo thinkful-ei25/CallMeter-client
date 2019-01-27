@@ -1,8 +1,20 @@
 import { API_BASE_URL } from '../config'; 
 
+export const DIAL_CLIENT = 'DIAL_CLIENT'; 
+export const dialClient = (client) => ({ 
+  type: DIAL_CLIENT, 
+  client
+}); 
+
+export const HANGUP_CLIENT = 'HANGUP_CLIENT'; 
+export const hangupClient = () => ({ 
+ type: HANGUP_CLIENT
+}); 
+
 export const LOADING_CALLER = 'LOADING_CALLER';
-export const loadingCaller = () => ({
-	type: LOADING_CALLER
+export const loadingCaller = (client) => ({
+  type: LOADING_CALLER, 
+  client
 }); 
 
 export const CALLER_LOADED = 'CALLER_LOADED'; 
