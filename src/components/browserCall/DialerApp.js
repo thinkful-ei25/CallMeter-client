@@ -104,7 +104,7 @@ export class DialerApp extends React.Component {
         onAnswer={() => this.answerCall()} 
         onHangup={() => this.hangupCall()}/>
       : 
-      <InProgress /> 
+      <InProgress hangup={() => this.hangupCall()}/> 
       console.log('jsx', topRightCallInfo)
       return (
         <div>

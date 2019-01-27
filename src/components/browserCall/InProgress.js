@@ -20,8 +20,7 @@ export default class InProgress extends React.Component {
                   </p>
           </div>
           <div className="PhoneRight">
-             <div onClick={e => this.props.onAnswer()} className="callAccept">Hangup</div>
-             {/* <div onClick={e => this.props.onHangup()} className="callDecline">Decline</div>  */}
+             <div onClick={e => this.props.hangup()} className="callAccept">Hangup</div>
           </div>
         </div>
       </div>
