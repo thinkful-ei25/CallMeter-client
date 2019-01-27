@@ -1,0 +1,156 @@
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#header {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  overflow: hidden;
+  background-color: #fff;
+  z-index: 300;
+  position: fixed;
+}
+
+#header:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+#header .header-main {
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  height: 80px;
+}
+
+.nav-container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.login-header-left {
+  float: left;
+  min-width: 115px;
+  height: 80px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+#header .header-main > .header-right {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+  -webkit-box-flex: 1;
+  flex: 1;
+}
+
+.header-left {
+}
+
+.logo-img {
+  top: -1px;
+  margin-right: 10px;
+  vertical-align: middle;
+  position: relative;
+  display: inline-block;
+  width: 15px;
+}
+
+.logo {
+  float: left;
+  min-width: 115px;
+  height: 70px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+#header .header-item {
+  padding: 10px 23px;
+}
+
+#header .header-item-login {
+  padding: 30px 20px;
+}
+
+#header .login {
+  -webkit-box-flex: 1;
+  flex: 1;
+  text-align: right;
+}
+
+#header .login strong {
+  margin-left: 4px;
+  font-weight: 700;
+}
+
+#signup {
+  position: relative;
+  width: 190px;
+  height: 80px;
+  padding: 0 !important;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out;
+}
+
+#signup .button {
+  width: 190px;
+  height: 80px;
+  padding: 0;
+  line-height: 73px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  display: inline-block;
+  background-color: rgb(101, 21, 221);
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+  letter-spacing: 2px;
+}
+
+.login-link {
+  text-align: right;
+  color: #ff8a00;
+}
+
+.sign-up-button {
+  font-size: 18px;
+  width: 190px;
+  height: 70px;
+  padding: 0;
+  line-height: 73px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-signup-button {
+  width: 100%;
+  cursor: pointer;
+  border-radius: 5em;
+  color: #fff;
+  background: linear-gradient(to right, rgb(76, 113, 206), rgb(60, 57, 244));
+  border: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-size: 13px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
+.logo-larger {
+  height:65px !important;
+}
+
+button:hover{
+  transform: scale(1.1); 
+}

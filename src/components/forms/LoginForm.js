@@ -1,10 +1,10 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import Input from '../Input';
-import { login } from '../../../actions/auth';
-import { required, nonEmpty } from '../../../validators';
+import Input from './Input';
+import { login } from '../../actions/auth';
+import { required, nonEmpty } from '../../validators';
 import { Link } from 'react-router-dom';
-import '../forms.css';
+import './forms.css';
 
 export class LoginForm extends React.Component {
   onSubmit(values) {
@@ -22,10 +22,10 @@ export class LoginForm extends React.Component {
     }
     return (
       <form
-        className="login-signup-form validate"
+        className="form validate"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
-        <span className="login-signup-form-title pad-bottom-50">Welcome Back!</span>
+        <span className="form-title pad-bottom-50">Welcome Back!</span>
         <Field
           component={Input}
           label="Organization Name"
@@ -43,10 +43,10 @@ export class LoginForm extends React.Component {
           placeholder="************"
           validate={[required, nonEmpty]}
         />
-        <div className="login-signup-form-button-container">
-					<div className="login-signup-form-button-wrapper">
+        <div className="form-button-container">
+					<div className="form-button-wrapper">
           <button
-            className="login-signup-form-button"
+            className="form-button"
             disabled={this.props.pristine || this.props.submitting}
           >
             Login
@@ -57,17 +57,6 @@ export class LoginForm extends React.Component {
 					</Link>
         </div>
       </form>
-
-      //   <button
-      // 		className="form-button"
-      //     disabled={this.props.pristine || this.props.submitting}
-      //   >
-      //     Log in
-      //   </button>
-      //   <Link className="login-link" to="/register">
-      //     Sign Up
-      //   </Link>
-      // </form>
     );
   }
 }

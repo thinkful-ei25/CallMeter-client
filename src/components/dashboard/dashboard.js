@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from '../requires-login';
 // import { Line } from 'react-chartjs-2';
-// import { Link } from 'react-router-dom';
+import { withRouter, Redirect} from 'react-router-dom';
 import './dashboard.css'
 // import { makeData, Logo, Tips } from "./Utils";
 import ReactTable from "react-table";
@@ -118,11 +118,16 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => {
+<<<<<<< HEAD
 	// console.log('dashboard state', state)
 	// const { currentUser } = state.auth;
+=======
+	console.log('dashboard state', state)
+	const { currentUser } = state.auth;
+>>>>>>> 025940102ca1124eb4b00d43db8f012452d94069
 	return {
-		//username: state.auth.currentUser.username,
-		//name: `${currentUser.firstName} ${currentUser.lastName}`,
+		username: state.auth.currentUser.username,
+		name: `${currentUser.firstName} ${currentUser.lastName}`,
 		// protectedData: state.protectedData.data
 	};
 };
