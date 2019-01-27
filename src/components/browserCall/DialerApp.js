@@ -2,6 +2,7 @@ import React from 'react';
 import { Device } from 'twilio-client';
 import Dialer from './Dialer'; 
 import Answerer from './Answerer'; 
+import InProgress from './InProgress'; 
 import './BrowserCall.css'; 
 import { connect } from 'react-redux';
 import { fetchCallerFromContact, hangupClient } from '../../actions/dialer.action';  
@@ -18,7 +19,8 @@ export class DialerApp extends React.Component {
       deviceErrorCode: '',
       deviceErrorMessage: '', 
       connection: {}, 
-      device: ''
+      device: '', 
+      inProgress: false
     };
   }
 
@@ -34,12 +36,13 @@ export class DialerApp extends React.Component {
         }); 
       }
       else if (state === 'incoming'){ 
-        this.setState({isRinging: true}); 
+        this.setState({isRinging: true, inProgress: true}); 
         const callerNumber = obj.parameters.From; 
         this.props.dispatch(fetchCallerFromContact(callerNumber)); 
       }
-      else if (state === 'connect' || state === 'disconnect' || state === 'cancel' ){ 
-        this.setState({isRinging: false});  
+      else if ( state === 'disconnect' || state === 'cancel' ){ 
+
+        this.setState({isRinging: false, inProgress: false});  
       }
       else if (state === 'disconnect') { 
         console.log('closing and reoping')
@@ -53,6 +56,8 @@ export class DialerApp extends React.Component {
    * Callback from Answerer components answer button
    */
   answerCall = () => { 
+    console.log('hello')
+    this.setState({inProgress: false}); 
     this.state.connection.accept(); 
   }
 
@@ -60,8 +65,8 @@ export class DialerApp extends React.Component {
    * Callback from Answerer components hangup button
    */
   hangupCall = () => { 
-    this.setState({isRinging: false}); 
     this.state.connection.reject(); 
+    this.setState({inProgress: false, isRinging: false}); 
   }
   
   componentDidMount(){
@@ -89,8 +94,18 @@ export class DialerApp extends React.Component {
   }
 
   render() {
-    
+  
     if (this.state.isRinging === true && this.props.caller !== null) { 
+      console.log('howdy'); 
+      const topRightCallInfo = (this.state.inProgress) ?  
+      <Answerer
+        callerImage={this.props.caller.photo} 
+        fullname={this.props.caller.firstName + ' ' + this.props.caller.lastName} 
+        onAnswer={() => this.answerCall()} 
+        onHangup={() => this.hangupCall()}/>
+      : 
+      <InProgress /> 
+      console.log('jsx', topRightCallInfo)
       return (
         <div>
           {(this.state.deviceErrorCode || this.state.deviceErrorMessage) && (
@@ -100,12 +115,7 @@ export class DialerApp extends React.Component {
               {this.state.deviceErrorMessage}
             </div>
           )}
-          <Answerer
-            callerImage={this.props.caller.photo} 
-            fullname={this.props.caller.firstName + ' ' + this.props.caller.lastName} 
-            onAnswer={() => this.answerCall()} 
-            onHangup={() => this.hangupCall()}/> 
-    
+          {topRightCallInfo}    
         </div>
       );
     } 
