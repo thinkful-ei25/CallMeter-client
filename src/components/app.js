@@ -6,7 +6,7 @@ import AppRouter from './appRouter';
 import DialerApp from './browserCall/DialerApp';
 import {refreshAuthToken, clearAuth} from '../actions/auth';
 import { clearAuthToken } from '../local-storage';
-import Phone from './contactPage/phone';
+// import Phone from './contactPage/phone';
 import { LandingPage } from './landingPage/LandingPage';
 
 export class App extends React.Component {
