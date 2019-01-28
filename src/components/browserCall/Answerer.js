@@ -21,7 +21,7 @@ export default class Phone extends React.Component {
           </div>
           <div className="PhoneRight">
              <div onClick={e => this.props.onAnswer()} className="callAccept">Accept</div>
-             <div onClick={e => this.props.onHangup()} className="callDecline">Decline</div> 
+             <div onClick={e => this.props.onReject()} className="callDecline">Decline</div> 
           </div>
         </div>
       </div>

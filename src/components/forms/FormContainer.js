@@ -9,7 +9,7 @@ export function FormContainer(props) {
   if (props.loggedIn) {
     return <Redirect to="/dashboard" />;
   }
-
+console.log('PROPS', props)
   const images = {
     '/setup/account': account,
     '/setup/phone': phone,
@@ -27,18 +27,21 @@ export function FormContainer(props) {
       <div className="form-container">
         <div className="img" style={imgStyle} />
         <div className="form-wrapper pad-50">
-          <Route path="/login" render={() => <LoginForm />} />
-          <Route path="/register" render={() => <RegisterForm />} />
-          <Route path="/setup/account" render={() => <AccountInfoForm />} />
-          <Route path="/setup/phone" render={() => <PhoneSetup/>} />
+          <Route exact path="/login" render={() => <LoginForm />} />
+          <Route exact path="/register" render={() => <RegisterForm />} />
+          <Route exact path="/setup/account" render={() => <AccountInfoForm />} />
+          <Route exact path="/setup/phone" render={() => <PhoneSetup/>} />
         </div>
       </div>
     </div>
   );
 }
 
-const mapStateToProps = state => ({
-  loggedIn: state.auth.currentUser !== null
-});
+const mapStateToProps = state => {
+  console.log('STATE ',state);
+  return ({
+    loggedIn: state.auth.currentUser !== null
+  })
+};
 
 export default withRouter(connect(mapStateToProps)(FormContainer));

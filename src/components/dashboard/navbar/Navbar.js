@@ -41,11 +41,11 @@ export class navBar extends React.Component {
 		return (
 			<div className="buttonContainer">
 				<div className="fixed">
-					<Link to="/invoices"><img  alt='navButton' className="aniButton" src={require("../../../resources/envelope.png")}></img></Link>
+					<Link to="/dashboard/invoices"><img  alt='navButton' className="aniButton" src={require("../../../resources/envelope.png")}></img></Link>
 					<Link to="/clients"><img alt='navButton' className="aniButton" src={require("../../../resources/icon.png")}></img></Link>
 					<Link to="/dashboard"><img  alt='navButton'className="aniButton" src="https://gallery.kissclipart.com/20180929/jqq/kissclipart-chart-black-and-white-clipart-bar-chart-clip-art-18a3aa13f1fdd7ed.png"></img></Link>
-					<Link to="/phones"><img  alt='navButton' className="aniButton" src={require("../../../resources/hashTag.png")}></img></Link>
-					<Link to="/calls"><img  alt='navButton' className="aniButton" src={require("../../../resources/volumePhone.png")}></img></Link>
+					<Link to="/dashboard/contacts"><img  alt='navButton' className="aniButton" src={require("../../../resources/hashTag.png")}></img></Link>
+					<Link to="/dashboard/call"><img  alt='navButton' className="aniButton" src={require("../../../resources/volumePhone.png")}></img></Link>
 					<img  alt='main' className="dots" src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png" onClick={e => this.startAnimation(e)}></img>
 				</div>
 			</div>
@@ -60,5 +60,4 @@ const mapStateToProps = state => {
   });
 }
 
-// Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
 export default withRouter(connect(mapStateToProps)(navBar));
