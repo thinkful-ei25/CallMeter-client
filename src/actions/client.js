@@ -1,6 +1,7 @@
 import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
 
+
 export const FETCH_CLIENT_REQUEST = 'FETCH_CLIENT_REQUEST';
 export const fetchClientRequest = () => ({
 	type: FETCH_CLIENT_REQUEST
@@ -39,7 +40,7 @@ export const setClient = (id) => ({
 export const fetchClients = () => (dispatch, getState) => {
 	dispatch(fetchClientRequest())
 	const authToken = getState().auth.authToken;
-	console.log('authtoken', authToken)
+	// console.log('authtoken', authToken)
 	return fetch(`${API_BASE_URL}/client/contacts`, {
 		method: 'GET',
 		headers: {
@@ -162,6 +163,7 @@ export const editClient = (values) => (dispatch, getState) => {
 			dispatch(fetchClientsError(err));
 		});
 };
+
 
 
 
