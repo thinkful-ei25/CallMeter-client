@@ -46,6 +46,7 @@ export class PhoneSetup extends React.Component {
   };
 
   render() {
+    console.log('testing');
     return (
       <div>
         <form className="form" onSubmit={this.handleFormSubmit}>
