@@ -26,12 +26,12 @@ export class LandingHeader extends React.Component {
             <div className="login header-item-login">
               <Link to="/login">
                 <strong>
-                  <a className="login-link">Login</a>
+                  <span className="login-link">Login</span>
                 </strong>
               </Link>
             </div>
             <div className="header-item" id="signup">
-              <Link to="/sign-up">
+              <Link to="/register">
                 <p className="button sign-up-button">Register</p>
               </Link>
             </div>

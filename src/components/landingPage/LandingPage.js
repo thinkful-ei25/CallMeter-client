@@ -1,29 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link, withRouter, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './LandingPage.css';
 import productShot from '../../resources/productShot.png';
 import { LandingHeader } from './LandingHeader';
 
-export class LandingPage extends React.Component {
-  handleClick(e) {
-    const footer = document.getElementsByClassName('footer')[0].offsetTop;
-    const sideBar = document.getElementsByClassName('sideBar')[0];
-    const leftover = document.getElementsByClassName('leftover')[0];
-    if (sideBar.clientWidth > 0) {
-      sideBar.style.height = '0px';
-      sideBar.style.width = '0px';
-      leftover.style.width = '100%';
-    } else {
-      sideBar.style.height = `${footer - 60}px`;
-      sideBar.style.width = '15%';
-      leftover.style.width = '85%';
-    }
-  }
+export default class LandingPage extends React.Component {
+
   render() {
-    if (this.props.loggedIn) {
-      return <Redirect to="/dashboard" />;
-    }
     return (
       <div>
         <LandingHeader />
@@ -131,13 +114,3 @@ export class LandingPage extends React.Component {
     );
   }
 }
-
-const mapStateToProps = state => {
-
-  return {
-    hasAuthToken: state.auth.authToken !== null,
-    loggedIn: state.auth.currentUser !== null
-  };
-};
-
-export default withRouter(connect(mapStateToProps)(LandingPage));

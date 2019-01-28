@@ -12,14 +12,6 @@ export class LoginForm extends React.Component {
   }
 
   render() {
-    let error;
-    if (this.props.error) {
-      error = (
-        <div className="form-error" aria-live="polite">
-          {this.props.error}
-        </div>
-      );
-    }
     return (
       <form
         className="form validate"
@@ -44,17 +36,20 @@ export class LoginForm extends React.Component {
           validate={[required, nonEmpty]}
         />
         <div className="form-button-container">
-					<div className="form-button-wrapper">
-          <button
-            className="form-button"
-            disabled={this.props.pristine || this.props.submitting}
+          <div className="form-button-wrapper">
+            <button
+              className="form-button"
+              disabled={this.props.pristine || this.props.submitting}
+            >
+              Login
+            </button>
+          </div>
+          <Link
+            className="link-text pad-right-30 pad-left-30 pad-top-10 pad-bottom-10"
+            to="/register"
           >
-            Login
-          </button>
-					</div>
-					<Link className="link-text pad-right-30 pad-left-30 pad-top-10 pad-bottom-10" to="/register">
-						or Sign-up
-					</Link>
+            or Sign-up
+          </Link>
         </div>
       </form>
     );

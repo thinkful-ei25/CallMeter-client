@@ -13,15 +13,6 @@ export class AddClient extends React.Component {
   }
 
   render() {
-    let error;
-    if (this.props.error) {
-      error = (
-        <div className="form-error" aria-live="polite">
-          {this.props.error}
-        </div>
-      );
-
-    }
     return (
       <form
         className="form validate"

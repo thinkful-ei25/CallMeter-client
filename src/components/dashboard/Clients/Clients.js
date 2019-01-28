@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import requiresLogin from '../../requires-login';
 import { fetchClients, deleteClient, setClient } from '../../../actions/client';
 import mainLogo from '../../../resources/logo.png';
-import ReactTable  from 'react-table';
+import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import AddClient from './AddClient';
 import EditClient from './EditClient';
@@ -81,11 +81,7 @@ export class Clients extends React.Component {
             row.phoneNumber.includes(this.state.searchTerm)
           );
         });
-			}
-			
-			const tableStyles = {
-
-			}
+      }
 
       const columns = [
         {
@@ -128,8 +124,8 @@ export class Clients extends React.Component {
         {
           Header: 'Actions',
           accessor: 'id',
-					sortable: false,
-				resizable: false,
+          sortable: false,
+          resizable: false,
           Cell: row => (
             <div>
               <button
@@ -232,30 +228,30 @@ export class Clients extends React.Component {
                     style: {
                       display: 'flex',
                       flexDirection: 'column',
-											justifyContent: 'center',
-										'border-top': '0px solid gainsboro',
-										'border-right': '0px solid rgba(0,0,0,0) !important'
-						}
-					})}
-									getTrProps={() => ({
-										className: "default-table-row"
-									})}
-									getTheadProps={()=> ({
-										className: "default-table-header"
-									})}
-									getTheadThProps={()=> ({
-										className: "default-table-headers"
-									})}
-									getTrGroupProps={() => ({
-										className: "default-table-rows"
-									})}
+                      justifyContent: 'center',
+                      borderTop: '0px solid gainsboro',
+                      borderRight: '0px solid rgba(0,0,0,0) !important'
+                    }
+                  })}
+                  getTrProps={() => ({
+                    className: 'default-table-row'
+                  })}
+                  getTheadProps={() => ({
+                    className: 'default-table-header'
+                  })}
+                  getTheadThProps={() => ({
+                    className: 'default-table-headers'
+                  })}
+                  getTrGroupProps={() => ({
+                    className: 'default-table-rows'
+                  })}
                   defaultPageSize={100}
-									showPageSizeOptions={true}
-									showPagination={false}
-									className="default-table"
-									pageSizeOptions = {[5, 10, 20, 25, 50, 100]}
-									minRows = {0}
-				/>
+                  showPageSizeOptions={true}
+                  showPagination={false}
+                  className="default-table"
+                  pageSizeOptions={[5, 10, 20, 25, 50, 100]}
+                  minRows={0}
+                />
               </div>
             </section>
           </div>
@@ -292,7 +288,6 @@ export class Clients extends React.Component {
     } else {
       return null;
     }
-
   }
 }
 

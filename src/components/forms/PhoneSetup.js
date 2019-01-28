@@ -46,15 +46,6 @@ export class PhoneSetup extends React.Component {
   };
 
   render() {
-    let error;
-    if (this.props.error) {
-      error = (
-        <div className="form-error" aria-live="polite">
-          {this.props.error}
-        </div>
-      );
-    }
-
     return (
       <div>
         <form className="form" onSubmit={this.handleFormSubmit}>
