@@ -9,7 +9,7 @@ export function FormContainer(props) {
   if (props.loggedIn) {
     return <Redirect to="/dashboard" />;
   }
-
+console.log('PROPS', props)
   const images = {
     '/setup/account': account,
     '/setup/phone': phone,
@@ -37,8 +37,11 @@ export function FormContainer(props) {
   );
 }
 
-const mapStateToProps = state => ({
-  loggedIn: state.auth.currentUser !== null
-});
+const mapStateToProps = state => {
+  console.log('STATE ',state);
+  return ({
+    loggedIn: state.auth.currentUser !== null
+  })
+};
 
 export default withRouter(connect(mapStateToProps)(FormContainer));

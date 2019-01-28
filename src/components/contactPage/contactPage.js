@@ -177,7 +177,6 @@ export class ContactPage extends React.Component {
 }
 
 const mapStateToProps = state => {
-	console.log('landing page state', state);
 	return ({
 		hasAuthToken: state.auth.authToken !== null,
 		loggedIn: state.auth.currentUser !== null,
@@ -187,5 +186,5 @@ const mapStateToProps = state => {
 	});
 }
 
-// Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
+
 export default withRouter(connect(mapStateToProps)(ContactPage));

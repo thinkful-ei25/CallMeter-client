@@ -246,10 +246,8 @@ export class Clients extends React.Component {
                     className: 'default-table-rows'
                   })}
                   defaultPageSize={100}
-                  showPageSizeOptions={true}
                   showPagination={false}
                   className="default-table"
-                  pageSizeOptions={[5, 10, 20, 25, 50, 100]}
                   minRows={0}
                 />
               </div>
