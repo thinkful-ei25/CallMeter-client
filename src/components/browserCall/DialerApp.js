@@ -11,16 +11,30 @@ export class DialerApp extends React.Component {
 
     super(props);
     this.state = {
-      isCallOnGoing: false, 
       token: '',
       deviceState: '',
       deviceErrorCode: '',
       deviceErrorMessage: '', 
       connection: {}, 
-      device: '', 
-      isConnected: false, 
-      progress: false
+      device: null, 
+      isIncomingCallOnGoing: false, 
+      isIncomingCallConnected: false, 
+      isOutgoingCallOnGoing: false, 
     };
+  }
+
+  componentDidMount() {
+    //POSSIBLE TWILIO DEVICE STATES
+    const twilioDeviceStates = 
+      ['cancel', 'connect', 'disconnect', 'ringing', 'error', 'incoming', 'offline', 'ready']; 
+    
+    //SETS TWILIO DEVICE STATE HANDLERS
+    twilioDeviceStates.forEach(twilioDeviceState => { 
+      this.handleAppStateChange(twilioDeviceState);  
+    }); 
+
+    //SETS UP DEVICE
+    this.setUpDevice(this.props.capabilityToken); 
   }
 
   setUpDevice = (capabilityToken) => { 
@@ -37,10 +51,16 @@ export class DialerApp extends React.Component {
         )
     });  
   }
-  
+
+  /**
+   * THIS IS CALLED WHEN THE TWILIO DEVICE STATE IS CHANGED
+   * state : is the twilio device state
+   * obj : is the twilio connection object
+   */
   handleAppStateChange = state => {
 
     Device.on(state, obj => {
+
       this.setState({deviceState: state, connection: obj});
       if (state === 'error'){ 
         this.setState({
@@ -49,28 +69,54 @@ export class DialerApp extends React.Component {
         }); 
       }
       else if (state === 'incoming'){ 
-        this.setState({isCallOnGoing: true, isConnected: true}); 
-        const callerNumber = obj.parameters.From; 
-        this.props.dispatch(fetchCallerFromContact(callerNumber)); 
+        this.incomingCallHandler(obj); 
       }
-      else if ( state === 'disconnect' || state === 'cancel' ){ 
-        console.log('disconnect or cancel'); 
-        this.setState({isCallOnGoing: false, isConnected: false});  
+      else if (state === 'cancel' ){ 
+        this.deviceCancelCallHandler(); 
       }
       else if (state === 'disconnect') { 
-        console.log('closing and reopening'); 
-        this.setUpDevice(this.props.capabilityToken); 
+        this.deviceDisconnectedHandler(); 
       }
     });
   }; 
 
+  deviceCancelCallHandler(){ 
+    console.log('##CANCEL HANDLER##'); 
+    this.setState({    
+      isIncomingCallOnGoing: false, 
+      isIncomingCallConnected: false, 
+      isOutgoingCallOnGoing: false, 
+    }); 
+  }
+
+  /**
+   * THE DEVICE HAS BEEN DISCONNECTED
+   * SET A NEW DEVICE
+   */
+  deviceDisconnectedHandler() { 
+    console.log('##DISCONNECT HANDLER##'); 
+    this.props.dispatch(hangupClient()); 
+    this.setState({isCallOnGoing: false, isConnected: false, device: null}, () => { 
+      this.endCall(); 
+      this.setUpDevice(this.props.capabilityToken); 
+    });  
+  }
+
+  incomingCallHandler(conn) { 
+    console.log('##INCOMING CALL HANDLER##'); 
+    this.setState({ isIncomingCallOnGoing: true, isIncomingCallConnected: false}, () => { 
+      this.props.dispatch(fetchCallerFromContact(conn.parameters.From)); 
+    }); 
+  }
   /**
    * INBOUND
    * Callback from Answerer components answer button
    */
   answerCall = () => { 
-    this.setState({isConnected: false}); 
-    this.state.connection.accept(); 
+    console.log('##ANSWERING INBOUND CALL##'); 
+    this.setState({ isIncomingCallOnGoing: true, isIncomingCallConnected: true}, () => { 
+      this.state.connection.accept(); 
+    }); 
   }
 
   /**
@@ -78,71 +124,52 @@ export class DialerApp extends React.Component {
    * Callback from Answerer components hangup button
    */
   rejectCall = () => { 
-    this.state.connection.reject(); 
-    console.log('reject')
-    this.setState({isConnected: false, isCallOnGoing: false}); 
+    console.log('##REJECTING INBOUND CALL##'); 
+    this.setState({ isIncomingCallOnGoing: false, isIncomingCallConnected: false}, () => { 
+      this.state.connection.reject(); 
+    }); 
   }
 
   /**
    * INBOUND
    */
   hangupCall = () => { 
-    console.log('hangupCall'); 
-    Device.disconnectAll(); 
-    this.setState({isConnected: true, isCallOnGoing: false}); 
+    console.log('##HANGUP INBOUND CALL##'); 
+    this.setState({ isIncomingCallOnGoing: false, isIncomingCallConnected: false}, () => { 
+      Device.disconnectAll(); 
+    }); 
   }
 
   /**
    * OUTBOUND 
+   * DISCONNECT THE DEVICE BEFORE USE
    */
   makeCall = () => {
-    const phoneNumber = this.props.outboundClient.phoneNumber; 
-    Device.connect({number: phoneNumber}); 
+    console.log('##MAKE OUTBOUND CALL##')
+    if (this.props.outboundClient != null) { 
+      this.setState({ isOutgoingCallOnGoing: true}, () => { 
+          Device.disconnectAll(); 
+          Device.connect({number: this.props.outboundClient.phoneNumber}); 
+      }); 
+    }
   }
 
   /**
    * OUTBOUND
    */
   endCall = () => {
-    console.log('#### ENDING CALL ####'); 
+    console.log('##END OUTBOUND CALL##')
     this.props.dispatch(hangupClient()); 
-    this.endProgress(); 
-    Device.disconnectAll(); 
-  };
-  
-  componentDidMount() {
-    const twilioDeviceStates = ['cancel', 'connect', 'disconnect', 'ringing', 'error', 'incoming', 'offline', 'ready']; 
-    twilioDeviceStates.forEach(twilioDeviceState => { 
-      this.handleAppStateChange(twilioDeviceState);  
-    }); 
-
-    this.setUpDevice(this.props.capabilityToken); 
-  }
-
- 
-  handleCallButtonClick = () => {
-    if (this.props.outboundClient != null) { 
+    this.setState({ isOutgoingCallOnGoing : false}, () => { 
       Device.disconnectAll(); 
-      this.makeCall();    
-    }
-  }
-
-  startProgress = () => { 
-    this.setState({progress: true})
-  }
-  endProgress = () => { 
-    this.setState({progress: false})
-  }
-
-
-
-  //INBOUND: I HUNG UP, HANGUP WON'T GO AWAY
-
-  render() {
+    })
+  };
    
-    if (this.state.isCallOnGoing === true && this.props.caller !== null) { 
-      console.log('isConnected', this.state.isConnected); 
-      const topRightCallInfo = (this.state.isConnected) ?  
+  render() {
+    //INCOMING CALLS
+    //RETURN EITHER ANSWERER OR INPROGRESS
+    if (this.state.isIncomingCallOnGoing) { 
+      return (this.state.isIncomingCallConnected) ?  
         <Answerer
           callerImage={this.props.caller.photo} 
           fullname={this.props.caller.firstName + ' ' + this.props.caller.lastName} 
@@ -150,32 +177,18 @@ export class DialerApp extends React.Component {
           onReject={() => this.rejectCall()}/>
         : 
         <InProgress hangup={() => this.hangupCall() } /> 
-        console.log('jsx', topRightCallInfo)
-      return (
-        <div>
-          {(this.state.deviceErrorCode || this.state.deviceErrorMessage) && (
-            <div>
-              <button onClick={this.handleNotifcationDismiss} />
-              Device Error {this.state.deviceErrorCode}:{' '}
-              {this.state.deviceErrorMessage}
-            </div>
-          )}
-          {topRightCallInfo}    
-        </div>
-      );
-    } 
-    //outbound call start
-    if (this.props.outboundClient !== null && this.state.progress === false) { 
-      this.startProgress(); 
-      this.handleCallButtonClick(); 
     }
 
-    if (this.state.progress) { 
-      console.log('call in progress'); 
+    //OUTGOING
+    //WE RECEIVED AN OUTBOUND CLIENT AND THE CALL IS NOT ONGOING
+    if (this.props.outboundClient !== null && !this.state.isOutgoingCallOnGoing) { 
+      this.makeCall();  
+    }
+
+    if (this.state.isOutgoingCallOnGoing) { 
       return (
         <div> 
           <InProgress hangup={() => { 
-            console.log('hangingup in pogress'); 
             this.endCall();          
           }
         } /> 
@@ -183,18 +196,9 @@ export class DialerApp extends React.Component {
       );
     }
 
+    //IF ALL ELSE FAILS RETURN AN EMPTY DIV
     return (
       <div>
-      
-         <section>
-          {(this.state.deviceErrorCode || this.state.deviceErrorMessage) && (
-            <div>
-              <button onClick={this.handleNotifcationDismiss} />
-              Device Error {this.state.deviceErrorCode}:{' '}
-              {this.state.deviceErrorMessage}
-            </div>
-          )}
-          </section> 
       </div>
     ); 
   }
