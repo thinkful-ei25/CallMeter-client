@@ -128,33 +128,7 @@ export class Clients extends React.Component {
 						resizable: false,
 						Cell: row => (
 							<div>
-								<button
-									className="contact-button edit"
-									onClick={() => {
-										this.setState({
-											editingClient: this.props.client.filter(
-												client => row.value === client.id
-											)[0]
-										});
-
-										this.toggleEditClientForm();
-									}}
-								>
-									Edit
-							</button>
-
-								<button
-									className="contact-button delete"
-									onClick={() => {
-										this.props
-											.dispatch(deleteClient(row.value))
-											.then(this.props.dispatch(fetchClients()));
-									}}
-								>
-									<span aria-label="x" role="img">
-										Delete
-								</span>
-								</button>
+							
 
 								<button
 									className="contact-button call"

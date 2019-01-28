@@ -136,7 +136,7 @@ export class AddClient extends React.Component {
 						id="category"
 
 					>
-						<option value="Client">Client</option>
+						<option selected value="Client">Client</option>
 						<option value="Friend">Friend</option>
 						<option value="Enemy">Enemy</option>
 					</Field>

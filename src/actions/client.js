@@ -72,6 +72,8 @@ export const fetchOneClient = (id) => (dispatch, getState) => {
 		.then(res => normalizeResponseErrors(res))
 		.then(res => res.json())
 		.then((data) => {
+			data.phoneNumber = data.phoneNumber.slice(2, 5) + '-' + data.phoneNumber.slice(5, 8)
+			+ '-' + data.phoneNumber.slice(8,)
 			dispatch(fetchClientsSuccess(data))
 		})
 		.catch(err => dispatch(fetchClientsError(err)))
@@ -157,7 +159,7 @@ export const editClient = (values) => (dispatch, getState) => {
 		.then(res => res.json())
 		.then((data) => {
 			console.log('put result data', data)
-			dispatch(fetchClients())
+			dispatch(fetchOneClient(data.id))
 		})
 		.catch(err => {
 			dispatch(fetchClientsError(err));
