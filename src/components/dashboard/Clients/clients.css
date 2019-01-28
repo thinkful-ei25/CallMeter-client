@@ -140,6 +140,11 @@ body {
     font-size: 1.2em;  
 }
 
+.section-heading-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 
 .table-header-cell {
     width: 15%;
@@ -238,12 +243,7 @@ margin-bottom: 8px;
    
 }
 
-.addClientButton {
-    padding: 5px 5px;
-    background-color: dodgerblue;
-    border-radius: 15px;
-    color: white;
-}
+
 
 
 
@@ -363,4 +363,9 @@ border: 0 solid rgba(0,0,0,0);
 .delete {
     background-color: #F34541;
     color: #ffffff;
+}
+
+.contacts-dropdown {
+    border: none;
+    background-color: white;
 }
