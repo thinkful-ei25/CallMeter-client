@@ -215,6 +215,7 @@ margin-bottom: 8px;
 .backButton {
     border: 1px black solid;
     background-color: white;
+    margin-top: 5%;
 }
 .formHeader {
     background-color: #B0E57C;
@@ -309,13 +310,17 @@ border: 0 solid rgba(0,0,0,0);
     display: flex;
     padding: 1em 1.5em 1em 1.5em;
     border-right: 0px solid rgba(0,0,0,0.0) !important;
-    width: 98%
+    width: 98%;
+    
+    
 }
 
 .default-table-headers {
     display: flex;
     padding: 16px 24px 16px 24px !important;
     border-right: 0px solid rgba(0,0,0,0.0) !important;
+    
+    
 
 }
 
@@ -372,4 +377,6 @@ border: 0 solid rgba(0,0,0,0);
 
 .deleteClient {
     display: inline-block;
+    margin-top: 10%;
 }
+
