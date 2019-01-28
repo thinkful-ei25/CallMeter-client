@@ -3,7 +3,7 @@ import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 import { loadAuthToken } from './local-storage';
 import authReducer from './reducers/auth';
-// import protectedDataReducer from './reducers/protected-data';
+import callStatsReducer from './reducers/callStats.reducer';
 import clientReducer from './reducers/client'
 import dialerReducer from './reducers/dialer.reducer'; 
 import { setAuthToken, refreshAuthToken } from './actions/auth';
@@ -13,7 +13,8 @@ const store = createStore(
 		form: formReducer,
 		auth: authReducer,
 		dialer: dialerReducer, 
-		client: clientReducer
+		client: clientReducer,
+		callStats: callStatsReducer
 	}),
 	applyMiddleware(thunk)
 );
