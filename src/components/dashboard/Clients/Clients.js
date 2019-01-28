@@ -2,21 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import requiresLogin from '../../requires-login';
-import { fetchClients, deleteClient, setClient } from '../../../actions/client';
+import { fetchClients, setClient } from '../../../actions/client';
 import mainLogo from '../../../resources/logo.png';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import AddClient from './AddClient';
-import EditClient from './EditClient';
 import './clients.css';
 import { dialClient } from '../../../actions/dialer.action';
+import SubNav from './SubNav'
+
 export class Clients extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			adding: false,
-			editing: false,
-			editingClient: null,
 			searchTerm: '',
 			view: 'clients'
 		};
@@ -30,11 +29,6 @@ export class Clients extends React.Component {
 		this.setState({ adding: !this.state.adding });
 	}
 
-	toggleEditClientForm() {
-		this.setState({ editing: !this.state.editing });
-		console.log(this.state);
-	}
-
 	toggleView(e) {
 		this.setState({ view: e.target.value });
 		console.log(this.state);
@@ -45,6 +39,12 @@ export class Clients extends React.Component {
 		this.props.dispatch(setClient(id));
 	}
 
+	setSearchTerm(e) {
+		this.setState({
+			searchTerm: e.target.value
+		})
+	}
+
 	render() {
 		if (this.props.loading) {
 			return <div>loading...</div>;
@@ -52,8 +52,7 @@ export class Clients extends React.Component {
 
 		if (
 			Array.isArray(this.props.client) &&
-			!this.state.adding &&
-			!this.state.editing
+			!this.state.adding
 		) {
 			let clients = this.props.client;
 			console.log('clients:', clients);
@@ -128,7 +127,7 @@ export class Clients extends React.Component {
 						resizable: false,
 						Cell: row => (
 							<div>
-							
+
 
 								<button
 									className="contact-button call"
@@ -215,44 +214,19 @@ export class Clients extends React.Component {
 						</div>
 					</header>
 					<div className="app-container">
-						<section id="sub-nav">
-							<div className="sub-nav">
-								<div className="sub-nav-row">
-									<div className="contact-search">
-										<span>⌕</span>
-										<input
-											className="search"
-											type="search"
-											name="searchBox"
-											value={this.state.searchTerm}
-											onChange={e =>
-												this.setState({ searchTerm: e.target.value })
-											}
-											placeholder="Search by name"
-										/>
-									</div>
-									<div className="add-contact">
-										
-										<button
-											className="add-contact-button"
-											onClick={() => this.toggleAddClientForm()}
-										>
-											+ Add Contact{' '}
-										</button>
-									</div>
-								</div>
-							</div>
-						</section>
-
+						<SubNav
+							toggleAddClientForm={() => this.toggleAddClientForm()}
+							setSearchTerm={(e) => this.setSearchTerm(e)}
+							searchTerm={this.state.searchTerm} />
 						<section className="contacts">
 							<div className="section-heading-container">
-							<span className="section-heading">Your Clients</span>
-							<select value={this.state.view} onChange={e => this.toggleView(e)} className="contacts-dropdown">
-											<option value="clients">Contacts</option>
-											<option value="stats">Stats</option>
-										</select>
-										
-										</div>
+								<span className="section-heading">Your Clients</span>
+								<select value={this.state.view} onChange={e => this.toggleView(e)} className="contacts-dropdown">
+									<option value="clients">Contacts</option>
+									<option value="stats">Stats</option>
+								</select>
+
+							</div>
 							<div className="section-container">
 								<ReactTable
 									data={clients}
@@ -297,15 +271,6 @@ export class Clients extends React.Component {
 					<AddClient toggle={() => this.toggleAddClientForm()} />
 				</div>
 			);
-		} else if (this.state.editing) {
-			return (
-				<div className="topFormContainer noLine">
-					<EditClient
-						initialValues={this.state.editingClient}
-						toggle={() => this.toggleEditClientForm()}
-					/>
-				</div>
-			);
 		} else {
 			return null;
 		}
@@ -319,13 +284,11 @@ const mapStateToProps = state => {
 		// username: state.auth.currentUser.username,
 		// name: `${currentUser.firstName} ${currentUser.lastName}`,
 		client: state.client.data,
-		// protectedData: state.protectedData.data
+	
 		loading: state.client.loading
 
 
 	};
 };
-
-// export default requiresLogin()(connect(mapStateToProps)(Dashboard));
 
 export default requiresLogin()(connect(mapStateToProps)(Clients));

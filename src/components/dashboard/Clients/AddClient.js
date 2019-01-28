@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import  FileInput from '../../forms/FileInput';
+import FileInput from '../../forms/FileInput';
 import Input from '../../forms/Input';
 import { required, nonEmpty, phoneCheck, normalizePhone, emailCheck } from '../../../validators';
 import { addClient } from '../../../actions/client';
@@ -154,10 +154,6 @@ export class AddClient extends React.Component {
 						name="photo64"
 						id="photo64"
 					/>
-
-
-
-
 					<button className="signUpButton" disabled={this.props.pristine || this.props.submitting}>
 						Submit
                 </button>
