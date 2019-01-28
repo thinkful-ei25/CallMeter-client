@@ -206,7 +206,6 @@ export class Clients extends React.Component {
 								/>
 							</div>
 						</Link>
-
 						<div className="header-profile">
 							<Link to="/">
 								<span className="header-profile-user">Howdy</span>
