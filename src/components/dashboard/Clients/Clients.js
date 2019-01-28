@@ -60,7 +60,7 @@ export class Clients extends React.Component {
 			clients.forEach(row => {
 				let fullName = row.firstName + ' ' + row.lastName;
 				row.fullName = (
-					<Link to="/dashboard/contacts" onClick={e => this.setClient(row.id)}>
+					<Link to={`/clients/${row.id}`} onClick={e => this.setClient(row.id)}>
 						{fullName}
 					</Link>
 				);

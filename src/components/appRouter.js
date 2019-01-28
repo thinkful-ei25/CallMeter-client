@@ -7,7 +7,7 @@ import Invoices from './dashboard/Invoices';
 import NavBar from '../components/dashboard/navbar/Navbar';
 import Clients from './dashboard/Clients/Clients';
 import Dashboard from './dashboard/dashboard';
-import Contacts from './contactPage/contactPage';
+import ContactPage from './contactPage/contactPage';
 import FormContainer from '../components/forms/FormContainer';
 
 const AppRouter = () => (
@@ -18,7 +18,7 @@ const AppRouter = () => (
       <Route exact path="/dashboard/call" component={MakeCall} />
       <Route exact path="/dashboard/invoices" component={Invoices} />
       <Route exact path="/dashboard/clients" component={Clients} />
-      <Route exact path="/dashboard/contacts" component={Contacts} /> 
+      <Route exact path="/clients/:clientId" component={ContactPage} /> 
       
       <NavBar />
   </div>

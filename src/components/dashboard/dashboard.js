@@ -7,6 +7,7 @@ import Stats from './Stats';
 import Invoices from './Invoices';
 import Clients from './Clients/Clients';
 import NavBar from './navbar/Navbar';
+import ContactPage from '../contactPage/contactPage'
 
 import './dashboard.css';
 
@@ -25,6 +26,7 @@ export class Dashboard extends React.Component {
       <Route exact path="/dashboard" component={Stats} />
       <Route exact path="/invoices" component={Invoices} />
       <Route exact path="/clients" component={Clients} />
+      <Route exact path="/clients/:clientId" component={ContactPage} />
       <NavBar />
     </div>
 	);

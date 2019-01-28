@@ -5,20 +5,20 @@ import anime from 'animejs';
 import './contactPage.css';
 import { fetchOneClient, setClient } from '../../actions/client'
 
-import { saveClientId, loadClientId, clearClientId } from '../../local-storage'
+// import { saveClientId, loadClientId, clearClientId } from '../../local-storage'
 
 
 // const { twilio } = window;
 export class ContactPage extends React.Component {
 	componentDidMount() {
 		console.log('clientid in componentdidmount', this.props.clientId)
-		if (!this.props.clientId) {
-			this.props.dispatch(fetchOneClient(loadClientId()))
-		}
-		else {
-			this.props.dispatch(fetchOneClient(this.props.clientId))
-			saveClientId(this.props.clientId)
-		}
+		// if (!this.props.clientId) {
+		// 	this.props.dispatch(fetchOneClient(loadClientId()))
+		// }
+		// else {
+		this.props.dispatch(fetchOneClient(this.props.clientId))
+		// 		saveClientId(this.props.clientId)
+		// 	}
 	}
 
 
@@ -58,7 +58,7 @@ export class ContactPage extends React.Component {
 					return (<div className="individualInvoice">
 						<h4 className="invoiceStatus stackedElements">Status (coming)</h4>
 						<h2 className="stackedElements">{invoice.month + ' ' + invoice.year} Invoice ${invoice.amount}</h2>
-						<p clasName="stackedElements">Sent {invoice.sentDate + ' - ' + (invoice.paid ? 'Paid ' + invoice.paidDate : 'Unpaid')}</p>
+						<p className="stackedElements">Sent {invoice.sentDate + ' - ' + (invoice.paid ? 'Paid ' + invoice.paidDate : 'Unpaid')}</p>
 					</div>)
 				})
 			}
