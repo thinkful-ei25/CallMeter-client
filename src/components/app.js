@@ -44,7 +44,7 @@ export class App extends React.Component {
         <Route exact path="/register" component={FormContainer} />
         <Route exact path="/setup" component={Setup} />
         <Route exact path="/" component={LandingPage} />
-        <DashboardRoutes />
+        {DashboardRoutes}
       </div>
     );
   }
