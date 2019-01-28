@@ -1,0 +1,414 @@
+.form-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.img {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: calc(100% - 520px);
+  position: relative;
+}
+
+.img::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background:rgb(202, 43, 89);
+  opacity: 0.8;
+}
+
+.form-wrapper {
+  width: 520px;
+  min-height: 100vh;
+  background: #ffffff;
+  border-radius: 2px;
+  position: relative;
+}
+
+.form {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-title {
+  display: block;
+  width: 100%;
+  font-size: 39px;
+  color: #333;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.input-wrapper {
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid #dbdbdb;
+  margin-bottom: 45px;
+}
+
+.validate-input {
+  position: relative;
+}
+
+.label-input {
+  font-size: 18px;
+  color: #999;
+  line-height: 1.2;
+  padding-left: 2px;
+}
+
+.input-fields {
+  display: block;
+  width: 100%;
+  height: 50px;
+  background: 0 0;
+  font-size: 22px;
+  color: #555;
+  line-height: 1.2;
+  padding: 0 2px;
+}
+
+.form-button-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-button-wrapper {
+  display: block;
+  position: relative;
+  z-index: 1;
+  border-radius: 8px;
+  border: 2px solid #61d395;
+  overflow: hidden;
+}
+
+.form-button {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  min-width: 244px;
+  height: 50px;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+  background: #61d395;
+}
+
+.form-button:hover {
+  background: #ffffff;
+  color: #61d395;
+}
+
+
+/* FROM REGISTRATION */
+
+/* .registrationDescription{
+    margin-top: 0;
+    text-align:center;
+    position: relative;
+    margin-bottom: 5%;
+}
+
+.centerTitle{
+    margin-top: 5%;
+    text-align: center;
+    line-height: 0;
+}
+
+.title{
+    color: #777777;
+    font-weight: bold;
+    font-size: 2em;
+    padding: 0;
+    margin-bottom: 0;
+    
+    
+}
+
+.registrationPageContainer {
+      border: 1px;
+      width: 60%;
+      margin-left: 20%; 
+      background-color: white;
+      height: 75vh;
+      margin-top: 2.5vh;
+}
+
+.center{
+    text-align: center;
+}
+
+.shadow{ 
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15); 
+}
+
+.fullPage {
+    background-color: #f2f2f5;
+    height: 80vh;
+    overflow: hidden;
+}
+
+.topFormContainer {
+    width: 80%;
+    margin-left: 10%;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    padding-top: 3%;
+    position: relative;
+}
+
+
+.signUpButton {
+    margin: 10px 0;
+    background-color: transparent;
+    border: 1px solid gray;
+    border-radius: 15%;
+    cursor: pointer;
+    padding: 15px;
+    font-size: 16px;
+} */
+
+.login-link {
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+/* .vhFooter {
+    height: 10vh;
+    background-color: pink;
+}
+.vhHeader {
+    height: 10vh;
+    background-color: pink;
+} */
+
+/* .noLine {
+    border-bottom: none
+} */
+
+.form-error {
+    color: red;
+}
+.form-warning {
+    color:orangered;
+}
+
+/* .bottom-buttons {
+    margin-top: .4%;   
+} */
+
+
+/* GLOBAL STYLES */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.pad-50 {
+  padding: 50px;
+}
+
+.pad-right-50 {
+  padding-right: 50px;
+}
+
+.pad-right-30{
+    padding-right: 30px;
+}
+
+.pad-left-50 {
+  padding-left: 50px;
+}
+
+.pad-left-30{
+    padding-left: 30px;
+}
+
+.pad-bottom-50 {
+  padding-bottom: 50px;
+}
+
+.pad-bottom-10{
+    padding-bottom: 10px;
+}
+
+.pad-bottom-30{
+    padding-bottom: 30px;
+}
+
+.pad-top-70 {
+  padding-top: 70px;
+}
+
+.pad-top-30 {
+  padding-top: 30px;
+}
+
+.pad-top-10 {
+    padding-top: 10px;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+.link-text {
+    display: block;
+    font-size: 16px;
+    color: #066b98;
+    line-height: 1.4;
+}
+
+button {
+  outline: none !important;
+  border: none;
+  background: 0 0;
+}
+
+
+.number-search-title {
+  display: block;
+  width: 100%;
+  font-size: 24px;
+  color: #333;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.marg-bottom-10 {
+  margin-bottom: 10px;
+}
+.number-search-results {
+  overflow-y: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  height: 160px;
+  width: 100%;
+  padding: 10px;
+}
+
+[name='number'] {
+  position: fixed;
+  opacity: 0;
+}
+
+.num-across {
+  width: 44%;
+  display: block;
+  float: left;
+  margin: 2% 0 1% 4%;
+}
+
+.num-across:nth-chidl(odd) {
+margin-left:0;
+}
+
+@media (max-width: 600px) {
+  .num-across {
+  width: 45%;
+  }
+}
+
+.result-number {
+  letter-spacing: .3px;
+  position: relative;
+  color: rgb(34, 34, 34);
+  background-color: #fff;
+  font-size: 12px;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  display: block;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid #066b98;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+input:checked + label {
+  border: 1px solid #066b98;
+  background-color: #066b98;
+    color: #fff;
+}
+
+input:checked + label:after {
+  content: '\2713';
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  border-radius: 100%;
+  border: 1px solid #2fcc71;
+  background-color: #2fcc71;
+  z-index: 999;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
+.submit {
+  padding: 15px 60px;
+  display: inline-block;
+  border: none;
+  margin: 20px 0;
+  background-color: #2fcc71;
+  color: #fff;
+  border: 2px solid #333;
+  font-size: 18px;
+  -webkit-transition: transform 0.3s ease-in-out;
+  -o-transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+.submit:hover {
+  cursor: pointer;
+  transform: rotateX(360deg);
+}
+
+
+

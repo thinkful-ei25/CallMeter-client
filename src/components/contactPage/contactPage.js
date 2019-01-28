@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import anime from 'animejs';
 import './contactPage.css';
 import { fetchOneClient, setClient } from '../../actions/client'
-import Phone from './phone';
+
 import { saveClientId, loadClientId, clearClientId } from '../../local-storage'
 
 

@@ -1,16 +1,18 @@
-// 'use strict';
+'use strict';
 
 import React from 'react';
-import PhoneButtons from './PhoneButtons';
-// import Answerer from './Answerer'; 
 import { Device } from "twilio-client";
-const countryCode = '+1';
+import { connect } from 'react-redux';
+import InProgress from './InProgress'; 
+import './dialer.css'; 
 
-export default class Dialer extends React.Component {
+const countryCode = '+1';
+export  class Dialer extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      number: ''
+      number: '', 
+      inProgress: true
     };
   }
 
@@ -20,27 +22,39 @@ export default class Dialer extends React.Component {
   };
 
   handleButtonPress = (buttonPressed) => {
-    this.setState((state) => ({
+    this.setState(state => ({
       number: state.number + buttonPressed
     }));
     console.log('#### Keypad press ' + this.state.number + '  ####')
   };
-
 
   handleCallButtonClick = () => {
    this.makeCall();
   }
 
   makeCall = () => {
-    const phoneNumber = countryCode + this.state.number.replace(/^0/,'')
-    console.log('#### Making Call to' + phoneNumber + '  ####')
-    Device.connect({number: phoneNumber});
+    const phoneNumber = this.props.outboundClient.phoneNumber; 
+    Device.connect({number: phoneNumber}); 
   }
 
   endCall = () => {
-    console.log('#### ENDING CALL ####')
-    Device.disconnectAll();
+    console.log('#### ENDING CALL ####'); 
+    Device.disconnectAll(); 
   };
+
+  handleCallButtonClick = () => {
+    if (this.props.outboundClient != null) { 
+      this.makeCall(this.props.outboundClient, this.state.token);
+    }
+  }
+
+  startProgress = () => { 
+    this.setState({progress: true})
+  }
+  endProgress = () => { 
+    this.setState({progress: false})
+    console.log('hi');
+  }
 
   callStatus = () => {
     switch(this.props.deviceState) {
@@ -55,30 +69,29 @@ export default class Dialer extends React.Component {
   callIsActive = () => this.props.deviceState = 'connect';
 
   render () {
+    if (this.props.outboundClient !== null) { 
+      console.log('hello')
+      this.handleCallButtonClick(); 
+        return (
+          <div> 
+            <InProgress hangup={() => { 
+              console.log('hangingup inpogress'); 
+              this.endCall();          
+            }
+          } /> 
+          </div>  
+        );
+      }
     return (
-      <div>
-        <div id="phoneNumberField">
-          <div>
-            <span id="countryCode">{countryCode}</span>
-          </div>
-          <div>
-            <input type="text" value={this.state.number} onChange={this.handleButtonPress} />
-          </div>
-
-          <div>
-            <PhoneButtons onChange={this.handleButtonPress} />
-          </div>
-
-          <div id="callButtonField">
-            <button onClick={this.handleCallButtonClick}>
-            <span>Call Now</span>
-            </button>
-          </div>
-          <p>{this.callStatus()}</p>
-        </div>
-      </div>
-    );
+      <div></div>
+    )
   }
-
-
 }
+
+const mapStateToProps = state => {
+	return {
+    outboundClient : state.dialer.outboundClient
+	};
+};
+
+export default connect(mapStateToProps)(Dialer);

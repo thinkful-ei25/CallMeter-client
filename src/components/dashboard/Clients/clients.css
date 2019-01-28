@@ -1,3 +1,207 @@
+.app-header {
+    padding: 0 2.5%;
+    background: #FFFFFF;
+    border-bottom: 1px solid #E4E8EB;
+    width: 100%;
+    min-height: 60px;
+    height: auto;
+    padding: 0 5%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-header .logo {
+    order: 1;
+    z-index: 9;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.header-profile {
+    cursor: pointer;
+    z-index: 1000;
+    text-align: right;
+    margin-left: auto;
+    order: 3;
+}
+
+.header-profile-user {
+    display: block;
+    font-size: .9em;
+    font-weight: 500;
+    line-height: 1;
+    color: #323648;
+}
+
+body {
+           background-color: #F7F8F9
+}
+
+
+.app-container {
+    opacity: 1;
+    transform: none;
+    transition: all .2s ease;
+       background-color: #F7F8F9
+}
+
+.sub-nav {
+    width: 100%;
+    background-color: rgba(255,255,255,0.9);
+    backdrop-filter: saturate(180%) blur(5px);
+    height: 60px;
+    border-bottom: 1px solid #E4E8EB;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 999;
+    overflow: hidden;
+}
+
+.sub-nav-row{
+    width: 100%;
+    padding: 0 0 0 2.5%;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    position: relative;
+    margin: 0px auto;
+}
+
+.sub-nav .sub-nav-row div {
+    display: inline-flex;
+    align-items: center;
+}
+
+.contact-search {
+    margin-left: 31px;
+    padding: 0 32px;
+    width: 100%;
+    max-width: 400px;
+    border-right: 1px solid #E4E8EB;
+    margin-right: auto;
+    border-left: 1px solid #E4E8EB;
+}
+
+.sub-nav-row span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub-nav-row input[type="search"] {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 0;
+    padding-left: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.add-contact {
+    align-self: initial !important;
+}
+
+.add-contact-button {
+    background: #5078EE;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    padding: 0px 25px;
+    margin: 0;
+    color: #ffffff;
+
+}
+
+
+
+.contacts {
+   margin-top: 60px;
+   margin-right: 6%;
+   margin-left: 6%;
+
+}
+
+.section-heading {
+    text-align: left;
+    display: block;
+    color: #323648;
+    font-weight: 600;
+    margin-bottom: 1em;
+    font-size: 1.2em;  
+}
+
+
+.table-header-cell {
+    width: 15%;
+    font-size: 14px;
+}
+
+.table-body {
+    margin: 0;
+    padding: 0;
+}
+
+.table-row{
+background: #ffffff;
+box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);
+overflow: hidden;
+margin-bottom: 8px;
+}
+
+.avatar {
+    width: 10%;
+}
+
+.table-cell-photo {
+    display: block;
+    height: 45px;
+    width: 45px;
+    border: 1px solid #9787b7;
+    border-radius: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.default-text {
+    font-size: 16px;
+    padding-right: 2%;
+    font-weight: 500;
+    width: 70%;
+    font-size: 18px;
+    color: #323648;
+    height: 28px;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.phone-text {
+    padding-right: 2%;  
+    color: #323648;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+
+
+
+
 .navButton {
     border: none;
     background-color: white;
@@ -43,16 +247,17 @@
 
 
 
-.searchBoxContainer {
+/* .searchBoxContainer {
     width: 33%;
     text-align: center;
     padding: 2%;
     display: flex;
     align-items: center;
-    
-}
 
-.searchBox {
+}
+*/
+
+/* .searchBox {
     width: 75%;
     margin-left: 2%;
     
@@ -61,16 +266,13 @@
 .searchLabel {
     
     font-size: 40px;
-}
+} */
 
 .contactImage {
     margin: 0 auto;
     height: 50px;
     width: 50px;
     border-radius: 50%
-}
-.rt-td {
-    border-top: 1px solid gainsboro;
 }
 
 .clientFormPhotoLabel {
@@ -79,3 +281,86 @@
 }
 
 
+
+
+.default-table {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+border: 0 solid rgba(0,0,0,0);
+}
+
+.default-table * {
+  box-sizing: border-box;
+}
+
+
+.table-body {
+    display:block;
+}
+
+
+.default-table-header {
+    display: flex;
+    padding: 1em 1.5em 1em 1.5em;
+    border-right: 0px solid rgba(0,0,0,0.0) !important;
+    width: 98%
+}
+
+.default-table-headers {
+    display: flex;
+    padding: 16px 24px 16px 24px !important;
+    border-right: 0px solid rgba(0,0,0,0.0) !important;
+
+}
+
+.default-table-rows {
+    margin: 0;
+    padding: 0;
+    border-bottom: solid 0px rgba(0,0,0,0.00) !important;
+    width: 98%
+}
+
+.default-table-row {
+    background: #FFFFFF;
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.03);
+    overflow: hidden;
+    margin-bottom: 10px; 
+}
+
+.ReactTable .rt-thead.-header {
+    box-shadow: 0 0px 0px 0 rgba(0,0,0,0.0);
+}
+
+.contact-button {
+  line-height: 1;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 5px;
+  color: #fff;
+  padding: 4px 7px
+}
+
+.call {
+  background-color: dodgerblue;
+}
+
+.delete {
+    background-color: rgb(31,135,255);
+    margin-right: 4px;
+}
+
+.edit {
+    background-color: rgb(49, 175,113);
+    margin-right: 4px;
+}
+
+.delete {
+    background-color: #F34541;
+    color: #ffffff;
+}
