@@ -23,6 +23,21 @@ export class DialerApp extends React.Component {
     };
   }
 
+  setUpDevice = (capabilityToken) => { 
+    this.setState({ token: capabilityToken });
+
+    this.setState({ 
+      device: 
+        Device.setup(
+          capabilityToken, {
+            debug: true, 
+            enableRingingState: true, 
+            allowIncomingWhileBusy: true
+           }
+        )
+    });  
+  }
+  
   handleAppStateChange = state => {
 
     Device.on(state, obj => {
@@ -50,15 +65,16 @@ export class DialerApp extends React.Component {
   }; 
 
   /**
+   * INBOUND
    * Callback from Answerer components answer button
    */
   answerCall = () => { 
-    console.log('hello')
     this.setState({isConnected: false}); 
     this.state.connection.accept(); 
   }
 
   /**
+   * INBOUND
    * Callback from Answerer components hangup button
    */
   rejectCall = () => { 
@@ -67,11 +83,32 @@ export class DialerApp extends React.Component {
     this.setState({isConnected: false, isCallOnGoing: false}); 
   }
 
+  /**
+   * INBOUND
+   */
   hangupCall = () => { 
-    // console.log('hangupCall'); 
+    console.log('hangupCall'); 
     Device.disconnectAll(); 
-    this.setState({isConnected: false, isCallOnGoing: false}); 
+    this.setState({isConnected: true, isCallOnGoing: false}); 
   }
+
+  /**
+   * OUTBOUND 
+   */
+  makeCall = () => {
+    const phoneNumber = this.props.outboundClient.phoneNumber; 
+    Device.connect({number: phoneNumber}); 
+  }
+
+  /**
+   * OUTBOUND
+   */
+  endCall = () => {
+    console.log('#### ENDING CALL ####'); 
+    this.props.dispatch(hangupClient()); 
+    this.endProgress(); 
+    Device.disconnectAll(); 
+  };
   
   componentDidMount() {
     const twilioDeviceStates = ['cancel', 'connect', 'disconnect', 'ringing', 'error', 'incoming', 'offline', 'ready']; 
@@ -82,36 +119,13 @@ export class DialerApp extends React.Component {
     this.setUpDevice(this.props.capabilityToken); 
   }
 
-  setUpDevice = (capabilityToken) => { 
-    this.setState({ token: capabilityToken });
-
-    this.setState({ 
-      device: 
-        Device.setup(
-          capabilityToken, {
-            debug: true, 
-            enableRingingState: true, 
-            allowIncomingWhileBusy: true
-           }
-        )
-    });  
-  }
-
+ 
   handleCallButtonClick = () => {
     if (this.props.outboundClient != null) { 
-      console.log('hello')
       Device.disconnectAll(); 
-      this.makeCall(this.props.outboundClient, this.state.token);
-      
+      this.makeCall();    
     }
   }
-
-  endCall = () => {
-    console.log('#### ENDING CALL ####'); 
-    this.props.dispatch(hangupClient()); 
-    this.endProgress(); 
-    Device.disconnectAll(); 
-  };
 
   startProgress = () => { 
     this.setState({progress: true})
@@ -120,13 +134,12 @@ export class DialerApp extends React.Component {
     this.setState({progress: false})
   }
 
-  makeCall = () => {
-    const phoneNumber = this.props.outboundClient.phoneNumber; 
-    Device.connect({number: phoneNumber}); 
-  }
+
+
+  //INBOUND: I HUNG UP, HANGUP WON'T GO AWAY
 
   render() {
-    console.log('progress', this.state.progress); 
+   
     if (this.state.isCallOnGoing === true && this.props.caller !== null) { 
       console.log('isConnected', this.state.isConnected); 
       const topRightCallInfo = (this.state.isConnected) ?  
@@ -134,7 +147,7 @@ export class DialerApp extends React.Component {
           callerImage={this.props.caller.photo} 
           fullname={this.props.caller.firstName + ' ' + this.props.caller.lastName} 
           onAnswer={() => this.answerCall()} 
-          onHangup={() => this.rejectCall()}/>
+          onReject={() => this.rejectCall()}/>
         : 
         <InProgress hangup={() => this.hangupCall() } /> 
         console.log('jsx', topRightCallInfo)
@@ -162,7 +175,7 @@ export class DialerApp extends React.Component {
       return (
         <div> 
           <InProgress hangup={() => { 
-            console.log('hangingup inpogress'); 
+            console.log('hangingup in pogress'); 
             this.endCall();          
           }
         } /> 
