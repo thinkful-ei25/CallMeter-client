@@ -18,7 +18,7 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   if (action.type === FETCH_CALLSTATS_SUCCESS) {
     return Object.assign({}, state, {
-      datesArr: action.callStats.durationArr, 
+      datesArr: action.callStats.datesArr, 
       durationArr: action.callStats.durationArr, 
       callsArr: action.callStats.callsArr, 
       durationTotal: action.callStats.durationTotal, 

@@ -171,23 +171,6 @@ export class Clients extends React.Component {
 
       return (
         <div>
-          <header className="app-header" role="banner">
-            <Link to="/">
-              <div className="logo">
-                <img
-                  className="logo-larger"
-                  src={mainLogo}
-                  alt="ContactMEter"
-                />
-              </div>
-            </Link>
-
-            <div className="header-profile">
-              <Link to="/">
-                <span className="header-profile-user">Howdy</span>
-              </Link>
-            </div>
-          </header>
           <div className="app-container">
             <section id="sub-nav">
               <div className="sub-nav">
@@ -290,11 +273,11 @@ export class Clients extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // console.log('client', state)
-  // const { currentUser } = state.auth;
+  console.log('client', state)
+  const { currentUser } = state.auth;
   return {
-    // username: state.auth.currentUser.username,
-    // name: `${currentUser.firstName} ${currentUser.lastName}`,
+    username: state.auth.currentUser.username,
+    name: `${currentUser.firstName} ${currentUser.lastName}`,
     client: state.client.data
     // protectedData: state.protectedData.data
   };
