@@ -1,19 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
-import DialerApp from './browserCall/DialerApp';
-import { refreshAuthToken, clearAuth } from '../actions/auth';
-import { clearAuthToken } from '../local-storage';
-import LandingPage  from './landingPage/LandingPage';
-import { FormContainer } from './forms/FormContainer';
-import { Dashboard } from './dashboard/dashboard';
+import { Route, withRouter } from 'react-router-dom';
+import LandingPage from './landingPage/LandingPage';
+import FormContainer from './forms/FormContainer';
+import Dashboard from './dashboard/dashboard';
+import { refreshAuthToken } from '../actions/auth';
 
 export class App extends React.Component {
-  logOut() {
-    this.props.dispatch(clearAuth());
-    clearAuthToken();
-  }
-
   componentDidUpdate(prevProps) {
     if (!prevProps.loggedIn && this.props.loggedIn) {
       // When we are logged in, refresh the auth token periodically
@@ -44,29 +37,14 @@ export class App extends React.Component {
   }
 
   render() {
-    if (this.props.loggedIn && this.props.capabilityToken !== null) {
-      return (
-        <div>
-          <button onClick={() => this.logOut()}>LOG OUT</button>
-          <Redirect to="/dashboard" />
-          <Dashboard />
-          {/* TODO: Move inside of AppRoute @sean */}
-          <DialerApp capabilityToken={this.props.capabilityToken} />
-        </div>
-      );
-    } 
-    else {
-      return (
-        <div>
-          <Redirect to="/" />
-          <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <Route path="/" component={FormContainer} />
-            <Route path="*" component={LandingPage} />
-          </Switch>
-        </div>
-      );
-    }
+    return (
+      <div>
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/login" component={FormContainer} />
+        <Route exact path="/register" component={FormContainer} />
+        <Route exact path="/" component={LandingPage} />
+      </div>
+    );
   }
 }
 
