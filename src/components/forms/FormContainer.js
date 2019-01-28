@@ -27,10 +27,10 @@ console.log('PROPS', props)
       <div className="form-container">
         <div className="img" style={imgStyle} />
         <div className="form-wrapper pad-50">
-          <Route path="/login" render={() => <LoginForm />} />
-          <Route path="/register" render={() => <RegisterForm />} />
-          <Route path="/setup/account" render={() => <AccountInfoForm />} />
-          <Route path="/setup/phone" render={() => <PhoneSetup/>} />
+          <Route exact path="/login" render={() => <LoginForm />} />
+          <Route exact path="/register" render={() => <RegisterForm />} />
+          <Route exact path="/setup/account" render={() => <AccountInfoForm />} />
+          <Route exact path="/setup/phone" render={() => <PhoneSetup/>} />
         </div>
       </div>
     </div>

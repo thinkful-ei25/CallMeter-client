@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 import LandingPage from './landingPage/LandingPage';
 import FormContainer from './forms/FormContainer';
-import Dashboard from './dashboard/dashboard';
+import DashboardRoutes from './appRouter';
+import Setup from './forms/FormContainer'
 import { refreshAuthToken } from '../actions/auth';
 
 export class App extends React.Component {
@@ -39,16 +40,18 @@ export class App extends React.Component {
   render() {
     return (
       <div>
-        <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/login" component={FormContainer} />
         <Route exact path="/register" component={FormContainer} />
+        <Route exact path="/setup" component={Setup} />
         <Route exact path="/" component={LandingPage} />
+        {DashboardRoutes}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
+  console.log('test');
   console.log('appstate', state);
   return {
     capabilityToken: state.auth.capabilityToken,

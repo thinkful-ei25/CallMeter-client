@@ -1,24 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import DialerApp from '../browserCall/DialerApp'
 import requiresLogin from '../requires-login';
-import { clearAuth } from '../../actions/auth';
-import { clearAuthToken } from '../../local-storage';
 
-import './dashboard.css';
-
-export class Dashboard extends React.Component {
+export class GlobalDialer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-  logOut() {
-    this.props.dispatch(clearAuth());
-    clearAuthToken();
-  }
+
   render() {
     return (
       <div>
-        <button onClick={() => this.logOut()}>LOG OUT</button>
         {(this.props.capabilityToken) ? <DialerApp capabilityToken={this.props.capabilityToken}/> : ''}
       </div>
     );
@@ -35,4 +28,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default requiresLogin()(connect(mapStateToProps)(Dashboard));
+export default requiresLogin()(connect(mapStateToProps)(GlobalDialer));
