@@ -168,8 +168,9 @@ export class DialerApp extends React.Component {
   render() {
     //INCOMING CALLS
     //RETURN EITHER ANSWERER OR INPROGRESS
-    if (this.state.isIncomingCallOnGoing) { 
-      return (this.state.isIncomingCallConnected) ?  
+    
+    if (this.state.isIncomingCallOnGoing && this.props.caller) { 
+      return (!this.state.isIncomingCallConnected) ?  
         <Answerer
           callerImage={this.props.caller.photo} 
           fullname={this.props.caller.firstName + ' ' + this.props.caller.lastName} 
@@ -188,10 +189,7 @@ export class DialerApp extends React.Component {
     if (this.state.isOutgoingCallOnGoing) { 
       return (
         <div> 
-          <InProgress hangup={() => { 
-            this.endCall();          
-          }
-        } /> 
+          <InProgress hangup={ () => this.endCall() } /> 
         </div>  
       );
     }
