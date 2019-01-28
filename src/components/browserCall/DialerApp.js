@@ -1,6 +1,5 @@
 import React from 'react';
 import { Device } from 'twilio-client';
-import Dialer from './Dialer'; 
 import Answerer from './Answerer'; 
 import './BrowserCall.css'; 
 import { connect } from 'react-redux';
@@ -19,7 +18,8 @@ export class DialerApp extends React.Component {
       deviceErrorMessage: '', 
       connection: {}, 
       device: '', 
-      isConnected: false
+      isConnected: false, 
+      progress: false
     };
   }
 
@@ -43,7 +43,7 @@ export class DialerApp extends React.Component {
         this.setState({isCallOnGoing: false, isConnected: false});  
       }
       else if (state === 'disconnect') { 
-        console.log('closing and reoping')
+        console.log('closing and reopening'); 
         this.setUpDevice(this.props.capabilityToken); 
       }
     });
@@ -68,7 +68,7 @@ export class DialerApp extends React.Component {
   }
 
   hangupCall = () => { 
-    console.log('hangupCall'); 
+    // console.log('hangupCall'); 
     Device.disconnectAll(); 
     this.setState({isConnected: false, isCallOnGoing: false}); 
   }
@@ -97,8 +97,36 @@ export class DialerApp extends React.Component {
     });  
   }
 
+  handleCallButtonClick = () => {
+    if (this.props.outboundClient != null) { 
+      console.log('hello')
+      Device.disconnectAll(); 
+      this.makeCall(this.props.outboundClient, this.state.token);
+      
+    }
+  }
+
+  endCall = () => {
+    console.log('#### ENDING CALL ####'); 
+    this.props.dispatch(hangupClient()); 
+    this.endProgress(); 
+    Device.disconnectAll(); 
+  };
+
+  startProgress = () => { 
+    this.setState({progress: true})
+  }
+  endProgress = () => { 
+    this.setState({progress: false})
+  }
+
+  makeCall = () => {
+    const phoneNumber = this.props.outboundClient.phoneNumber; 
+    Device.connect({number: phoneNumber}); 
+  }
+
   render() {
-  
+    console.log('progress', this.state.progress); 
     if (this.state.isCallOnGoing === true && this.props.caller !== null) { 
       console.log('isConnected', this.state.isConnected); 
       const topRightCallInfo = (this.state.isConnected) ?  
@@ -123,6 +151,24 @@ export class DialerApp extends React.Component {
         </div>
       );
     } 
+    //outbound call start
+    if (this.props.outboundClient !== null && this.state.progress === false) { 
+      this.startProgress(); 
+      this.handleCallButtonClick(); 
+    }
+
+    if (this.state.progress) { 
+      console.log('call in progress'); 
+      return (
+        <div> 
+          <InProgress hangup={() => { 
+            console.log('hangingup inpogress'); 
+            this.endCall();          
+          }
+        } /> 
+        </div>  
+      );
+    }
 
     return (
       <div>
@@ -135,7 +181,6 @@ export class DialerApp extends React.Component {
               {this.state.deviceErrorMessage}
             </div>
           )}
-          {/* <Dialer />  */}
           </section> 
       </div>
     ); 
@@ -147,6 +192,7 @@ const mapStateToProps = state => {
     caller: state.dialer.caller, 
     loading: state.dialer.loading, 
     error: state.dialer.error, 
+    outboundClient : state.dialer.outboundClient
 	};
 };
 
