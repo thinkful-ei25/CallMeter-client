@@ -30,7 +30,6 @@ export function FormContainer(props) {
         <div className="form-wrapper pad-50">
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
-          
           <Route path="/setup/account" component={AccountInfoForm} />
           <Route path="/setup/phone" component={PhoneSetup} />
         </div>
