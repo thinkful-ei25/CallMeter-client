@@ -11,7 +11,7 @@
 // export class Invoices extends React.Component {
 //   componentDidMount() {
 //     // this.props.dispatch(fetchProtectedData());
-//   }
+  
 
 
 //   //         contactName: namor.generate({ words: 1, numbers: 0 }),
