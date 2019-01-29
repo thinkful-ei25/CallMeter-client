@@ -40,11 +40,11 @@ export class App extends React.Component {
   render() {
     return (
       <div>
-        <Route exact path="/login" component={FormContainer} />
+        {/* <Route exact path="/login" component={FormContainer} />
         <Route exact path="/register" component={FormContainer} />
         <Route exact path="/setup" component={Setup} />
         <Route exact path="/" component={LandingPage} />
-        {DashboardRoutes}
+        {DashboardRoutes} */}
       </div>
     );
   }
