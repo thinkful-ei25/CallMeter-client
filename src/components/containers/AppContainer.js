@@ -51,7 +51,7 @@ export class AppContainer extends React.Component{
               <Route exact path="/dashboard/invoices" component={Invoices} />
               <Route exact path="/clients/:clientId" component={ContactPage} /> */}
               <button onClick={() => this.logOut()}>LOG OUT</button>
-              {/* <Menu /> */}
+              <Menu />
             </div>
           </section>
         </div>
