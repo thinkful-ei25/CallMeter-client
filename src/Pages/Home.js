@@ -117,18 +117,22 @@ export class Stats extends React.Component {
       );
     } else {
       return (
-        <div>
-          {/* START OF CHART AND CARDS */}
-          <div className="chart-panel">
-            {/* START OF PANEL HEADER */}
-            <div className="panel-header">
-              <div className="panel-title">
-                <h3>Da Stats</h3>
+        <div className="app-container">
+          <section className="contacts">
+            <div className="section-container">
+              {/* START OF CHART AND CARDS */}
+              <div className="chart-panel">
+                {/* START OF PANEL HEADER */}
+                <div className="panel-header">
+                  <div className="panel-title">
+                    <h3>Da Stats</h3>
+                  </div>
+                </div>
+                 {/* END OF PANEL HEADER */}
+                {this.rerender()}
               </div>
             </div>
-            {/* END OF PANEL HEADER */}
-            {this.rerender()}
-          </div>
+          </section>
         </div>
       );
     }

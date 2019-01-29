@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import { refreshAuthToken, clearAuth } from '../../actions/index.actions';
 import { RequiresLogin} from '../_utils/index._utils'; 
 import { clearAuthToken } from '../../_utils/index.utils'; 
-import { AppHeader, Menu } from '../navigation/index.navigation';
+import { AppHeader, Menu, SubNav } from '../navigation/index.navigation';
 import { Home, Contacts } from '../../pages/index.pages';  
 import { DialerApp} from '../../components/browserPhone/index.browserPhone';
 import '../../styles/Contacts.css'; 
@@ -44,10 +44,6 @@ export class AppContainer extends React.Component{
     return (
       <div>
         <AppHeader name={this.props.organizationName} />
-        <div className="app-container">
-
-          <section className="contacts">
-            <div className="section-container">
               <Route exact path="/app" component={Home} />
               <Route exact path="/app/clients" component={ Contacts } />
               {/* <Route exact path="/app/setup" component={FormContainer} /> */}
@@ -56,9 +52,6 @@ export class AppContainer extends React.Component{
               <button onClick={() => this.logOut()}>LOG OUT</button>
               {(this.props.capabilityToken) ? <DialerApp capabilityToken={this.props.capabilityToken} />  : ''}
               <Menu />
-            </div>
-          </section>
-        </div>
       </div>
     ); 
   }
