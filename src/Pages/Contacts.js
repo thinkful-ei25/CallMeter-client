@@ -6,8 +6,9 @@ import { fetchClients, setClient, dialClient } from '../actions/index.actions';
 import ReactTable from 'react-table';
 import AddClient from '../components/contacts/index.contacts';
 import { SubNav } from '../components/navigation/index.navigation'; 
+import { callIcon } from '../images/contact/index.contact'
 import '../styles/Contacts.css';
-import 'react-table/react-table.css';
+import '../styles/Tables.css';
 
 export class Clients extends React.Component {
   constructor(props) {
@@ -124,18 +125,25 @@ export class Clients extends React.Component {
             sortable: false,
             resizable: false,
             Cell: row => (
-              <div>
-
-
-                <button
-                  className="contact-button call"
-                  onClick={() => {
-                    this.props.dispatch(dialClient(this.props.client[row.index]));
-                  }}
-                >
-                  <span>Call</span>
-                </button>
+              <div className="call-button" onClick={() => { this.props.dispatch(dialClient(this.props.client[row.index])); }}>
+                <p className="button-text">Call</p>
+                <div className="button-icon-div">
+                  <img src={callIcon} className="button-icon" alt="call contact"/>
+                </div>
               </div>
+                
+                
+                
+                
+              //   <button
+              //     className="contact-button call"
+              //     onClick={() => {
+              //       this.props.dispatch(dialClient(this.props.client[row.index]));
+              //     }}
+              //   >
+              //     <span>Call</span>
+              //   </button>
+              // </div>
             )
           },
         ],
@@ -207,16 +215,6 @@ export class Clients extends React.Component {
                 <div className="app-header-title">
                   <h1 className="app-heading">Contacts</h1>
                 </div>
-                {/* <div className="app-header-actions">
-                  <div className="align-center">
-                    <span className="view-dropdown">
-                      <select value={this.state.view} onChange={e => this.toggleView(e)} >
-                        <option value="clients">Contacts</option>
-                        <option value="stats">Stats</option>
-                      </select>
-                    </span>
-                  </div>
-                </div> */}
               </div>
             </header>
             </div>
@@ -227,32 +225,11 @@ export class Clients extends React.Component {
                 <ReactTable
                   data={clients}
                   columns={clientColumns[this.state.view]}
-                  defaultSorted={[{ id: 'fullName', desc: false }]}
-                  getTdProps={() => ({
-                    style: {
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      borderTop: '0px solid gainsboro',
-                      borderRight: '0px solid rgba(0,0,0,0) !important'
-                    }
-                  })}
-                  getTrProps={() => ({
-                    className: 'default-table-row'
-                  })}
-                  getTheadProps={() => ({
-                    className: 'default-table-header'
-                  })}
-                  getTheadThProps={() => ({
-                    className: 'default-table-headers'
-                  })}
-                  getTrGroupProps={() => ({
-                    className: 'default-table-rows'
-                  })}
+                  defaultSorted={[{ id: 'fullName', desc: false }]}                  
                   defaultPageSize={100}
                   showPageSizeOptions={true}
                   showPagination={false}
-                  className="default-table"
+                  className="-highlight -curser-pointer"
                   pageSizeOptions={[5, 10, 20, 25, 50, 100]}
                   minRows={0}
                 />

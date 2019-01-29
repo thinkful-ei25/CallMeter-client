@@ -1,7 +1,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Comfortaa', cursive;
+  background-color: #F7F8F9
+
 }
 
 select::-ms-expand {
@@ -12,23 +14,15 @@ select:hover, select:focus {
   color: #000000;
 }
 
-.topnavContainer {
-  overflow: hidden;
-  background-color: pink;
-}
-
-.topnav {
-  display: inline-block;
-  margin: 0.85%;
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
 }
 
 .callinput {
   margin-top: 5%;
-}
-
-.dashboardFullPage {
-  height: 100vh;
-  width: 100%;
 }
 
 .overlay {
@@ -170,13 +164,13 @@ select:hover, select:focus {
 }
 
 .app-page-header {
-  padding-left: 0;
-  padding-right: 0;
   border-bottom: 1px solid #cbd6e2;
   display: flex;
   flex-direction: column;
-  margin-bottom: 40px;
-  padding: 42px 48px 24px;
+   margin-right: 6%;
+   margin-left: 6%;
+   margin-bottom: 40px;
+  padding: 42px 0px 24px;
   position: relative;
 }
 
@@ -204,6 +198,8 @@ select:hover, select:focus {
   font-size: 28px;
   line-height: normal;
   margin: 0;
+  color: #33393d;
+  font-weight: 300;
 }
 
 
