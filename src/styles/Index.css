@@ -14,13 +14,6 @@ select:hover, select:focus {
   color: #000000;
 }
 
-table {
-    display: table;
-    border-collapse: separate;
-    border-spacing: 2px;
-    border-color: grey;
-}
-
 .callinput {
   margin-top: 5%;
 }
@@ -164,7 +157,7 @@ table {
 }
 
 .app-page-header {
-  border-bottom: 1px solid #cbd6e2;
+  border-bottom: 1px solid #9DC8E4;
   display: flex;
   flex-direction: column;
    margin-right: 6%;
