@@ -10,7 +10,7 @@ export class Root extends React.Component {
       <Switch>
         {/* <Route path='/app' component={AppContainer} /> */}
         <Route exact path ='/' component={LandingPage} />
-        {/* <Route path = '/' component={FormContainer} /> */}
+        <Route path = '/' component={FormContainer} />
       </Switch>
     );
   }

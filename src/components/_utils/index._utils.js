@@ -1,9 +1,10 @@
-import _fileInput from './_fileInput';
-import _input from './_input';
-import _requires-login from './requires-login';
+'use strict';
+import FileInput from './_fileInput';
+import Input from './_input';
+import RequiresLogin from './_requires-login';
 
 export {
-  _fileInput,
-  _input,
-  _requires-login,
+  FileInput,
+  Input,
+  RequiresLogin,
 }

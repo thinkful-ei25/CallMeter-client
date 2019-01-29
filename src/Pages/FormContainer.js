@@ -9,7 +9,7 @@ export function FormContainer(props) {
   if (props.loggedIn) {
     return <Redirect to="/dashboard" />;
   }
-console.log('PROPS', props)
+
   const images = {
     '/setup/account': account,
     '/setup/phone': phone,
@@ -28,9 +28,9 @@ console.log('PROPS', props)
         <div className="img" style={imgStyle} />
         <div className="form-wrapper pad-50">
           <Route exact path="/login" render={() => <LoginForm />} />
-          <Route exact path="/register" render={() => <RegisterForm />} />
+          {/* <Route exact path="/register" render={() => <RegisterForm />} />
           <Route exact path="/setup/account" render={() => <AccountInfoForm />} />
-          <Route exact path="/setup/phone" render={() => <PhoneSetup/>} />
+          <Route exact path="/setup/phone" render={() => <PhoneSetup/>} /> */}
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@ console.log('PROPS', props)
 const mapStateToProps = state => {
   console.log('STATE ',state);
   return ({
-    loggedIn: state.rootReducer.currentUser !== null
+    loggedIn: state.auth.currentUser !== null
   })
 };
 
