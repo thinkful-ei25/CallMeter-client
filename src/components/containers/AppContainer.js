@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import { refreshAuthToken, clearAuth } from '../../actions/index.actions';
 import { RequiresLogin} from '../_utils/index._utils'; 
 import { clearAuthToken } from '../../_utils/index.utils'; 
-import { AppHeader, Menu, SubNav } from '../navigation/index.navigation';
+import { AppHeader, Menu } from '../navigation/index.navigation';
 import { Home, Contacts } from '../../pages/index.pages';  
 import { DialerApp} from '../../components/browserPhone/index.browserPhone';
 import '../../styles/Contacts.css'; 
@@ -57,9 +57,7 @@ export class AppContainer extends React.Component{
   }
 }
 
-const mapStateToProps = (state, props) => { 
-  console.log('app container', state);
-   
+const mapStateToProps = (state, props) => {    
   return ({
     capabilityToken : state.auth.capabilityToken, 
     organizationName : state.auth.currentUser.organizationName, 

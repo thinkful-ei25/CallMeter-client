@@ -198,16 +198,31 @@ export class Clients extends React.Component {
             <SubNav
               toggleAddClientForm={() => this.toggleAddClientForm()}
               setSearchTerm={(e) => this.setSearchTerm(e)}
-              searchTerm={this.state.searchTerm} />
-            <section className="contacts">
-              <div className="section-heading-container">
-                <span className="section-heading">Your Clients</span>
-                <select value={this.state.view} onChange={e => this.toggleView(e)} className="contacts-dropdown">
-                  <option value="clients">Contacts</option>
-                  <option value="stats">Stats</option>
-                </select>
-
+              searchTerm={this.state.searchTerm}
+              toggleView={(e) => this.toggleView(e)} 
+              view={this.state.view} />
+            <div className="title-bar">
+            <header className="app-page-header" role="presentation">
+              <div className="app-header-inner" role="banner">
+                <div className="app-header-title">
+                  <h1 className="app-heading">Contacts</h1>
+                </div>
+                {/* <div className="app-header-actions">
+                  <div className="align-center">
+                    <span className="view-dropdown">
+                      <select value={this.state.view} onChange={e => this.toggleView(e)} >
+                        <option value="clients">Contacts</option>
+                        <option value="stats">Stats</option>
+                      </select>
+                    </span>
+                  </div>
+                </div> */}
               </div>
+            </header>
+            </div>
+
+
+            <section className="contacts">
               <div className="section-container">
                 <ReactTable
                   data={clients}

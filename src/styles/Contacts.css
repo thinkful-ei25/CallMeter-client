@@ -122,6 +122,15 @@ body {
 }
 
 
+.contact-view {
+    display: inline-flex;
+    margin-left: auto;
+    border-right: 1px solid #e4e8Eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: initial !important;
+}
+
 
 .contacts {
    margin-top: 60px;
