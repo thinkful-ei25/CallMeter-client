@@ -7,6 +7,7 @@ import { clearAuthToken } from '../../_utils/index.utils';
 import { AppHeader, Menu, SubNav } from '../navigation/index.navigation';
 import { Home, Contacts } from '../../pages/index.pages';  
 import { DialerApp} from '../../components/browserPhone/index.browserPhone';
+import { API_BASE_URL } from '../../config'; 
 import '../../styles/Contacts.css'; 
 
 export class AppContainer extends React.Component{ 
@@ -20,7 +21,21 @@ export class AppContainer extends React.Component{
   }
 
   componentWillUnmount() {
-    this.stopPeriodicRefresh();
+    console.log('unmounting'); 
+    return fetch(`${API_BASE_URL}/logout`, {
+      method: 'POST',
+      headers: {
+        // Provide our auth token as credentials
+        Authorization: `Bearer ${this.props.authToken}`
+      }
+    })
+    .then(() => { 
+      console.log('user has been switched to phone mode'); 
+      this.stopPeriodicRefresh();
+    })
+    .catch(err => { 
+      console.log('err', err); 
+    }); 
   }
 
   startPeriodicRefresh() {
@@ -61,6 +76,7 @@ const mapStateToProps = (state, props) => {
   console.log('app container', state);
    
   return ({
+    authToken: state.auth.authToken, 
     capabilityToken : state.auth.capabilityToken, 
     organizationName : state.auth.currentUser.organizationName, 
     loading : state.auth.loading, 
