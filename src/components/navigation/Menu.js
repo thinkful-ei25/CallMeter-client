@@ -43,7 +43,7 @@ export class navBar extends React.Component {
           <Link to="/dashboard/invoices"><img alt='invoices' className="aniButton" src={invoices}></img></Link>
           <Link to="/app/clients"><img alt='clients' className="aniButton" src={contacts}></img></Link>
           <Link to="/dashboard"><img alt='home' className="aniButton" src={home}></img></Link>
-          <Link to="/dashboard/call"><img alt='calls' className="aniButton" src={calls}></img></Link>
+          {/* <Link to="/dashboard/call"><img alt='calls' className="aniButton" src={calls}></img></Link> */}
           <Link to='/app/settings'><img alt='settings' className='aniButton' src={settings}></img></Link>
           <img alt='main' className="dots" src={hamburger} onClick={e => this.startAnimation(e)}></img>
         </div>
