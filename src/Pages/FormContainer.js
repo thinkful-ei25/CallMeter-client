@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, withRouter } from 'react-router-dom';
-import './forms.css';
-import { login, register, phone, account, contacts } from './images';
-import { LoginForm, RegisterForm, PhoneSetup, AccountInfoForm } from './';
+import '../styles/Forms.css';
+import { login, register, phone, account, contacts } from '../images/forms/index.forms';
+import { LoginForm, RegisterForm, PhoneSetup, AccountInfoForm } from '../components/forms/index.forms';
 
 export function FormContainer(props) {
   if (props.loggedIn) {
@@ -40,7 +40,7 @@ console.log('PROPS', props)
 const mapStateToProps = state => {
   console.log('STATE ',state);
   return ({
-    loggedIn: state.auth.currentUser !== null
+    loggedIn: state.rootReducer.currentUser !== null
   })
 };
 

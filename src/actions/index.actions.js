@@ -2,11 +2,17 @@
 
 import {
   SET_AUTH_TOKEN,
+  setAuthToken,
   SET_CAPABILITY_TOKEN,
+  setCapabilityToken,
   CLEAR_AUTH,
+  clearAuth,
   AUTH_REQUEST,
+  authRequest,
   AUTH_SUCCESS,
+  authSuccess,
   AUTH_ERROR,
+  authError,
   login,
   refreshAuthToken
 } from './auth.action';
@@ -58,11 +64,17 @@ import {
 
 export {
   SET_AUTH_TOKEN,
+  setAuthToken,
   SET_CAPABILITY_TOKEN,
+  setCapabilityToken,
   CLEAR_AUTH,
+  clearAuth,
   AUTH_REQUEST,
+  authRequest,
   AUTH_SUCCESS,
+  authSuccess,
   AUTH_ERROR,
+  authError,
   login,
   refreshAuthToken,
   FETCH_CALLSTATS_REQUEST,

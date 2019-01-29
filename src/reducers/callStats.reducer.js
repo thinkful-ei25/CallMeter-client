@@ -1,9 +1,8 @@
 import {
   FETCH_CALLSTATS_SUCCESS,
   FETCH_CALLSTATS_ERROR,
-  FETCH_CALLSTATS_REQUEST,
-} from '../actions';
-
+  FETCH_CALLSTATS_REQUEST
+} from '../actions/index.actions';
 
 const initialState = {
   datesArr: null,
@@ -11,18 +10,17 @@ const initialState = {
   callsArr: null,
   durationTotal: null,
   callsTotal: null,
-  error: null,
+  error: null
 };
-
 
 export default function callStatsReducer(state = initialState, action) {
   if (action.type === FETCH_CALLSTATS_SUCCESS) {
     return Object.assign({}, state, {
-      datesArr: action.callStats.datesArr, 
-      durationArr: action.callStats.durationArr, 
-      callsArr: action.callStats.callsArr, 
-      durationTotal: action.callStats.durationTotal, 
-      callsTotal: action.callStats.callsTotal, 
+      datesArr: action.callStats.datesArr,
+      durationArr: action.callStats.durationArr,
+      callsArr: action.callStats.callsArr,
+      durationTotal: action.callStats.durationTotal,
+      callsTotal: action.callStats.callsTotal,
       error: null,
       loading: false
     });
@@ -34,7 +32,7 @@ export default function callStatsReducer(state = initialState, action) {
   } else if (action.type === FETCH_CALLSTATS_REQUEST) {
     return Object.assign({}, state, {
       loading: true
-    })
+    });
   } else {
     return state;
   }

@@ -1,5 +1,5 @@
 import { API_BASE_URL } from '../config';
-import { normalizeResponseErrors } from './utils';
+import { normalizeResponseErrors } from './index.actions';
 
 
 export const FETCH_CLIENT_REQUEST = 'FETCH_CLIENT_REQUEST';

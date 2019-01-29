@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import mainLogo from '../../resources/logo.png';
-import './landingHeader.css';
+import { logo } from '../../images/header/index.header'; 
+import '../../styles/LandingHeader.css';
 
 export class LandingHeader extends React.Component {
   render() {
@@ -15,7 +15,7 @@ export class LandingHeader extends React.Component {
                 <div className="logo-img">
                   <img
                     className="logo-larger"
-                    src={mainLogo}
+                    src={logo}
                     alt="ContactMEter"
                   />
                 </div>

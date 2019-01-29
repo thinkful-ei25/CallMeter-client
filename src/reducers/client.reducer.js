@@ -5,7 +5,7 @@ import {
 	DELETE_CLIENT_SUCCESS,
 	FETCH_CLIENT_REQUEST,
 	SET_CLIENT
-} from '../actions';
+} from '../actions/index.actions';
 
 const initialState = {
 	data: '',

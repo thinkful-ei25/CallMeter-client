@@ -1,7 +1,7 @@
-import herokBackground from './herokBackground.jpg';
-import productShot from './productShot.jpg';
+import heroBackground from './heroBackground.jpg';
+import productShot from './productShot.png';
 
 export {
-  herokBackground,
+  heroBackground,
   productShot,
 }

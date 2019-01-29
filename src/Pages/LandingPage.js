@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './LandingPage.css';
-import productShot from '../../resources/productShot.png';
-import { LandingHeader } from './LandingHeader';
+import '../styles/LandingPage.css';
+import { productShot } from '../images/landing/index.landing';
+import { LandingHeader } from '../components/navigation/LandingHeader';
 
 export default class LandingPage extends React.Component {
 
