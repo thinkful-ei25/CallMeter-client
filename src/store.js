@@ -1,25 +1,11 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { loadAuthToken } from './local-storage';
-import authReducer from './reducers/auth';
-import callStatsReducer from './reducers/callStats.reducer';
-import clientReducer from './reducers/client'
-import dialerReducer from './reducers/dialer.reducer'; 
-import { setAuthToken, refreshAuthToken } from './actions/auth';
+import { loadAuthToken } from './_utils/index.utils';
+import { setAuthToken, refreshAuthToken } from './actions/index.actions';
+import rootReducer from './reducers/index.reducers';
 
-const store = createStore(
-	combineReducers({
-		form: formReducer,
-		auth: authReducer,
-		dialer: dialerReducer, 
-		client: clientReducer,
-		callStats: callStatsReducer
-	}),
-	applyMiddleware(thunk)
-);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
-// Hydrate the authToken from localStorage if it exist
 const authToken = loadAuthToken();
 if (authToken) {
 	const token = authToken;

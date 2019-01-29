@@ -1,0 +1,260 @@
+.contactPage{
+  display: block;
+  background-color: #f4f4ff;
+  overflow: hidden;
+}
+
+.contactPageHeader{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 0;
+}
+
+.contactHeaderLeft{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.contactHeaderRight{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.contactPageContainer{
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 7%;
+}
+
+.contactTopHeader{
+  width: 100%;
+}
+
+
+.contactActionButton{
+  width: 20%;
+  height: 30px;
+  margin-left: 4%;
+  border-radius: 15%;
+  background-color: blue;
+  color: white;
+}
+
+.bestFriend{
+  margin-top: -5px;
+} 
+
+
+
+/* Contact Link Styling */
+.contactSections{
+  margin-top: 3%;
+  width: 100%;
+  border-bottom: 1px solid black;
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+.contactLinks{
+  position: relative;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
+.contactLinks:hover:after{
+  content: "";
+  border-bottom: 4px solid blue;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -16px;
+}
+/* Contact Link Styling End */
+
+
+
+.contactBody{
+  width: 77%;
+  margin-left: 11.5%;
+  margin-top: 2.5%;
+}
+
+.contactBodyTopBoxes{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+
+/* Contact Info Box*/
+.contactBodyInfo{
+  width: 50%;
+  background-color: white;
+  height: 600px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 5%;
+  margin-right: 9%;
+}
+
+.contactBodyInfoImageContainer{
+  margin-top: 2.5%;
+  height: 20%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.contactBodyInfoImage{
+  border-radius: 50%;
+  height: 100%;
+}
+
+.contactBodyInfoContainer{
+  height: 10%;
+  margin-left: 10%;
+  width: 80%;
+  border-bottom: 1px solid black;
+  display: flex;
+}
+
+.contactBodyTagSection{
+  height: 65px;
+  width: 25%;
+  display: flex;
+  align-items: center;
+}
+
+.contactBodyInfoSection{
+  height: 65px;
+}
+
+.contactBodyTags{
+  margin-top: 5%;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.contactBodyInfoSection{
+  display: flex;
+  align-items: center;
+}
+
+/* Contact Info Box End */
+
+
+
+/* Invoices details box */
+
+.contactBodyInvoices{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 5%;
+  width: 40%;
+  height: 600px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15);
+  border-bottom: none;
+}
+
+.contactBodyInvoicesTop{
+  height: 15%;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+.verticalCenter{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.invoicesTitle{
+  width: 80%;
+  height: 100%;
+  margin-left: 10%;
+}
+
+.contactBodyInvoicesBottom{
+  height: 72.5%;
+  width: 100%;
+}
+
+.individualInvoice{
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+.stackedElements{
+  line-height: 0;
+}
+
+.invoicesBottomButton{
+  width: calc(100% + 8px);
+  margin-left: -4px;
+  height: 12.5%;
+  border-radius: 8%;
+  background-color: blue;
+  color: white;
+  font-size: 1.5em;
+}
+
+/* Invoices details box end*/
+
+
+/* Recent Calls box */
+.recentCallsContainer{
+  width: 100%;
+  margin-top: 5%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 5%;
+  height: 400px;
+  background-color: white;
+  margin-bottom: 5%;
+}
+.recentCallsHeader{
+  width: 100%;
+  height: 30%;
+  border: 1px solid black;
+  display: flex;
+}
+.recentCallsHeaderLeft{
+  display: flex;
+  align-items:center;
+  width: 50%;
+}
+.recentCallsHeaderRight{
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.recentCallsHeaderTitle{
+  margin-left: 10%;
+}
+
+.recentCallsHeaderButton{
+  margin-right: 10%;
+  height: 30%;
+  width: 30%;
+  background-color: blue;
+  color: white;
+  border-radius: 20%;
+}
+
+.deleteClientContainer {
+  text-align: center;
+  
+}
+
+
+
+

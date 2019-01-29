@@ -1,9 +1,8 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 import { Link } from 'react-router-dom';
-import { registerUser } from '../../actions/users';
-import { login } from '../../actions/auth';
-import Input from './Input';
+import { login, registerUser } from '../../actions/index.actions';
+import { Input } from '../_utils/index._utils';
 import {
   required,
   nonEmpty,
@@ -11,7 +10,7 @@ import {
   length,
   isTrimmed,
   emailCheck
-} from '../../validators';
+} from '../../_utils/index.utils';
 const passwordLength = length({ min: 10, max: 72 });
 const matchesPassword = matches('password');
 

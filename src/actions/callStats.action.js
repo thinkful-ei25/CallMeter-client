@@ -1,5 +1,5 @@
 import { API_BASE_URL } from '../config';
-import { normalizeResponseErrors } from './utils';
+import { normalizeResponseErrors } from './index.actions';
 
 
 export const FETCH_CALLSTATS_REQUEST = 'FETCH_CALLSTATS_REQUEST';
@@ -12,6 +12,12 @@ export const fetchCallStatsSuccess = callStats => ({
   type: FETCH_CALLSTATS_SUCCESS,
   callStats
 });
+
+export const FETCH_ALLCALLS_SUCCESS = 'FETCH_ALLCALLS_SUCCESS';
+export const fetchAllCallsSuccess = calls => ({
+  type: FETCH_ALLCALLS_SUCCESS,
+  calls
+})
 
 export const FETCH_CALLSTATS_ERROR = 'FETCH_CALLSTATS_ERROR';
 export const fetchCallStatsError = error => ({
@@ -40,5 +46,28 @@ export const fetchCallStats = () => (dispatch, getState) => {
     
     }
 
-  
+    export const fetchAllCalls = () => (dispatch, getState) => {
+      dispatch(fetchCallStatsRequest())
+      const authToken = getState().auth.authToken;
+      return fetch(`${API_BASE_URL}/call/calls`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${authToken}`
+          }
+        })
+          .then(res => normalizeResponseErrors(res))
+          .then(res => res.json())
+          .then((calls) => {
+            console.log('result data', calls)
+            dispatch(fetchAllCallsSuccess(calls))
+          })
+          .catch(err => {
+            dispatch(fetchCallStatsError(err));
+          });
+        
+        }
+
+
+ 
+   
 
