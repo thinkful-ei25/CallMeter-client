@@ -4,14 +4,15 @@ import Home from './Home';
 import IndividualContact from './IndividualContact'; 
 import Invoices from './Invoices'; 
 import LandingPage from './LandingPage'; 
-import Setting from './Settings'; 
+import Settings from './Settings'; 
 
 export {
   Calls, 
   Contacts, 
   Home, 
   IndividualContact, 
-  // Invoices, 
+  Invoices, 
   LandingPage, 
-  // Setting
+  Settings,
+  
 }

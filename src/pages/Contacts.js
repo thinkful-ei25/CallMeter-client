@@ -6,8 +6,9 @@ import { fetchClients, setClient, dialClient } from '../actions/index.actions';
 import ReactTable from 'react-table';
 import {AddContact} from '../components/contacts/index.contacts';
 import { SubNav }  from '../components/navigation/index.navigation'; 
+import { callIcon } from '../images/contact/index.contact'
 import '../styles/Contacts.css';
-import 'react-table/react-table.css';
+import '../styles/Tables.css';
 
 export class Contacts extends React.Component {
   constructor(props) {
@@ -124,18 +125,25 @@ export class Contacts extends React.Component {
             sortable: false,
             resizable: false,
             Cell: row => (
-              <div>
-
-
-                <button
-                  className="contact-button call"
-                  onClick={() => {
-                    this.props.dispatch(dialClient(this.props.client[row.index]));
-                  }}
-                >
-                  <span>Call</span>
-                </button>
+              <div className="call-button" onClick={() => { this.props.dispatch(dialClient(this.props.client[row.index])); }}>
+                <p className="button-text">Call</p>
+                <div className="button-icon-div">
+                  <img src={callIcon} className="button-icon" alt="call contact"/>
+                </div>
               </div>
+                
+                
+                
+                
+              //   <button
+              //     className="contact-button call"
+              //     onClick={() => {
+              //       this.props.dispatch(dialClient(this.props.client[row.index]));
+              //     }}
+              //   >
+              //     <span>Call</span>
+              //   </button>
+              // </div>
             )
           },
         ],
@@ -198,46 +206,30 @@ export class Contacts extends React.Component {
             <SubNav
               toggleAddClientForm={() => this.toggleAddClientForm()}
               setSearchTerm={(e) => this.setSearchTerm(e)}
-              searchTerm={this.state.searchTerm} />
-            <section className="contacts">
-              <div className="section-heading-container">
-                <span className="section-heading">Your Clients</span>
-                <select value={this.state.view} onChange={e => this.toggleView(e)} className="contacts-dropdown">
-                  <option value="clients">Contacts</option>
-                  <option value="stats">Stats</option>
-                </select>
-
+              searchTerm={this.state.searchTerm}
+              toggleView={(e) => this.toggleView(e)} 
+              view={this.state.view} />
+            <div className="title-bar">
+            <header className="app-page-header" role="presentation">
+              <div className="app-header-inner" role="banner">
+                <div className="app-header-title">
+                  <h1 className="app-heading">Contacts</h1>
+                </div>
               </div>
+            </header>
+            </div>
+
+
+            <section className="contacts">
               <div className="section-container">
                 <ReactTable
                   data={clients}
                   columns={clientColumns[this.state.view]}
-                  defaultSorted={[{ id: 'fullName', desc: false }]}
-                  getTdProps={() => ({
-                    style: {
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      borderTop: '0px solid gainsboro',
-                      borderRight: '0px solid rgba(0,0,0,0) !important'
-                    }
-                  })}
-                  getTrProps={() => ({
-                    className: 'default-table-row'
-                  })}
-                  getTheadProps={() => ({
-                    className: 'default-table-header'
-                  })}
-                  getTheadThProps={() => ({
-                    className: 'default-table-headers'
-                  })}
-                  getTrGroupProps={() => ({
-                    className: 'default-table-rows'
-                  })}
+                  defaultSorted={[{ id: 'fullName', desc: false }]}                  
                   defaultPageSize={100}
                   showPageSizeOptions={true}
                   showPagination={false}
-                  className="default-table"
+                  className="-highlight -curser-pointer"
                   pageSizeOptions={[5, 10, 20, 25, 50, 100]}
                   minRows={0}
                 />

@@ -1,5 +1,5 @@
-import meeple from './meeple.png';
+import callIcon from './call.png';
 
 export {
-  meeple,
+  callIcon,
 }

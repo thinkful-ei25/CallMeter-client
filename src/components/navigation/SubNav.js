@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/SubNav.css';
 
 export default function SubNav(props) {
   return (
@@ -16,12 +17,22 @@ export default function SubNav(props) {
               placeholder="Search by name"
             />
           </div>
+          <div className="contact-view">
+            <div className="view-select">
+              <select value={props.view} onChange={e => props.toggleView(e)}>
+                <option value="">Select View</option>
+                <option value="clients">Contacts</option>
+                <option value="stats">Stats</option>
+              </select>
+              <div className="select-arrow" />
+            </div>
+          </div>
           <div className="add-contact">
             <button
               className="add-contact-button"
               onClick={() => props.toggleAddClientForm()}
             >
-              + Add Contact{' '}
+              + Add Contact
             </button>
           </div>
         </div>

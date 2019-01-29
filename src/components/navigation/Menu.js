@@ -3,18 +3,15 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import anime from 'animejs'; 
 import '../../styles/Menu.css'; 
-import { contacts, close, invoices, calls } from '../../images/menu/index.menu'; 
+import { contacts, close, invoices, calls, settings, home, hamburger } from '../../images/menu/index.menu'; 
 
-// const { twilio } = window;
 export class navBar extends React.Component {
-
 
   async startAnimation(e) {
     const buttons = document.getElementsByClassName('aniButton');
     const currentButton = e.currentTarget;
     if (buttons[0].style.visibility === 'visible') {
-      currentButton.src = 
-        "https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png";
+      currentButton.src = { hamburger };
       for (let i = 0; i < buttons.length; i++) {
         await anime({
           targets: buttons[i],
@@ -43,11 +40,13 @@ export class navBar extends React.Component {
     return (
       <div className="buttonContainer">
         <div className="fixed">
-          <Link to="/dashboard/invoices"><img alt='navButton' className="aniButton" src={invoices}></img></Link>
-          <Link to="/app/contacts"><img alt='navButton' className="aniButton" src={contacts}></img></Link>
-          <Link to="/dashboard"><img alt='navButton' className="aniButton" src="https://gallery.kissclipart.com/20180929/jqq/kissclipart-chart-black-and-white-clipart-bar-chart-clip-art-18a3aa13f1fdd7ed.png"></img></Link>
-          <Link to="/app/calls"><img alt='navButton' className="aniButton" src={calls}></img></Link>
-          <img alt='main' className="dots" src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png" onClick={e => this.startAnimation(e)}></img>
+          <Link to="/app/invoices"><img alt='invoices' className="aniButton" src={invoices}></img></Link>
+          <Link to="/app/contacts"><img alt='contacts' className="aniButton" src={contacts}></img></Link>
+          <Link to="/dashboard"><img alt='home' className="aniButton" src={home}></img></Link>
+          <Link to="/app/calls"><img alt='calls' className="aniButton" src={calls}></img></Link>
+          {/* <Link to="/dashboard/call"><img alt='calls' className="aniButton" src={calls}></img></Link> */}
+          <Link to='/app/settings'><img alt='settings' className='aniButton' src={settings}></img></Link>
+          <img alt='main' className="dots" src={hamburger} onClick={e => this.startAnimation(e)}></img>
         </div>
       </div>
     );

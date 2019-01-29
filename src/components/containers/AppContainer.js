@@ -4,9 +4,10 @@ import { Route } from 'react-router-dom';
 import { refreshAuthToken, clearAuth } from '../../actions/index.actions';
 import { RequiresLogin} from '../_utils/index._utils'; 
 import { clearAuthToken } from '../../_utils/index.utils'; 
-import { AppHeader, Menu, SubNav } from '../navigation/index.navigation';
-import { Home, Contacts, Calls, IndividualContact } from '../../pages/index.pages';  
+import { AppHeader, Menu } from '../navigation/index.navigation';
+import { Home, Contacts, Settings, Invoices, IndividualContact, Calls } from '../../pages/index.pages';  
 import { DialerApp} from '../../components/browserPhone/index.browserPhone';
+import { API_BASE_URL } from '../../config'; 
 import '../../styles/Contacts.css'; 
 
 export class AppContainer extends React.Component{ 
@@ -20,7 +21,21 @@ export class AppContainer extends React.Component{
   }
 
   componentWillUnmount() {
-    this.stopPeriodicRefresh();
+    // console.log('unmounting'); 
+    return fetch(`${API_BASE_URL}/logout`, {
+      method: 'POST',
+      headers: {
+        // Provide our auth token as credentials
+        Authorization: `Bearer ${this.props.authToken}`
+      }
+    })
+    .then(() => { 
+      console.log('user has been switched to phone mode'); 
+      this.stopPeriodicRefresh();
+    })
+    .catch(err => { 
+      console.log('err', err); 
+    }); 
   }
 
   startPeriodicRefresh() {
@@ -44,12 +59,13 @@ export class AppContainer extends React.Component{
     return (
       <div>
         <AppHeader name={this.props.organizationName} />
-              <Route exact path="/app" component={Home} />
-              <Route exact path="/app/contacts" component={ Contacts } />
+              <Route exact path='/app' component={Home} />
+              <Route exact path='/app/contacts' component={ Contacts } />
+              <Route exact path='/app/settings' component={ Settings } />
               <Route exact path="/app/calls" component={ Calls } />
               <Route exact path="/app/contacts/:clientId" component={IndividualContact} />
               {/* <Route exact path="/app/setup" component={FormContainer} /> */}
-              {/* <Route exact path="/app/invoices" component={Invoices} /> */}
+              <Route exact path="/app/invoices" component={Invoices} />
               {/* <Route exact path="/app/clients/:clientId" component={ContactPage} /> */}
               <button onClick={() => this.logOut()}>LOG OUT</button>
               {(this.props.capabilityToken) ? <DialerApp capabilityToken={this.props.capabilityToken} />  : ''}
@@ -60,9 +76,10 @@ export class AppContainer extends React.Component{
 }
 
 const mapStateToProps = (state, props) => { 
-  console.log('app container', state);
+  // console.log('app container', state);
    
   return ({
+    authToken: state.auth.authToken, 
     capabilityToken : state.auth.capabilityToken, 
     organizationName : state.auth.currentUser.organizationName, 
     loading : state.auth.loading, 
