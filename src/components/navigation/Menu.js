@@ -44,7 +44,7 @@ export class navBar extends React.Component {
       <div className="buttonContainer">
         <div className="fixed">
           <Link to="/dashboard/invoices"><img alt='navButton' className="aniButton" src={invoices}></img></Link>
-          <Link to="/clients"><img alt='navButton' className="aniButton" src={contacts}></img></Link>
+          <Link to="/app/clients"><img alt='navButton' className="aniButton" src={contacts}></img></Link>
           <Link to="/dashboard"><img alt='navButton' className="aniButton" src="https://gallery.kissclipart.com/20180929/jqq/kissclipart-chart-black-and-white-clipart-bar-chart-clip-art-18a3aa13f1fdd7ed.png"></img></Link>
           <Link to="/dashboard/call"><img alt='navButton' className="aniButton" src={calls}></img></Link>
           <img alt='main' className="dots" src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png" onClick={e => this.startAnimation(e)}></img>

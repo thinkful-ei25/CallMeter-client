@@ -33,7 +33,8 @@ import {
   fetchOneClient,
   addClient,
   deleteClient,
-  editClient
+  editClient, 
+  setClient
 } from './client.action';
 
 import {
@@ -79,6 +80,7 @@ export {
   AUTH_ERROR,
   authError,
   login,
+  setClient, 
   refreshAuthToken,
   FETCH_CALLSTATS_REQUEST,
   FETCH_CALLSTATS_SUCCESS,

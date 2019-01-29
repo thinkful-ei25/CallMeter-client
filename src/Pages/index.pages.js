@@ -9,7 +9,7 @@ import Setting from './Settings';
 
 export {
   // Calls, 
-  // Contacts, 
+  Contacts, 
   Home, 
   FormContainer, 
   // IndividualContact, 
