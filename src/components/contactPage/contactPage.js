@@ -178,7 +178,7 @@ export class ContactPage extends React.Component {
 									<div className="invoicesTitle verticalCenter">
 										<div>
 											<h3 className="stackedElements">Invoices</h3>
-											<p className="stackedElements">1 of 2 Invoices Completed</p>
+											
 										</div>
 									</div>
 								</div>
@@ -196,6 +196,9 @@ export class ContactPage extends React.Component {
 									</div>
 									<div className="recentCallsHeaderRight">
 										<button className="recentCallsHeaderButton">All Calls</button>
+									</div>
+									<div>
+										
 									</div>
 								</div>
 							</div>
