@@ -1,5 +1,5 @@
 import React from 'react';
-import './Answerer.css'
+import '../../styles/Answerer.css'; 
 
 export default class InProgress extends React.Component {
   constructor(props){ 

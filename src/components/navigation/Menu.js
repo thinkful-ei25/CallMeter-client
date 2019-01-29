@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import anime from 'animejs'
+import anime from 'animejs'; 
 import '../../styles/Menu.css'; 
 import { contacts, close, invoices, calls } from '../../images/menu/index.menu'; 
 

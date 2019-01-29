@@ -1,5 +1,5 @@
 import React from 'react';
-import './Answerer.css'
+import '../../styles/Answerer.css'; 
 
 export default class Phone extends React.Component {
   constructor(props){ 

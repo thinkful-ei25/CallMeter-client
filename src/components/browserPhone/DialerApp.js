@@ -1,10 +1,9 @@
 import React from 'react';
 import { Device } from 'twilio-client';
 import Answerer from './Answerer'; 
-import './BrowserCall.css'; 
 import { connect } from 'react-redux';
 import InProgress from './InProgress'; 
-import { fetchCallerFromContact, hangupClient } from '../../actions/dialer.action';  
+import { fetchCallerFromContact, hangupClient } from '../../actions/index.actions';  
 
 export class DialerApp extends React.Component {
   constructor(props) {

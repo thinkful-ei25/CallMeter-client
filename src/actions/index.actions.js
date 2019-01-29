@@ -38,10 +38,15 @@ import {
 
 import {
   DIAL_CLIENT,
+  dialClient, 
   HANGUP_CLIENT,
+  hangupClient, 
   LOADING_CALLER,
+  loadingCaller, 
   CALLER_LOADED,
+  callerLoaded, 
   LOADING_CALLER_ERROR,
+  loadingCallerError, 
   fetchCallerFromContact
 } from './dialer.action';
 
@@ -91,10 +96,15 @@ export {
   deleteClient,
   editClient,
   DIAL_CLIENT,
+  dialClient, 
   HANGUP_CLIENT,
+  hangupClient, 
   LOADING_CALLER,
+  loadingCaller, 
   CALLER_LOADED,
+  callerLoaded, 
   LOADING_CALLER_ERROR,
+  loadingCallerError, 
   fetchCallerFromContact,
   fetchCapabilityToken,
   registerUser,
