@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-// import { Link } from 'react-router-dom';
-// import { login, registerUser } from '../../actions/index.actions';
+
+import { API_BASE_URL } from '../../config'; 
 import { Input } from '../_utils/index._utils';
 import {
   required,
@@ -17,7 +17,9 @@ const matchesPassword = matches('password');
 export class RegistrationForm extends React.Component {
   componentDidMount() {
     console.log('the component did mount'); 
+     
   }
+
   onSubmit(values) {
 
     // const { organizationName, password, email } = values;
