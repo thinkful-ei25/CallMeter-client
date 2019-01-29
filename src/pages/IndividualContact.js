@@ -73,8 +73,8 @@ export class ContactPage extends React.Component {
     const client = this.props.client
     if (client.invoice) {
       if (client.invoice.length) {
-        invoicesHTML = client.invoice.map(invoice => {
-          return (<div className="individualInvoice">
+        invoicesHTML = client.invoice.map((invoice, index) => {
+          return (<div key={index} className="individualInvoice">
             <h4 className="invoiceStatus stackedElements">Status (coming)</h4>
             <h2 className="stackedElements">{invoice.month + ' ' + invoice.year} Invoice ${invoice.amount}</h2>
             <p className="stackedElements">Sent {invoice.sentDate + ' - ' + (invoice.paid ? 'Paid ' + invoice.paidDate : 'Unpaid')}</p>
