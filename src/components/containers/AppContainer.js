@@ -50,9 +50,9 @@ export class AppContainer extends React.Component{
             <div className="section-container">
               <Route exact path="/app" component={Home} />
               <Route exact path="/app/clients" component={ Contacts } />
-              {/* <Route exact path="/dashboard/setup" component={FormContainer} /> */}
-              {/* <Route exact path="/dashboard/invoices" component={Invoices} /> */}
-              {/* <Route exact path="/clients/:clientId" component={ContactPage} /> */}
+              {/* <Route exact path="/app/setup" component={FormContainer} /> */}
+              {/* <Route exact path="/app/invoices" component={Invoices} /> */}
+              {/* <Route exact path="/app/clients/:clientId" component={ContactPage} /> */}
               <button onClick={() => this.logOut()}>LOG OUT</button>
               {(this.props.capabilityToken) ? <DialerApp capabilityToken={this.props.capabilityToken} />  : ''}
               <Menu />
