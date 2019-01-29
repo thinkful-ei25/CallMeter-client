@@ -5,7 +5,7 @@ import { RequiresLogin } from '../components/_utils/index._utils';
 import { fetchCallStats } from '../actions/index.actions';
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
 import '../styles/Dashboard.css';
-import '../styles/Contacts.css'; 
+
 
 export class Stats extends React.Component {
   constructor(props) {

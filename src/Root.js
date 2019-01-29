@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
-import AppContainer from './components/containers/AppContainer';
-import {LandingPage, FormContainer} from './pages/index.pages';
+import { AppContainer, FormContainer }  from './components/containers/index.containers';
+import { LandingPage } from './pages/index.pages';
 
 export class Root extends React.Component {
 
