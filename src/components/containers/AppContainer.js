@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import { refreshAuthToken, clearAuth } from '../../actions/index.actions';
 import { RequiresLogin} from '../_utils/index._utils'; 
 import { clearAuthToken } from '../../_utils/index.utils'; 
-import { AppHeader, Menu, SubNav } from '../navigation/index.navigation';
+import { AppHeader, Menu } from '../navigation/index.navigation';
 import { Home, Contacts, Settings } from '../../pages/index.pages';  
 import { DialerApp} from '../../components/browserPhone/index.browserPhone';
 import { API_BASE_URL } from '../../config'; 

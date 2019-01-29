@@ -24,17 +24,22 @@ import {
 
 import {
   FETCH_CLIENT_REQUEST,
+  fetchClientRequest,
   FETCH_CLIENTS_SUCCESS,
+  fetchClientsSuccess,
   FETCH_CLIENTS_ERROR,
+  fetchClientsError,
   ADD_CLIENT_SUCCESS,
+  addClientSuccess,
   DELETE_CLIENT_SUCCESS,
+  deleteClientSuccess,
   SET_CLIENT,
+  setClient,
   fetchClients,
   fetchOneClient,
   addClient,
   deleteClient,
   editClient, 
-  setClient
 } from './client.action';
 
 import {
@@ -87,10 +92,15 @@ export {
   FETCH_CALLSTATS_ERROR,
   fetchCallStats,
   FETCH_CLIENT_REQUEST,
+  fetchClientRequest,
   FETCH_CLIENTS_SUCCESS,
+  fetchClientsSuccess,
   FETCH_CLIENTS_ERROR,
+  fetchClientsError,
   ADD_CLIENT_SUCCESS,
+  addClientSuccess,
   DELETE_CLIENT_SUCCESS,
+  deleteClientSuccess,
   SET_CLIENT,
   fetchClients,
   fetchOneClient,
