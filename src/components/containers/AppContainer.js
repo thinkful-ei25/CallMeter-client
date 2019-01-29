@@ -21,7 +21,7 @@ export class AppContainer extends React.Component{
   }
 
   componentWillUnmount() {
-    console.log('unmounting'); 
+    // console.log('unmounting'); 
     return fetch(`${API_BASE_URL}/logout`, {
       method: 'POST',
       headers: {
@@ -73,7 +73,7 @@ export class AppContainer extends React.Component{
 }
 
 const mapStateToProps = (state, props) => { 
-  console.log('app container', state);
+  // console.log('app container', state);
    
   return ({
     authToken: state.auth.authToken, 
