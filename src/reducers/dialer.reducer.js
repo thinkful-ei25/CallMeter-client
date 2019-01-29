@@ -4,7 +4,7 @@ import {
   LOADING_CALLER_ERROR, 
   DIAL_CLIENT, 
   HANGUP_CLIENT
-} from '../actions/dialer.action'; 
+} from '../actions '; 
 
 const initialState = ({ 
   error: null, 
@@ -13,7 +13,7 @@ const initialState = ({
   outboundClient: null, 
 }); 
 
-export default function reducer(state = initialState, action) {
+export default function dialerReducer(state = initialState, action) {
   if (action.type === LOADING_CALLER) { 
     return Object.assign({
       loadingClient: true, 

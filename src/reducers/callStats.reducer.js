@@ -2,7 +2,7 @@ import {
   FETCH_CALLSTATS_SUCCESS,
   FETCH_CALLSTATS_ERROR,
   FETCH_CALLSTATS_REQUEST,
-} from '../actions/callStats.action';
+} from '../actions';
 
 
 const initialState = {
@@ -15,7 +15,7 @@ const initialState = {
 };
 
 
-export default function reducer(state = initialState, action) {
+export default function callStatsReducer(state = initialState, action) {
   if (action.type === FETCH_CALLSTATS_SUCCESS) {
     return Object.assign({}, state, {
       datesArr: action.callStats.datesArr, 

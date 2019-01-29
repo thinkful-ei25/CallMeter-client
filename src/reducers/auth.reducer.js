@@ -5,17 +5,17 @@ import {
   AUTH_REQUEST,
   AUTH_SUCCESS,
   AUTH_ERROR
-} from '../actions/auth';
+} from '../actions';
 
 const initialState = {
-  authToken: null, // authToken !== null does not mean it has been validated
+  authToken: null,
   capabilityToken: null, 
   currentUser: null,
   loading: false,
   error: null,     
 };
 
-export default function reducer(state = initialState, action) {
+export default function authReducer(state = initialState, action) {
     if (action.type === SET_AUTH_TOKEN) {
       return Object.assign({}, state, {
         authToken: action.authToken

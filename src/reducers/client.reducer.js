@@ -5,7 +5,7 @@ import {
 	DELETE_CLIENT_SUCCESS,
 	FETCH_CLIENT_REQUEST,
 	SET_CLIENT
-} from '../actions/client';
+} from '../actions';
 
 const initialState = {
 	data: '',
@@ -13,7 +13,7 @@ const initialState = {
   outgouingClientNumber: ''
 };
 
-export default function reducer(state = initialState, action) {
+export default function clientReducer(state = initialState, action) {
 	if (action.type === FETCH_CLIENTS_SUCCESS) {
 		return Object.assign({}, state, {
 			data: action.data,
