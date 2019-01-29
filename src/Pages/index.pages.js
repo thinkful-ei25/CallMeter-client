@@ -4,7 +4,7 @@ import Home from './Home';
 import IndividualContact from './IndividualContact'; 
 import Invoices from './Invoices'; 
 import LandingPage from './LandingPage'; 
-import Setting from './Settings'; 
+import Settings from './Settings'; 
 
 export {
   // Calls, 
@@ -13,5 +13,5 @@ export {
   // IndividualContact, 
   // Invoices, 
   LandingPage, 
-  // Setting
+  Settings
 }

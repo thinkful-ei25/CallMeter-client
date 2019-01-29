@@ -5,9 +5,7 @@ import anime from 'animejs';
 import '../../styles/Menu.css'; 
 import { contacts, close, invoices, calls, settings, home, hamburger } from '../../images/menu/index.menu'; 
 
-// const { twilio } = window;
 export class navBar extends React.Component {
-
 
   async startAnimation(e) {
     const buttons = document.getElementsByClassName('aniButton');

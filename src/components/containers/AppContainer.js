@@ -5,7 +5,7 @@ import { refreshAuthToken, clearAuth } from '../../actions/index.actions';
 import { RequiresLogin} from '../_utils/index._utils'; 
 import { clearAuthToken } from '../../_utils/index.utils'; 
 import { AppHeader, Menu, SubNav } from '../navigation/index.navigation';
-import { Home, Contacts } from '../../pages/index.pages';  
+import { Home, Contacts, Settings } from '../../pages/index.pages';  
 import { DialerApp} from '../../components/browserPhone/index.browserPhone';
 import { API_BASE_URL } from '../../config'; 
 import '../../styles/Contacts.css'; 
@@ -59,8 +59,9 @@ export class AppContainer extends React.Component{
     return (
       <div>
         <AppHeader name={this.props.organizationName} />
-              <Route exact path="/app" component={Home} />
-              <Route exact path="/app/clients" component={ Contacts } />
+              <Route exact path='/app' component={Home} />
+              <Route exact path='/app/clients' component={ Contacts } />
+              <Route exact path='/app/settings' component={ Settings } />
               {/* <Route exact path="/app/setup" component={FormContainer} /> */}
               {/* <Route exact path="/app/invoices" component={Invoices} /> */}
               {/* <Route exact path="/app/clients/:clientId" component={ContactPage} /> */}
