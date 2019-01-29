@@ -81,8 +81,8 @@
 
 
 .contactBody{
-  width: 77%;
-  margin-left: 11.5%;
+  width: 90%;
+  margin-left: 5%;
   margin-top: 2.5%;
 }
 
@@ -96,12 +96,14 @@
 
 /* Contact Info Box*/
 .contactBodyInfo{
-  width: 50%;
+  width: 100%;
   background-color: white;
-  height: 600px;
+  margin-top: 5%;
+  margin-bottom: 5%;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15);
   border-radius: 5%;
-  margin-right: 9%;
+  font-size: 1em;
+
 }
 
 .contactBodyInfoImageContainer{
@@ -158,9 +160,9 @@
   display: flex;
   flex-direction: column;
   background-color: white;
+  height: 600px;
   border-radius: 5%;
   width: 40%;
-  height: 600px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15);
   border-bottom: none;
 }
