@@ -118,33 +118,34 @@
 }
 
 .contactBodyInfoContainer{
-  height: 10%;
+  height: auto;
   margin-left: 10%;
   width: 80%;
   border-bottom: 1px solid black;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .contactBodyTagSection{
-  height: 65px;
-  width: 25%;
+  height: auto;
+  width: auto;
   display: flex;
   align-items: center;
+  padding: 1% 1%;
 }
 
 .contactBodyInfoSection{
-  height: 65px;
+  height: auto;
+  width: auto;
+  display: flex;
+  align-items:center;
+  padding: 1% 1%;
 }
 
 .contactBodyTags{
   margin-top: 5%;
   width: 80%;
   margin-left: 10%;
-}
-
-.contactBodyInfoSection{
-  display: flex;
-  align-items: center;
 }
 
 /* Contact Info Box End */

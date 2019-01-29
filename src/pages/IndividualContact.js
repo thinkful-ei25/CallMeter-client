@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import anime from 'animejs';
 import '../styles/IndividualContact.css';
-import { fetchOneClient, fetchClientCalls } from '../actions/index.actions'
+import { fetchOneClient, fetchClientCalls, FETCH_CLIENT_CALLS_SUCCESS } from '../actions/index.actions'
 import { DeleteContact, EditContact, RecentCalls } from '../components/contacts/index.contacts'
 import { Redirect } from 'react-router-dom';
 import { saveClientId, loadClientId, clearClientId } from '../_utils/_localStorage.js'
@@ -133,7 +133,7 @@ export class ContactPage extends React.Component {
                       <p className="contactBodyInfoDetails">Full Name:</p>
                     </div>
                     <div className="contactBodyInfoSection">
-                      <p>{client.firstName + ' ' + client.lastName}</p>
+                      <p className="contactBodyInfoDetails">{client.firstName + ' ' + client.lastName}</p>
                     </div>
                   </div>
                   <div className="contactBodyInfoContainer">
@@ -141,7 +141,7 @@ export class ContactPage extends React.Component {
                       <p className="contactBodyInfoDetails">Company:</p>
                     </div>
                     <div className="contactBodyInfoSection">
-                      {client.company}
+                    <p className="contactBodyInfoDetails">{client.company}</p>
                     </div>
                   </div>
                   <div className="contactBodyInfoContainer">
@@ -149,7 +149,7 @@ export class ContactPage extends React.Component {
                       <p className="contactBodyInfoDetails">Email:</p>
                     </div>
                     <div className="contactBodyInfoSection">
-                      {client.email}
+                    <p className="contactBodyInfoDetails">{client.email}</p>
                     </div>
                   </div>
                   <div className="contactBodyInfoContainer">
@@ -157,7 +157,7 @@ export class ContactPage extends React.Component {
                       <p className="contactBodyInfoDetails">Phone:</p>
                     </div>
                     <div className="contactBodyInfoSection">
-                      {client.phoneNumber}
+                    <p className="contactBodyInfoDetails">{client.phoneNumber}</p>
                     </div>
                   </div>
                   <div style={{ border: "none" }} className="contactBodyInfoContainer">
@@ -165,8 +165,8 @@ export class ContactPage extends React.Component {
                       <p className="contactBodyInfoDetails">Address:</p>
                     </div>
                     <div className="contactBodyInfoSection">
-                      {client.address ? client.address.streetOne + ' ' + client.address.streetTwo + ' '
-                        + client.address.city + ' ' + client.address.state + ' ' + client.address.zip : ""}
+                    <p className="contactBodyInfoDetails">{client.address ? client.address.streetOne + ' ' + client.address.streetTwo + ' '
+                        + client.address.city + ' ' + client.address.state + ' ' + client.address.zip : ""}</p>
 
                     </div>
                   </div>
