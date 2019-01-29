@@ -16,6 +16,7 @@ export class RegistrationForm extends React.Component {
   onSubmit(values) {
     this.props.dispatch(addClient(values));
     this.props.toggle();
+    // this.props.dispatch(login(organizationName, password)));
     
   }
 
