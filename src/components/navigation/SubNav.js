@@ -12,14 +12,11 @@ export default function SubNav(props) {
               type="search"
               name="searchBox"
               value={props.searchTerm}
-              onChange={e =>
-                props.setSearchTerm(e)
-              }
+              onChange={e => props.setSearchTerm(e)}
               placeholder="Search by name"
             />
           </div>
           <div className="add-contact">
-
             <button
               className="add-contact-button"
               onClick={() => props.toggleAddClientForm()}
@@ -30,5 +27,5 @@ export default function SubNav(props) {
         </div>
       </div>
     </section>
-  )
+  );
 }

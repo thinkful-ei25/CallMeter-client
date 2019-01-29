@@ -34,11 +34,7 @@ export class Stats extends React.Component {
     console.log('Data ', arr);
     return (
       <Sparklines width={250} height={130} data={arr}>
-        <SparklinesCurve
-          color="#ff6e54"
-          width={230}
-          height={130}
-        />
+        <SparklinesCurve color="#ff6e54" width={230} height={130} />
       </Sparklines>
     );
   }
