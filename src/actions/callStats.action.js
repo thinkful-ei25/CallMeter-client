@@ -31,7 +31,7 @@ export const fetchCallStats = () => (dispatch, getState) => {
       .then(res => normalizeResponseErrors(res))
       .then(res => res.json())
       .then((callStats) => {
-        console.log('result data', callStats)
+        // console.log('result data', callStats)
         dispatch(fetchCallStatsSuccess(callStats))
       })
       .catch(err => {
