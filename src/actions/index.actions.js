@@ -1,5 +1,3 @@
-'use strict';
-
 import {
   SET_AUTH_TOKEN,
   setAuthToken,
