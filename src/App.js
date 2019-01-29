@@ -10,10 +10,8 @@ import { refreshAuthToken } from '../actions/auth';
 export class App extends React.Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.loggedIn && this.props.loggedIn) {
-      // When we are logged in, refresh the auth token periodically
       this.startPeriodicRefresh();
     } else if (prevProps.loggedIn && !this.props.loggedIn) {
-      // Stop refreshing when we log out
       this.stopPeriodicRefresh();
     }
   }
@@ -30,16 +28,14 @@ export class App extends React.Component {
   }
 
   stopPeriodicRefresh() {
-    if (!this.refreshInterval) {
-      return;
-    }
-
+    if (!this.refreshInterval) return;
     clearInterval(this.refreshInterval);
   }
 
   render() {
     return (
       <div>
+        <Route exact path="/" component={LandingPage} />
         <Route exact path="/login" component={FormContainer} />
         <Route exact path="/register" component={FormContainer} />
         <Route exact path="/setup" component={Setup} />
