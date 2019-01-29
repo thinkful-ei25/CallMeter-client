@@ -11,7 +11,7 @@ export {
   Contacts, 
   Home, 
   // IndividualContact, 
-  // Invoices, 
+  Invoices, 
   LandingPage, 
   Settings
 }
