@@ -5,9 +5,9 @@ import PhoneSetup from './PhoneSetup';
 import RegisterForm from './RegisterForm'; 
 
 export {
-  // AccountInfoForm,
+  AccountInfoForm,
   // ContactForm,
   LoginForm,
-  // PhoneSetup, 
+  PhoneSetup, 
   RegisterForm
 }

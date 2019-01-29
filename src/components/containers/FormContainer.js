@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, withRouter } from 'react-router-dom';
-import '../styles/Forms.css';
-import { login, register, phone, account, contacts } from '../images/forms/index.forms';
-import { LoginForm, RegisterForm, PhoneSetup, AccountInfoForm } from '../components/forms/index.forms';
+import '../../styles/Forms.css';
+import { login, register, phone, account, contacts } from '../../images/forms/index.forms'
+import { LoginForm, RegisterForm } from '../forms/index.forms';
 
 export function FormContainer(props) {
   console.log('logged in', props.loggedIn); 
