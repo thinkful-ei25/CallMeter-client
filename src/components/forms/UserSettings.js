@@ -35,15 +35,15 @@ export class RegistrationForm extends React.Component {
       >
         <Field
           component={Input}
-					label="Change Organization Name"
+					label="Change Organization Phone Number"
           type="text"
-          name="organizationName"
+          name="organizationPhoneNumber"
           validate={[required, nonEmpty, isTrimmed]}
-          placeholder="new work place"
+          placeholder="Your New Phone"
         />
-        <Field
+         <Field
           component={Input}
-					label="Change Email Address"
+					label="Change Hourly Rate"
           type="text"
           name="email"
           validate={[required, nonEmpty, isTrimmed, emailCheck]}

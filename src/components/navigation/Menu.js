@@ -11,7 +11,7 @@ export class navBar extends React.Component {
     const buttons = document.getElementsByClassName('aniButton');
     const currentButton = e.currentTarget;
     if (buttons[0].style.visibility === 'visible') {
-      currentButton.src = { hamburger };
+      currentButton.src = hamburger ;
       for (let i = 0; i < buttons.length; i++) {
         await anime({
           targets: buttons[i],
