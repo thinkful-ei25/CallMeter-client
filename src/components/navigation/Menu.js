@@ -40,7 +40,7 @@ export class navBar extends React.Component {
     return (
       <div className="buttonContainer">
         <div className="fixed">
-          <Link to="/dashboard/invoices"><img alt='invoices' className="aniButton" src={invoices}></img></Link>
+          <Link to="/app/invoices"><img alt='invoices' className="aniButton" src={invoices}></img></Link>
           <Link to="/app/clients"><img alt='clients' className="aniButton" src={contacts}></img></Link>
           <Link to="/dashboard"><img alt='home' className="aniButton" src={home}></img></Link>
           {/* <Link to="/dashboard/call"><img alt='calls' className="aniButton" src={calls}></img></Link> */}
