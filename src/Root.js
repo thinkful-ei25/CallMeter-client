@@ -8,8 +8,8 @@ export class Root extends React.Component {
   render() {
     return (
       <Switch>
-        <Route path='/app' component={AppContainer} />
-        <Route exact path ='/' component={LandingPage} />
+        <Route path='/app' component={ AppContainer } />
+        <Route exact path ='/' component={ LandingPage } />
         <Route path = '/' component={FormContainer} />
       </Switch>
     );

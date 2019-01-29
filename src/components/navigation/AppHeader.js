@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import mainLogo from '../resources/logo.png';
+import { logo } from '../../images/header/index.header';
+import '../../styles/Contacts.css'; 
 
 export class AppHeader extends React.Component {
 
@@ -16,7 +17,7 @@ export class AppHeader extends React.Component {
       <header className="app-header" role="banner">
         <Link to="/">
           <div className="logo">
-            <img className="logo-larger" src={mainLogo} alt="ContactMEter" />
+            <img className="logo-larger" src={logo} alt="ContactMEter" />
           </div>
         </Link>
 
