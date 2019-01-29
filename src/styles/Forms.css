@@ -53,7 +53,7 @@
   display: block;
   width: 100%;
   font-size: 39px;
-  color: #333;
+  color: #2aabe4;
   line-height: 1.2;
   text-align: left;
 }
@@ -61,7 +61,7 @@
 .input-wrapper {
   width: 100%;
   position: relative;
-  border-bottom: 2px solid #dbdbdb;
+  border-bottom: 2px solid #9dc8e4;
   margin-bottom: 45px;
 }
 
@@ -71,7 +71,7 @@
 
 .label-input {
   font-size: 18px;
-  color: #999;
+  color: #2aabe4;
   line-height: 1.2;
   padding-left: 2px;
 }
@@ -82,7 +82,7 @@
   height: 50px;
   background: 0 0;
   font-size: 22px;
-  color: #555;
+  color: #33393d;
   line-height: 1.2;
   padding: 0 2px;
 }
@@ -104,7 +104,7 @@
   position: relative;
   z-index: 1;
   border-radius: 8px;
-  border: 2px solid #61d395;
+  border: 2px solid #ffcd24;
   overflow: hidden;
 }
 
@@ -116,18 +116,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 15px;
   min-width: 244px;
-  height: 50px;
+  height: 40px;
   font-size: 16px;
-  color: #fff;
+  color: #33393d;
   line-height: 1.2;
-  background: #61d395;
+  background: #ffcd24;
 }
 
 .form-button:hover {
   background: #ffffff;
-  color: #61d395;
+  color: #33393d;
 }
 
 

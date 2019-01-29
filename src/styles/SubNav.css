@@ -61,14 +61,14 @@
 }
 
 .add-contact-button {
-    background: #5078EE;
+    background: #FFCD24;
     font-size: 16px;
     display: inline-flex;
     align-items: center;
     height: 100%;
     padding: 0px 25px;
     margin: 0;
-    color: #ffffff;
+    color: #33393d;
 
 }
 
@@ -101,7 +101,7 @@ select {
     border: 0;
     border-radius: 0;
     background: rgba(255,255,255,0.0);
-    color: #F5A04F;
+    color: #2aabe4;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -115,5 +115,5 @@ select {
   pointer-events: none;
   border-style: solid;
   border-width: 8px 5px 0 5px;
-  border-color: #F5A04F transparent transparent transparent;
+  border-color: #2aabe4 transparent transparent transparent;
 }

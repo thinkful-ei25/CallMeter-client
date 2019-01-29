@@ -1,7 +1,5 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-
-import { API_BASE_URL } from '../../config'; 
 import { Input } from '../_utils/index._utils';
 import {
   required,
@@ -35,24 +33,21 @@ export class RegistrationForm extends React.Component {
         className="form validate"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
-        <span className="form-title pad-bottom-50">
-          My Settings
-        </span>
         <Field
           component={Input}
-					label="Change Organization Name"
+					label="Change Organization Phone Number"
           type="text"
-          name="organizationName"
+          name="organizationPhoneNumber"
           validate={[required, nonEmpty, isTrimmed]}
-          placeholder="new work place"
+          placeholder="Your New Phone"
         />
-        <Field
+         <Field
           component={Input}
-					label="Change Email Address"
+					label="Change Hourly Rate"
           type="text"
           name="email"
           validate={[required, nonEmpty, isTrimmed, emailCheck]}
-          placeholder="new number"
+          placeholder="Your New Email Address"
         />
         <Field
 					component={Input}
