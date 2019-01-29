@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { login, registerUser } from '../../actions/index.actions';
 import { Input } from '../_utils/index._utils';
 import {
@@ -15,15 +15,30 @@ const passwordLength = length({ min: 10, max: 72 });
 const matchesPassword = matches('password');
 
 export class RegistrationForm extends React.Component {
+  
+  constructor(props) { 
+    super(props); 
+    this.state = { 
+      registered: false
+    }; 
+  }
+
   onSubmit(values) {
     const { organizationName, password, email } = values;
     const user = { organizationName, password, email };
     return this.props
       .dispatch(registerUser(user))
-      .then(() => this.props.dispatch(login(organizationName, password)));
+      .then(() => {  
+        
+        console.log('REGISTERED'); 
+        this.setState({registered: true}); 
+      });
   }
 
   render() {
+    if (this.state.registered) { 
+      return <Redirect to="/setup/phone" />;
+    }
     return (
       <form
         className="form validate"

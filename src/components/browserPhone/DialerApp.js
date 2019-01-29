@@ -19,13 +19,15 @@ export class DialerApp extends React.Component {
       isIncomingCallOnGoing: false, 
       isIncomingCallConnected: false, 
       isOutgoingCallOnGoing: false, 
+      isOutgoingCallRinging: false, 
+      isOutgoingCallConnected: false
     };
   }
 
   componentDidMount() {
     //POSSIBLE TWILIO DEVICE STATES
     const twilioDeviceStates = 
-      ['cancel', 'connect', 'disconnect', 'ringing', 'error', 'incoming', 'offline', 'ready']; 
+      ['cancel', 'connect', 'disconnect', 'ringing', 'error', 'incoming', 'offline', 'ready', 'open', 'closed']; 
     
     //SETS TWILIO DEVICE STATE HANDLERS
     twilioDeviceStates.forEach(twilioDeviceState => { 
@@ -59,7 +61,7 @@ export class DialerApp extends React.Component {
   handleAppStateChange = state => {
 
     Device.on(state, obj => {
-
+      console.log('state', state); 
       this.setState({deviceState: state, connection: obj});
       if (state === 'error'){ 
         this.setState({
@@ -75,6 +77,12 @@ export class DialerApp extends React.Component {
       }
       else if (state === 'disconnect') { 
         this.deviceDisconnectedHandler(); 
+      }
+      else if (state === 'ringing') { 
+        console.log('##Ringing##'); 
+      }
+      else if (state === 'connected') { 
+        console.log('##Connected##'); 
       }
     });
   }; 

@@ -51,7 +51,7 @@ export const fetchClients = () => (dispatch, getState) => {
 		.then(res => normalizeResponseErrors(res))
 		.then(res => res.json())
 		.then((data) => {
-			console.log('result data', data)
+			// console.log('result data', data)
 			dispatch(fetchClientsSuccess(data))
 		})
 		.catch(err => {

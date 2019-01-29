@@ -53,7 +53,7 @@ export class Clients extends React.Component {
       !this.state.adding
     ) {
       let clients = this.props.client;
-      console.log('clients:', clients);
+      // console.log('clients:', clients);
       clients.forEach(row => {
         let fullName = row.firstName + ' ' + row.lastName;
         row.fullName = (
