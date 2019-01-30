@@ -1,16 +1,27 @@
 import React from 'react'; 
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Route } from 'react-router-dom'; 
 import { refreshAuthToken, clearAuth } from '../../actions/index.actions';
 import { RequiresLogin} from '../_utils/index._utils'; 
 import { clearAuthToken } from '../../_utils/index.utils'; 
 import { AppHeader, Menu } from '../navigation/index.navigation';
-import { Home, Contacts, Settings, Invoices, IndividualContact, Calls } from '../../pages/index.pages';  
+import { Home, Contacts, Invoices, IndividualContact, Calls } from '../../pages/index.pages';  
 import { DialerApp} from '../../components/browserPhone/index.browserPhone';
 import { API_BASE_URL } from '../../config'; 
+import SetupContainer from './SetupContainer'
+import { Redirect } from 'react-router-dom';
 import '../../styles/Contacts.css'; 
 
 export class AppContainer extends React.Component{ 
+
+  componentDidMount(){
+    console.log('in app container componnent did mount', this.props.isTutorialCompleted);
+    if(!this.props.isTutorialCompleted){
+      console.log('is redirecting');
+      return <Redirect to="/app/setup" />; 
+    }
+  }
 
   componentDidUpdate(prevProps) {
     if (!prevProps.loggedIn && this.props.loggedIn) {
@@ -61,11 +72,19 @@ export class AppContainer extends React.Component{
         <AppHeader name={this.props.organizationName} />
               <Route exact path='/app' component={Home} />
               <Route exact path='/app/contacts' component={ Contacts } />
-              <Route exact path='/app/settings' component={ Settings } />
+              {/* <Route exact path='/app/settings' component={ Settings } /> */}
               <Route exact path="/app/calls" component={ Calls } />
-              <Route exact path="/app/contacts/:clientId" component={IndividualContact} />
-              {/* <Route exact path="/app/setup" component={FormContainer} /> */}
               <Route exact path="/app/invoices" component={Invoices} />
+              <Route exact path="/app/clients" component={ Contacts } />
+              <Route exact path="/app/contacts/:clientId" component={IndividualContact} />
+
+
+              {/* <Route exact path="/app/setup" component={FormContainer} /> */}
+
+
+              <Route exact path="/app/setup" component={SetupContainer} />
+
+              {/* <Route exact path="/app/invoices" component={Invoices} /> */}
               {/* <Route exact path="/app/clients/:clientId" component={ContactPage} /> */}
               <button onClick={() => this.logOut()}>LOG OUT</button>
               {(this.props.capabilityToken) ? <DialerApp capabilityToken={this.props.capabilityToken} />  : ''}
@@ -77,14 +96,16 @@ export class AppContainer extends React.Component{
 
 const mapStateToProps = (state, props) => { 
   // console.log('app container', state);
+  console.log('state.auth.isTutorialcompleted = ', state.auth.isTutorialCompleted);
    
   return ({
     authToken: state.auth.authToken, 
+    isTutorialCompleted: state.auth.isTutorialCompleted,
     capabilityToken : state.auth.capabilityToken, 
-    organizationName : state.auth.currentUser.organizationName, 
+    organizationName : state.auth.currentUser.organizationName,
     loading : state.auth.loading, 
     loggedIn: state.auth.currentUser !== null
   }); 
 }
 
-export default RequiresLogin()(connect(mapStateToProps)(AppContainer));
+export default RequiresLogin()(withRouter(connect(mapStateToProps)(AppContainer)));

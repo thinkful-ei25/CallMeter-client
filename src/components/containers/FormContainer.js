@@ -8,7 +8,15 @@ import { LoginForm, RegisterForm } from '../forms/index.forms';
 export function FormContainer(props) {
   console.log('logged in', props.loggedIn); 
   if (props.loggedIn) {
-    return <Redirect to="/app" />;
+    console.log(props.isTutorialCompleted);
+    if(!props.isTutorialCompleted){
+      console.log('is redirectiog');
+      return <Redirect to="/app/setup" />; 
+    }
+    else{
+      console.log('redirected to the wrong area');
+      return <Redirect to="/app" />;
+    }
   }
 
   const images = {
@@ -30,8 +38,8 @@ export function FormContainer(props) {
         <div className="form-wrapper pad-50">
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/register" render={() => <RegisterForm/>} />
-          {/* <Route exact path="/setup/account" render={() => <AccountInfoForm />} />
-          <Route exact path="/setup/phone" render={() => <PhoneSetup/>} /> */}
+          {/* <Route exact path="/setup/account" render={() => <AccountInfoForm />}/>
+          <Route exact path="/setup/phone" render={() => <PhoneSetup/>} />  */}
         </div>
       </div>
     </div>
@@ -42,6 +50,7 @@ const mapStateToProps = state => {
   console.log('STATE ',state);
 
   return ({
+    isTutorialCompleted: state.auth.isTutorialCompleted,
     loggedIn: state.auth.currentUser !== null
   })
 };
