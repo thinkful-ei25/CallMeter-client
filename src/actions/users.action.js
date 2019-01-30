@@ -43,7 +43,9 @@ export const getPhoneNumbers = areaCode => dispatch => {
       'content-type': 'application/json'
     }
   })
-    .then(res => normalizeResponseErrors(res))
+    .then(res => {
+      normalizeResponseErrors(res)
+    })
     .then(res => {
       console.log(res);
       return res.json();

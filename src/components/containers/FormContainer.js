@@ -30,8 +30,8 @@ export function FormContainer(props) {
         <div className="form-wrapper pad-50">
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/register" render={() => <RegisterForm/>} />
-          {/* <Route exact path="/setup/account" render={() => <AccountInfoForm />} />
-          <Route exact path="/setup/phone" render={() => <PhoneSetup/>} /> */}
+          {/* <Route exact path="/setup/account" render={() => <AccountInfoForm />}/>
+          <Route exact path="/setup/phone" render={() => <PhoneSetup/>} />  */}
         </div>
       </div>
     </div>
