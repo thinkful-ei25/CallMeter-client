@@ -20,7 +20,7 @@ import {
   loadClientId,
   clearClientId
 } from '../_utils/index.utils';
-import {SubNav} from '../components/navigation/index.navigation';
+import { SubNav } from '../components/navigation/index.navigation';
 
 export class ContactPage extends React.Component {
   constructor(props) {
@@ -59,7 +59,7 @@ export class ContactPage extends React.Component {
       targets: '.fixedPokePhone',
       opacity: 0,
       duration: 1000,
-      complete: function() {
+      complete: function () {
         element.style.visibility = 'hidden';
       }
     });
@@ -144,8 +144,8 @@ export class ContactPage extends React.Component {
                     <div>Invoices</div>
                   )}
             </div>
-          </section> 
-          </div>
+          </section>
+        </div>
 
       );
     } else if (this.state.action === 'editing') {
@@ -179,7 +179,7 @@ export class ContactPage extends React.Component {
           <AddContact toggle={() => this.toggleAddClientForm()} />
         </div>
       );
-    }else {
+    } else {
       return null;
     }
   }
