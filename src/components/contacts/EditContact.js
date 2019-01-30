@@ -42,8 +42,7 @@ export class EditContact extends React.Component {
             <div className="img-sized" style={imgStyle} />
             <div className="form-wrapper pad-50">
             <span className="form-title pad-bottom-50">Edit Contact</span>
-
-              <h2><button className="backButton" onClick={() => this.props.toggle()}>Cancel ⬅</button></h2>
+              <button className="close" onClick={() => this.props.toggle()} />
               <form
 
                 className="loginForm"
