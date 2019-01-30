@@ -25,8 +25,10 @@ export class AppContainer extends React.Component{
 
   componentDidUpdate(prevProps) {
     if (!prevProps.loggedIn && this.props.loggedIn) {
+      console.log('hitting route');
       this.startPeriodicRefresh();
     } else if (prevProps.loggedIn && !this.props.loggedIn) {
+      console.log('hitting other route');
       this.stopPeriodicRefresh();
     }
   }
@@ -77,13 +79,7 @@ export class AppContainer extends React.Component{
               <Route exact path="/app/invoices" component={Invoices} />
               <Route exact path="/app/clients" component={ Contacts } />
               <Route exact path="/app/contacts/:clientId" component={IndividualContact} />
-
-
-              {/* <Route exact path="/app/setup" component={FormContainer} /> */}
-
-
               <Route exact path="/app/setup" component={SetupContainer} />
-
               {/* <Route exact path="/app/invoices" component={Invoices} /> */}
               {/* <Route exact path="/app/clients/:clientId" component={ContactPage} /> */}
               <button onClick={() => this.logOut()}>LOG OUT</button>
