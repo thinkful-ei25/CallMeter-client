@@ -218,8 +218,7 @@ export class Contacts extends React.Component {
               </div>
             </header>
             </div>
-
-
+            
             <section className="contacts">
               <div className="section-container">
                 <ReactTable

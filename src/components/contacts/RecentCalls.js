@@ -33,9 +33,8 @@ export default function RecentCalls(props) {
     },
   ]
   return (
-    <div className="callsHeaderContainer">
       
-      <div className="section-container">
+      <div>
         <ReactTable
           data={props.calls}
           columns={callColumns}
@@ -69,7 +68,7 @@ export default function RecentCalls(props) {
           minRows={0}
         />
       </div>
-    </div>
+
   )
 }
 

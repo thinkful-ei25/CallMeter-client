@@ -1,263 +1,194 @@
-.contactPage{
-  display: block;
-  background-color: #f4f4ff;
-  overflow: hidden;
-}
-
-.contactPageHeader{
-  width: 100%;
+.contact-info {
+  background: #ffffff;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
-  line-height: 0;
+  padding: 32px 32px 32px 32px;
 }
 
-.contactHeaderLeft{
-  width: 50%;
-  height: 100%;
-  display: flex;
-  align-items: center;
+@media only screen and (min-width: 767px) {
+  .contact-info {
+    /* margin-top: 60px !important; */
+    padding: 45px !important;
+  }
+
+  .contact-avatar {
+    width: 25% !important;
+    max-width: 150px !important;
+
+  }
+
+  .contact-avatar div {
+    width: 110px !important;
+    height:1100px !important;
+
+  }
+
+  .contact-avatar img {
+  width: 110px !important;
+  height: 110px !important;
+
 }
 
-.contactHeaderRight{
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  .contact-details {
+    width: 40% !important;
+  }
+
+  .contact-info-actions {
+    width: 20% !important;
+    padding: 0 !important;
+    margin: 0 0 0 auto !important;
+    border: 0 !important;
+  }
+
+  .contact-info-details {
+    padding: 48px !important;
+  }
+
+  .contact-info-block {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+  }
+
+  .info-description {
+    width: 30% !important;
+    max-width: 350px !important;
+    margin-bottom: 0 !important;
+    padding-top: 0px !important;
+    padding-left: 0px !important;
+  }
+
+  .contact-info-list {
+    padding-top: 0px !important;
+    padding-left: 0px !important;
+  }
+  .details-list {
+    width: 50% !important;
+  }
+    .calls-list {
+    width: 100% !important;
+    margin-bottom: 30px;
+  }
+  .contact-info-calls-title {
+  width: 90% !important;
+    text-align: left !important;
+}
+.contact-info-call-actions {
+    width: 10% !important;
+    padding-top: 10px !important; 
+    margin: 0 auto; 
+    border: 0;
+    text-align: right;
+    
+}
 }
 
-.contactPageContainer{
-  width: 80%;
-  margin-left: 10%;
-  margin-top: 7%;
-}
-
-.contactTopHeader{
+.card {
   width: 100%;
-}
-
-
-.contactActionButton{
-  width: 20%;
-  height: 30px;
-  margin-left: 4%;
-  border-radius: 15%;
-  background-color: blue;
-  color: white;
-}
-
-.bestFriend{
-  margin-top: -5px;
-} 
-
-
-
-/* Contact Link Styling */
-.contactSections{
-  margin-top: 3%;
-  width: 100%;
-  border-bottom: 1px solid black;
-
-  display: flex;
-  justify-content: flex-start;
-}
-
-.contactLinks{
   position: relative;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
+  margin: 0px auto;
 }
 
-.contactLinks:hover:after{
-  content: "";
-  border-bottom: 4px solid blue;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -16px;
-}
-/* Contact Link Styling End */
-
-
-
-.contactBody{
-  width: 90%;
-  margin-left: 5%;
-  margin-top: 2.5%;
-}
-
-.contactBodyTopBoxes{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-
-
-
-/* Contact Info Box*/
-.contactBodyInfo{
-  width: 100%;
-  background-color: white;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15);
-  border-radius: 5%;
-  font-size: 1em;
-
-}
-
-.contactBodyInfoImageContainer{
-  margin-top: 2.5%;
-  height: 20%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.contactBodyInfoImage{
-  border-radius: 50%;
-  height: 100%;
-}
-
-.contactBodyInfoContainer{
-  height: auto;
-  margin-left: 10%;
-  width: 80%;
-  border-bottom: 1px solid black;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.contactBodyTagSection{
-  height: auto;
-  width: auto;
-  display: flex;
-  align-items: center;
-  padding: 1% 1%;
-}
-
-.contactBodyInfoSection{
-  height: auto;
-  width: auto;
-  display: flex;
-  align-items:center;
-  padding: 1% 1%;
-}
-
-.contactBodyTags{
-  margin-top: 5%;
-  width: 80%;
-  margin-left: 10%;
-}
-
-/* Contact Info Box End */
-
-
-
-/* Invoices details box */
-
-.contactBodyInvoices{
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  height: 600px;
-  border-radius: 5%;
-  width: 40%;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15);
-  border-bottom: none;
-}
-
-.contactBodyInvoicesTop{
-  height: 15%;
-  width: 100%;
-  border-bottom: 1px solid black;
-}
-
-.verticalCenter{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.invoicesTitle{
-  width: 80%;
-  height: 100%;
-  margin-left: 10%;
-}
-
-.contactBodyInvoicesBottom{
-  height: 72.5%;
-  width: 100%;
-}
-
-.individualInvoice{
-  width: 80%;
-  margin-left: 10%;
-  margin-top: 10%;
-}
-
-.stackedElements{
-  line-height: 0;
-}
-
-.invoicesBottomButton{
-  width: calc(100% + 8px);
-  margin-left: -4px;
-  height: 12.5%;
-  border-radius: 8%;
-  background-color: blue;
-  color: white;
-  font-size: 1.5em;
-}
-
-/* Invoices details box end*/
-
-
-/* Recent Calls box */
-.recentCallsContainer{
-  width: 100%;
-  margin-top: 5%;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15);
-  border-radius: 5%;
-  height: 400px;
-  background-color: white;
-  margin-bottom: 5%;
-}
-.recentCallsHeader{
-  width: 100%;
-  height: 30%;
-  border: 1px solid black;
-  display: flex;
-}
-.recentCallsHeaderLeft{
-  display: flex;
-  align-items:center;
-  width: 50%;
-}
-.recentCallsHeaderRight{
-  width: 50%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.recentCallsHeaderTitle{
-  margin-left: 10%;
-}
-
-.recentCallsHeaderButton{
-  margin-right: 10%;
-  height: 30%;
+.contact-avatar {
   width: 30%;
-  background-color: blue;
-  color: white;
-  border-radius: 20%;
 }
 
-.deleteClientContainer {
+.contact-avatar img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  border: 4px solid #9787b7;
+  background-color: #d7d1e3;
+  color: #4c3e67;
+  margin-right: 10px;
+}
+
+.contact-name {
+  color: #33393d;
+}
+
+.contact-details p {
+  padding-top: 5px;
+  color: #666b6e;
+  font-size: 14px;
+}
+
+.des-details {
+  line-height: 20px;
+  font-size: 14px;
+  color: #666b6e;
+  padding-top: 10px;
+}
+
+.contact-info-actions {
+  width: 0%;
+  display: flex;
+  justify-content: space-between;
+  margin: 32px 0 16px 0;
+  padding: 32px 0 16px 0;
+}
+
+.info-description {
+  padding-top: 24px;
+  padding-left: 24px;
+}
+
+.contact-info-details {
+  margin-top: 32px;
+  background: #ffffff;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);
+  padding: 32px;
+  margin-bottom: 48px;
+}
+
+.contact-info-list {
+  list-style-type: none;
+  margin: 0;
+  padding-top: 24px;
+  padding-left: 24px;
+}
+
+.details {
+  padding-right: 5px;
+  color: #2aabe4;
+  font-weight: 700;
+}
+
+.details-wrap {
+  padding-bottom: 10px;
+  color: #666b6e;
+}
+
+.calls-list {
+  width: 100%;
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 20px;
+}
+
+.contact-info-call-actions {
+    width: 100%;
+    padding-top: 20px; 
+    margin: 0 auto; 
+    border: 0;
+    text-align: center;
+    
+}
+
+.contact-info-calls-title {
+  width: 100% ;
   text-align: center;
-  
 }
 
+.calls-tables {
+  width:100%
+}
 
-
-
+.contact-info-calls-title h3 {
+  color:#ffcd24
+}

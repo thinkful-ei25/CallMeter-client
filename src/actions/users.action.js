@@ -35,6 +35,25 @@ export const registerUser = user => dispatch => {
     });
 };
 
+
+export const completeTutorial = () => (dispatch, getState) => {
+  //console.log("authToken", this.props.authToken);
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/register/endTutorial`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${authToken}`
+    }
+  })
+  .then(res => {
+    console.log('results of completedTutorial', res);
+    console.log('tutorial marked completed');
+  })
+  .catch(err => {
+    console.log('error changing tutorial status', err);
+  })
+}
+
 export const getPhoneNumbers = areaCode => dispatch => {
   console.log('area code: ', areaCode);
   return fetch(`${API_BASE_URL}/register/phones?areaCode=${areaCode}`, {
@@ -43,9 +62,12 @@ export const getPhoneNumbers = areaCode => dispatch => {
       'content-type': 'application/json'
     }
   })
-    .then(res => normalizeResponseErrors(res))
     .then(res => {
-      console.log(res);
+      console.log("beforeNormalize", res);
+      return normalizeResponseErrors(res)
+    })
+    .then(res => {
+      console.log("res", res);
       return res.json();
     })
     .catch(err => {
