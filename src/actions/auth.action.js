@@ -38,14 +38,21 @@ export const authError = error => ({
   error
 });
 
+export const CHECK_TUTORIAL_COMPLETED = 'CHECK_TUTORIAL_COMPLETED';
+export const checkTutorialCompleted = isTutorialCompleted => ({
+  type: CHECK_TUTORIAL_COMPLETED,
+  isTutorialCompleted
+});
+
 // Stores the authToken and the capabilityToken in the state.
 // Stores and decodes the authToken in localStorage.
 // The user information is stored in the authToken
-const storeTokens = (authToken, capabilityToken, dispatch) => {
+const storeTokens = (authToken, capabilityToken, tutorialCompleted, dispatch) => {
   const decodedToken = jwtDecode(authToken);
   dispatch(setAuthToken(authToken));
   dispatch(authSuccess(decodedToken.user));
   dispatch(setCapabilityToken(capabilityToken));
+  dispatch(checkTutorialCompleted(tutorialCompleted));
   saveAuthToken(authToken);
 };
 
@@ -66,11 +73,11 @@ export const login = (organizationName, password) => dispatch => {
       // errors which follow a consistent format
       .then(res => normalizeResponseErrors(res))
       .then(res => res.json())
-      .then(tokens => {
-        const { authToken, capabilityToken } = tokens;
+      .then(userLoggedInRes => {
+        const { authToken, capabilityToken, tutorialCompleted } = userLoggedInRes;
 
         //STORE CAPABILITY & AUTHTOKEN IN THE STATE
-        storeTokens(authToken, capabilityToken, dispatch);
+        storeTokens(authToken, capabilityToken, tutorialCompleted, dispatch);
       })
       .catch(err => {
         console.log('err', err);
