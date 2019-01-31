@@ -16,9 +16,9 @@ import '../../styles/Contacts.css';
 export class AppContainer extends React.Component{ 
 
   componentDidMount(){
-    console.log('in app container componnent did mount', this.props.isTutorialCompleted);
+    // console.log('in app container componnent did mount', this.props.isTutorialCompleted);
     if(!this.props.isTutorialCompleted){
-      console.log('is redirecting');
+      // console.log('is redirecting');
       return <Redirect to="/app/setup" />; 
     }
   }
@@ -92,7 +92,7 @@ export class AppContainer extends React.Component{
 
 const mapStateToProps = (state, props) => { 
   // console.log('app container', state);
-  console.log('state.auth.isTutorialcompleted = ', state.auth.isTutorialCompleted);
+  // console.log('state.auth.isTutorialcompleted = ', state.auth.isTutorialCompleted);
    
   return ({
     authToken: state.auth.authToken, 

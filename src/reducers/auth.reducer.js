@@ -48,7 +48,7 @@ export default function authReducer(state = initialState, action) {
     });
   }
     else if (action.type === CHECK_TUTORIAL_COMPLETED){
-      console.log('reducer was here', action.isTutorialCompleted);
+      // console.log('reducer was here', action.isTutorialCompleted);
       return Object.assign({}, state, {
         isTutorialCompleted: action.isTutorialCompleted
       })

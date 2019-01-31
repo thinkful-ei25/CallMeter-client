@@ -24,6 +24,7 @@ export class DialerApp extends React.Component {
 
   componentDidMount() {
     //POSSIBLE TWILIO DEVICE STATES
+    console.log('YOOOOOOO'); 
     const twilioDeviceStates = 
       ['cancel', 'connect', 'disconnect', 'ringing', 'error', 'incoming', 'offline', 'ready']; 
     
@@ -97,7 +98,7 @@ export class DialerApp extends React.Component {
     this.props.dispatch(hangupClient()); 
     this.setState({isCallOnGoing: false, isConnected: false, device: null}, () => { 
       this.endCall(); 
-      this.setUpDevice(this.props.capabilityToken); 
+      // this.setUpDevice(this.props.capabilityToken); 
     });  
   }
 
@@ -139,6 +140,16 @@ export class DialerApp extends React.Component {
     }); 
   }
 
+  componentDidUpdate(){ 
+    console.log('COMPONENT DID UPDATED'); 
+    //OUTGOING
+    //WE RECEIVED AN OUTBOUND CLIENT AND THE CALL IS NOT ONGOING
+    if (this.props.outboundClient !== null && !this.state.isOutgoingCallOnGoing) { 
+      console.log('ABOUT TO MAKE PHONE CALL'); 
+      this.makeCall();  
+    }
+  }
+
   /**
    * OUTBOUND 
    * DISCONNECT THE DEVICE BEFORE USE
@@ -147,8 +158,12 @@ export class DialerApp extends React.Component {
     console.log('##MAKE OUTBOUND CALL##')
     if (this.props.outboundClient != null) { 
       this.setState({ isOutgoingCallOnGoing: true}, () => { 
-          Device.disconnectAll(); 
-          Device.connect({number: this.props.outboundClient.phoneNumber}); 
+        // console.log('outboundclient', this.props.outboundClient);   
+        const phoneNumber = this.props.outboundClient.phoneNumber.slice(2); 
+        console.log(phoneNumber); 
+        // Device.disconnectAll(); 
+        Device.connect({number: phoneNumber}); 
+        // Device.connect({phone: number}); 
       }); 
     }
   }
@@ -179,11 +194,7 @@ export class DialerApp extends React.Component {
         <InProgress hangup={() => this.hangupCall() } /> 
     }
 
-    //OUTGOING
-    //WE RECEIVED AN OUTBOUND CLIENT AND THE CALL IS NOT ONGOING
-    if (this.props.outboundClient !== null && !this.state.isOutgoingCallOnGoing) { 
-      this.makeCall();  
-    }
+ 
 
     if (this.state.isOutgoingCallOnGoing) { 
       return (

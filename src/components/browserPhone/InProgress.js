@@ -6,7 +6,7 @@ export default class InProgress extends React.Component {
     super(props); 
   }
   render() {
-    console.log("loading phone")
+    // console.log("loading phone")
     return (
       <div className="Phone">
         <div className="fixedPhone">

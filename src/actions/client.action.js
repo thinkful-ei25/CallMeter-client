@@ -77,15 +77,15 @@ export const fetchOneClient = (id) => (dispatch, getState) => {
 		}
 	})
 		.then(res => {
-			console.log('first response from server', res)
+			// console.log('first response from server', res)
 			return normalizeResponseErrors(res)
 		})
 		.then(res => {
-			console.log('second response after normalize', res)
+			// console.log('second response after normalize', res)
 			return res.json()
 		})
 		.then((data) => {
-			console.log('fetchoneclientdata', data)
+			// console.log('fetchoneclientdata', data)
 			data.phoneNumber = data.phoneNumber.slice(2, 5) + '-' + data.phoneNumber.slice(5, 8)
 			+ '-' + data.phoneNumber.slice(8,)
 			dispatch(fetchClientsSuccess(data))

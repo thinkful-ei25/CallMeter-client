@@ -6,15 +6,15 @@ import { login, register, phone, account, contacts } from '../../images/forms/in
 import { LoginForm, RegisterForm } from '../forms/index.forms';
 
 export function FormContainer(props) {
-  console.log('logged in', props.loggedIn); 
+  // console.log('logged in', props.loggedIn); 
   if (props.loggedIn) {
     console.log(props.isTutorialCompleted);
     if(!props.isTutorialCompleted){
-      console.log('is redirectiog');
+      // console.log('is redirectiog');
       return <Redirect to="/app/setup" />; 
     }
     else{
-      console.log('redirected to the wrong area');
+      // console.log('redirected to the wrong area');
       return <Redirect to="/app" />;
     }
   }
@@ -47,7 +47,7 @@ export function FormContainer(props) {
 }
 
 const mapStateToProps = state => {
-  console.log('STATE ',state);
+  // console.log('STATE ',state);
 
   return ({
     isTutorialCompleted: state.auth.isTutorialCompleted,

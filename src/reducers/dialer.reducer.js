@@ -15,29 +15,29 @@ const initialState = {
 
 export default function dialerReducer(state = initialState, action) {
   if (action.type === LOADING_CALLER) {
-    return Object.assign({
+    return Object.assign({}, state, {
       loadingClient: true,
       error: null,
       caller: null
     });
   } else if (action.type === CALLER_LOADED) {
-    return Object.assign({
+    return Object.assign({}, state, {
       loadingClient: false,
       error: null,
       caller: action.caller
     });
   } else if (action.type === LOADING_CALLER_ERROR) {
-    return Object.assign({
+    return Object.assign({}, state, {
       loadingClient: false,
       error: action.error,
       caller: null
     });
   } else if (action.type === DIAL_CLIENT) {
-    return Object.assign({
+    return Object.assign({}, state, {
       outboundClient: action.client
     });
   } else if (action.type === HANGUP_CLIENT) {
-    return Object.assign({
+    return Object.assign({}, state, {
       outboundClient: null
     });
   }
