@@ -34,7 +34,6 @@ export class AppContainer extends React.Component{
       }
     })
     .then(() => { 
-      console.log('user has been switched to phone mode'); 
       this.stopPeriodicRefresh();
     })
     .catch(err => { 
@@ -73,8 +72,6 @@ export class AppContainer extends React.Component{
               <Route exact path="/app/clients" component={ Contacts } />
               <Route exact path="/app/contacts/:clientId" component={IndividualContact} />
               <Route exact path="/app/setup" component={SetupContainer} />
-              {/* <Route exact path="/app/invoices" component={Invoices} /> */}
-              {/* <Route exact path="/app/clients/:clientId" component={ContactPage} /> */}
               {(this.props.capabilityToken) ? <DialerApp capabilityToken={this.props.capabilityToken} />  : ''}
               <Menu />
       </div>
