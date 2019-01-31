@@ -18,10 +18,6 @@ export class Dashboard extends React.Component {
     super(props);
     this.state = {};
   }
-  logOut() {
-    this.props.dispatch(clearAuth());
-    clearAuthToken();
-  }
   render() {
     return (
       <div>

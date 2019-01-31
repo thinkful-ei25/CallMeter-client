@@ -21,7 +21,6 @@
 }
 
 .header-profile {
-    cursor: pointer;
     z-index: 1000;
     text-align: right;
     margin-left: auto;
@@ -189,3 +188,8 @@
   transform: rotate(-45deg);
 }
 
+.logoutButton{
+    font-size: 12px;
+    width: 100%;
+    cursor: pointer;
+}

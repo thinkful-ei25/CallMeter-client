@@ -175,13 +175,13 @@
   padding: 15px 5px;
 }
 
-.ReactTable .rt-td:nth-child(1) {
+/* .ReactTable .rt-td:nth-child(1) {
     padding: 5px 5px;
 }
 
 .ReactTable .rt-td:last-child {
     padding: 0px 0px;
-}
+} */
 
 .ReactTable.-highlight .rt-tbody .rt-tr:not(.-padRow):hover {
   background: rgba(157,200,228,.11);
