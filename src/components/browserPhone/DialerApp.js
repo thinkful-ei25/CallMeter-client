@@ -19,6 +19,7 @@ export class DialerApp extends React.Component {
       isIncomingCallOnGoing: false, 
       isIncomingCallConnected: false, 
       isOutgoingCallOnGoing: false, 
+      isOutgoingCallConnected: false
     };
   }
 
@@ -43,7 +44,7 @@ export class DialerApp extends React.Component {
       device: 
         Device.setup(
           capabilityToken, {
-            debug: false, 
+            debug: true, 
             enableRingingState: true, 
             allowIncomingWhileBusy: true
            }
@@ -59,7 +60,7 @@ export class DialerApp extends React.Component {
   handleAppStateChange = state => {
 
     Device.on(state, obj => {
-
+      console.log('state', state); 
       this.setState({deviceState: state, connection: obj});
       if (state === 'error'){ 
         this.setState({
@@ -78,6 +79,11 @@ export class DialerApp extends React.Component {
       }
       else if (state === 'ringing' ) { 
         console.log('ringing'); 
+      }
+      else if (state === 'connect') { 
+        if (this.state.isOutgoingCallOnGoing) { 
+          this.setState({isOutgoingCallConnected : true}); 
+        } 
       }
     });
   }; 
@@ -171,7 +177,7 @@ export class DialerApp extends React.Component {
   endCall = () => {
     // console.log('##END OUTBOUND CALL##')
     this.props.dispatch(hangupClient()); 
-    this.setState({ isOutgoingCallOnGoing : false}, () => { 
+    this.setState({ isOutgoingCallOnGoing : false, isOutgoingCallConnected : false}, () => { 
       Device.disconnectAll(); 
     })
   };
@@ -179,7 +185,6 @@ export class DialerApp extends React.Component {
   render() {
     //INCOMING CALLS
     //RETURN EITHER ANSWERER OR INPROGRESS
-    
     if (this.state.isIncomingCallOnGoing && this.props.caller) { 
       return (!this.state.isIncomingCallConnected) ?  
         <Answerer
@@ -191,12 +196,11 @@ export class DialerApp extends React.Component {
         <InProgress hangup={() => this.hangupCall() } /> 
     }
 
- 
-
+    //OUTGOING
     if (this.state.isOutgoingCallOnGoing) { 
       return (
         <div> 
-          <InProgress hangup={ () => this.endCall() } /> 
+          <InProgress callStatus={(this.state.isOutgoingCallConnected) ? 'Connected' : 'Ringing'} hangup={ () => this.endCall() } /> 
         </div>  
       );
     }

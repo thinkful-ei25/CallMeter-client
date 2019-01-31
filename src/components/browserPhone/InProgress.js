@@ -8,7 +8,8 @@ export default class InProgress extends React.Component {
       <div className="Phone">
         <div className="fixedPhone">
           <div className="PhoneLeft">
-            <img alt="call-in-progress" className="PhoneImage" src={this.props.callerImage}></img>
+            <p>{this.props.callStatus}</p> 
+            {/* <img alt="call-in-progress" className="PhoneImage" src={this.props.callerImage}></img> */}
           </div>
           <div className="PhoneMiddle">
             <p>
