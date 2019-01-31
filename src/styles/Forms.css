@@ -22,7 +22,7 @@
 .img-sized {
   background-repeat: no-repeat;
   background-position: 0 0;
-  background-size: 1000px 1000px;
+  background-size: cover;
   width: calc(100% - 700px);
   position: relative;
   overflow: hidden;

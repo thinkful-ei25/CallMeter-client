@@ -3,6 +3,7 @@ import { Field, reduxForm, focus } from 'redux-form';
 import FileInput from '../_utils/_fileInput'
 import Input from '../_utils/_input'
 import { required, nonEmpty, phoneCheck, normalizePhone, emailCheck } from '../../_utils/_validators';
+import { login, register, phone, account, contacts } from '../../images/forms/index.forms'
 import { addClient } from '../../actions/index.actions'
 
 
@@ -17,6 +18,9 @@ export class AddContact extends React.Component {
 
 
   render() {
+    let imgStyle = {
+      backgroundImage: 'url(' + contacts + ')'
+    };
     let error;
     if (this.props.error) {
       error = (
@@ -27,9 +31,9 @@ export class AddContact extends React.Component {
 
     }
     return (
-      <div className="addContactFlexBox">
-      <div className="addContactFormWidth">
-        <div>
+      <div className="form-container">
+        <div className="img-sized" style={imgStyle} />
+        <div className="form-wrapper pad-50">
           <h1 className="formHeader">Add a Contact</h1>
           <h2><button className="backButton" onClick={() => this.props.toggle()}>Cancel ⬅</button></h2>
 
@@ -161,7 +165,6 @@ export class AddContact extends React.Component {
                   </button>
 
           </form>
-        </div>
         </div>
       </div>
     );

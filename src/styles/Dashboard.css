@@ -77,7 +77,11 @@ text-transform: uppercase;
   top: 0;
   right: 0
 }
-
+.card-row{
+  display: flex;
+  justify-content: content;
+  align-items: center;
+}
 @media only screen and (max-width: 850px) {
   .card-row{
     padding: 0;
