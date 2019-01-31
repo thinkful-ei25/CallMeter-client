@@ -44,7 +44,7 @@ export class DialerApp extends React.Component {
       device: 
         Device.setup(
           capabilityToken, {
-            debug: true, 
+            debug: false, 
             enableRingingState: true, 
             allowIncomingWhileBusy: true
            }
