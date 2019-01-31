@@ -1,22 +1,30 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Input } from '../_utils/index._utils';
 import { login } from '../../actions/index.actions';
 import { required, nonEmpty } from '../../_utils/index.utils';
 import '../../styles/Forms.css';
 
 export class LoginForm extends React.Component {
+  constructor(props){ 
+    super(props); 
+    this.state = { 
+      redirect: false
+    }
+  }
 
   onSubmit(values) {
-    return this.props.dispatch(
-      login(values.organizationName, values.password))
+    this.props.dispatch(login(values.organizationName, values.password)).then(() => { 
+      this.setState({redirect: true})
+    }); 
   }
 
 
   render() {
-
-
+    if (this.state.redirect) {
+      return <Redirect to='/app' />; 
+    }
     return (
       <form
         className="form validate"

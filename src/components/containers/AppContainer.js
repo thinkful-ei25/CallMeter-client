@@ -6,26 +6,13 @@ import { refreshAuthToken, clearAuth } from '../../actions/index.actions';
 import { RequiresLogin} from '../_utils/index._utils'; 
 import { clearAuthToken } from '../../_utils/index.utils'; 
 import { AppHeader, Menu } from '../navigation/index.navigation';
-import { Home, Contacts, Invoices, IndividualContact, Calls, Settings } from '../../pages/index.pages';  
+import { Home, Contacts, Settings, Invoices, IndividualContact, Calls } from '../../pages/index.pages';  
 import { DialerApp} from '../../components/browserPhone/index.browserPhone';
 import { API_BASE_URL } from '../../config'; 
 import SetupContainer from './SetupContainer'
-import { Redirect } from 'react-router-dom';
 import '../../styles/Contacts.css'; 
 
 export class AppContainer extends React.Component{ 
-
-  componentDidMount(){
-    console.log('in app container componnent did mount', this.props.isTutorialCompleted);
-    console.log(this.prevprops)
-    if(!this.props.loading){
-
-    }
-    if(!this.props.isTutorialCompleted && !this.props.loading){
-      console.log('is redirecting');
-      return <Redirect to="/app/setup" />; 
-    }
-  }
 
   componentDidUpdate(prevProps) {
     if (!prevProps.loggedIn && this.props.loggedIn) {
@@ -39,7 +26,6 @@ export class AppContainer extends React.Component{
   }
 
   componentWillUnmount() {
-    // console.log('unmounting'); 
     return fetch(`${API_BASE_URL}/logout`, {
       method: 'POST',
       headers: {
@@ -97,10 +83,7 @@ export class AppContainer extends React.Component{
   }
 }
 
-const mapStateToProps = (state, props) => { 
-  // console.log('app container', state);
-  console.log('state.auth.isTutorialcompleted = ', state.auth.isTutorialCompleted);
-   
+const mapStateToProps = (state, props) => {    
   return ({
     authToken: state.auth.authToken, 
     isTutorialCompleted: state.auth.isTutorialCompleted,

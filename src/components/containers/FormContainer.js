@@ -7,12 +7,6 @@ import { LoginForm, RegisterForm } from '../forms/index.forms';
 
 export function FormContainer(props) {
 
-  console.log('FORM ', props.form);
-  
- if(props.loggedIn) {
-  return  <Redirect to="/app" />
-  }
-
   const images = {
     '/setup/account': account,
     '/setup/phone': phone,
@@ -32,8 +26,6 @@ export function FormContainer(props) {
         <div className="form-wrapper pad-50">
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/register" render={() => <RegisterForm/>} />
-          {/* <Route exact path="/setup/account" render={() => <AccountInfoForm />}/>
-          <Route exact path="/setup/phone" render={() => <PhoneSetup/>} />  */}
         </div>
       </div>
     </div>
@@ -41,7 +33,7 @@ export function FormContainer(props) {
 }
 
 const mapStateToProps = state => {
-  console.log('STATE ',state);
+
 
   return ({
     isTutorialCompleted: state.auth.isTutorialCompleted,
