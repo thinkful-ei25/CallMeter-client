@@ -24,7 +24,6 @@ export class DialerApp extends React.Component {
 
   componentDidMount() {
     //POSSIBLE TWILIO DEVICE STATES
-    console.log('YOOOOOOO'); 
     const twilioDeviceStates = 
       ['cancel', 'connect', 'disconnect', 'ringing', 'error', 'incoming', 'offline', 'ready']; 
     
@@ -158,12 +157,8 @@ export class DialerApp extends React.Component {
     console.log('##MAKE OUTBOUND CALL##')
     if (this.props.outboundClient != null) { 
       this.setState({ isOutgoingCallOnGoing: true}, () => { 
-        // console.log('outboundclient', this.props.outboundClient);   
         const phoneNumber = this.props.outboundClient.phoneNumber.slice(2); 
-        console.log(phoneNumber); 
-        // Device.disconnectAll(); 
         Device.connect({number: phoneNumber}); 
-        // Device.connect({phone: number}); 
       }); 
     }
   }

@@ -6,7 +6,7 @@ import { refreshAuthToken, clearAuth } from '../../actions/index.actions';
 import { RequiresLogin} from '../_utils/index._utils'; 
 import { clearAuthToken } from '../../_utils/index.utils'; 
 import { AppHeader, Menu } from '../navigation/index.navigation';
-import { Home, Contacts, Invoices, IndividualContact, Calls } from '../../pages/index.pages';  
+import { Home, Contacts, Settings, Invoices, IndividualContact, Calls } from '../../pages/index.pages';  
 import { DialerApp} from '../../components/browserPhone/index.browserPhone';
 import { API_BASE_URL } from '../../config'; 
 import SetupContainer from './SetupContainer'
@@ -14,14 +14,6 @@ import { Redirect } from 'react-router-dom';
 import '../../styles/Contacts.css'; 
 
 export class AppContainer extends React.Component{ 
-
-  componentDidMount(){
-    // console.log('in app container componnent did mount', this.props.isTutorialCompleted);
-    if(!this.props.isTutorialCompleted){
-      // console.log('is redirecting');
-      return <Redirect to="/app/setup" />; 
-    }
-  }
 
   componentDidUpdate(prevProps) {
     if (!prevProps.loggedIn && this.props.loggedIn) {
@@ -74,7 +66,7 @@ export class AppContainer extends React.Component{
         <AppHeader name={this.props.organizationName} />
               <Route exact path='/app' component={Home} />
               <Route exact path='/app/contacts' component={ Contacts } />
-              {/* <Route exact path='/app/settings' component={ Settings } /> */}
+              <Route exact path='/app/settings' component={ Settings } />
               <Route exact path="/app/calls" component={ Calls } />
               <Route exact path="/app/invoices" component={Invoices} />
               <Route exact path="/app/clients" component={ Contacts } />

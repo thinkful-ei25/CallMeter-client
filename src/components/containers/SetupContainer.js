@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Route, withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import PhoneSetup from '../forms/PhoneSetup';
 import AccountSetup from '../forms/AccountInfoForm';
 import ContactForm from '../forms/ContactForm';
 import {completeTutorial} from '../../actions/users.action'
-import { API_BASE_URL } from '../../config';
 import '../../styles/Setup.css'
 
 export class SetupContainer extends React.Component {
