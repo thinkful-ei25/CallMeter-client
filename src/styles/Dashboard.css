@@ -77,3 +77,15 @@ text-transform: uppercase;
   top: 0;
   right: 0
 }
+
+@media only screen and (max-width: 850px) {
+  .card-row{
+    padding: 0;
+  }
+  .stats-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
