@@ -73,8 +73,6 @@ export class AppContainer extends React.Component{
               <Route exact path="/app/clients" component={ Contacts } />
               <Route exact path="/app/contacts/:clientId" component={IndividualContact} />
               <Route exact path="/app/setup" component={SetupContainer} />
-              {/* <Route exact path="/app/invoices" component={Invoices} /> */}
-              {/* <Route exact path="/app/clients/:clientId" component={ContactPage} /> */}
               <button onClick={() => this.logOut()}>LOG OUT</button>
               {(this.props.capabilityToken) ? <DialerApp capabilityToken={this.props.capabilityToken} />  : ''}
               <Menu />
