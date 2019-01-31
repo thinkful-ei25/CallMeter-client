@@ -38,13 +38,16 @@ export class DialerApp extends React.Component {
   }
 
   setUpDevice = (capabilityToken) => { 
+    console.log('setting up with ', capabilityToken); 
+    
     this.setState({ token: capabilityToken });
 
     this.setState({ 
       device: 
         Device.setup(
           capabilityToken, {
-            debug: false, 
+            // warning: true, 
+            debug: true, 
             enableRingingState: true, 
             allowIncomingWhileBusy: true
            }
@@ -60,6 +63,7 @@ export class DialerApp extends React.Component {
   handleAppStateChange = state => {
 
     Device.on(state, obj => {
+      console.log('Device state', state); 
       this.setState({deviceState: state, connection: obj});
       if (state === 'error'){ 
         this.setState({
@@ -88,7 +92,7 @@ export class DialerApp extends React.Component {
   }; 
 
   deviceCancelCallHandler(){ 
-    // console.log('##CANCEL HANDLER##'); 
+    console.log('##CANCEL HANDLER##'); 
     this.setState({    
       isIncomingCallOnGoing: false, 
       isIncomingCallConnected: false, 
