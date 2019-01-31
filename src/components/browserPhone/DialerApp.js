@@ -24,6 +24,7 @@ export class DialerApp extends React.Component {
   }
 
   componentDidMount() {
+    console.log('dialer app component did mount'); 
     //POSSIBLE TWILIO DEVICE STATES
     const twilioDeviceStates = 
       ['cancel', 'connect', 'disconnect', 'ringing', 'error', 'incoming', 'offline', 'ready']; 
@@ -32,21 +33,21 @@ export class DialerApp extends React.Component {
     twilioDeviceStates.forEach(twilioDeviceState => { 
       this.handleAppStateChange(twilioDeviceState);  
     }); 
-
+    console.log('dialer ap is about to set up with', this.props.capabilityToken); 
     //SETS UP DEVICE
     this.setUpDevice(this.props.capabilityToken); 
   }
 
   setUpDevice = (capabilityToken) => { 
     console.log('setting up with ', capabilityToken); 
-    
+
     this.setState({ token: capabilityToken });
 
     this.setState({ 
       device: 
         Device.setup(
           capabilityToken, {
-            // warning: true, 
+            warning: true, 
             debug: true, 
             enableRingingState: true, 
             allowIncomingWhileBusy: true
@@ -63,7 +64,8 @@ export class DialerApp extends React.Component {
   handleAppStateChange = state => {
 
     Device.on(state, obj => {
-      console.log('Device state', state); 
+      console.log('Device state', state);
+      console.log('Device object (connection obj)', obj);  
       this.setState({deviceState: state, connection: obj});
       if (state === 'error'){ 
         this.setState({
