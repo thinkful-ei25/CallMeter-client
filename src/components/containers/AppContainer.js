@@ -10,7 +10,6 @@ import { Home, Contacts, Settings, Invoices, IndividualContact, Calls } from '..
 import { DialerApp} from '../../components/browserPhone/index.browserPhone';
 import { API_BASE_URL } from '../../config'; 
 import SetupContainer from './SetupContainer'
-import { Redirect } from 'react-router-dom';
 import '../../styles/Contacts.css'; 
 
 export class AppContainer extends React.Component{ 
@@ -18,6 +17,7 @@ export class AppContainer extends React.Component{
   componentDidUpdate(prevProps) {
     if (!prevProps.loggedIn && this.props.loggedIn) {
       console.log('hitting route');
+      console.log(prevProps);
       this.startPeriodicRefresh();
     } else if (prevProps.loggedIn && !this.props.loggedIn) {
       console.log('hitting other route');
@@ -26,7 +26,6 @@ export class AppContainer extends React.Component{
   }
 
   componentWillUnmount() {
-    // console.log('unmounting'); 
     return fetch(`${API_BASE_URL}/logout`, {
       method: 'POST',
       headers: {
@@ -61,6 +60,8 @@ export class AppContainer extends React.Component{
   }
 
   render(){ 
+    
+
     return (
       <div>
         <AppHeader name={this.props.organizationName} />
@@ -82,10 +83,7 @@ export class AppContainer extends React.Component{
   }
 }
 
-const mapStateToProps = (state, props) => { 
-  // console.log('app container', state);
-  // console.log('state.auth.isTutorialcompleted = ', state.auth.isTutorialCompleted);
-   
+const mapStateToProps = (state, props) => {    
   return ({
     authToken: state.auth.authToken, 
     isTutorialCompleted: state.auth.isTutorialCompleted,

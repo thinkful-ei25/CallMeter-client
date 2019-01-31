@@ -42,12 +42,10 @@ export class RegistrationForm extends React.Component {
         className="form validate"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
-        <span className="form-title pad-bottom-50">
-          Signup For Billable!
-        </span>
+        <span className="form-title pad-bottom-50">Signup For Billable!</span>
         <Field
           component={Input}
-					label="Organization Name"
+          label="Organization Name"
           type="text"
           name="organizationName"
           validate={[required, nonEmpty, isTrimmed]}
@@ -55,43 +53,46 @@ export class RegistrationForm extends React.Component {
         />
         <Field
           component={Input}
-					label="Email Address"
+          label="Email Address"
           type="text"
           name="email"
           validate={[required, nonEmpty, isTrimmed, emailCheck]}
           placeholder="Where can we reach you?"
         />
         <Field
-					component={Input}
-					label="Password"
+          component={Input}
+          label="Password"
           type="password"
-					name="password"
-					id="password"
+          name="password"
+          id="password"
           validate={[required, passwordLength, isTrimmed]}
           placeholder="************"
         />
         <Field
-					component={Input}
-					label="Password"
+          component={Input}
+          label="Password"
           type="password"
           name="passwordConfirm"
           placeholder="************"
           validate={[required, nonEmpty, matchesPassword]}
         />
-				<div className="form-button-container">
-					<div className="form-button-wrapper">
-          <button
-							className="form-button"
-            	type="submit"
-            	disabled={this.props.pristine || this.props.submitting}
+        <div className="form-button-container">
+          <div className="form-button-wrapper">
+            <button
+              className="form-button"
+              type="submit"
+              disabled={this.props.pristine || this.props.submitting}
+            >
+              Sign Up
+            </button>
+          </div>
+          <Link
+            className="link-text pad-right-30 pad-left-30 pad-top-10 pad-bottom-10"
+            to="/login"
           >
-            Sign Up
-          </button>
-        </div>
-					<Link className="link-text pad-right-30 pad-left-30 pad-top-10 pad-bottom-10" to="/login">
-						or Login
+            or Login
           </Link>
-				</div>
+        </div>
       </form>
     );
   }

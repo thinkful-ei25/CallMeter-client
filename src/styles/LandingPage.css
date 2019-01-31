@@ -3,6 +3,7 @@
 }
 
 .hero-wrapper {
+  /* background-image: url(../images/landing/heroBackground.jpg); */
   background-image: url(../images/landing/heroBackground.jpg);
   background-repeat: no-repeat;
   background-size: cover;
