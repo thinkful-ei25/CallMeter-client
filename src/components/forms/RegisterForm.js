@@ -18,7 +18,8 @@ export class RegistrationForm extends React.Component {
   constructor(props){ 
     super(props); 
     this.state = { 
-      redirect: false
+      redirect: false,
+      error: null
     }
   }
   onSubmit(values) {
@@ -30,7 +31,12 @@ export class RegistrationForm extends React.Component {
       })
       .then(() => { 
         this.setState({redirect: true})
-      }); 
+      })
+      .catch(err => {
+        this.setState({
+          error : 'Email already exists'
+        })
+      })
   }
 
   render() {
@@ -51,6 +57,7 @@ export class RegistrationForm extends React.Component {
           validate={[required, nonEmpty, isTrimmed]}
           placeholder="Where do you work?"
         />
+        <p className="loginErrorMessage">{this.state.error}</p>
         <Field
           component={Input}
           label="Email Address"

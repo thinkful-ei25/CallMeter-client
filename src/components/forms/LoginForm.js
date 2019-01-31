@@ -10,14 +10,19 @@ export class LoginForm extends React.Component {
   constructor(props){ 
     super(props); 
     this.state = { 
-      redirect: false
+      redirect: false,
+      error: null
     }
   }
 
   onSubmit(values) {
     this.props.dispatch(login(values.organizationName, values.password)).then(() => { 
       this.setState({redirect: true});  
-    }); 
+      console.log('true');
+    })
+    .catch(err => {
+      this.setState({error: "invalid username or password"})
+    })
   }
 
 
@@ -31,6 +36,7 @@ export class LoginForm extends React.Component {
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
         <span className="form-title pad-bottom-50">Welcome Back!</span>
+        <p className="loginErrorMessage">{this.state.error}</p>
         <Field
           component={Input}
           label="Organization Name"
