@@ -109,7 +109,7 @@ export class DialerApp extends React.Component {
   deviceDisconnectedHandler() { 
     // console.log('##DISCONNECT HANDLER##'); 
     this.props.dispatch(hangupClient()); 
-    this.setState({isCallOnGoing: false, isConnected: false, device: null}, () => { 
+    this.setState({ isOutgoingCallOnGoing: false,   isOutgoingCallConnected: false, device: null}, () => { 
       this.endCall(); 
     });  
   }
