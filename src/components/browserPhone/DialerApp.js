@@ -193,7 +193,7 @@ export class DialerApp extends React.Component {
           onAnswer={() => this.answerCall()} 
           onReject={() => this.rejectCall()}/>
         : 
-        <InProgress hangup={() => this.hangupCall() } /> 
+        <InProgress callStatus='connected' hangup={() => this.hangupCall() } /> 
     }
 
     //OUTGOING
