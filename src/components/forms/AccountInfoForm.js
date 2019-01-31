@@ -4,15 +4,15 @@ import { Input, FileInput} from '../_utils/index._utils';
 import { addClient } from '../../actions/index.actions';
 import {
   required,
-  emailCheck,
+  // emailCheck,
   nonEmpty,
-  matches,
-  length,
+  // matches,
+  // length,
   isTrimmed,
 } from '../../_utils/index.utils';
 
 
-const passwordLength = length({ min: 10, max: 72 });
+// const passwordLength = length({ min: 10, max: 72 });
 
 export class RegistrationForm extends React.Component {
   onSubmit(values) {

@@ -113,7 +113,7 @@ export class Calls extends React.Component {
             defaultPageSize={100}
             showPageSizeOptions={true}
             showPagination={false}
-            className="default-table"
+            className="default-table"c
             pageSizeOptions={[5, 10, 20, 25, 50, 100]}
             minRows={0}
           />
@@ -124,11 +124,8 @@ export class Calls extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
-
   return {
     calls: state.callStats.calls
-
   };
 };
 
