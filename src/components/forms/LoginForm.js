@@ -16,7 +16,7 @@ export class LoginForm extends React.Component {
 
   onSubmit(values) {
     this.props.dispatch(login(values.organizationName, values.password)).then(() => { 
-      this.setState({redirect: true})
+      this.setState({redirect: true});  
     }); 
   }
 
