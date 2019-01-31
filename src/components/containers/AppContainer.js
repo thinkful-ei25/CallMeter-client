@@ -34,7 +34,6 @@ export class AppContainer extends React.Component{
       }
     })
     .then(() => { 
-      console.log('user has been switched to phone mode'); 
       this.stopPeriodicRefresh();
     })
     .catch(err => { 

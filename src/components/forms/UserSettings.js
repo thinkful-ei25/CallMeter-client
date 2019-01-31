@@ -13,18 +13,10 @@ const passwordLength = length({ min: 10, max: 72 });
 const matchesPassword = matches('password');
 
 export class RegistrationForm extends React.Component {
-  componentDidMount() {
-    console.log('the component did mount'); 
-     
-  }
 
+  //THIS HAS NOT BEEN SET UP YET
   onSubmit(values) {
-
-    // const { organizationName, password, email } = values;
-    // const user = { organizationName, password, email };
-    // return this.props
-    //   .dispatch(registerUser(user))
-    //   .then(() => this.props.dispatch(login(organizationName, password)));
+    
   }
 
   render() {
