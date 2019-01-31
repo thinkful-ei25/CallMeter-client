@@ -8,13 +8,14 @@
   flex-wrap: wrap;
   align-items: stretch;
   flex-wrap: wrap;
+  max-height: 100vh;
 }
 
 .img {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  width: calc(100% - 800px);
+  width: calc(100% - 700px);
   position: relative;
 }
 
@@ -22,8 +23,9 @@
   background-repeat: repeat;
   background-position: 0 0;
   background-size: 1000px 1000px;
-  width: calc(100% - 800px);
+  width: calc(100% - 700px);
   position: relative;
+  overflow: hidden;
 }
 
 
@@ -42,11 +44,12 @@
 
 
 .form-wrapper {
-  width: 800px;
+  width: 700px;
   min-height: 100vh;
   background: #ffffff;
   border-radius: 2px;
   position: relative;
+  overflow-y: scroll;
 }
 
 .form {
