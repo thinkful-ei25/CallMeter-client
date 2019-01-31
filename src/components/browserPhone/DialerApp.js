@@ -109,7 +109,7 @@ export class DialerApp extends React.Component {
   }
 
   incomingCallHandler(conn) { 
-    // console.log('##INCOMING CALL HANDLER##'); 
+    console.log('##INCOMING CALL HANDLER##', conn.parameters.From); 
     this.setState({ isIncomingCallOnGoing: true, isIncomingCallConnected: false}, () => { 
       this.props.dispatch(fetchCallerFromContact(conn.parameters.From)); 
     }); 
