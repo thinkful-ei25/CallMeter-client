@@ -6,7 +6,6 @@ import '../styles/IndividualContact.css';
 import {
   fetchOneClient,
   fetchClientCalls,
-  FETCH_CLIENT_CALLS_SUCCESS
 } from '../actions/index.actions';
 import {
   DeleteContact,
@@ -17,8 +16,7 @@ import {
 } from '../components/contacts/index.contacts';
 import {
   saveClientId,
-  loadClientId,
-  clearClientId
+  loadClientId
 } from '../_utils/index.utils';
 import { SubNav } from '../components/navigation/index.navigation';
 
