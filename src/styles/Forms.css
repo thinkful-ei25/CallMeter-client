@@ -114,7 +114,8 @@
 }
 
 .form-button-wrapper {
-  display: block;
+  display: flex;
+  justify-content: center;
   position: relative;
   z-index: 1;
   border-radius: 8px;
@@ -360,6 +361,13 @@ input:checked + label:after {
 .submit:hover {
   cursor: pointer;
   transform: rotateX(360deg);
+}
+
+
+@media only screen and (max-width: 400px) {
+  .input-fields{
+    font-size: 15px;
+  }
 }
 
 
