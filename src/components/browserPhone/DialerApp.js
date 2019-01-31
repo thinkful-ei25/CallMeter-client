@@ -60,7 +60,6 @@ export class DialerApp extends React.Component {
   handleAppStateChange = state => {
 
     Device.on(state, obj => {
-      console.log('state', state); 
       this.setState({deviceState: state, connection: obj});
       if (state === 'error'){ 
         this.setState({
