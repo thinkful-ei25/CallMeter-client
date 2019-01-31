@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm, focus, Form } from 'redux-form';
 import { Input, FileInput } from '../_utils/index._utils';
-import { required, nonEmpty, phoneCheck, normalizePhone, emailCheck } from '../../_utils/index.utils';
+import { required, nonEmpty, phoneCheck, normalizePhone, emailCheck, isTrimmed } from '../../_utils/index.utils';
 import { addClient } from '../../actions/index.actions'
 
 
@@ -71,7 +71,7 @@ export class AddClient extends React.Component {
               type="email"
               name="email"
               id="email"
-              validate={[emailCheck]}
+              validate={[emailCheck, isTrimmed]}
               placeholder="Jessica@billable.com"
             />
             <Field
