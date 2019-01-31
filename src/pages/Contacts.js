@@ -35,7 +35,6 @@ export class Contacts extends React.Component {
   }
 
   setClient(id) {
-    console.log('id in setClient', id);
     this.props.dispatch(setClient(id));
   }
 
@@ -52,7 +51,6 @@ export class Contacts extends React.Component {
 
     if (Array.isArray(this.props.client) && !this.state.adding) {
       let clients = this.props.client;
-      console.log('clients:', clients);
       clients.forEach(row => {
         let fullName = row.firstName + ' ' + row.lastName;
         row.fullName = (
