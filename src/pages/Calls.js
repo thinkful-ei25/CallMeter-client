@@ -124,11 +124,8 @@ export class Calls extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
-
   return {
     calls: state.callStats.calls
-
   };
 };
 

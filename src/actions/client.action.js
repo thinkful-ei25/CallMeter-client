@@ -66,7 +66,6 @@ export const fetchClients = () => (dispatch, getState) => {
 
 export const fetchOneClient = (id) => (dispatch, getState) => {
 	dispatch(fetchClientRequest())
-	console.log('inside fetch one client', id)
 	const authToken = getState().auth.authToken;
 	return fetch(`${API_BASE_URL}/client/contacts/${id}`, {
 		method: 'GET',
@@ -91,7 +90,6 @@ export const fetchOneClient = (id) => (dispatch, getState) => {
 }
 
 export const addClient = (values) => (dispatch, getState) => {
-	console.log('values in action', values)
 	const authToken = getState().auth.authToken;
 	return fetch(`${API_BASE_URL}/client`, {
 		method: 'POST',
@@ -113,6 +111,7 @@ export const addClient = (values) => (dispatch, getState) => {
 		});
 };
 
+//THIS SEEMS A BIT WEIRD
 export const deleteClient = (id) => (dispatch, getState) => {
 	console.log('id in delete action', id);
 	const authToken = getState().auth.authToken;
@@ -126,11 +125,9 @@ export const deleteClient = (id) => (dispatch, getState) => {
 	})
 		.then(res => normalizeResponseErrors(res))
 		.then(res => {
-			console.log('response after normalize', res)
 
 		})
 		.then((id) => {
-			console.log('delete result data', id)
 			dispatch(deleteClientSuccess())
 		})
 		.catch(err => {
