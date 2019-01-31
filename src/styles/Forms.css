@@ -20,7 +20,7 @@
 }
 
 .img-sized {
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   background-position: 0 0;
   background-size: 1000px 1000px;
   width: calc(100% - 700px);
@@ -362,11 +362,18 @@ input:checked + label:after {
   transition: transform 0.3s ease-in-out;
 }
 
+.addContactFormWidth{
+  width: 400px;
+}
 .submit:hover {
   cursor: pointer;
   transform: rotateX(360deg);
 }
 
+.addContactFlexBox{
+  display: flex;
+  flex-wrap: wrap;
+}
 
 @media only screen and (max-width: 400px) {
   .input-fields{

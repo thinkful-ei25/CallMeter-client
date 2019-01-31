@@ -27,138 +27,142 @@ export class AddContact extends React.Component {
 
     }
     return (
-      <div>
-        <h1 className="formHeader">Add a Contact</h1>
-        <h2><button className="backButton" onClick={() => this.props.toggle()}>Cancel ⬅</button></h2>
+      <div className="addContactFlexBox">
+      <div className="addContactFormWidth">
+        <div>
+          <h1 className="formHeader">Add a Contact</h1>
+          <h2><button className="backButton" onClick={() => this.props.toggle()}>Cancel ⬅</button></h2>
 
-        <form
-          className="loginForm"
-          onSubmit={this.props.handleSubmit(values =>
-            this.onSubmit(values)
-          )}>
-          {error}
-          <label htmlFor="company">Company</label>
-          <Field
-            component={Input}
-            type="text"
-            name="company"
-            validate={[required, nonEmpty]}
-          />
+          <form
+            className="loginForm"
+            onSubmit={this.props.handleSubmit(values =>
+              this.onSubmit(values)
+            )}>
+            {error}
+            <label htmlFor="company">Company</label>
+            <Field
+              component={Input}
+              type="text"
+              name="company"
+              validate={[required, nonEmpty]}
+            />
 
-          <label htmlFor="password">First Name</label>
-          <Field
-            component={Input}
-            type="text"
-            name="firstName"
-            id="firstName"
-            validate={[required, nonEmpty]}
-          />
-          <label htmlFor="lastName">Last Name</label>
-          <Field
-            component={Input}
-            type="text"
-            name="lastName"
-            id="lastName"
-            validate={[required, nonEmpty]}
-          />
+            <label htmlFor="password">First Name</label>
+            <Field
+              component={Input}
+              type="text"
+              name="firstName"
+              id="firstName"
+              validate={[required, nonEmpty]}
+            />
+            <label htmlFor="lastName">Last Name</label>
+            <Field
+              component={Input}
+              type="text"
+              name="lastName"
+              id="lastName"
+              validate={[required, nonEmpty]}
+            />
 
-          <label htmlFor="password">Phone Number</label>
-          <Field
-            component={Input}
-            type="text"
-            name="phoneNumber"
-            id="phoneNumber"
-            validate={[required, nonEmpty, phoneCheck]}
-            normalize={normalizePhone}
-          />
-          <label htmlFor="email">Email</label>
-          <Field
-            component={Input}
-            type="email"
-            name="email"
-            id="email"
-            validate={[emailCheck]}
-          />
-          <label htmlFor="street1">Street 1</label>
-          <Field
-            component={Input}
-            type="text"
-            name="streetOne"
-            id="streetOne"
+            <label htmlFor="password">Phone Number</label>
+            <Field
+              component={Input}
+              type="text"
+              name="phoneNumber"
+              id="phoneNumber"
+              validate={[required, nonEmpty, phoneCheck]}
+              normalize={normalizePhone}
+            />
+            <label htmlFor="email">Email</label>
+            <Field
+              component={Input}
+              type="email"
+              name="email"
+              id="email"
+              validate={[emailCheck]}
+            />
+            <label htmlFor="street1">Street 1</label>
+            <Field
+              component={Input}
+              type="text"
+              name="streetOne"
+              id="streetOne"
 
-          />
-          <label htmlFor="street2">Street 2</label>
-          <Field
-            component={Input}
-            type="text"
-            name="streetTwo"
-            id="streetTwo"
+            />
+            <label htmlFor="street2">Street 2</label>
+            <Field
+              component={Input}
+              type="text"
+              name="streetTwo"
+              id="streetTwo"
 
-          />
-          <label htmlFor="city">City</label>
-          <Field
-            component={Input}
-            type="text"
-            name="city"
-            id="city"
+            />
+            <label htmlFor="city">City</label>
+            <Field
+              component={Input}
+              type="text"
+              name="city"
+              id="city"
 
-          />
-          <label htmlFor="state">State</label>
-          <Field
-            component={Input}
-            type="text"
-            name="state"
-            id="state"
+            />
+            <label htmlFor="state">State</label>
+            <Field
+              component={Input}
+              type="text"
+              name="state"
+              id="state"
 
-          />
-          <label htmlFor="zip">Zip</label>
-          <Field
-            component={Input}
-            type="text"
-            name="zip"
-            id="zip"
+            />
+            <label htmlFor="zip">Zip</label>
+            <Field
+              component={Input}
+              type="text"
+              name="zip"
+              id="zip"
 
-          />
+            />
 
-          <label htmlFor="password">Hourly Rate</label>
-          <Field
-            component={Input}
-            type="number"
-            name="hourlyRate"
-            id="hourlyRate"
-            validate={[required, nonEmpty]}
-          />
+            <label htmlFor="password">Hourly Rate</label>
+            <Field
+              component={Input}
+              type="number"
+              name="hourlyRate"
+              id="hourlyRate"
+              validate={[required, nonEmpty]}
+            />
 
-          <label className="clientFormPhotoLabel" htmlFor="category">Category</label>
-          <Field
-            component="select"
-            name="category"
-            id="category"
+            <label className="clientFormPhotoLabel" htmlFor="category">Category</label>
+            <Field
+              component="select"
+              name="category"
+              id="category"
 
-          >
-            <option selected value="Client">Client</option>
-            <option value="Friend">Friend</option>
-            <option value="Enemy">Enemy</option>
-          </Field>
+            >
+              <option selected value="Client">Client</option>
+              <option value="Friend">Friend</option>
+              <option value="Enemy">Enemy</option>
+            </Field>
 
-          <label className="clientFormPhotoLabel" htmlFor="photo">Photo</label>
-          <Field
-            component={FileInput}
-            type="file"
-            name="photo"
-            id="photo"
-          />
-          <Field
-            component={Input}
-            type="hidden"
-            name="photo64"
-            id="photo64"
-          />
-          <button className="signUpButton" disabled={this.props.pristine || this.props.submitting}>
-            Submit
-                </button>
+            <label className="clientFormPhotoLabel" htmlFor="photo">Photo</label>
+            <Field
+              component={FileInput}
+              type="file"
+              name="photo"
+              id="photo"
+            />
+            <Field
+              component={Input}
+              type="hidden"
+              name="photo64"
+              id="photo64"
+            />
+            <button className="signUpButton" disabled={this.props.pristine || this.props.submitting}>
+              Submit
+                  </button>
 
-        </form>
+          </form>
+        </div>
+        </div>
       </div>
     );
   }

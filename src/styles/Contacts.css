@@ -193,3 +193,13 @@
     width: 100%;
     cursor: pointer;
 }
+
+.setupFlexWrap{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .bracketRight{
+    position: absolute;
+    right: 0;
+  }

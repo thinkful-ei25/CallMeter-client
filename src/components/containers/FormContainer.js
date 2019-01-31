@@ -22,7 +22,7 @@ export function FormContainer(props) {
   return (
     <div>
       <div className="form-container">
-        <div className="img" style={imgStyle} />
+        <div className="img-sized" style={imgStyle} />
         <div className="form-wrapper pad-50">
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/register" render={() => <RegisterForm/>} />
