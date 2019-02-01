@@ -29,8 +29,8 @@ export class navBar extends React.Component {
       for (let i = 0; i < buttons.length; i++) {
         await anime({
           targets: buttons[i],
-          translateY: 50 * (i + 1),
-          duration: 300,
+          translateY: 0,
+          duration: 1000,
           complete: function() {
             buttons[i].style.visibility = 'hidden';
           }
