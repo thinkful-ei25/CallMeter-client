@@ -31,6 +31,8 @@ export class Invoices extends React.Component {
     .then(invoices => { 
       invoices.forEach(invoice => {
         invoice.invoiceAmount = invoice.invoiceAmount.toFixed(2); 
+        //SECONDS ARE MINUTES
+        invoice.seconds = (invoice.seconds / 60).toFixed(2); 
       });
 
       this.setState({invoices}); 
@@ -66,7 +68,7 @@ export class Invoices extends React.Component {
                 accessor: "calls"
               },
               {
-                Header: "Seconds",
+                Header: "Minutes",
                 accessor: "seconds"
               },
               {
