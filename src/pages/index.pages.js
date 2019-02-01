@@ -14,5 +14,4 @@ export {
   Invoices, 
   LandingPage, 
   Settings,
-  
 }

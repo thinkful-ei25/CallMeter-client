@@ -1,0 +1,13 @@
+.bracket{
+  width: 700px;
+}
+
+.setupFlexWrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.bracketRight{
+  position: absolute;
+  right: 0;
+}

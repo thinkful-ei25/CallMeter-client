@@ -1,93 +1,118 @@
-import React from 'react'
-import RecentCalls from './RecentCalls'
+import React from 'react';
+import RecentCalls from './RecentCalls';
+import {defaultProfile} from '../../images/contact/index.contact';
 
 export default function IndividualContactBody(props) {
-  return(
-    <body className="contactBody">
-            <div className="contactBodyTopBoxes">
-
-              <div className="contactBodyInfo">
-                <div className="contactBodyInfoImageContainer">
-                  <img alt='main' className="contactBodyInfoImage" src={props.client.photo}></img>
-                </div>
-                <div className="contactBodyInfoBottomSectionCotainer">
-                  <p className="contactBodyTags">Tags:</p>
-                  <div className="contactBodyInfoContainer">
-                    <div className="contactBodyTagSection">
-                      <p className="contactBodyInfoDetails">Full Name:</p>
-                    </div>
-                    <div className="contactBodyInfoSection">
-                      <p className="contactBodyInfoDetails">{props.client.firstName + ' ' + props.client.lastName}</p>
-                    </div>
-                  </div>
-                  <div className="contactBodyInfoContainer">
-                    <div className="contactBodyTagSection">
-                      <p className="contactBodyInfoDetails">Company:</p>
-                    </div>
-                    <div className="contactBodyInfoSection">
-                    <p className="contactBodyInfoDetails">{props.client.company}</p>
-                    </div>
-                  </div>
-                  <div className="contactBodyInfoContainer">
-                    <div className="contactBodyTagSection">
-                      <p className="contactBodyInfoDetails">Email:</p>
-                    </div>
-                    <div className="contactBodyInfoSection">
-                    <p className="contactBodyInfoDetails">{props.client.email}</p>
-                    </div>
-                  </div>
-                  <div className="contactBodyInfoContainer">
-                    <div className="contactBodyTagSection">
-                      <p className="contactBodyInfoDetails">Phone:</p>
-                    </div>
-                    <div className="contactBodyInfoSection">
-                    <p className="contactBodyInfoDetails">{props.client.phoneNumber}</p>
-                    </div>
-                  </div>
-                  <div style={{ border: "none" }} className="contactBodyInfoContainer">
-                    <div className="contactBodyTagSection">
-                      <p className="contactBodyInfoDetails">Address:</p>
-                    </div>
-                    <div className="contactBodyInfoSection">
-                    <p className="contactBodyInfoDetails">{props.client.address ? props.client.address.streetOne + ' ' + props.client.address.streetTwo + ' '
-                        + props.client.address.city + ' ' + props.client.address.state + ' ' + props.client.address.zip : ""}</p>
-
-                    </div>
-                  </div>
-                </div>
+  return (
+    <section id="individal-contact-body">
+      <div className="row margin-bottom-80">
+        <div className="col-md-8">
+          <div className="contact-info card">
+            <div className="contact-avatar">
+              <img alt="contact" src={props.client.photo || defaultProfile} />
+            </div>
+            <div className="contact-details">
+              <h2 className="contact-name">
+                {props.client.firstName + ' ' + props.client.lastName}
+              </h2>
+              <p>{props.client.company}</p>
+            </div>
+            <div className="contact-info-actions" />
+          </div>
+          <div className="contact-info-details card">
+            <div className="contact-info-block">
+              <div className="info-description">
+                <h3 className="contact-name">Contact Info</h3>
+                <p className="des-details">
+                  View your contact's personal details here. To edit, please use
+                  the drop down in the top right corner.
+                </p>
               </div>
-
-              <div className="contactBodyInvoices">
-                <div className="contactBodyInvoicesTop">
-                  <div className="invoicesTitle verticalCenter">
-                    <div>
-                      <h3 className="stackedElements">Invoices</h3>
-                      <p className="stackedElements">1 of 2 Invoices Completed</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="contactBodyInvoicesBottom">
-                  {props.invoicesHTML ? props.invoicesHTML : ''}
-                </div>
-                <button onClick={() => props.setBody("invoices")} className="invoicesBottomButton">
-                  All Invoices
-                            </button>
-              </div>
-              <div className="recentCallsContainer">
-                <div className="recentCallsHeader">
-                  <div className="recentCallsHeaderLeft">
-                    <h1 className="recentCallsHeaderTitle">Recent Calls</h1>
-                  </div>
-                  <div className="recentCallsHeaderRight">
-                    <button onClick={() => props.setBody("calls")}className="recentCallsHeaderButton">All Calls</button>
-                  </div>
-                </div>
-              <RecentCalls calls={props.calls} />
+              <div className="details-list">
+                <ul className="contact-info-list">
+                  <li>
+                    <p className="details-wrap">
+                      <span className="details">Email Address: </span>{' '}
+                      {props.client.email}
+                    </p>
+                    <p className="details-wrap">
+                      <span className="details">Phone Number: </span>{' '}
+                      {props.client.phoneNumber}
+                    </p>
+                    <p className="details-wrap">
+                      <span className="details">Phone Number: </span>{' '}
+                      {props.client.phoneNumber}
+                    </p>
+                    <p className="details-wrap">
+                      <span className="details">Street Address: </span>{' '}
+                      {props.client.address
+                        ? props.client.address.streetOne +
+                          ' ' +
+                          props.client.address.streetTwo
+                        : ''}
+                    </p>
+                    <p className="details-wrap">
+                      <span className="details">City: </span>{' '}
+                      {props.client.address ? props.client.address.city : ''}
+                    </p>
+                    <p className="details-wrap">
+                      <span className="details">State: </span>{' '}
+                      {props.client.address ? props.client.address.state : ''}
+                    </p>
+                    <p className="details-wrap">
+                      <span className="details">State: </span>{' '}
+                      {props.client.address ? props.client.address.zip : ''}
+                    </p>
+                  </li>
+                </ul>
               </div>
             </div>
-            
-          </body>
-  )
+          </div>
+        </div>
+        <div className="col-md-4">
+          <div className="contact-info card">
+            <div className="details-list">
+              <div className="card-title">
+                <h3>Contact's Invoices</h3>
+                <p className="des-details">
+                  <span>1 of 2</span> Invoices Completed
+                </p>
+              </div>
+            </div>
+            <div className="invoice-list">
+              {props.invoicesHTML ? props.invoicesHTML : ''}
+            </div>
+            <div className="invoice-button">
+              <button onClick={() => props.setBody('invoices')}>
+                View All Invoices
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="row margin-bottom-80">
+        <div className="col-md-12">
+          <div className="contact-info card">
+            <div className="row calls-list">
+              <div className="contact-info-calls-title">
+                <h3>Recent Calls</h3>
+                <p className="des-details">
+                  Your 5 most recent calls with {props.client.firstName}
+                </p>
+              </div>
+              <div className="contact-info-call-actions">
+                <button onClick={() => props.setBody('calls')}>
+                  All Calls
+                </button>
+              </div>
+              <div className="line">{''} </div>
+            </div>
+            <div className="calls-tables">
+              <RecentCalls calls={props.calls} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
-
-

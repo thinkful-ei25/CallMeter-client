@@ -4,10 +4,12 @@ import {
   CLEAR_AUTH,
   AUTH_REQUEST,
   AUTH_SUCCESS,
-  AUTH_ERROR
+  AUTH_ERROR,
+  CHECK_TUTORIAL_COMPLETED,
 } from '../actions/index.actions';
 
 const initialState = {
+  isTutorialCompleted: false,
   authToken: null,
   capabilityToken: null,
   currentUser: null,
@@ -45,5 +47,11 @@ export default function authReducer(state = initialState, action) {
       capabilityToken: action.capabilityToken
     });
   }
+    else if (action.type === CHECK_TUTORIAL_COMPLETED){
+      // console.log('reducer was here', action.isTutorialCompleted);
+      return Object.assign({}, state, {
+        isTutorialCompleted: action.isTutorialCompleted
+      })
+    }
   return state;
 }

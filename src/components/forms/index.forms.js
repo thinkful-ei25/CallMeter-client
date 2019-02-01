@@ -1,5 +1,5 @@
 import AccountInfoForm from './AccountInfoForm';
-import ContactForm from './ContactForm';
+// import ContactForm from './ContactForm';
 import LoginForm from './LoginForm';
 import PhoneSetup from './PhoneSetup'; 
 import RegisterForm from './RegisterForm'; 

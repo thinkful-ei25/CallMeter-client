@@ -3,7 +3,8 @@
 }
 
 .hero-wrapper {
-  background-image: url(../images/landing/heroBackground.jpg);
+  /* background-image: url(../images/landing/heroBackground.jpg); */
+  background-image: url(../images/backgrounds/purple_shapes.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -32,33 +33,7 @@
   }
 }
 
-.row {
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-}
 
-.col-md-6 {
-  position: relative;
-  width: 100%;
-  min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-@media (min-width: 768px) {
-  .col-md-6 {
-    -ms-flex: 0 0 50%;
-    -webkit-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-}
 
 .d-flex {
     display: -ms-flexbox !important;

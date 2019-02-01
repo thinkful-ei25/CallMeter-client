@@ -2,16 +2,25 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { RequiresLogin } from '../components/_utils/index._utils';
 import ReactTable from 'react-table';
+import { defaultProfilePictureArray } from '../images/profileImages/profileImages';
 import { fetchAllCalls } from '../actions/index.actions';
-import '../styles/Calls.css'
-
-import 'react-table/react-table.css';
+import '../styles/Calls.css';
+import GettingStarted from '../components/GettingStarted';
+import { computerPhone } from '../images/illustrations/index.illustrations';
+import { SubNav } from '../components/navigation/index.navigation';
+import { inbound, outbound } from '../images/illustrations/index.illustrations';
 
 export class Calls extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      pictureIterator: 0,
+      directionImg: {
+        inbound: inbound,
+        outbound: outbound,
+        incoming: inbound,
+        outgoing: outbound
+      }
     };
   }
 
@@ -20,21 +29,71 @@ export class Calls extends React.Component {
     console.log();
   }
 
+  returnPictureFromArray() {
+    const iterator = Math.floor(Math.random() * 5);
+    const image = defaultProfilePictureArray[iterator];
+
+    return image;
+  }
+
+  formatPhoneNumber(num) {
+    if(!num) return'-';
+    let areaCode = num.substring(2,5);
+    let firstThree = num.substring(5,8);
+    let lastFour = num.substring(num.length-4);
+    let number = '('+ areaCode+')'+ ' '+ firstThree+'-'+lastFour;
+    return number;
+  }
+
+  formatTime(time){
+    const minutes = Math.floor(time/60);
+    const seconds = time - minutes*60;
+
+    return minutes + ' m ' + seconds + ' s';
+  }
+
+  formatDate(date) {
+    let _date = new Date(date);
+    let year = _date.getFullYear();
+    let month = _date.getMonth();
+    let dt = _date.getDate();
+    let months = [
+      '01',
+      '02',
+      '03',
+      '04',
+      '05',
+      '06',
+      '07',
+      '08',
+      '09',
+      '10',
+      '11',
+      '12'
+    ];
+    if (dt < 10) dt = '0' + dt;
+
+    return months[month] + '/' + dt + '/' + year;
+  }
 
   callColumns = [
     {
-      Header: 'Date',
-      accessor: 'date',
-      resizable: false
-    },
-    {
-      Header: 'Direction',
+      Header: '',
       accessor: 'direction',
-      resizable: false
+      resizable: false,
+      Cell: row => (
+        <div className="direction-icon">
+          <img
+            src={this.state.directionImg[row.value]}
+            alt="phone call direction"
+            className="direction-img-small"
+          />
+        </div>
+      ),
+      width: 60
     },
-
     {
-      Header: 'Photo',
+      Header: '',
       accessor: 'photo',
       resizable: false,
       Cell: props => (
@@ -42,95 +101,127 @@ export class Calls extends React.Component {
           <img
             className="table-cell-photo"
             alt="contactImage"
-            src={props.value}
+            src={props.value || this.returnPictureFromArray()}
           />
         </span>
       ),
+      width: 80
     },
     {
-      Header: 'Contact Name',
+      Header: 'Name',
       accessor: 'contactName',
-      resizable: false
+      resizable: true,
+      width: 230
     },
     {
       Header: 'Company',
       accessor: 'company',
-      resizable: false
+      resizable: true,
+      width: 290
+    },
+    {
+      Header: 'Date',
+      id: 'column',
+      accessor: 'date',
+      resizable: false,
+      Cell: row => this.formatDate(row.value),
+      width: 150
     },
     {
       Header: 'Phone Number',
       id: 'phoneNumber',
       accessor: 'phoneNumber',
-      resizable: false
+      resizable: false,
+      Cell: row => this.formatPhoneNumber(row.value),
+      width: 190
     },
     {
-      Header: 'Length',
+      Header: 'Time',
       accessor: 'length',
-      resizable: false
+      resizable: false,
+      Cell: row => this.formatTime(row.value),
+      width: 100
     },
     {
       Header: 'Billable',
       accessor: 'billable',
-      resizable: false
+      resizable: false,
+      width: 100,
+      Cell: row => 'true'
     },
     {
-      Header: 'Estimated Billing',
+      Header: '$ Amount',
       accessor: 'estimatedBilling',
       resizable: false
-    },
-  ]
+    }
+  ];
 
   render() {
+    console.log(this.props.loading);
+    if (this.props.loading) {
+      return <div>loading...</div>;
+    }
     return (
-      <div className="callsHeaderContainer">
-        <h1 className="callsHeader">All Calls</h1>
-        <div className="section-container">
-          <ReactTable
-            data={this.props.calls}
-            columns={this.callColumns}
-
-            getTdProps={() => ({
-              style: {
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                borderTop: '0px solid gainsboro',
-                borderRight: '0px solid rgba(0,0,0,0) !important'
-              }
-            })}
-            getTrProps={() => ({
-              className: 'default-table-row'
-            })}
-            getTheadProps={() => ({
-              className: 'default-table-header'
-            })}
-            getTheadThProps={() => ({
-              className: 'default-table-headers'
-            })}
-            getTrGroupProps={() => ({
-              className: 'default-table-rows'
-            })}
-            defaultPageSize={100}
-            showPageSizeOptions={true}
-            showPagination={false}
-            className="default-table"
-            pageSizeOptions={[5, 10, 20, 25, 50, 100]}
-            minRows={0}
+      <div>
+        <div className="app-container">
+          <SubNav
+            page={'calls'}
+            toggleAddClientForm={() => this.toggleAddClientForm()}
+            setSearchTerm={e => this.setSearchTerm(e)}
+            searchTerm={this.state.searchTerm}
+            toggleView={e => this.toggleView(e)}
+            view={this.state.view}
           />
+          {this.props.calls.length < 1 ? (
+            <div>
+              <section className="contacts">
+                <div className="section-container">
+                  <GettingStarted
+                    title="It's Time To Make Your First Call!"
+                    image={computerPhone}
+                    text="How a Make a Call"
+                    subtext="Dummy text here. horray hip horray hip hop!"
+                  />
+                </div>
+              </section>
+            </div>
+          ) : (
+            <div>
+              <div className="title-bar">
+                <header className="app-page-header" role="presentation">
+                  <div className="app-header-inner" role="banner">
+                    <div className="app-header-title">
+                      <h1 className="app-heading">All Calls</h1>
+                    </div>
+                  </div>
+                </header>
+              </div>
+              <section className="contacts">
+                <div className="section-container">
+                  <ReactTable
+                    data={this.props.calls}
+                    columns={this.callColumns}
+                    defaultSorted={[{ id: 'date', desc: false }]}
+                    defaultPageSize={100}
+                    showPagination={false}
+                    className="-highlight -curser-pointer"
+                    minRows={0}
+                  />
+                </div>
+              </section>
+            </div>
+          )}
         </div>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => {
-  console.log(state)
-
   return {
-    calls: state.callStats.calls
-
+    calls: state.callStats.calls,
+    loading: state.callStats.loading
   };
 };
 
 export default RequiresLogin()(connect(mapStateToProps)(Calls));
-

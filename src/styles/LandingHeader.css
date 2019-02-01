@@ -124,7 +124,7 @@
 
 .sign-up-button {
   font-size: 18px;
-  width: 190px;
+  width: 100%;
   height: 70px;
   padding: 0;
   line-height: 73px;
@@ -153,4 +153,23 @@
 
 button:hover{
   transform: scale(1.1); 
+}
+
+
+
+@media only screen and (max-width: 450px) {
+  #signup .button{
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+  }
+  .login-link{
+    font-size: 12px;
+  }
+  #signup{
+    width: 100px;
+  }
 }

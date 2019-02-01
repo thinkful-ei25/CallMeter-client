@@ -12,7 +12,9 @@ import {
   AUTH_ERROR,
   authError,
   login,
-  refreshAuthToken
+  refreshAuthToken,
+  checkTutorialCompleted,
+  CHECK_TUTORIAL_COMPLETED,
 } from './auth.action';
 
 import {
@@ -129,6 +131,8 @@ export {
   fetchCapabilityToken,
   registerUser,
   getPhoneNumbers,
-  normalizeResponseErrors
+  normalizeResponseErrors,
+  checkTutorialCompleted,
+  CHECK_TUTORIAL_COMPLETED,
 }
 

@@ -3,11 +3,15 @@ import login from './login.jpg';
 import register from './register.jpg';
 import phone from './phone.jpg';
 import contacts from './contacts.jpg';
+import backgroundDots from './background-dots.png';
+import shapeOne from './shapeOne.jpg';
 
 export {
   account,
   login,
   register,
   phone,
-  contacts
+  contacts,
+  backgroundDots,
+  shapeOne
 }
