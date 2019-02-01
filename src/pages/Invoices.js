@@ -30,6 +30,7 @@ export class Invoices extends React.Component {
         'firstName': invoice.firstName,
         'lastName': invoice.lastName,
         'hourlyRate': invoice.hourlyRate,
+        'email' : invoice.email
       }),
       headers: {
         'Content-Type': 'application/json',
