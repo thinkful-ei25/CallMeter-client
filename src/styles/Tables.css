@@ -176,11 +176,15 @@
 }
 
 .ReactTable .rt-td:nth-child(1) {
-    padding: 5px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .ReactTable .rt-td:last-child {
-    padding: 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ReactTable.-highlight .rt-tbody .rt-tr:not(.-padRow):hover {

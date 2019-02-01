@@ -128,8 +128,8 @@ export class Stats extends React.Component {
             toggleView={e => this.toggleView(e)}
             view={this.state.view}
           />
-          {this.props.callsArr.length < 100 &&
-          this.props.durationArr.length < 100 ? (
+          {this.props.callsArr.length < 1 &&
+          this.props.durationArr.length < 1 ? (
             <div>
               <section className="contacts">
                 <div className="section-container">

@@ -8,6 +8,7 @@ import { AddContact } from '../components/contacts/index.contacts';
 import { SubNav } from '../components/navigation/index.navigation';
 import { callIcon } from '../images/contact/index.contact';
 import { defaultProfile } from '../images/contact/index.contact';
+import {defaultProfilePictureArray} from '../images/profileImages/profileImages'
 import { timeMoney } from '../images/illustrations/index.illustrations';
 import GettingStarted from '../components/GettingStarted';
 import '../styles/Contacts.css';
@@ -44,6 +45,13 @@ export class Contacts extends React.Component {
     this.setState({
       searchTerm: e.target.value
     });
+  }
+
+  returnPictureFromArray(){
+    const iterator = Math.floor(Math.random() * 5);
+    const image = defaultProfilePictureArray[iterator];
+    
+    return image;
   }
 
   render() {
@@ -92,7 +100,7 @@ export class Contacts extends React.Component {
                 <img
                   className="table-cell-photo"
                   alt="contactImage"
-                  src={props.value || defaultProfile}
+                  src={props.value || this.returnPictureFromArray()}
                 />
               </span>
             ),
@@ -161,13 +169,11 @@ export class Contacts extends React.Component {
             width: 60,
             resizable: false
           },
-
           {
             Header: 'Name',
             accessor: 'fullName',
             resizable: false
           },
-
           {
             Header: 'Company',
             accessor: 'company',
@@ -204,7 +210,7 @@ export class Contacts extends React.Component {
               toggleView={e => this.toggleView(e)}
               view={this.state.view}
             />
-            {clients.length < 100 ? (
+            {clients.length < 1 ? (
               <div>
                 <section className="contacts">
                   <div className="section-container"> 
@@ -255,10 +261,7 @@ export class Contacts extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // const { currentUser } = state.auth;
   return {
-    // username: state.auth.currentUser.username,
-    // name: `${currentUser.firstName} ${currentUser.lastName}`,
     client: state.client.data,
     loading: state.client.loading
   };

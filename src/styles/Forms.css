@@ -20,9 +20,9 @@
 }
 
 .img-sized {
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   background-position: 0 0;
-  background-size: 1000px 1000px;
+  background-size: cover;
   width: calc(100% - 700px);
   position: relative;
   overflow: hidden;
@@ -61,6 +61,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.loginErrorMessage{
+  color: red;
 }
 
 .form-title {
@@ -114,7 +118,8 @@
 }
 
 .form-button-wrapper {
-  display: block;
+  display: flex;
+  justify-content: center;
   position: relative;
   z-index: 1;
   border-radius: 8px;
@@ -357,9 +362,23 @@ input:checked + label:after {
   transition: transform 0.3s ease-in-out;
 }
 
+.addContactFormWidth{
+  width: 400px;
+}
 .submit:hover {
   cursor: pointer;
   transform: rotateX(360deg);
+}
+
+.addContactFlexBox{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 400px) {
+  .input-fields{
+    font-size: 15px;
+  }
 }
 
 

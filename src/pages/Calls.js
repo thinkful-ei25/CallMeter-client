@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { RequiresLogin } from '../components/_utils/index._utils';
 import ReactTable from 'react-table';
+import {defaultProfilePictureArray} from '../images/profileImages/profileImages'
 import { fetchAllCalls } from '../actions/index.actions';
 import '../styles/Calls.css';
 import GettingStarted from '../components/GettingStarted';
@@ -11,17 +12,28 @@ import { SubNav } from '../components/navigation/index.navigation';
 export class Calls extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      pictureIterator : 0
   }
+}
 
   componentDidMount() {
     this.props.dispatch(fetchAllCalls());
     console.log();
   }
 
+  returnPictureFromArray(){
+    const iterator = Math.floor(Math.random() * 5);
+    const image = defaultProfilePictureArray[iterator];
+    
+    return image;
+  }
+
+
   callColumns = [
     {
       Header: 'Date',
+      id: "column",
       accessor: 'date',
       resizable: false
     },
@@ -35,12 +47,12 @@ export class Calls extends React.Component {
       Header: 'Photo',
       accessor: 'photo',
       resizable: false,
-      Cell: props => (
+      Cell: (props, column) => (
         <span className="avatar">
           <img
             className="table-cell-photo"
             alt="contactImage"
-            src={props.value}
+            src={props.value || this.returnPictureFromArray()}
           />
         </span>
       )
@@ -95,7 +107,7 @@ export class Calls extends React.Component {
             toggleView={e => this.toggleView(e)}
             view={this.state.view}
           />
-          {this.props.calls.length < 100 ? (
+          {this.props.calls.length < 1 ? (
             <div>
               <section className="contacts">
                 <div className="section-container">

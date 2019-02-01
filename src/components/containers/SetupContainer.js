@@ -6,12 +6,14 @@ import AccountSetup from '../forms/AccountInfoForm';
 import ContactForm from '../forms/ContactForm';
 import {completeTutorial} from '../../actions/users.action'
 import '../../styles/Setup.css'
+import { phone, account, contacts } from '../../images/forms/index.forms'
 
 export class SetupContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       step: 0,
+      images: [account, phone, contacts]
     };
   }
 
@@ -38,11 +40,17 @@ export class SetupContainer extends React.Component {
     }
   }
 
+
   render(){
+    let imgStyle = {
+      backgroundImage: 'url(' + this.state.images[this.state.step] + ')'
+    };
+  
     // console.log(this.state.step);
   return (
-    <div className="setupFlexWrap">
-      <div className="bracket bracketRight">
+    <div className="form-container">
+    <div className="img-sized" style={imgStyle} />
+    <div className="form-wrapper pad-50">
         {this.content()}
       </div>
     </div>

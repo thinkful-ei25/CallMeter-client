@@ -9,7 +9,7 @@ export class navBar extends React.Component {
 
   async startAnimation(e) {
     const buttons = document.getElementsByClassName('aniButton');
-    const currentButton = e.currentTarget;
+    const currentButton = document.getElementsByClassName('dots')[0];
     if (buttons[0].style.visibility === 'visible') {
       currentButton.src = hamburger ;
       for (let i = 0; i < buttons.length; i++) {
@@ -40,11 +40,11 @@ export class navBar extends React.Component {
     return (
       <div className="buttonContainer">
         <div className="fixed">
-          <Link to="/app/invoices"><img alt='invoices' className="aniButton" src={invoices}></img></Link>
-          <Link to="/app/contacts"><img alt='contacts' className="aniButton" src={contacts}></img></Link>
-          <Link to="/app"><img alt='home' className="aniButton" src={home}></img></Link>
-          <Link to="/app/calls"><img alt='calls' className="aniButton" src={calls}></img></Link>
-          <Link to='/app/settings'><img alt='settings' className='aniButton' src={settings}></img></Link>
+          <Link to="/app/invoices"><img onClick={e => this.startAnimation()} alt='invoices' className="aniButton" src={invoices}></img></Link>
+          <Link to="/app/contacts"><img onClick={e => this.startAnimation()} alt='contacts' className="aniButton" src={contacts}></img></Link>
+          <Link to="/app"><img onClick={e => this.startAnimation()} alt='home' className="aniButton" src={home}></img></Link>
+          <Link to="/app/calls"><img onClick={e => this.startAnimation()} alt='calls' className="aniButton" src={calls}></img></Link>
+          <Link to='/app/settings'><img onClick={e => this.startAnimation()} alt='settings' className='aniButton' src={settings}></img></Link>
           <img alt='main' className="dots" src={hamburger} onClick={e => this.startAnimation(e)}></img>
         </div>
       </div>
