@@ -46,7 +46,7 @@ export default class LandingPage extends React.Component {
                   <p className="feature-text">
                     We know that you may not always be making business calls in your office. 
                     That's why you can make and receive business calls through your browser via
-                    CallMeter while online and through your personal phone while offline. 
+                    CallMeter while online and through your personal phone while offline 👍. 
                     Each call is individually tracked and overall call related statistics viewable on 
                     the stats page.  
                   </p>
@@ -87,8 +87,7 @@ export default class LandingPage extends React.Component {
                     <h2> Sign-up for<br /> CallMEter Today!</h2>
                     <p className="cta-copy">
                     We understand you may be dubious of this incredible technology, 
-                    that's why we offer a free trial.BUT THAT'S NOT ALL. 
-                    CALL NOW AND GET TWO ACCOUNTS FOR THE PRICE OF ONE. 
+                    that's why we offer a free trial.
 							</p>
                     <Link to="/register">
                       <p className="btn-blue">Sign-up!</p>
