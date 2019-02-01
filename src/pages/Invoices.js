@@ -29,8 +29,9 @@ export class Invoices extends React.Component {
       return res.json(); 
     })
     .then(invoices => { 
+      console.log('invoices', invoices); 
       invoices.forEach(invoice => {
-        invoice.invoiceAmount = invoice.invoiceAmount.toFixed(2); 
+        invoice.invoiceAmount = (invoice.invoiceAmount) ? invoice.invoiceAmount.toFixed(2) : 0.00; 
         //SECONDS ARE MINUTES
         invoice.seconds = (invoice.seconds / 60).toFixed(2); 
       });
