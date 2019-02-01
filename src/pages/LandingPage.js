@@ -30,7 +30,7 @@ export default class LandingPage extends React.Component {
                 <div className="col-md-6 d-flex align-items-center">
                   <img
                     className="hero-img"
-                    src={productShot} 
+                    src={productShot}
                     alt="Simple billing"
                   />
                 </div>
