@@ -9,6 +9,8 @@ import { SubNav } from '../components/navigation/index.navigation';
 import { callIcon } from '../images/contact/index.contact';
 import { defaultProfile } from '../images/contact/index.contact';
 import {defaultProfilePictureArray} from '../images/profileImages/profileImages'
+import { timeMoney } from '../images/illustrations/index.illustrations';
+import GettingStarted from '../components/GettingStarted';
 import '../styles/Contacts.css';
 import '../styles/Tables.css';
 
@@ -43,6 +45,16 @@ export class Contacts extends React.Component {
     this.setState({
       searchTerm: e.target.value
     });
+  }
+
+  formatPhoneNumber(num) {
+    if (!num) return '-';
+    let areaCode = num.substring(2, 5);
+    let firstThree = num.substring(5, 8);
+    let lastFour = num.substring(num.length - 4);
+    let number = '(' + areaCode + ')' + ' ' + firstThree + '-' + lastFour;
+    return number;
+
   }
 
   returnPictureFromArray(){
@@ -119,7 +131,9 @@ export class Contacts extends React.Component {
             Header: 'Phone Number',
             id: 'phoneNumber',
             accessor: 'phoneNumber',
-            resizable: false
+            resizable: false,
+            Cell: row => this.formatPhoneNumber(row.value),
+            width: 150
           },
           {
             Header: 'Category',
@@ -167,13 +181,11 @@ export class Contacts extends React.Component {
             width: 60,
             resizable: false
           },
-
           {
             Header: 'Name',
             accessor: 'fullName',
             resizable: false
           },
-
           {
             Header: 'Company',
             accessor: 'company',
@@ -204,11 +216,22 @@ export class Contacts extends React.Component {
           <div className="app-container">
             <SubNav
               toggleAddClientForm={() => this.toggleAddClientForm()}
+              page={'contacts'}
               setSearchTerm={e => this.setSearchTerm(e)}
               searchTerm={this.state.searchTerm}
               toggleView={e => this.toggleView(e)}
               view={this.state.view}
             />
+            {clients.length < 1 ? (
+              <div>
+                <section className="contacts">
+                  <div className="section-container"> 
+                <GettingStarted title="Getting started with Contacts" image={timeMoney} text="Add a Contact to Begin" subtext="Dummy text here. horray hip horray hip hop!" />
+              </div>
+              </section>
+              </div>
+            ): (
+              <div>
             <div className="title-bar">
               <header className="app-page-header" role="presentation">
                 <div className="app-header-inner" role="banner">
@@ -218,20 +241,22 @@ export class Contacts extends React.Component {
                 </div>
               </header>
             </div>
-
             <section className="contacts">
-              <div className="section-container">
-                <ReactTable
-                  data={clients}
-                  columns={clientColumns[this.state.view]}
-                  defaultSorted={[{ id: 'fullName', desc: false }]}
-                  defaultPageSize={100}
-                  showPagination={false}
-                  className="-highlight -curser-pointer"
-                  minRows={0}
-                />
+              <div className="section-container"> 
+                  <ReactTable
+                    data={clients}
+                    columns={clientColumns[this.state.view]}
+                    defaultSorted={[{ id: 'fullName', desc: false }]}
+                    defaultPageSize={100}
+                    showPagination={false}
+                    className="-highlight -curser-pointer"
+                    minRows={0}
+                  />
+
               </div>
             </section>
+            </div>
+            )}
           </div>
         </div>
       );
@@ -248,12 +273,8 @@ export class Contacts extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // const { currentUser } = state.auth;
   return {
-    // username: state.auth.currentUser.username,
-    // name: `${currentUser.firstName} ${currentUser.lastName}`,
     client: state.client.data,
-
     loading: state.client.loading
   };
 };

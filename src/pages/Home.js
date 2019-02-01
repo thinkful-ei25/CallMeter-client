@@ -5,7 +5,10 @@ import { RequiresLogin } from '../components/_utils/index._utils';
 import { fetchCallStats } from '../actions/index.actions';
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
 import '../styles/Dashboard.css';
-
+import { happy } from '../images/illustrations/index.illustrations';
+import { SubNav } from '../components/navigation/index.navigation';
+import GettingStarted from '../components/GettingStarted';
+import {Answerer} from '../components/browserPhone/index.browserPhone';
 
 export class Stats extends React.Component {
   constructor(props) {
@@ -118,21 +121,47 @@ export class Stats extends React.Component {
     } else {
       return (
         <div className="app-container">
-          <section className="contacts">
-            <div className="section-container">
-              {/* START OF CHART AND CARDS */}
-              <div className="chart-panel">
-                {/* START OF PANEL HEADER */}
-                <div className="panel-header">
-                  <div className="panel-title">
-                    <h3>Da Stats</h3>
+          <SubNav
+            page={'home'}
+            toggleAddClientForm={() => this.toggleAddClientForm()}
+            setSearchTerm={e => this.setSearchTerm(e)}
+            searchTerm={this.state.searchTerm}
+            toggleView={e => this.toggleView(e)}
+            view={this.state.view}
+          />
+          {this.props.callsArr.length < 1 &&
+          this.props.durationArr.length < 1 ? (
+            <div>
+              <section className="contacts">
+                <div className="section-container">
+                  <GettingStarted
+                    title="Howdy! Welcome to CallMeter!"
+                    image={happy}
+                    text="How a Make a Call"
+                    subtext="Dummy text here. horray hip horray hip hop!"
+                  />
+                </div>
+              </section>
+            </div>
+          ) : (
+            <div>
+              <section className="contacts">
+                <div className="section-container">
+                  {/* START OF CHART AND CARDS */}
+                  <div className="chart-panel">
+                    {/* START OF PANEL HEADER */}
+                    <div className="panel-header">
+                      <div className="panel-title">
+                        <h3>Da Stats</h3>
+                      </div>
+                    </div>
+                    {/* END OF PANEL HEADER */}
+                    {this.rerender()}
                   </div>
                 </div>
-                 {/* END OF PANEL HEADER */}
-                {this.rerender()}
-              </div>
+              </section>
             </div>
-          </section>
+          )}
         </div>
       );
     }

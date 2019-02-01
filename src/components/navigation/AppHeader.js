@@ -22,7 +22,7 @@ export class AppHeader extends React.Component {
 
     return (
       <header className="app-header" role="banner">
-        <Link to="/">
+        <Link to="/app">
           <div className="logo">
             <img className="logo-larger" src={logo} alt="ContactMEter" />
           </div>

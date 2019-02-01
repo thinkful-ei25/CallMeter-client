@@ -37,7 +37,8 @@ export default function callStatsReducer(state = initialState, action) {
     });
   } else if (action.type === FETCH_ALLCALLS_SUCCESS) {
     return Object.assign({}, state, {
-      calls: action.calls
+      calls: action.calls,
+      loading: false
     })
   } else {
     return state;

@@ -2,29 +2,30 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { RequiresLogin } from '../components/_utils/index._utils';
 import { Tips } from '../_utils/index.utils';
-import { API_BASE_URL} from '../config'; 
-
-import ReactTable from "react-table";
-import '../styles/Dashboard.css'; 
-import 'react-table/react-table.css'
+import { API_BASE_URL } from '../config';
+import ReactTable from 'react-table';
+import '../styles/Dashboard.css';
+import 'react-table/react-table.css';
+import { graphMoney } from '../images/illustrations/index.illustrations';
+import { SubNav } from '../components/navigation/index.navigation';
+import GettingStarted from '../components/GettingStarted';
 
 export class Invoices extends React.Component {
-  constructor(props){ 
-    super(props); 
-    this.state = { 
-      invoices : null
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      invoices: null
+    };
   }
 
   componentDidMount() {
-    fetch(`${API_BASE_URL}/invoices`, 
-      { 
-        method: 'GET',
-        headers: {
-          // Provide our auth token as credentials
-          Authorization: `Bearer ${this.props.authToken}`
+    fetch(`${API_BASE_URL}/invoices`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${this.props.authToken}`
       }
     })
+<<<<<<< HEAD
     .then(res => { 
       return res.json(); 
     })
@@ -34,69 +35,118 @@ export class Invoices extends React.Component {
         invoice.invoiceAmount = (invoice.invoiceAmount) ? invoice.invoiceAmount.toFixed(2) : 0.00; 
         //SECONDS ARE MINUTES
         invoice.seconds = (invoice.seconds / 60).toFixed(2); 
+=======
+      .then(res => {
+        return res.json();
+      })
+      .then(invoices => {
+        invoices.forEach(invoice => {
+          invoice.invoiceAmount = invoice.invoiceAmount.toFixed(2);
+          //SECONDS ARE MINUTES
+          invoice.seconds = (invoice.seconds / 60).toFixed(2);
+        });
+        this.setState({ invoices });
+      })
+      .catch(err => {
+        console.log('err', err);
+>>>>>>> b32015bc9642670df9e23cce1bccebbff5568dbe
       });
-
-      this.setState({invoices}); 
-    })
-    .catch(err => { 
-      console.log('err', err); 
-    }); 
   }
 
   render() {
-    if (this.state.invoices){ 
+    const invoiceColumns = [
+      {
+        Header: 'Company',
+        accessor: 'company'
+      },
+      {
+        Header: 'First Name',
+        accessor: 'firstName'
+      },
+      {
+        Header: 'Last Name',
+        id: 'lastName',
+        accessor: 'lastName'
+      },
+      {
+        Header: 'Calls',
+        accessor: 'calls'
+      },
+      {
+        Header: 'Minutes',
+        accessor: 'seconds'
+      },
+      {
+        Header: 'Total Billed',
+        accessor: 'invoiceAmount'
+      }
+    ];
+
+    if (this.state.invoices) {
       return (
-        <div className="invoicesTable">
-          <h1>Invoices</h1>
-          <ReactTable
-            data={this.state.invoices}
-            columns={[
-              {
-                Header: "Company",
-                accessor: "company"
-              },
-              {
-                Header: "First Name",
-                accessor: "firstName"
-              },
-              {
-                Header: "Last Name",
-                id: "lastName",
-                accessor: "lastName"
-              },
-              {
-                Header: "Calls",
-                accessor: "calls"
-              },
-              {
-                Header: "Minutes",
-                accessor: "seconds"
-              },
-              {
-                Header: "Total Billed",
-                accessor: "invoiceAmount",
-              },
-  
-            ]}
-            defaultPageSize={10}
-            className="-striped -highlight"
-          />
-          <br />
-          <Tips />
+        <div>
+          <div className="app-container">
+            <SubNav
+              toggleAddClientForm={() => this.toggleAddClientForm()}
+              page={'invoices'}
+              setSearchTerm={e => this.setSearchTerm(e)}
+              searchTerm={this.state.searchTerm}
+              toggleView={e => this.toggleView(e)}
+              view={this.state.view}
+            />
+            {this.state.invoices.length < 1 ? (
+              <div>
+                <section className="contacts">
+                  <div className="section-container">
+                    <GettingStarted
+                      title="We Wouldn't Be CallMeter without Invoices"
+                      image={graphMoney}
+                      text="Clients + Calls = $$$$"
+                      subtext="Dummy text here. horray hip horray hip hop!"
+                    />
+                  </div>
+                </section>
+              </div>
+            ) : (
+              <div>
+                <div className="title-bar">
+                  <header className="app-page-header" role="presentation">
+                    <div className="app-header-inner" role="banner">
+                      <div className="app-header-title">
+                        <h1 className="app-heading">Contacts</h1>
+                      </div>
+                    </div>
+                  </header>
+                </div>
+                <section className="contacts">
+                  <div className="section-container">
+                    <ReactTable
+                      data={this.state.invoices}
+                      columns={invoiceColumns}
+                      defaultSorted={[{ id: 'company', desc: false }]}
+                      defaultPageSize={100}
+                      showPagination={false}
+                      className="-highlight -curser-pointer"
+                      minRows={0}
+                    />
+                    <br />
+                    <Tips />
+                  </div>
+                </section>
+              </div>
+            )}
+          </div>
         </div>
-       );
-    }
-    else { 
-      return ( 
-        <div>Loading...</div>
-      ); 
+      );
+    } else {
+      return <div>Loading...</div>;
     }
   }
 }
 
 const mapStateToProps = state => {
   return {
-    authToken : state.auth.authToken
+    authToken: state.auth.authToken
   };
 };
 
