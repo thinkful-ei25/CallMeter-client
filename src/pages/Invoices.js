@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { RequiresLogin } from '../components/_utils/index._utils';
 import { Tips } from '../_utils/index.utils';
-
 import ReactTable from "react-table";
 import '../styles/Dashboard.css'; 
 import 'react-table/react-table.css'
+import {graphMoney} from '../images/illustrations/index.illustrations';
 
 
 
