@@ -2,19 +2,61 @@ import React from 'react';
 import ReactTable from 'react-table';
 import '../../styles/Calls.css'
 import 'react-table/react-table.css';
+import {inbound, outbound } from '../../images/illustrations/index.illustrations';
+
+
+function formatDate(date) {
+  let _date = new Date(date);
+  let year = _date.getFullYear();
+  let month = _date.getMonth();
+  let dt = _date.getDate();
+  let months = [
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+    '12'
+  ];
+  if (dt < 10) dt = '0' + dt;
+
+  return months[month] + '/' + dt + '/' + year;
+}
 
 export default function RecentCalls(props) {
 
-  let callColumns = [
+  let directionImg = {
+    inbound: inbound,
+    outbound: outbound,
+    incoming: inbound,
+    outgoing: outbound
+  }
+
+
+  const callColumns = [
+    {
+      Header: '',
+      accessor: 'direction',
+      resizable: false,
+      Cell: row => (
+        <div className="direction-icon">
+          <img src={directionImg[row.value]} alt="phone call direction" className="direction-img-small" />
+        </div>
+      ),
+      width: 60
+    },
     {
       Header: 'Date',
       accessor: 'date',
-      resizable: false
-    },
-    {
-      Header: 'Direction',
-      accessor: 'direction',
-      resizable: false
+      resizable: false,
+      Cell: row => formatDate(row.value),
+      width: 120
     },
     {
       Header: 'Length',
@@ -38,33 +80,9 @@ export default function RecentCalls(props) {
         <ReactTable
           data={props.calls}
           columns={callColumns}
-
-          getTdProps={() => ({
-            style: {
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              borderTop: '0px solid gainsboro',
-              borderRight: '0px solid rgba(0,0,0,0) !important'
-            }
-          })}
-          getTrProps={() => ({
-            className: 'default-table-row'
-          })}
-          getTheadProps={() => ({
-            className: 'default-table-header'
-          })}
-          getTheadThProps={() => ({
-            className: 'default-table-headers'
-          })}
-          getTrGroupProps={() => ({
-            className: 'default-table-rows'
-          })}
-          defaultPageSize={100}
-          showPageSizeOptions={true}
+          defaultPageSize={5}
           showPagination={false}
           className="default-table"
-          pageSizeOptions={[5, 10, 20, 25, 50, 100]}
           minRows={0}
         />
       </div>

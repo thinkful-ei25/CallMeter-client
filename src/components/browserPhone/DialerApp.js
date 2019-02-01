@@ -19,6 +19,7 @@ export class DialerApp extends React.Component {
       isIncomingCallOnGoing: false, 
       isIncomingCallConnected: false, 
       isOutgoingCallOnGoing: false, 
+      isOutgoingCallConnected: false
     };
   }
 
@@ -31,7 +32,6 @@ export class DialerApp extends React.Component {
     twilioDeviceStates.forEach(twilioDeviceState => { 
       this.handleAppStateChange(twilioDeviceState);  
     }); 
-
     //SETS UP DEVICE
     this.setUpDevice(this.props.capabilityToken); 
   }
@@ -43,7 +43,8 @@ export class DialerApp extends React.Component {
       device: 
         Device.setup(
           capabilityToken, {
-            debug: true, 
+            warning: false, 
+            debug: false, 
             enableRingingState: true, 
             allowIncomingWhileBusy: true
            }
@@ -59,7 +60,6 @@ export class DialerApp extends React.Component {
   handleAppStateChange = state => {
 
     Device.on(state, obj => {
-
       this.setState({deviceState: state, connection: obj});
       if (state === 'error'){ 
         this.setState({
@@ -76,11 +76,18 @@ export class DialerApp extends React.Component {
       else if (state === 'disconnect') { 
         this.deviceDisconnectedHandler(); 
       }
+      else if (state === 'ringing' ) { 
+        console.log('ringing'); 
+      }
+      else if (state === 'connect') { 
+        if (this.state.isOutgoingCallOnGoing) { 
+          this.setState({isOutgoingCallConnected : true}); 
+        } 
+      }
     });
   }; 
 
   deviceCancelCallHandler(){ 
-    console.log('##CANCEL HANDLER##'); 
     this.setState({    
       isIncomingCallOnGoing: false, 
       isIncomingCallConnected: false, 
@@ -93,16 +100,13 @@ export class DialerApp extends React.Component {
    * SET A NEW DEVICE
    */
   deviceDisconnectedHandler() { 
-    console.log('##DISCONNECT HANDLER##'); 
     this.props.dispatch(hangupClient()); 
-    this.setState({isCallOnGoing: false, isConnected: false, device: null}, () => { 
+    this.setState({ isOutgoingCallOnGoing: false,  isOutgoingCallConnected: false, isIncomingCallOnGoing: false, device: null}, () => { 
       this.endCall(); 
-      this.setUpDevice(this.props.capabilityToken); 
     });  
   }
 
   incomingCallHandler(conn) { 
-    console.log('##INCOMING CALL HANDLER##'); 
     this.setState({ isIncomingCallOnGoing: true, isIncomingCallConnected: false}, () => { 
       this.props.dispatch(fetchCallerFromContact(conn.parameters.From)); 
     }); 
@@ -112,7 +116,6 @@ export class DialerApp extends React.Component {
    * Callback from Answerer components answer button
    */
   answerCall = () => { 
-    console.log('##ANSWERING INBOUND CALL##'); 
     this.setState({ isIncomingCallOnGoing: true, isIncomingCallConnected: true}, () => { 
       this.state.connection.accept(); 
     }); 
@@ -123,7 +126,6 @@ export class DialerApp extends React.Component {
    * Callback from Answerer components hangup button
    */
   rejectCall = () => { 
-    console.log('##REJECTING INBOUND CALL##'); 
     this.setState({ isIncomingCallOnGoing: false, isIncomingCallConnected: false}, () => { 
       this.state.connection.reject(); 
     }); 
@@ -133,10 +135,18 @@ export class DialerApp extends React.Component {
    * INBOUND
    */
   hangupCall = () => { 
-    console.log('##HANGUP INBOUND CALL##'); 
     this.setState({ isIncomingCallOnGoing: false, isIncomingCallConnected: false}, () => { 
       Device.disconnectAll(); 
     }); 
+  }
+
+  componentDidUpdate(){ 
+    //OUTGOING
+    //WE RECEIVED AN OUTBOUND CLIENT AND THE CALL IS NOT ONGOING
+    if (this.props.outboundClient !== null && !this.state.isOutgoingCallOnGoing) { 
+      // console.log('ABOUT TO MAKE PHONE CALL'); 
+      this.makeCall();  
+    }
   }
 
   /**
@@ -144,11 +154,10 @@ export class DialerApp extends React.Component {
    * DISCONNECT THE DEVICE BEFORE USE
    */
   makeCall = () => {
-    console.log('##MAKE OUTBOUND CALL##')
     if (this.props.outboundClient != null) { 
       this.setState({ isOutgoingCallOnGoing: true}, () => { 
-          Device.disconnectAll(); 
-          Device.connect({number: this.props.outboundClient.phoneNumber}); 
+        const phoneNumber = this.props.outboundClient.phoneNumber.slice(2); 
+        Device.connect({number: phoneNumber}); 
       }); 
     }
   }
@@ -157,9 +166,8 @@ export class DialerApp extends React.Component {
    * OUTBOUND
    */
   endCall = () => {
-    console.log('##END OUTBOUND CALL##')
     this.props.dispatch(hangupClient()); 
-    this.setState({ isOutgoingCallOnGoing : false}, () => { 
+    this.setState({ isOutgoingCallOnGoing : false, isOutgoingCallConnected : false}, () => { 
       Device.disconnectAll(); 
     })
   };
@@ -167,7 +175,6 @@ export class DialerApp extends React.Component {
   render() {
     //INCOMING CALLS
     //RETURN EITHER ANSWERER OR INPROGRESS
-    
     if (this.state.isIncomingCallOnGoing && this.props.caller) { 
       return (!this.state.isIncomingCallConnected) ?  
         <Answerer
@@ -176,19 +183,14 @@ export class DialerApp extends React.Component {
           onAnswer={() => this.answerCall()} 
           onReject={() => this.rejectCall()}/>
         : 
-        <InProgress hangup={() => this.hangupCall() } /> 
+        <InProgress callStatus='connected' hangup={() => this.hangupCall() } /> 
     }
 
     //OUTGOING
-    //WE RECEIVED AN OUTBOUND CLIENT AND THE CALL IS NOT ONGOING
-    if (this.props.outboundClient !== null && !this.state.isOutgoingCallOnGoing) { 
-      this.makeCall();  
-    }
-
     if (this.state.isOutgoingCallOnGoing) { 
       return (
         <div> 
-          <InProgress hangup={ () => this.endCall() } /> 
+          <InProgress callStatus={(this.state.isOutgoingCallConnected) ? 'Connected' : 'Ringing'} hangup={ () => this.endCall() } /> 
         </div>  
       );
     }

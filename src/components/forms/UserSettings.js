@@ -7,24 +7,17 @@ import {
   matches,
   length,
   isTrimmed,
-  emailCheck
+  emailCheck,
+  normalizePhone
 } from '../../_utils/index.utils';
 const passwordLength = length({ min: 10, max: 72 });
 const matchesPassword = matches('password');
 
 export class RegistrationForm extends React.Component {
-  componentDidMount() {
-    console.log('the component did mount'); 
-     
-  }
 
+  //THIS HAS NOT BEEN SET UP YET
   onSubmit(values) {
-
-    // const { organizationName, password, email } = values;
-    // const user = { organizationName, password, email };
-    // return this.props
-    //   .dispatch(registerUser(user))
-    //   .then(() => this.props.dispatch(login(organizationName, password)));
+    
   }
 
   render() {
@@ -37,17 +30,24 @@ export class RegistrationForm extends React.Component {
           component={Input}
 					label="Change Organization Phone Number"
           type="text"
+          normalize={normalizePhone}
           name="organizationPhoneNumber"
-          validate={[required, nonEmpty, isTrimmed]}
           placeholder="Your New Phone"
         />
-         <Field
+        <Field
           component={Input}
-					label="Change Hourly Rate"
+          label="Your Hourly Rate"
+          type="number"
+          name="hourlyRate"
+          id="hourlyRate"
+          placeholder="100"
+        />
+        <Field
+          component={Input}
+          label="Email Address"
           type="text"
           name="email"
-          validate={[required, nonEmpty, isTrimmed, emailCheck]}
-          placeholder="Your New Email Address"
+          placeholder="Where can we reach you?"
         />
         <Field
 					component={Input}
@@ -55,7 +55,6 @@ export class RegistrationForm extends React.Component {
           type="password"
 					name="password"
 					id="password"
-          validate={[required, passwordLength, isTrimmed]}
           placeholder="************"
         />
         <Field
@@ -64,7 +63,6 @@ export class RegistrationForm extends React.Component {
           type="password"
           name="passwordConfirm"
           placeholder="************"
-          validate={[required, nonEmpty, matchesPassword]}
         />
 				<div className="form-button-container">
 					<div className="form-button-wrapper">

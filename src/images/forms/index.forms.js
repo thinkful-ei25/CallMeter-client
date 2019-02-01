@@ -5,6 +5,7 @@ import phone from './phone.jpg';
 import contacts from './contacts.jpg';
 import backgroundDots from './background-dots.png';
 import shapeOne from './shapeOne.jpg';
+import settings from './smartphone.jpg'
 
 export {
   account,
@@ -13,5 +14,6 @@ export {
   phone,
   contacts,
   backgroundDots,
-  shapeOne
+  shapeOne,
+  settings
 }

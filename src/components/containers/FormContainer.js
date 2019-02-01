@@ -1,23 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Route, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import '../../styles/Forms.css';
 import { login, register, phone, account, contacts } from '../../images/forms/index.forms'
 import { LoginForm, RegisterForm } from '../forms/index.forms';
 
 export function FormContainer(props) {
-  console.log('logged in', props.loggedIn); 
-  if (props.loggedIn) {
-    console.log(props.isTutorialCompleted);
-    if(!props.isTutorialCompleted){
-      console.log('is redirectiog');
-      return <Redirect to="/app/setup" />; 
-    }
-    else{
-      console.log('redirected to the wrong area');
-      return <Redirect to="/app" />;
-    }
-  }
 
   const images = {
     '/setup/account': account,
@@ -34,12 +22,10 @@ export function FormContainer(props) {
   return (
     <div>
       <div className="form-container">
-        <div className="img" style={imgStyle} />
+        <div className="img-sized" style={imgStyle} />
         <div className="form-wrapper pad-50">
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/register" render={() => <RegisterForm/>} />
-          {/* <Route exact path="/setup/account" render={() => <AccountInfoForm />}/>
-          <Route exact path="/setup/phone" render={() => <PhoneSetup/>} />  */}
         </div>
       </div>
     </div>
@@ -47,11 +33,13 @@ export function FormContainer(props) {
 }
 
 const mapStateToProps = state => {
-  console.log('STATE ',state);
+
 
   return ({
     isTutorialCompleted: state.auth.isTutorialCompleted,
-    loggedIn: state.auth.currentUser !== null
+    loggedIn: state.auth.currentUser !== null,
+    loading: state.auth.loading,
+    form: state.form
   })
 };
 

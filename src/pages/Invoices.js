@@ -2,110 +2,195 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { RequiresLogin } from '../components/_utils/index._utils';
 
-
-import ReactTable from "react-table";
-import '../styles/Dashboard.css'; 
-import 'react-table/react-table.css'
-
-
+import { API_BASE_URL } from '../config';
+import ReactTable from 'react-table';
+import '../styles/Dashboard.css';
+import 'react-table/react-table.css';
+import { graphMoney } from '../images/illustrations/index.illustrations';
+import { SubNav } from '../components/navigation/index.navigation';
+import GettingStarted from '../components/GettingStarted';
 
 export class Invoices extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      invoices: null
+    };
+  }
+
+  sendInvoice(invoice){
+    console.log('invoice', invoice); 
+
+    fetch(`${API_BASE_URL}/invoices/email`, {
+      method: 'POST',
+      body: JSON.stringify({
+        'calls': invoice.calls, 
+        'invoiceAmount' : invoice.invoiceAmount, 
+        'company': invoice.company,
+        'firstName': invoice.firstName,
+        'lastName': invoice.lastName,
+        'hourlyRate': invoice.hourlyRate,
+        'email' : invoice.email
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.props.authToken}`
+      }
+    })
+      .then(res => {
+        
+        return res.json();
+      })
+      .then(email => {
+        console.log('email', email); 
+      })
+      .catch(err => {
+        console.log('err', err);
+      });
+
+  }
+
   componentDidMount() {
-    // this.props.dispatch(fetchProtectedData());
-  
-  // contactName: namor.generate({ words: 1, numbers: 0 }),
-  // firstName: namor.generate({words: 1, numbers: 0 }),
-  // lastName: namor.generate({ words: 1, numbers: 0 }),
-  // numCalls: Math.floor(Math.random() * 30),
-  // numMinutes: Math.floor(Math.random() * 50),
-  // lastCall: Math.floor(Math.random() * 100),
-  // totalBilled: Math.floor(Math.random() * 100),
-  // totalUnpaid: Math.floor(Math.random() * 20)
+    fetch(`${API_BASE_URL}/invoices`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${this.props.authToken}`
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(invoices => {
+        invoices.forEach(invoice => {
+          invoice.invoiceAmount = (invoice.invoiceAmount) ? invoice.invoiceAmount.toFixed(2) : '0.00';
+          //SECONDS ARE MINUTES
+          invoice.seconds = (invoice.seconds / 60).toFixed(2);
+        });
+        this.setState({ invoices });
+      })
+      .catch(err => {
+        console.log('err', err);
+      });
   }
 
   render() {
-    const data =
-      [{
-        contactName: "Cardly",
-        firstName: "John",
-        lastName: "Card",
-        numCalls: 5,
-        numMinutes: 10,
-        lastCall: String(new Date()),
-        totalBilled: 500,
-        totalUnpaid: 500
-      }]
-    return (
-      <div className="invoicesTable">
-        <h1>Invoices</h1>
-        <ReactTable
-          data={data}
-          columns={[
-            {
-              Header: "Contact Name",
-              accessor: "contactName"
-            },
-            {
-              Header: "First Name",
-              accessor: "firstName"
-            },
-            {
-              Header: "Last Name",
-              id: "lastName",
-              accessor: "lastName"
-            },
-            {
-              Header: "Calls",
-              accessor: "numCalls"
-            },
-            {
-              Header: "Minutes",
-              accessor: "numMinutes"
-            },
-            {
-              Header: "Last Call",
-              accessor: "lastCall",
-              sortMethod: (a, b) => {
-                return new Date(b) - new Date(a)
-              }
-            },
-            {
-              Header: "Total Billed",
-              accessor: "totalBilled",
-              sortMethod: (a, b) => {
-                if (a.length === b.length) {
-                  return a > b ? 1 : -1;
-                }
-                return a.length > b.length ? 1 : -1;
-              }
-            },
-            {
-              Header: "Total Unpaid",
-              accessor: "totalUnpaid"
-            }
+    const invoiceColumns = [
+      {
+        Header: 'Company',
+        accessor: 'company'
+      },
+      {
+        Header: 'First Name',
+        accessor: 'firstName'
+      },
+      {
+        Header: 'Last Name',
+        id: 'lastName',
+        accessor: 'lastName'
+      },
+      {
+        Header: 'Calls',
+        accessor: 'calls'
+      },
+      {
+        Header: 'Minutes',
+        accessor: 'seconds'
+      },
+      {
+        Header: 'Total Billed',
+        accessor: 'invoiceAmount'
+      }, 
+      {
+        Header: 'Actions',
+        accessor: 'id',
+        sortable: false,
+        resizable: false,
+        Cell: row => (
+          <div
+            className="call-button"
+            onClick={() => {
+              this.sendInvoice(this.state.invoices[row.index]); 
+            }}
+          >
+            <p className="button-text">Send Invoice</p>
+            <div className="button-icon-div">
+              <img
+                // src={callIcon}
+                className="button-icon"
+                alt="call contact"
+              />
+            </div>
+          </div>
+        )
+      }
+    ];
 
-          ]}
-          defaultPageSize={10}
-          className="-striped -highlight"
-        />
-        <br />
-  
-        
-      </div>
-    );
+    if (this.state.invoices) {
+      return (
+        <div>
+          <div className="app-container">
+            <SubNav
+              toggleAddClientForm={() => this.toggleAddClientForm()}
+              page={'invoices'}
+              setSearchTerm={e => this.setSearchTerm(e)}
+              searchTerm={this.state.searchTerm}
+              toggleView={e => this.toggleView(e)}
+              view={this.state.view}
+            />
+            {this.state.invoices.length < 1 ? (
+              <div>
+                <section className="contacts">
+                  <div className="section-container">
+                    <GettingStarted
+                      title="We Wouldn't Be CallMeter without Invoices"
+                      image={graphMoney}
+                      text="Clients + Calls = $$$$"
+                      subtext="Dummy text here. horray hip horray hip hop!"
+                    />
+                  </div>
+                </section>
+              </div>
+            ) : (
+              <div>
+                <div className="title-bar">
+                  <header className="app-page-header" role="presentation">
+                    <div className="app-header-inner" role="banner">
+                      <div className="app-header-title">
+                        <h1 className="app-heading">Contacts</h1>
+                      </div>
+                    </div>
+                  </header>
+                </div>
+                <section className="contacts">
+                  <div className="section-container">
+                    <ReactTable
+                      data={this.state.invoices}
+                      columns={invoiceColumns}
+                      defaultSorted={[{ id: 'company', desc: false }]}
+                      defaultPageSize={100}
+                      showPagination={false}
+                      className="-highlight -curser-pointer"
+                      minRows={0}
+                    />
+                    <br />
+                 
+                  </div>
+                </section>
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    } else {
+      return <div>Loading...</div>;
+    }
   }
 }
 
-
 const mapStateToProps = state => {
-  // const { currentUser } = state.auth;
   return {
-    // username: state.auth.currentUser.username,
-    // name: `${currentUser.firstName} ${currentUser.lastName}`,
-    // protectedData: state.protectedData.data
+    authToken: state.auth.authToken
   };
 };
 
 export default RequiresLogin()(connect(mapStateToProps)(Invoices));
-
-// export default connect(mapStateToProps)(Invoices);

@@ -1,6 +1,6 @@
 import React from 'react';
 import RecentCalls from './RecentCalls';
-import SubNav from '../navigation/SubNav';
+import {defaultProfile} from '../../images/contact/index.contact';
 
 export default function IndividualContactBody(props) {
   return (
@@ -9,7 +9,7 @@ export default function IndividualContactBody(props) {
         <div className="col-md-8">
           <div className="contact-info card">
             <div className="contact-avatar">
-              <img alt="contact-image" src={props.client.photo} />
+              <img alt="contact" src={props.client.photo || defaultProfile} />
             </div>
             <div className="contact-details">
               <h2 className="contact-name">

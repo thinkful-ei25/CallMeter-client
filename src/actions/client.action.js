@@ -57,7 +57,6 @@ export const fetchClients = () => (dispatch, getState) => {
 		.then(res => normalizeResponseErrors(res))
 		.then(res => res.json())
 		.then((data) => {
-			console.log('result data', data)
 			dispatch(fetchClientsSuccess(data))
 		})
 		.catch(err => {
@@ -67,7 +66,6 @@ export const fetchClients = () => (dispatch, getState) => {
 
 export const fetchOneClient = (id) => (dispatch, getState) => {
 	dispatch(fetchClientRequest())
-	console.log('inside fetch one client', id)
 	const authToken = getState().auth.authToken;
 	return fetch(`${API_BASE_URL}/client/contacts/${id}`, {
 		method: 'GET',
@@ -77,15 +75,12 @@ export const fetchOneClient = (id) => (dispatch, getState) => {
 		}
 	})
 		.then(res => {
-			console.log('first response from server', res)
 			return normalizeResponseErrors(res)
 		})
 		.then(res => {
-			console.log('second response after normalize', res)
 			return res.json()
 		})
 		.then((data) => {
-			console.log('fetchoneclientdata', data)
 			data.phoneNumber = data.phoneNumber.slice(2, 5) + '-' + data.phoneNumber.slice(5, 8)
 			+ '-' + data.phoneNumber.slice(8,)
 			dispatch(fetchClientsSuccess(data))
@@ -95,7 +90,6 @@ export const fetchOneClient = (id) => (dispatch, getState) => {
 }
 
 export const addClient = (values) => (dispatch, getState) => {
-	console.log('values in action', values)
 	const authToken = getState().auth.authToken;
 	return fetch(`${API_BASE_URL}/client`, {
 		method: 'POST',
@@ -117,6 +111,7 @@ export const addClient = (values) => (dispatch, getState) => {
 		});
 };
 
+//THIS SEEMS A BIT WEIRD
 export const deleteClient = (id) => (dispatch, getState) => {
 	console.log('id in delete action', id);
 	const authToken = getState().auth.authToken;
@@ -130,11 +125,9 @@ export const deleteClient = (id) => (dispatch, getState) => {
 	})
 		.then(res => normalizeResponseErrors(res))
 		.then(res => {
-			console.log('response after normalize', res)
 
 		})
 		.then((id) => {
-			console.log('delete result data', id)
 			dispatch(deleteClientSuccess())
 		})
 		.catch(err => {
@@ -144,7 +137,6 @@ export const deleteClient = (id) => (dispatch, getState) => {
 };
 
 export const editClient = (values) => (dispatch, getState) => {
-	console.log('values in edit action', values)
 	const authToken = getState().auth.authToken;
 	return fetch(`${API_BASE_URL}/client/${values.id}`, {
 		method: 'PUT',

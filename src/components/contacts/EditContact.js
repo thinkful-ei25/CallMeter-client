@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from '../_utils/_input'
-import { required, nonEmpty, phoneCheck, normalizePhone, emailCheck } from '../../_utils/_validators';
+import { required, phoneCheck, normalizePhone, emailCheck } from '../../_utils/_validators';
 import { editClient } from '../../actions/index.actions'
 import {orange_triangle} from '../../images/backgrounds/index.backgrounds';
 
@@ -9,18 +9,11 @@ import {orange_triangle} from '../../images/backgrounds/index.backgrounds';
 
 export class EditContact extends React.Component {
 
-
-  componentDidMount() {
-
-  }
-
   onSubmit(values) {
     console.log('values', values)
     return this.props.dispatch(editClient(values))
       .then(this.props.toggle())
   }
-
-
 
   render() {
     let error;
@@ -42,8 +35,7 @@ export class EditContact extends React.Component {
             <div className="img-sized" style={imgStyle} />
             <div className="form-wrapper pad-50">
             <span className="form-title pad-bottom-50">Edit Contact</span>
-
-              <h2><button className="backButton" onClick={() => this.props.toggle()}>Cancel ⬅</button></h2>
+              <button className="close" onClick={() => this.props.toggle()} />
               <form
 
                 className="loginForm"

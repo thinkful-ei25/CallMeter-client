@@ -1,23 +1,42 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Input } from '../_utils/index._utils';
 import { login } from '../../actions/index.actions';
 import { required, nonEmpty } from '../../_utils/index.utils';
 import '../../styles/Forms.css';
 
 export class LoginForm extends React.Component {
-  onSubmit(values) {
-    return this.props.dispatch(login(values.organizationName, values.password));
+  constructor(props){ 
+    super(props); 
+    this.state = { 
+      redirect: false,
+      error: null
+    }
   }
 
+  onSubmit(values) {
+    this.props.dispatch(login(values.organizationName, values.password)).then(() => { 
+      this.setState({redirect: true});  
+      console.log('true');
+    })
+    .catch(err => {
+      this.setState({error: "invalid username or password"})
+    })
+  }
+
+
   render() {
+    if (this.state.redirect) {
+      return <Redirect to='/app' />; 
+    }
     return (
       <form
         className="form validate"
         onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
       >
         <span className="form-title pad-bottom-50">Welcome Back!</span>
+        <p className="loginErrorMessage">{this.state.error}</p>
         <Field
           component={Input}
           label="Organization Name"

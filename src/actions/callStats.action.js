@@ -58,7 +58,6 @@ export const fetchCallStats = () => (dispatch, getState) => {
           .then(res => normalizeResponseErrors(res))
           .then(res => res.json())
           .then((calls) => {
-            console.log('result data', calls)
             dispatch(fetchAllCallsSuccess(calls))
           })
           .catch(err => {
