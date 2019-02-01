@@ -125,6 +125,10 @@ select:hover, select:focus {
     margin-bottom: 80px;
 }
 
+.margin-bottom-10{
+    margin-bottom: 10px;
+}
+
 input {
   outline: none;
   border: none;

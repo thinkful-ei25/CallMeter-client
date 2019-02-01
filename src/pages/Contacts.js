@@ -8,6 +8,8 @@ import { AddContact } from '../components/contacts/index.contacts';
 import { SubNav } from '../components/navigation/index.navigation';
 import { callIcon } from '../images/contact/index.contact';
 import { defaultProfile } from '../images/contact/index.contact';
+import { timeMoney } from '../images/illustrations/index.illustrations';
+import GettingStarted from '../components/GettingStarted';
 import '../styles/Contacts.css';
 import '../styles/Tables.css';
 
@@ -196,11 +198,22 @@ export class Contacts extends React.Component {
           <div className="app-container">
             <SubNav
               toggleAddClientForm={() => this.toggleAddClientForm()}
+              page={'contacts'}
               setSearchTerm={e => this.setSearchTerm(e)}
               searchTerm={this.state.searchTerm}
               toggleView={e => this.toggleView(e)}
               view={this.state.view}
             />
+            {clients.length < 100 ? (
+              <div>
+                <section className="contacts">
+                  <div className="section-container"> 
+                <GettingStarted title="Getting started with Contacts" image={timeMoney} text="Add a Contact to Begin" subtext="Dummy text here. horray hip horray hip hop!" />
+              </div>
+              </section>
+              </div>
+            ): (
+              <div>
             <div className="title-bar">
               <header className="app-page-header" role="presentation">
                 <div className="app-header-inner" role="banner">
@@ -210,20 +223,22 @@ export class Contacts extends React.Component {
                 </div>
               </header>
             </div>
-
             <section className="contacts">
-              <div className="section-container">
-                <ReactTable
-                  data={clients}
-                  columns={clientColumns[this.state.view]}
-                  defaultSorted={[{ id: 'fullName', desc: false }]}
-                  defaultPageSize={100}
-                  showPagination={false}
-                  className="-highlight -curser-pointer"
-                  minRows={0}
-                />
+              <div className="section-container"> 
+                  <ReactTable
+                    data={clients}
+                    columns={clientColumns[this.state.view]}
+                    defaultSorted={[{ id: 'fullName', desc: false }]}
+                    defaultPageSize={100}
+                    showPagination={false}
+                    className="-highlight -curser-pointer"
+                    minRows={0}
+                  />
+
               </div>
             </section>
+            </div>
+            )}
           </div>
         </div>
       );
@@ -245,7 +260,6 @@ const mapStateToProps = state => {
     // username: state.auth.currentUser.username,
     // name: `${currentUser.firstName} ${currentUser.lastName}`,
     client: state.client.data,
-
     loading: state.client.loading
   };
 };
