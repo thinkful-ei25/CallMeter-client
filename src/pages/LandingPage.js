@@ -44,10 +44,9 @@ export default class LandingPage extends React.Component {
                 <div className="col-md-6">
                   <h3>MULTI-PLATFORM CALLING SERVICES </h3>
                   <p className="feature-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     We know that you may not always be making business calls in your office. 
                     That's why you can make and receive business calls through your browser via
-                    CallMeter while online and through your personal phone while offline -thumbs up-. 
+                    CallMeter while online and through your personal phone while offline. 
                     Each call is individually tracked and overall call related statistics viewable on 
                     the stats page.  
                   </p>
@@ -72,7 +71,7 @@ export default class LandingPage extends React.Component {
                   <h3>INVOICES</h3>
                   <p className="feature-text">
                   With one simple button, you can send an invoice to your client. 
-                  No hassle, no scrawling who you just made a phone call to on a soggy 
+                  No hassle, no scrawling to see who you just made a phone call to on a soggy 
                   piece of paper on the subway. No DIY math, no time wasted, and no spreadsheets.
                   </p>
                 </div>
