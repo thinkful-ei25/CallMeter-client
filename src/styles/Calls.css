@@ -5,3 +5,17 @@
 .callsHeader {
   display: inline-block;
 }
+
+.direction-icon{
+  margin-top: -5px;
+  margin-left: -5px;
+}
+
+.direction-img-small {
+  height:25px;
+  height: 25px;
+  margin-left: 10px;
+  justify-content: center;
+  align-items: center;
+  flex: 100 0 auto;
+}

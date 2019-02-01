@@ -2,52 +2,101 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { RequiresLogin } from '../components/_utils/index._utils';
 import ReactTable from 'react-table';
-import {defaultProfilePictureArray} from '../images/profileImages/profileImages'
+import { defaultProfilePictureArray } from '../images/profileImages/profileImages';
 import { fetchAllCalls } from '../actions/index.actions';
 import '../styles/Calls.css';
 import GettingStarted from '../components/GettingStarted';
 import { computerPhone } from '../images/illustrations/index.illustrations';
 import { SubNav } from '../components/navigation/index.navigation';
+import { inbound, outbound } from '../images/illustrations/index.illustrations';
 
 export class Calls extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pictureIterator : 0
+      pictureIterator: 0,
+      directionImg: {
+        inbound: inbound,
+        outbound: outbound,
+        incoming: inbound,
+        outgoing: outbound
+      }
+    };
   }
-}
 
   componentDidMount() {
     this.props.dispatch(fetchAllCalls());
     console.log();
   }
 
-  returnPictureFromArray(){
+  returnPictureFromArray() {
     const iterator = Math.floor(Math.random() * 5);
     const image = defaultProfilePictureArray[iterator];
-    
+
     return image;
   }
 
+  formatPhoneNumber(num) {
+    if(!num) return'-';
+    let areaCode = num.substring(2,5);
+    let firstThree = num.substring(5,8);
+    let lastFour = num.substring(num.length-4);
+    let number = '('+ areaCode+')'+ ' '+ firstThree+'-'+lastFour;
+    return number;
+  }
+
+  formatTime(time){
+    const minutes = Math.floor(time/60);
+    const seconds = time - minutes*60;
+
+    return minutes + ' m ' + seconds + ' s';
+  }
+
+  formatDate(date) {
+    let _date = new Date(date);
+    let year = _date.getFullYear();
+    let month = _date.getMonth();
+    let dt = _date.getDate();
+    let months = [
+      '01',
+      '02',
+      '03',
+      '04',
+      '05',
+      '06',
+      '07',
+      '08',
+      '09',
+      '10',
+      '11',
+      '12'
+    ];
+    if (dt < 10) dt = '0' + dt;
+
+    return months[month] + '/' + dt + '/' + year;
+  }
 
   callColumns = [
     {
-      Header: 'Date',
-      id: "column",
-      accessor: 'date',
-      resizable: false
-    },
-    {
-      Header: 'Direction',
+      Header: '',
       accessor: 'direction',
-      resizable: false
+      resizable: false,
+      Cell: row => (
+        <div className="direction-icon">
+          <img
+            src={this.state.directionImg[row.value]}
+            alt="phone call direction"
+            className="direction-img-small"
+          />
+        </div>
+      ),
+      width: 60
     },
-
     {
-      Header: 'Photo',
+      Header: '',
       accessor: 'photo',
       resizable: false,
-      Cell: (props, column) => (
+      Cell: props => (
         <span className="avatar">
           <img
             className="table-cell-photo"
@@ -55,36 +104,53 @@ export class Calls extends React.Component {
             src={props.value || this.returnPictureFromArray()}
           />
         </span>
-      )
+      ),
+      width: 80
     },
     {
-      Header: 'Contact Name',
+      Header: 'Name',
       accessor: 'contactName',
-      resizable: false
+      resizable: true,
+      width: 230
     },
     {
       Header: 'Company',
       accessor: 'company',
-      resizable: false
+      resizable: true,
+      width: 290
+    },
+    {
+      Header: 'Date',
+      id: 'column',
+      accessor: 'date',
+      resizable: false,
+      Cell: row => this.formatDate(row.value),
+      width: 150
     },
     {
       Header: 'Phone Number',
       id: 'phoneNumber',
       accessor: 'phoneNumber',
-      resizable: false
+      resizable: false,
+      Cell: row => this.formatPhoneNumber(row.value),
+      width: 190
     },
     {
-      Header: 'Length',
+      Header: 'Time',
       accessor: 'length',
-      resizable: false
+      resizable: false,
+      Cell: row => this.formatTime(row.value),
+      width: 100
     },
     {
       Header: 'Billable',
       accessor: 'billable',
-      resizable: false
+      resizable: false,
+      width: 100,
+      Cell: row => 'true'
     },
     {
-      Header: 'Estimated Billing',
+      Header: '$ Amount',
       accessor: 'estimatedBilling',
       resizable: false
     }
@@ -93,7 +159,6 @@ export class Calls extends React.Component {
   render() {
     console.log(this.props.loading);
     if (this.props.loading) {
-
       return <div>loading...</div>;
     }
     return (

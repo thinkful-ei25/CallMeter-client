@@ -47,6 +47,16 @@ export class Contacts extends React.Component {
     });
   }
 
+  formatPhoneNumber(num) {
+    if (!num) return '-';
+    let areaCode = num.substring(2, 5);
+    let firstThree = num.substring(5, 8);
+    let lastFour = num.substring(num.length - 4);
+    let number = '(' + areaCode + ')' + ' ' + firstThree + '-' + lastFour;
+    return number;
+
+  }
+
   returnPictureFromArray(){
     const iterator = Math.floor(Math.random() * 5);
     const image = defaultProfilePictureArray[iterator];
@@ -121,7 +131,9 @@ export class Contacts extends React.Component {
             Header: 'Phone Number',
             id: 'phoneNumber',
             accessor: 'phoneNumber',
-            resizable: false
+            resizable: false,
+            Cell: row => this.formatPhoneNumber(row.value),
+            width: 150
           },
           {
             Header: 'Category',
