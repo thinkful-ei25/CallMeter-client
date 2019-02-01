@@ -3,7 +3,7 @@ import { Field, reduxForm, focus } from 'redux-form';
 import FileInput from '../_utils/_fileInput'
 import Input from '../_utils/_input'
 import { required, nonEmpty, phoneCheck, normalizePhone, emailCheck } from '../../_utils/_validators';
-import { login, register, phone, account, contacts } from '../../images/forms/index.forms'
+import { contacts } from '../../images/forms/index.forms'
 import { addClient } from '../../actions/index.actions'
 
 

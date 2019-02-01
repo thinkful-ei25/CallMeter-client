@@ -2,110 +2,99 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { RequiresLogin } from '../components/_utils/index._utils';
 import { Tips } from '../_utils/index.utils';
+import { API_BASE_URL} from '../config'; 
 
 import ReactTable from "react-table";
 import '../styles/Dashboard.css'; 
 import 'react-table/react-table.css'
 
-
-
 export class Invoices extends React.Component {
+  constructor(props){ 
+    super(props); 
+    this.state = { 
+      invoices : null
+    }
+  }
+
   componentDidMount() {
-    // this.props.dispatch(fetchProtectedData());
-  
-  // contactName: namor.generate({ words: 1, numbers: 0 }),
-  // firstName: namor.generate({words: 1, numbers: 0 }),
-  // lastName: namor.generate({ words: 1, numbers: 0 }),
-  // numCalls: Math.floor(Math.random() * 30),
-  // numMinutes: Math.floor(Math.random() * 50),
-  // lastCall: Math.floor(Math.random() * 100),
-  // totalBilled: Math.floor(Math.random() * 100),
-  // totalUnpaid: Math.floor(Math.random() * 20)
+    fetch(`${API_BASE_URL}/invoices`, 
+      { 
+        method: 'GET',
+        headers: {
+          // Provide our auth token as credentials
+          Authorization: `Bearer ${this.props.authToken}`
+      }
+    })
+    .then(res => { 
+      return res.json(); 
+    })
+    .then(invoices => { 
+      invoices.forEach(invoice => {
+        invoice.invoiceAmount = invoice.invoiceAmount.toFixed(2); 
+      });
+
+      this.setState({invoices}); 
+    })
+    .catch(err => { 
+      console.log('err', err); 
+    }); 
   }
 
   render() {
-    const data =
-      [{
-        contactName: "Cardly",
-        firstName: "John",
-        lastName: "Card",
-        numCalls: 5,
-        numMinutes: 10,
-        lastCall: String(new Date()),
-        totalBilled: 500,
-        totalUnpaid: 500
-      }]
-    return (
-      <div className="invoicesTable">
-        <h1>Invoices</h1>
-        <ReactTable
-          data={data}
-          columns={[
-            {
-              Header: "Contact Name",
-              accessor: "contactName"
-            },
-            {
-              Header: "First Name",
-              accessor: "firstName"
-            },
-            {
-              Header: "Last Name",
-              id: "lastName",
-              accessor: "lastName"
-            },
-            {
-              Header: "Calls",
-              accessor: "numCalls"
-            },
-            {
-              Header: "Minutes",
-              accessor: "numMinutes"
-            },
-            {
-              Header: "Last Call",
-              accessor: "lastCall",
-              sortMethod: (a, b) => {
-                return new Date(b) - new Date(a)
-              }
-            },
-            {
-              Header: "Total Billed",
-              accessor: "totalBilled",
-              sortMethod: (a, b) => {
-                if (a.length === b.length) {
-                  return a > b ? 1 : -1;
-                }
-                return a.length > b.length ? 1 : -1;
-              }
-            },
-            {
-              Header: "Total Unpaid",
-              accessor: "totalUnpaid"
-            }
-
-          ]}
-          defaultPageSize={10}
-          className="-striped -highlight"
-        />
-        <br />
-        <Tips />
-        {/* <Logo /> */}
-      </div>
-    );
+    if (this.state.invoices){ 
+      return (
+        <div className="invoicesTable">
+          <h1>Invoices</h1>
+          <ReactTable
+            data={this.state.invoices}
+            columns={[
+              {
+                Header: "Company",
+                accessor: "company"
+              },
+              {
+                Header: "First Name",
+                accessor: "firstName"
+              },
+              {
+                Header: "Last Name",
+                id: "lastName",
+                accessor: "lastName"
+              },
+              {
+                Header: "Calls",
+                accessor: "calls"
+              },
+              {
+                Header: "Seconds",
+                accessor: "seconds"
+              },
+              {
+                Header: "Total Billed",
+                accessor: "invoiceAmount",
+              },
+  
+            ]}
+            defaultPageSize={10}
+            className="-striped -highlight"
+          />
+          <br />
+          <Tips />
+        </div>
+       );
+    }
+    else { 
+      return ( 
+        <div>Loading...</div>
+      ); 
+    }
   }
 }
 
-
 const mapStateToProps = state => {
-  // const { currentUser } = state.auth;
   return {
-    // username: state.auth.currentUser.username,
-    // name: `${currentUser.firstName} ${currentUser.lastName}`,
-    // protectedData: state.protectedData.data
+    authToken : state.auth.authToken
   };
 };
 
 export default RequiresLogin()(connect(mapStateToProps)(Invoices));
-
-// export default connect(mapStateToProps)(Invoices);

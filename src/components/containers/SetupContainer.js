@@ -6,7 +6,7 @@ import AccountSetup from '../forms/AccountInfoForm';
 import ContactForm from '../forms/ContactForm';
 import {completeTutorial} from '../../actions/users.action'
 import '../../styles/Setup.css'
-import { login, register, phone, account, contacts } from '../../images/forms/index.forms'
+import { phone, account, contacts } from '../../images/forms/index.forms'
 
 export class SetupContainer extends React.Component {
   constructor(props) {
