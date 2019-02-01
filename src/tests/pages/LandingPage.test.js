@@ -2,11 +2,11 @@ import React from 'react';
 import {shallow, mount} from 'enzyme';
 
 
-import EditContact from './EditContact';
+import LandingPage from '../../pages/LandingPage';
 
-describe('<DeleteContact />', () => {
+describe('<LandingPage/>', () => {
     it('Renders without crashing', () => {
-        shallow(<EditContact />);
+        shallow(<LandingPage/>);
     });
 
     

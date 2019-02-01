@@ -1,4 +1,4 @@
-import dialerReducer from './dialer.reducer'
+import dialerReducer from '../../reducers/dialer.reducer'
 
 describe('dialerReducer', () => {
 

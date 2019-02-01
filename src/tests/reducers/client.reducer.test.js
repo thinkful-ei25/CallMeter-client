@@ -1,6 +1,6 @@
 
 
-import clientReducer from './client.reducer.js';
+import clientReducer from '../../reducers/client.reducer.js';
 
 describe('clientReducer', () => {
  const clients = [{

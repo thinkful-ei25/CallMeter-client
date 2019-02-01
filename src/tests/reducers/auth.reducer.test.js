@@ -1,5 +1,4 @@
-import authReducer from './auth.reducer';
-
+import authReducer from "../../reducers/auth.reducer";
 
 describe('authReducer', () => {
 
@@ -10,7 +9,8 @@ describe('authReducer', () => {
       capabilityToken: null,
       currentUser: null,
       loading: false,
-      error: null
+      error: null,
+      isTutorialCompleted: false
     });
   });
 
@@ -31,7 +31,8 @@ describe('authReducer', () => {
         capabilityToken: null,
         currentUser: null,
         loading: true,
-        error: null
+        error: null,
+        isTutorialCompleted: false
       });
     });
   });
@@ -46,7 +47,8 @@ describe('authReducer', () => {
         capabilityToken: null,
         currentUser: 'Someone',
         loading: false,
-        error: null
+        error: null,
+        isTutorialCompleted: false
       });
     });
   });
@@ -61,7 +63,8 @@ describe('authReducer', () => {
         capabilityToken: null,
         currentUser: null,
         loading: false,
-        error: 'BAD NEWS'
+        error: 'BAD NEWS',
+        isTutorialCompleted: false
       });
     });
   });
@@ -77,7 +80,8 @@ describe('authReducer', () => {
         capabilityToken: null,
         currentUser: null,
         loading: false,
-        error: null
+        error: null,
+        isTutorialCompleted: false
       });
     });
   });
@@ -93,7 +97,8 @@ describe('authReducer', () => {
         capabilityToken: 'CAPABILITYTOKENHASH$$RANDOMETC',
         currentUser: null,
         loading: false,
-        error: null
+        error: null,
+        isTutorialCompleted: false
       });
     });
   });
@@ -105,7 +110,8 @@ describe('authReducer', () => {
         capabilityToken: 'CAPABILITYTOKENHASH$$RANDOMETC',
         currentUser: 'Someone',
         loading: false,
-        error:null
+        error:null,
+        isTutorialCompleted: false
       };
       state = authReducer(state, { type: 'CLEAR_AUTH' });
 
@@ -115,7 +121,24 @@ describe('authReducer', () => {
         capabilityToken: 'CAPABILITYTOKENHASH$$RANDOMETC',
         currentUser: null,
         loading: false,
-        error: null
+        error: null,
+        isTutorialCompleted: false
+      });
+    });
+  });
+
+  describe('CHECK TUTORIAL COMPLETED', () => {
+    it('Should set isTutorial completed to True', () => {
+      let state;
+      state = authReducer(state, { type: 'CHECK_TUTORIAL_COMPLETED',  isTutorialCompleted: true});
+
+      expect(state).toEqual({
+        authToken: null,
+        capabilityToken: null,
+        currentUser: null,
+        loading: false,
+        error: null,
+        isTutorialCompleted: true
       });
     });
   });

@@ -2,11 +2,11 @@ import React from 'react';
 import {shallow, mount} from 'enzyme';
 
 
-import RecentCalls from './RecentCalls';
+import Settings from '../../pages/Settings';
 
-describe('<DeleteContact />', () => {
+describe('<Settings />', () => {
     it('Renders without crashing', () => {
-        shallow(<RecentCalls />);
+        shallow(<Settings/>);
     });
 
     

@@ -8,13 +8,6 @@ import {
 } from './_localStorage';
 
 import {
-  newPerson,
-  newClient,
-  Logo,
-  Tips
-} from './_miscUtils';
-
-import {
   required,
   nonEmpty,
   isTrimmed,
@@ -32,10 +25,6 @@ export {
   loadClientId,
   saveClientId,
   clearClientId,
-  newPerson,
-  newClient,
-  Logo,
-  Tips,
   required,
   nonEmpty,
   isTrimmed,

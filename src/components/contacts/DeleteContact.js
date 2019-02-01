@@ -8,7 +8,8 @@ export default function DeleteClient(props) {
       <button
         className="contact-button delete"
         onClick={() => {
-          props.dispatch(deleteClient(props.id)).then(props.redirect());
+          props.dispatch(deleteClient(props.id))
+          props.redirect();
         }}
       >
         <span aria-label="x" role="img">

@@ -1,4 +1,4 @@
-import callStatsReducer from './callStats.reducer';
+import callStatsReducer from '../../reducers/callStats.reducer';
 
 
 describe('callStatsReducer', () => {

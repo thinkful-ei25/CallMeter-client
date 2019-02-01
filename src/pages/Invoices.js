@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { RequiresLogin } from '../components/_utils/index._utils';
-import { Tips } from '../_utils/index.utils';
+
 
 import ReactTable from "react-table";
 import '../styles/Dashboard.css'; 
@@ -89,8 +89,8 @@ export class Invoices extends React.Component {
           className="-striped -highlight"
         />
         <br />
-        <Tips />
-        {/* <Logo /> */}
+  
+        
       </div>
     );
   }
