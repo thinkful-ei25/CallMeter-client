@@ -192,8 +192,8 @@
 
 .ReactTable .rt-td:nth-child(2) {
     display: flex;
-    justify-content: left;
-    align-items: left;
+    justify-content: center;
+    align-items: center;
 }
 
 .ReactTable .rt-td:last-child {

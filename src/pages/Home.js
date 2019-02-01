@@ -152,7 +152,7 @@ export class Stats extends React.Component {
                     {/* START OF PANEL HEADER */}
                     <div className="panel-header">
                       <div className="panel-title">
-                        <h3>Da Stats</h3>
+                        <h3>Dashboard</h3>
                       </div>
                     </div>
                     {/* END OF PANEL HEADER */}
