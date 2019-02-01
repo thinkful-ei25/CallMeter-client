@@ -16,11 +16,11 @@ export default class LandingPage extends React.Component {
               <div className="row">
                 <div className="col-md-6 d-flex align-items-center">
                   <div className="hero-left">
-                    <h1>Elimate the Tracking Billable Calls</h1>
+                    <h1>FORGET TO SEND INVOICES</h1>
                     <p className="hero-sub-head">
-                      Our simple solution is simple and makes life simple so you
-                      can live that simple life and just be simple. It's that
-                      simple.{' '}
+                    CallMeter automates the tedious task of tracking billable time on the 
+                    phone by creating invoices for clients by automatically tracking minutes 
+                    spent and programmatically generating invoices unique to each of your clients. {' '}
                     </p>
                     <Link to="/register">
                       <p className="btn-blue">Sign-up!</p>
@@ -42,12 +42,13 @@ export default class LandingPage extends React.Component {
             <div className="general-container">
               <div className="row section-padding first-feature">
                 <div className="col-md-6">
-                  <h3>Feature One</h3>
+                  <h3>MULTI-PLATFORM CALLING SERVICES </h3>
                   <p className="feature-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    We know that you may not always be making business calls in your office. 
+                    That's why you can make and receive business calls through your browser via
+                    CallMeter while online and through your personal phone while offline 👍. 
+                    Each call is individually tracked and overall call related statistics viewable on 
+                    the stats page.  
                   </p>
                 </div>
                 <div className="col-md-6">
@@ -67,12 +68,11 @@ export default class LandingPage extends React.Component {
                   />
                 </div>
                 <div className="col-md-6">
-                  <h3>Feature One</h3>
+                  <h3>INVOICES</h3>
                   <p className="feature-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  With one simple button, you can send an invoice to your client. 
+                  No hassle, no scrawling to see who you just made a phone call to on a soggy 
+                  piece of paper on the subway. No DIY math, no time wasted, and no spreadsheets.
                   </p>
                 </div>
               </div>
@@ -86,9 +86,8 @@ export default class LandingPage extends React.Component {
                   <div className="cta-text">
                     <h2> Sign-up for<br /> CallMEter Today!</h2>
                     <p className="cta-copy">
-                      Our simple solution is simple and makes life simple so you
-                          can live that simple life and just be simple. It's that
-                          simple.
+                    We understand you may be dubious of this incredible technology, 
+                    that's why we offer a free trial.
 							</p>
                     <Link to="/register">
                       <p className="btn-blue">Sign-up!</p>

@@ -1,10 +1,16 @@
 import React from 'react';
 import { UserSettings } from '../components/forms/index.forms';
+import { settings } from '../images/forms/index.forms'
 
 export default class Settings extends React.Component {
   render() {
+    let imgStyle = {
+      backgroundImage: 'url(' + settings + ')'
+    };
     return (
-      <div>
+      <div className="form-container">
+      <div className="img-sized" style={imgStyle} />
+      <div className="form-wrapper pad-50">
         <div className="app-container">
           <div className="title-bar">
             <header className="app-page-header" role="presentation">
@@ -21,6 +27,7 @@ export default class Settings extends React.Component {
             </div>
           </section>
         </div>
+      </div>
       </div>
     );
   }
