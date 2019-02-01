@@ -25,23 +25,12 @@ export class Invoices extends React.Component {
         Authorization: `Bearer ${this.props.authToken}`
       }
     })
-<<<<<<< HEAD
-    .then(res => { 
-      return res.json(); 
-    })
-    .then(invoices => { 
-      console.log('invoices', invoices); 
-      invoices.forEach(invoice => {
-        invoice.invoiceAmount = (invoice.invoiceAmount) ? invoice.invoiceAmount.toFixed(2) : 0.00; 
-        //SECONDS ARE MINUTES
-        invoice.seconds = (invoice.seconds / 60).toFixed(2); 
-=======
       .then(res => {
         return res.json();
       })
       .then(invoices => {
         invoices.forEach(invoice => {
-          invoice.invoiceAmount = invoice.invoiceAmount.toFixed(2);
+          invoice.invoiceAmount = (invoice.invoiceAmount) ? invoice.invoiceAmount.toFixed(2) : '0.00';
           //SECONDS ARE MINUTES
           invoice.seconds = (invoice.seconds / 60).toFixed(2);
         });
@@ -49,7 +38,6 @@ export class Invoices extends React.Component {
       })
       .catch(err => {
         console.log('err', err);
->>>>>>> b32015bc9642670df9e23cce1bccebbff5568dbe
       });
   }
 
