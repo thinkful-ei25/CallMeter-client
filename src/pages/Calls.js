@@ -5,8 +5,9 @@ import ReactTable from 'react-table';
 import {defaultProfilePictureArray} from '../images/profileImages/profileImages'
 import { fetchAllCalls } from '../actions/index.actions';
 import '../styles/Calls.css';
-
-import 'react-table/react-table.css';
+import GettingStarted from '../components/GettingStarted';
+import { computerPhone } from '../images/illustrations/index.illustrations';
+import { SubNav } from '../components/navigation/index.navigation';
 
 export class Calls extends React.Component {
   constructor(props) {
@@ -54,7 +55,7 @@ export class Calls extends React.Component {
             src={props.value || this.returnPictureFromArray()}
           />
         </span>
-      ),
+      )
     },
     {
       Header: 'Contact Name',
@@ -86,57 +87,76 @@ export class Calls extends React.Component {
       Header: 'Estimated Billing',
       accessor: 'estimatedBilling',
       resizable: false
-    },
-  ]
+    }
+  ];
 
   render() {
-    return (
-      <div className="callsHeaderContainer">
-        <h1 className="callsHeader">All Calls</h1>
-        <div className="section-container">
-          <ReactTable
-            data={this.props.calls}
-            columns={this.callColumns}
+    console.log(this.props.loading);
+    if (this.props.loading) {
 
-            getTdProps={() => ({
-              style: {
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                borderTop: '0px solid gainsboro',
-                borderRight: '0px solid rgba(0,0,0,0) !important'
-              }
-            })}
-            getTrProps={() => ({
-              className: 'default-table-row'
-            })}
-            getTheadProps={() => ({
-              className: 'default-table-header'
-            })}
-            getTheadThProps={() => ({
-              className: 'default-table-headers'
-            })}
-            getTrGroupProps={() => ({
-              className: 'default-table-rows'
-            })}
-            defaultPageSize={100}
-            showPageSizeOptions={true}
-            showPagination={false}
-            className="default-table"c
-            pageSizeOptions={[5, 10, 20, 25, 50, 100]}
-            minRows={0}
+      return <div>loading...</div>;
+    }
+    return (
+      <div>
+        <div className="app-container">
+          <SubNav
+            page={'calls'}
+            toggleAddClientForm={() => this.toggleAddClientForm()}
+            setSearchTerm={e => this.setSearchTerm(e)}
+            searchTerm={this.state.searchTerm}
+            toggleView={e => this.toggleView(e)}
+            view={this.state.view}
           />
+          {this.props.calls.length < 100 ? (
+            <div>
+              <section className="contacts">
+                <div className="section-container">
+                  <GettingStarted
+                    title="It's Time To Make Your First Call!"
+                    image={computerPhone}
+                    text="How a Make a Call"
+                    subtext="Dummy text here. horray hip horray hip hop!"
+                  />
+                </div>
+              </section>
+            </div>
+          ) : (
+            <div>
+              <div className="title-bar">
+                <header className="app-page-header" role="presentation">
+                  <div className="app-header-inner" role="banner">
+                    <div className="app-header-title">
+                      <h1 className="app-heading">All Calls</h1>
+                    </div>
+                  </div>
+                </header>
+              </div>
+              <section className="contacts">
+                <div className="section-container">
+                  <ReactTable
+                    data={this.props.calls}
+                    columns={this.callColumns}
+                    defaultSorted={[{ id: 'date', desc: false }]}
+                    defaultPageSize={100}
+                    showPagination={false}
+                    className="-highlight -curser-pointer"
+                    minRows={0}
+                  />
+                </div>
+              </section>
+            </div>
+          )}
         </div>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    calls: state.callStats.calls
+    calls: state.callStats.calls,
+    loading: state.callStats.loading
   };
 };
 
 export default RequiresLogin()(connect(mapStateToProps)(Calls));
-
