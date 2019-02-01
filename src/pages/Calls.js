@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { RequiresLogin } from '../components/_utils/index._utils';
 import ReactTable from 'react-table';
+import {defaultProfilePictureArray} from '../images/profileImages/profileImages'
 import { fetchAllCalls } from '../actions/index.actions';
-import '../styles/Calls.css'
+import '../styles/Calls.css';
 
 import 'react-table/react-table.css';
 
@@ -11,19 +12,27 @@ export class Calls extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
-    };
+      pictureIterator : 0
   }
+}
 
   componentDidMount() {
     this.props.dispatch(fetchAllCalls());
     console.log();
   }
 
+  returnPictureFromArray(){
+    const iterator = Math.floor(Math.random() * 5);
+    const image = defaultProfilePictureArray[iterator];
+    
+    return image;
+  }
+
 
   callColumns = [
     {
       Header: 'Date',
+      id: "column",
       accessor: 'date',
       resizable: false
     },
@@ -37,12 +46,12 @@ export class Calls extends React.Component {
       Header: 'Photo',
       accessor: 'photo',
       resizable: false,
-      Cell: props => (
+      Cell: (props, column) => (
         <span className="avatar">
           <img
             className="table-cell-photo"
             alt="contactImage"
-            src={props.value}
+            src={props.value || this.returnPictureFromArray()}
           />
         </span>
       ),

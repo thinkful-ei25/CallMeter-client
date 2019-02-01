@@ -8,6 +8,7 @@ import { AddContact } from '../components/contacts/index.contacts';
 import { SubNav } from '../components/navigation/index.navigation';
 import { callIcon } from '../images/contact/index.contact';
 import { defaultProfile } from '../images/contact/index.contact';
+import {defaultProfilePictureArray} from '../images/profileImages/profileImages'
 import '../styles/Contacts.css';
 import '../styles/Tables.css';
 
@@ -42,6 +43,13 @@ export class Contacts extends React.Component {
     this.setState({
       searchTerm: e.target.value
     });
+  }
+
+  returnPictureFromArray(){
+    const iterator = Math.floor(Math.random() * 5);
+    const image = defaultProfilePictureArray[iterator];
+    
+    return image;
   }
 
   render() {
@@ -90,7 +98,7 @@ export class Contacts extends React.Component {
                 <img
                   className="table-cell-photo"
                   alt="contactImage"
-                  src={props.value || defaultProfile}
+                  src={props.value || this.returnPictureFromArray()}
                 />
               </span>
             ),
