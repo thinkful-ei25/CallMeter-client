@@ -7,6 +7,8 @@ import { fetchAllCalls } from '../actions/index.actions';
 import '../styles/Calls.css';
 import { SubNav } from '../components/navigation/index.navigation';
 import { inbound, outbound } from '../images/illustrations/index.illustrations';
+import GettingStarted from '../components/GettingStarted';
+import { computerPhone } from '../images/illustrations/index.illustrations';
 
 export class Calls extends React.Component {
   constructor(props) {
@@ -35,24 +37,24 @@ export class Calls extends React.Component {
   // }
 
   formatPhoneNumber(num) {
-    if(num === 'deleted') return'-';
-    let areaCode = num.substring(2,5);
-    let firstThree = num.substring(5,8);
-    let lastFour = num.substring(num.length-4);
-    let number = '('+ areaCode+')'+ ' '+ firstThree+'-'+lastFour;
+    if (num === 'deleted') return '-';
+    let areaCode = num.substring(2, 5);
+    let firstThree = num.substring(5, 8);
+    let lastFour = num.substring(num.length - 4);
+    let number = '(' + areaCode + ')' + ' ' + firstThree + '-' + lastFour;
     return number;
   }
 
-  formatTime(time){
-    if(time===0) return '-';
-    const minutes = Math.floor(time/60);
-    const seconds = time - minutes*60;
+  formatTime(time) {
+    if (time === 0) return '-';
+    const minutes = Math.floor(time / 60);
+    const seconds = time - minutes * 60;
 
     return minutes + ' m ' + seconds + ' s';
   }
 
   formatDate(date) {
-    if(!date) return '-';
+    if (!date) return '-';
     let _date = new Date(date);
     let year = _date.getFullYear();
     let month = _date.getMonth();
@@ -172,6 +174,20 @@ export class Calls extends React.Component {
             toggleView={e => this.toggleView(e)}
             view={this.state.view}
           />
+          {this.props.calls.length < 1 ? (
+            <div>
+              <section className="contacts">
+                <div className="section-container">
+                  <GettingStarted
+                    title="It's Time To Make Your First Call!"
+                    image={computerPhone}
+                    text="How a Make a Call"
+                    subtext="Dummy text here. horray hip horray hip hop!"
+                  />
+                </div>
+              </section>
+            </div>
+          ) : (
             <div>
               <div className="title-bar">
                 <header className="app-page-header" role="presentation">
@@ -196,6 +212,7 @@ export class Calls extends React.Component {
                 </div>
               </section>
             </div>
+          )}
         </div>
       </div>
     );
