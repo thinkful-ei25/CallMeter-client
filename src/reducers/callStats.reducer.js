@@ -2,8 +2,12 @@ import {
   FETCH_CALLSTATS_SUCCESS,
   FETCH_CALLSTATS_ERROR,
   FETCH_CALLSTATS_REQUEST,
-  FETCH_ALLCALLS_SUCCESS
+  FETCH_ALLCALLS_SUCCESS,
+  FETCH_ALLCALLS_REQUEST,
 } from '../actions/index.actions';
+import {
+  FETCH_ALLCALLS_ERROR
+} from '../actions/callStats.action';
 
 const initialState = {
   datesArr: null,
@@ -39,7 +43,16 @@ export default function callStatsReducer(state = initialState, action) {
     return Object.assign({}, state, {
       calls: action.calls,
       loading: false
-    })
+    });
+  // } else if (action.type === FETCH_AllCALLS_ERROR) {
+  //   return Object.assign({}, state, {
+  //     error: action.error,
+  //     loading: false
+  //   });
+  } else if (action.type === FETCH_ALLCALLS_REQUEST) {
+    return Object.assign({}, state, {
+      loading: true
+    });
   } else {
     return state;
   }
