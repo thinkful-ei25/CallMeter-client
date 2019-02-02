@@ -64,16 +64,16 @@ export class AppContainer extends React.Component{
     return (
       <div>
         <AppHeader name={this.props.organizationName} />
+        <Menu />
               <Route exact path='/app' component={Home} />
               <Route exact path='/app/contacts' component={ Contacts } />
               <Route exact path='/app/settings' component={ Settings } />
               <Route exact path="/app/calls" component={ Calls } />
               <Route exact path="/app/invoices" component={Invoices} />
-              <Route exact path="/app/clients" component={ Contacts } />
               <Route exact path="/app/contacts/:clientId" component={IndividualContact} />
               <Route exact path="/app/setup" component={SetupContainer} />
               {(this.props.capabilityToken) ? <DialerApp capabilityToken={this.props.capabilityToken} />  : ''}
-              <Menu />
+
       </div>
     ); 
   }

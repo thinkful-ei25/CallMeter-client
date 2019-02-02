@@ -145,7 +145,7 @@ export class Invoices extends React.Component {
                       title="We Wouldn't Be CallMeter without Invoices"
                       image={graphMoney}
                       text="Clients + Calls = $$$$"
-                      subtext="Dummy text here. horray hip horray hip hop!"
+                      subtext="See you invoices listed here. As you make calls the data will populate and allow you to send away!"
                     />
                   </div>
                 </section>

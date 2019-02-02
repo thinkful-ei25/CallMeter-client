@@ -226,7 +226,7 @@ export class Contacts extends React.Component {
               <div>
                 <section className="contacts">
                   <div className="section-container"> 
-                <GettingStarted title="Getting started with Contacts" image={timeMoney} text="Add a Contact to Begin" subtext="Dummy text here. horray hip horray hip hop!" />
+                <GettingStarted title="Getting started with Contacts" image={timeMoney} text="Add a Contact to Begin" subtext="The contact page is where you will be able to add, edit, and call your contacts directly from your browser. To get started, add a contact via the button in the top right." />
               </div>
               </section>
               </div>

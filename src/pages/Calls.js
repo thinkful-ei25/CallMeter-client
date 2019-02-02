@@ -5,10 +5,10 @@ import ReactTable from 'react-table';
 import { defaultProfilePictureArray } from '../images/profileImages/profileImages';
 import { fetchAllCalls } from '../actions/index.actions';
 import '../styles/Calls.css';
-import GettingStarted from '../components/GettingStarted';
-import { computerPhone } from '../images/illustrations/index.illustrations';
 import { SubNav } from '../components/navigation/index.navigation';
 import { inbound, outbound } from '../images/illustrations/index.illustrations';
+import GettingStarted from '../components/GettingStarted';
+import { computerPhone } from '../images/illustrations/index.illustrations';
 
 export class Calls extends React.Component {
   constructor(props) {
@@ -25,34 +25,36 @@ export class Calls extends React.Component {
   }
 
   componentDidMount() {
+    console.log('COMPONENT MOUNTED');
     this.props.dispatch(fetchAllCalls());
-    console.log();
   }
 
-  returnPictureFromArray() {
-    const iterator = Math.floor(Math.random() * 5);
-    const image = defaultProfilePictureArray[iterator];
+  // returnPictureFromArray() {
+  //   const iterator = Math.floor(Math.random() * 5);
+  //   const image = defaultProfilePictureArray[iterator];
 
-    return image;
-  }
+  //   return image;
+  // }
 
   formatPhoneNumber(num) {
-    if(!num) return'-';
-    let areaCode = num.substring(2,5);
-    let firstThree = num.substring(5,8);
-    let lastFour = num.substring(num.length-4);
-    let number = '('+ areaCode+')'+ ' '+ firstThree+'-'+lastFour;
+    if (num === 'deleted') return '-';
+    let areaCode = num.substring(2, 5);
+    let firstThree = num.substring(5, 8);
+    let lastFour = num.substring(num.length - 4);
+    let number = '(' + areaCode + ')' + ' ' + firstThree + '-' + lastFour;
     return number;
   }
 
-  formatTime(time){
-    const minutes = Math.floor(time/60);
-    const seconds = time - minutes*60;
+  formatTime(time) {
+    if (time === 0) return '-';
+    const minutes = Math.floor(time / 60);
+    const seconds = time - minutes * 60;
 
     return minutes + ' m ' + seconds + ' s';
   }
 
   formatDate(date) {
+    if (!date) return '-';
     let _date = new Date(date);
     let year = _date.getFullYear();
     let month = _date.getMonth();
@@ -101,7 +103,7 @@ export class Calls extends React.Component {
           <img
             className="table-cell-photo"
             alt="contactImage"
-            src={props.value || this.returnPictureFromArray()}
+            src={props.value || ''}
           />
         </span>
       ),
@@ -121,7 +123,7 @@ export class Calls extends React.Component {
     },
     {
       Header: 'Date',
-      id: 'column',
+      id: 'date',
       accessor: 'date',
       resizable: false,
       Cell: row => this.formatDate(row.value),
@@ -157,7 +159,7 @@ export class Calls extends React.Component {
   ];
 
   render() {
-    console.log(this.props.loading);
+    console.log(this.props);
     if (this.props.loading) {
       return <div>loading...</div>;
     }
@@ -218,6 +220,7 @@ export class Calls extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state.callStats);
   return {
     calls: state.callStats.calls,
     loading: state.callStats.loading

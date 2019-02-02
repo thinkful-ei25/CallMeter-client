@@ -137,8 +137,8 @@ export class Stats extends React.Component {
                   <GettingStarted
                     title="Howdy! Welcome to CallMeter!"
                     image={happy}
-                    text="How a Make a Call"
-                    subtext="Dummy text here. horray hip horray hip hop!"
+                    text="Get Started with CallMeter"
+                    subtext="At this point you've already setup a phone number and are ready to receive calls! Head over to Contacts via the menu in the bottom left to add a contact and experience browser calls!"
                   />
                 </div>
               </section>
