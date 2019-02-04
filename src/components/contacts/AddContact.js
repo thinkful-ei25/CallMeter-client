@@ -172,7 +172,7 @@ export class AddContact extends React.Component {
 }
 
 export default reduxForm({
-  form: 'addclient',
+  form: 'addClient',
   onSubmitFail: (errors, dispatch) =>
-    dispatch(focus('registration', Object.keys(errors)[0]))
+    dispatch(focus('addClient', Object.keys(errors)[0]))
 })(AddContact);
