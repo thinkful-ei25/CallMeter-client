@@ -70,6 +70,7 @@ class FileInput extends React.Component {
 		return (
 			<div>
 				<input
+					accept='.jpg, .png, .jpeg'		
 					type="file"
 					onChange={this.onChange}
 				/>
