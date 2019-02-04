@@ -181,8 +181,8 @@ export class Calls extends React.Component {
                   <GettingStarted
                     title="It's Time To Make Your First Call!"
                     image={computerPhone}
-                    text="How a Make a Call"
-                    subtext="Dummy text here. horray hip horray hip hop!"
+                    text="How to Make a Call"
+                    subtext="Use the navigation in the lower right corner to access your contacts and make a call!"
                   />
                 </div>
               </section>
