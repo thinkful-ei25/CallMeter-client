@@ -60,7 +60,7 @@ class FileInput extends React.Component {
 		onChange(e.target.files[0])
 		this.getBase64(e.target.files[0]).then(res => {
 			console.log('res', res)
-			this.props.dispatch(change("addclient", "photo64", res))
+			this.props.dispatch(change("addClient", "photo64", res))
 		})
 	}
 
