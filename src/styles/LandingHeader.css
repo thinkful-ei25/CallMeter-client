@@ -153,6 +153,10 @@
   height:65px !important;
 }
 
+.logo-mobile {
+  display: none; 
+}
+
 button:hover{
   transform: scale(1.1); 
 }
@@ -173,5 +177,33 @@ button:hover{
   }
   #signup{
     width: 100px;
+  }
+
+  .logo-larger {
+    display:none; 
+  }
+
+  .logo-mobile { 
+    display: block; 
+    height:30px !important;
+
+  }
+
+  .logo-img {
+    top: -1px;
+    margin-right: 10px;
+    vertical-align: middle;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .logo {
+    float: left;
+    min-width: 115px;
+    height: 70px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
   }
 }

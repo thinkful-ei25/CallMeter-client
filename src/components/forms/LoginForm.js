@@ -69,6 +69,12 @@ export class LoginForm extends React.Component {
           >
             or Sign-up
           </Link>
+          <div className="demo-creds">
+            
+            <p id="try">Try our demo</p>
+            <p> Org: CallMeter Demo</p> 
+            <p> Password: password123</p> 
+         </div>
         </div>
       </form>
     );
