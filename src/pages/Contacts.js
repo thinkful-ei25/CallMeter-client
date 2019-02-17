@@ -34,7 +34,7 @@ export class Contacts extends React.Component {
 
   toggleView(e) {
     this.setState({ view: e.target.value });
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   setClient(id) {

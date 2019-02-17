@@ -38,19 +38,19 @@ export class phoneSetup extends React.Component {
       this.props
         .dispatch(getPhoneNumbers(e.target.value))
         .then(res => {
-          console.log('===========');
-          console.log(res);
-          console.log('===========');
+          // console.log('===========');
+          // console.log(res);
+          // console.log('===========');
           if (res) this.setState({ numbers: res });
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
         });
     }
   };
 
   render() {
-    console.log('testing');
+    // console.log('testing');
     return (
       <div>
         <Form className="form" onSubmit={this.handleFormSubmit}>

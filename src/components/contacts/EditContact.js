@@ -10,7 +10,7 @@ import {orange_triangle} from '../../images/backgrounds/index.backgrounds';
 export class EditContact extends React.Component {
 
   onSubmit(values) {
-    console.log('values', values)
+    // console.log('values', values)
     return this.props.dispatch(editClient(values))
       .then(this.props.toggle())
   }

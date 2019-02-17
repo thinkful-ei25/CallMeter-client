@@ -19,7 +19,7 @@ export class Invoices extends React.Component {
   }
 
   sendInvoice(invoice){
-    console.log('invoice', invoice); 
+    // console.log('invoice', invoice); 
 
     fetch(`${API_BASE_URL}/invoices/email`, {
       method: 'POST',
@@ -42,10 +42,10 @@ export class Invoices extends React.Component {
         return res.json();
       })
       .then(email => {
-        console.log('email', email); 
+        // console.log('email', email); 
       })
       .catch(err => {
-        console.log('err', err);
+        // console.log('err', err);
       });
 
   }
@@ -69,7 +69,7 @@ export class Invoices extends React.Component {
         this.setState({ invoices });
       })
       .catch(err => {
-        console.log('err', err);
+        // console.log('err', err);
       });
   }
 

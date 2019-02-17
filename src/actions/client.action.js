@@ -103,7 +103,6 @@ export const addClient = (values) => (dispatch, getState) => {
 		.then(res => normalizeResponseErrors(res))
 		.then(res => res.json())
 		.then(() => {
-			console.log('addClient finished')
 			dispatch(fetchClients())
 		})
 		.catch(err => {
@@ -113,9 +112,9 @@ export const addClient = (values) => (dispatch, getState) => {
 
 //THIS SEEMS A BIT WEIRD
 export const deleteClient = (id) => (dispatch, getState) => {
-	console.log('id in delete action', id);
+	// console.log('id in delete action', id);
 	const authToken = getState().auth.authToken;
-	console.log('authtoken', authToken)
+	// console.log('authtoken', authToken)
 	return fetch(`${API_BASE_URL}/client/${id}`, {
 		method: 'DELETE',
 		headers: {
@@ -131,7 +130,7 @@ export const deleteClient = (id) => (dispatch, getState) => {
 			dispatch(deleteClientSuccess())
 		})
 		.catch(err => {
-			console.log('error in delete catch block', err)
+			// console.log('error in delete catch block', err)
 			dispatch(fetchClientsError(err));
 		});
 };
@@ -164,7 +163,7 @@ export const editClient = (values) => (dispatch, getState) => {
 		.then(res => normalizeResponseErrors(res))
 		.then(res => res.json())
 		.then((data) => {
-			console.log('put result data', data)
+			// console.log('put result data', data)
 			dispatch(fetchOneClient(data.id))
 		})
 		.catch(err => {

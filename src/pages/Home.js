@@ -8,7 +8,7 @@ import '../styles/Dashboard.css';
 import { happy } from '../images/illustrations/index.illustrations';
 import { SubNav } from '../components/navigation/index.navigation';
 import GettingStarted from '../components/GettingStarted';
-import {Answerer} from '../components/browserPhone/index.browserPhone';
+
 
 export class Stats extends React.Component {
   constructor(props) {
@@ -31,7 +31,6 @@ export class Stats extends React.Component {
   }
   componentDidMount() {
     this.props.dispatch(fetchCallStats());
-    console.log();
   }
 
   createSparklines(arr) {

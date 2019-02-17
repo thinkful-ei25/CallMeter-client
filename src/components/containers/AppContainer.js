@@ -16,11 +16,11 @@ export class AppContainer extends React.Component{
 
   componentDidUpdate(prevProps) {
     if (!prevProps.loggedIn && this.props.loggedIn) {
-      console.log('hitting route');
-      console.log(prevProps);
+      // console.log('hitting route');
+      // console.log(prevProps);
       this.startPeriodicRefresh();
     } else if (prevProps.loggedIn && !this.props.loggedIn) {
-      console.log('hitting other route');
+      // console.log('hitting other route');
       this.stopPeriodicRefresh();
     }
   }
@@ -37,7 +37,7 @@ export class AppContainer extends React.Component{
       this.stopPeriodicRefresh();
     })
     .catch(err => { 
-      console.log('err', err); 
+      // console.log('err', err); 
     }); 
   }
 

@@ -80,9 +80,7 @@ export const login = (organizationName, password) => dispatch => {
         storeTokens(authToken, capabilityToken, tutorialCompleted, dispatch);
       })
       .catch(err => {
-        console.log('err', err);
         const { status } = err;
-        console.log('code', status);
         const message =
           status === 401
             ? 'Incorrect organization name or password'

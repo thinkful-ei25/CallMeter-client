@@ -9,7 +9,7 @@ import { addClient } from '../../actions/index.actions'
 
 export class AddContact extends React.Component {
   onSubmit(values) {
-    console.log('values', values)
+    // console.log('values', values)
 
     this.props.dispatch(addClient(values))
     this.props.toggle()

@@ -18,7 +18,7 @@ export class LoginForm extends React.Component {
   onSubmit(values) {
     this.props.dispatch(login(values.organizationName, values.password)).then(() => { 
       this.setState({redirect: true});  
-      console.log('true');
+      // console.log('true');
     })
     .catch(err => {
       this.setState({error: "invalid username or password"})

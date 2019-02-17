@@ -11,7 +11,7 @@ export class AddClient extends React.Component {
     this.props.incrementStep();
     this.props.dispatch(addClient(values))
     //this.props.toggle()
-    console.log('testing working on contact form');
+    // console.log('testing working on contact form');
   }
 
   render() {
@@ -24,7 +24,7 @@ export class AddClient extends React.Component {
           <Form
             className="loginForm"
             onSubmit={this.props.handleSubmit(values => {
-              console.log("values printing", values);
+              // console.log("values printing", values);
               this.onSubmit(values)
             }
             )}>

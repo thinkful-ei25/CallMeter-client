@@ -22,10 +22,10 @@ import {
 
 export class navBar extends React.Component {
   async startAnimation(e) {
-    console.log(e);
+    // console.log(e);
     const buttons = document.getElementsByClassName('aniButton');
     const currentButton = document.getElementsByClassName('dots')[0];
-    console.log(buttons);
+    // console.log(buttons);
     if (buttons[0].style.visibility === 'visible') {
       currentButton.src = menu;
       for (let i = 0; i < buttons.length; i++) {

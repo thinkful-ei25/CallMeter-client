@@ -111,8 +111,8 @@
   transition: all 0.3s ease-in-out;
   position: relative;
   display: inline-block;
-  background-color: rgb(101, 21, 221);
-  color: #fff;
+  background-color: #ffcd24;
+  color: #58508d;
   font-size: 18px;
   text-align: center;
   cursor: pointer;
@@ -121,7 +121,7 @@
 
 .login-link {
   text-align: right;
-  color: #ff8a00;
+  color: #58508d;
 }
 
 .sign-up-button {

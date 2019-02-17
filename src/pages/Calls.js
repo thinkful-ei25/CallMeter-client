@@ -25,7 +25,7 @@ export class Calls extends React.Component {
   }
 
   componentDidMount() {
-    console.log('COMPONENT MOUNTED');
+    // console.log('COMPONENT MOUNTED');
     this.props.dispatch(fetchAllCalls());
   }
 
@@ -159,7 +159,7 @@ export class Calls extends React.Component {
   ];
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     if (this.props.loading) {
       return <div>loading...</div>;
     }
@@ -220,7 +220,7 @@ export class Calls extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.callStats);
+  // console.log(state.callStats);
   return {
     calls: state.callStats.calls,
     loading: state.callStats.loading

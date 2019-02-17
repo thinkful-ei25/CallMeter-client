@@ -11,6 +11,7 @@ export default class LandingPage extends React.Component {
       <div>
         <LandingHeader />
         <div className="body-container">
+          <div className="darker">
           <div className="hero-wrapper">
             <div className="general-container">
               <div className="row">
@@ -35,6 +36,7 @@ export default class LandingPage extends React.Component {
                   />
                 </div>
               </div>
+            </div>
             </div>
           </div>
           {/* End of hero */}

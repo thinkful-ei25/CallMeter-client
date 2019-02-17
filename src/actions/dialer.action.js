@@ -49,6 +49,6 @@ export const fetchCallerFromContact = (callerNumber) => (dispatch, getState) => 
   })
   .catch(err => { 
     dispatch(loadingCallerError(err)); 
-    console.log('err', err); 
+    // console.log('err', err); 
   }); 
 }; 

@@ -77,7 +77,7 @@ export class DialerApp extends React.Component {
         this.deviceDisconnectedHandler(); 
       }
       else if (state === 'ringing' ) { 
-        console.log('ringing'); 
+        // console.log('ringing'); 
       }
       else if (state === 'connect') { 
         if (this.state.isOutgoingCallOnGoing) { 
